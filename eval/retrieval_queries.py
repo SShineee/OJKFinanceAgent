@@ -73,7 +73,7 @@ def answer_patterns(answer: dict) -> list[str]:
         return forms
     if kind == "percent":
         places = len(f"{value}".split(".")[1]) if "." in f"{value}" else 0
-        texts = dict.fromkeys([_decimal(value, places), _decimal(value, 1)])
+        texts = dict.fromkeys([_decimal(value, places), _decimal(value, 2), _decimal(value, 1)])
         return [rf"(?<![\d.,]){re.escape(t)}\s*%" for t in texts]
     if kind == "component":
         return [_bounded(answer["text"])]
@@ -97,12 +97,13 @@ def relevant_chunk_ids(query: dict) -> list[str]:
     return [c["chunk_id"] for c in load_chunks(query["year"], query["ticker"]) if is_relevant(c["text"], query)]
 
 
-def verify(queries: list[dict]) -> list[str]:
-    """Angka = ground_truth.xlsx; setiap query punya >= 1 chunk benar; komposisi sesuai panduan."""
+def verify(queries: list[dict], gt_path: Path = config.GROUND_TRUTH,
+           check_composition: bool = True) -> list[str]:
+    """Angka = file ground truth (.xlsx); setiap query punya >= 1 chunk benar; komposisi sesuai panduan."""
     from openpyxl import load_workbook
 
     problems = []
-    book = load_workbook(config.GROUND_TRUTH, data_only=True)
+    book = load_workbook(gt_path, data_only=True)
     ids = [q["id"] for q in queries]
     if len(ids) != len(set(ids)):
         problems.append("id query ganda")
@@ -123,31 +124,40 @@ def verify(queries: list[dict]) -> list[str]:
                 problems.append(f"{q['id']}: komponen merujuk total {a['of']} yang tidak ada di jawaban")
         if not relevant_chunk_ids(q):
             problems.append(f"{q['id']}: tidak ada chunk yang memuat jawabannya")
-    years = [q["year"] for q in queries]
-    if len(queries) != 15 or {y: years.count(y) for y in config.YEARS} != COMPOSITION:
-        problems.append(f"komposisi: {len(queries)} query, per tahun {[years.count(y) for y in config.YEARS]} "
-                        f"(terkunci: 15, {COMPOSITION})")
-    if sum(q["abbreviation"] for q in queries) != 7:
-        problems.append(f"query bersingkatan {sum(q['abbreviation'] for q in queries)}, harus 7")
+    if check_composition:
+        years = [q["year"] for q in queries]
+        if len(queries) != 15 or {y: years.count(y) for y in config.YEARS} != COMPOSITION:
+            problems.append(f"komposisi: {len(queries)} query, per tahun {[years.count(y) for y in config.YEARS]} "
+                            f"(terkunci: 15, {COMPOSITION})")
+        if sum(q["abbreviation"] for q in queries) != 7:
+            problems.append(f"query bersingkatan {sum(q['abbreviation'] for q in queries)}, harus 7")
     return problems
 
 
-def main():
+def main(argv: list[str] | None = None):
+    import argparse
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     from src.ingest.chunk import load_chunks
 
-    queries = load_queries()
+    ap = argparse.ArgumentParser(description="Verifikasi dataset query uji retrieval terhadap ground truth.")
+    ap.add_argument("--dataset", type=Path, default=DATASET, help="file dataset .jsonl")
+    ap.add_argument("--gt", type=Path, default=config.GROUND_TRUTH, help="file ground truth .xlsx")
+    args = ap.parse_args(argv)
+
+    queries = load_queries(args.dataset)
+    is_default = args.dataset.resolve() == DATASET.resolve()
     pages = {}
-    for y in config.YEARS:
-        for c in load_chunks(y, config.DEV_TICKER):
+    for ticker, year in sorted({(q["ticker"], q["year"]) for q in queries}):
+        for c in load_chunks(year, ticker):
             pages[c["chunk_id"]] = c["pages"]
-    print(f"{DATASET.relative_to(config.ROOT)}: {len(queries)} query, sha256 {dataset_sha256()[:16]}…")
+    rel_path = args.dataset.relative_to(config.ROOT) if args.dataset.is_relative_to(config.ROOT) else args.dataset
+    print(f"{rel_path}: {len(queries)} query, sha256 {dataset_sha256(args.dataset)}")
     for q in queries:
         rel = relevant_chunk_ids(q)
         p = sorted({x for cid in rel for x in pages[cid]})
         print(f"  {q['id']} {q['year']} {'S' if q['abbreviation'] else ' '} {q['query']:<52} "
               f"{len(rel):>2} chunk benar, hal {p[:8]}{' …' if len(p) > 8 else ''}")
-    problems = verify(queries)
+    problems = verify(queries, gt_path=args.gt, check_composition=is_default)
     for p in problems:
         print(f"  MASALAH: {p}")
     print("HASIL:", "LULUS" if not problems else f"GAGAL ({len(problems)} masalah)")

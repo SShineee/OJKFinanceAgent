@@ -546,6 +546,7 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
       cocokkan ke rasio resmi, verifikasi manual. Perkakasnya sudah ada (`validate_ratios.py`,
       `build_ground_truth.py`, `build_verification_sheet.py`), tinggal diberi parameter emiten.
       Rasio resmi BMRI mengikuti SEOJK yang sama dengan BBCA → acuannya sama kuat.
+      *(Progres 26-11-2026: `data/ground_truth_bmri.xlsx`, `docs/lembar_verifikasi_bmri.md`, & `results/validate_ratios_bmri.json` selesai — **6/6 rasio lolos MAPE < 5%**: CAR 0,01%, NPL 0,51%, LDR 0,69%, NIM 1,09%, ROA 3,00% [SEOJK Laba Sebelum Pajak — beda dari fn9 BBCA!], ROE 4,31%; `scripts/check_bmri_chunks.py` **LULUS**; uji retrieval BMRI `results/retrieval_eval_bmri.json` **8/10 = 80,0%**, Hit@1 **80%**, MRR@5 **0,800** tanpa penyetelan `BANK_TERMS` [SHA-256 `8b0840dc…98c4`]; ⏸ tinggal verifikasi visual manual peneliti memakai `docs/lembar_verifikasi_bmri.md`.)*
 
 > **Koreksi atas proposal:** Sub-bab 3.6.1 menyebut RAGAS "tanpa memerlukan ground truth".
 > Itu tidak akurat — `context_recall` **membutuhkan** reference answer. Perbaiki kalimat ini di Bab 3.

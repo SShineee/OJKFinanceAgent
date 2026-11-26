@@ -1,0 +1,11 @@
+id,ticker,year,abbreviation,query,relevant_count,relevant_pages,dense_rank,bm25_rank,hybrid_rank,dense_expanded_rank,bm25_expanded_rank,hybrid_expanded_rank,dense_expanded_cand_rank,bm25_expanded_cand_rank,hybrid_expanded_hit5,hybrid_expanded_top5_pages
+m01,bmri,2025,False,Berapa total aset Bank Mandiri tahun 2025?,8,36; 318; 331; 953; 954; 958; 959; 1350; 1355; 1357,1,1,1,1,1,1,1,1,True,331; 329/331; 1301; 351; 982
+m02,bmri,2024,False,Berapa laba bersih Bank Mandiri tahun 2024?,11,33; 386; 420; 430; 1291; 1292; 1293; 1628; 1630,-,-,-,-,-,-,-,-,False,393; 419; 398; 1720; 392
+m03,bmri,2023,True,Berapa DPK entitas induk Bank Mandiri tahun 2023?,3,412; 1503,1,5,1,2,1,1,2,1,True,1503; 1073; 1075; 1501; 412
+m04,bmri,2024,True,Berapa CAR bank Bank Mandiri tahun 2024?,6,34; 287; 427; 430; 431; 1701,2,1,1,1,1,1,1,1,True,1701; 287; 427; 430; 1701
+m05,bmri,2025,False,Berapa modal inti tier 1 Bank Mandiri tahun 2025?,5,355; 356; 842; 844; 1432,1,2,1,1,2,1,1,2,True,355; 357; 346; 356; 258
+m06,bmri,2023,False,Berapa laba sebelum pajak Bank Mandiri tahun 2023?,4,35; 1079; 1331; 1332,2,1,1,2,1,1,2,1,True,1331; 1506/1507; 1508; 1510/1511; 362
+m07,bmri,2024,True,Berapa nominal NPL Bank Mandiri tahun 2024?,4,428; 1072; 1074; 1076,-,3,-,-,5,1,7,5,True,428; 416; 1710/1711; 1708; 1718
+m08,bmri,2023,True,Berapa CKPN kredit yang diberikan Bank Mandiri tahun 2023?,1,1502,-,-,-,-,-,-,-,-,False,1258; 1440; 32; 1070; 1071
+m09,bmri,2024,False,Berapa total ekuitas Bank Mandiri tahun 2024?,4,401; 419; 1289; 1293,1,1,1,1,1,1,1,1,True,419; 401; 393; 398; 425
+m10,bmri,2025,True,Berapa LDR Bank Mandiri tahun 2025?,2,40; 258; 259,-,1,3,-,1,1,10,1,True,258/259; 290; 361; 40; 308/309

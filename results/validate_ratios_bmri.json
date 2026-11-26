@@ -1,0 +1,232 @@
+{
+  "ticker": "bmri",
+  "years": [
+    2023,
+    2024,
+    2025
+  ],
+  "ratios": {
+    "CAR": {
+      "official": {
+        "2023": 21.48,
+        "2024": 20.1,
+        "2025": 19.36
+      },
+      "selected": {
+        "formula": "A: Total modal / ATMR  [BANK - Catatan KPMM]",
+        "mape": 0.01
+      },
+      "candidates": [
+        {
+          "formula": "A: Total modal / ATMR  [BANK - Catatan KPMM]",
+          "values": {
+            "2023": 21.4812,
+            "2024": 20.101,
+            "2025": 19.3583
+          },
+          "mape": 0.01
+        },
+        {
+          "formula": "B: Total modal / ATMR  [konsolidasi]",
+          "values": {
+            "2023": 21.9908,
+            "2024": 20.8188,
+            "2025": 20.4325
+          },
+          "mape": 3.83
+        }
+      ]
+    },
+    "ROA": {
+      "official": {
+        "2023": 4.03,
+        "2024": 3.59,
+        "2025": 3.19
+      },
+      "selected": {
+        "formula": "A: Laba sebelum pajak BANK / RATA-RATA aset BANK  [SEOJK]",
+        "mape": 3.0
+      },
+      "candidates": [
+        {
+          "formula": "A: Laba sebelum pajak BANK / RATA-RATA aset BANK  [SEOJK]",
+          "values": {
+            "2023": 3.8529,
+            "2024": 3.5347,
+            "2025": 3.0918
+          },
+          "mape": 3.0
+        },
+        {
+          "formula": "B: Laba sebelum pajak KONSOL / RATA-RATA aset KONSOL",
+          "values": {
+            "2023": 3.5848,
+            "2024": 3.3208,
+            "2025": 2.9072
+          },
+          "mape": 9.14
+        },
+        {
+          "formula": "C: Laba bersih BANK / RATA-RATA aset BANK  [gaya fn9 BCA]",
+          "values": {
+            "2023": 3.1356,
+            "2024": 2.8678,
+            "2025": 2.5108
+          },
+          "mape": 21.2
+        },
+        {
+          "formula": "D: Laba bersih KONSOL / Total aset akhir  [Tabel 2.2]",
+          "values": {
+            "2023": 2.762,
+            "2024": 2.52,
+            "2025": 2.1677
+          },
+          "mape": 31.11
+        }
+      ]
+    },
+    "ROE": {
+      "official": {
+        "2023": 27.31,
+        "2024": 24.19,
+        "2025": 23.15
+      },
+      "selected": {
+        "formula": "A: Laba bersih BANK / RATA-RATA Tier 1 BANK  [SEOJK]",
+        "mape": 4.31
+      },
+      "candidates": [
+        {
+          "formula": "A: Laba bersih BANK / RATA-RATA Tier 1 BANK  [SEOJK]",
+          "values": {
+            "2023": 26.1501,
+            "2024": 23.2618,
+            "2025": 22.0248
+          },
+          "mape": 4.31
+        },
+        {
+          "formula": "B: Laba induk KONSOL / RATA-RATA Tier 1 BANK  [CAMPUR - jangan dipakai]",
+          "values": {
+            "2023": 28.1783,
+            "2024": 25.3756,
+            "2025": 24.0565
+          },
+          "mape": 4.0
+        },
+        {
+          "formula": "C: Laba induk KONSOL / Ekuitas KONSOL akhir  [Tabel 2.2]",
+          "values": {
+            "2023": 19.1517,
+            "2024": 17.795,
+            "2025": 17.1941
+          },
+          "mape": 27.35
+        }
+      ]
+    },
+    "NIM": {
+      "official": {
+        "2023": 5.25,
+        "2024": 4.93,
+        "2025": 4.59
+      },
+      "selected": {
+        "formula": "A: Pend. bunga neto BANK / RATA-RATA Aset Prod. Inti BANK",
+        "mape": 1.09
+      },
+      "candidates": [
+        {
+          "formula": "A: Pend. bunga neto BANK / RATA-RATA Aset Prod. Inti BANK",
+          "values": {
+            "2023": 5.1541,
+            "2024": 4.9788,
+            "2025": 4.5689
+          },
+          "mape": 1.09
+        },
+        {
+          "formula": "B: Pend. bunga neto BANK / Aset Prod. Inti BANK akhir",
+          "values": {
+            "2023": 4.9475,
+            "2024": 4.7203,
+            "2025": 4.2997
+          },
+          "mape": 5.45
+        },
+        {
+          "formula": "C: Pend. bunga neto KONSOL / RATA-RATA Aset KONSOL",
+          "values": {
+            "2023": 4.6024,
+            "2024": 4.4228,
+            "2025": 4.0406
+          },
+          "mape": 11.53
+        }
+      ]
+    },
+    "NPL": {
+      "official": {
+        "2023": 1.02,
+        "2024": 0.97,
+        "2025": 0.96
+      },
+      "selected": {
+        "formula": "A: NPL nominal BANK / Kredit BRUTO BANK  [SEOJK]",
+        "mape": 0.51
+      },
+      "candidates": [
+        {
+          "formula": "A: NPL nominal BANK / Kredit BRUTO BANK  [SEOJK]",
+          "values": {
+            "2023": 1.013,
+            "2024": 0.962,
+            "2025": 0.9597
+          },
+          "mape": 0.51
+        },
+        {
+          "formula": "B: NPL nominal BANK / Total kredit KONSOL  [pembanding]",
+          "values": {
+            "2023": 0.8089,
+            "2024": 0.7768,
+            "2025": 0.7766
+          },
+          "mape": 19.9
+        }
+      ]
+    },
+    "LDR": {
+      "official": {
+        "2023": 86.75,
+        "2024": 98.04,
+        "2025": 88.92
+      },
+      "selected": {
+        "formula": "A: Kredit BRUTO BANK / DPK BANK  [bank/bank, SEOJK]",
+        "mape": 0.69
+      },
+      "candidates": [
+        {
+          "formula": "A: Kredit BRUTO BANK / DPK BANK  [bank/bank, SEOJK]",
+          "values": {
+            "2023": 87.4123,
+            "2024": 98.786,
+            "2025": 89.3967
+          },
+          "mape": 0.69
+        },
+        {
+          "formula": "B: Total kredit KONSOL / (Simpanan + Syirkah)  [konsol]",
+          "values": {
+            "2023": 86.2318,
+            "2024": 95.5453,
+            "2025": 87.8526
+          },
+          "mape": 1.45
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1967 @@
+{
+  "ticker": "bmri",
+  "record_problems": [],
+  "direct": {
+    "total": 84,
+    "ok": 74,
+    "filtered_out": 10,
+    "failed": 0,
+    "items": [
+      {
+        "row": 3,
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2022,
+        "printed_million": "1.992.544.687",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0002"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 3,
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2023,
+        "printed_million": "2.174.219.449",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0002"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 3,
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2024,
+        "printed_million": "2.427.223.262",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0002"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 3,
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2025,
+        "printed_million": "2.829.948.026",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0002"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 5,
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit (Kredit & Pembiayaan Syariah Konsolidasian)",
+        "year": 2022,
+        "printed_million": "1.172.599.882",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0001"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 5,
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit (Kredit & Pembiayaan Syariah Konsolidasian)",
+        "year": 2023,
+        "printed_million": "1.359.832.195",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0001"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 5,
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit (Kredit & Pembiayaan Syariah Konsolidasian)",
+        "year": 2024,
+        "printed_million": "1.623.216.612",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0001"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 5,
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit (Kredit & Pembiayaan Syariah Konsolidasian)",
+        "year": 2025,
+        "printed_million": "1.849.967.956",
+        "source": "bmri_2025.pdf hal 36",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0001"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 7,
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2022,
+        "printed_million": "252.245.455",
+        "source": "bmri_2025.pdf hal 37",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": null
+      },
+      {
+        "row": 7,
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2023,
+        "printed_million": "287.494.962",
+        "source": "bmri_2025.pdf hal 37",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2023.pdf hal 1077",
+          "chunk_id": "bmri_2023_0254",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 7,
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2024,
+        "printed_million": "313.474.681",
+        "source": "bmri_2025.pdf hal 37",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2024.pdf hal 1289",
+          "chunk_id": "bmri_2024_0337",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 7,
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2025,
+        "printed_million": "327.401.998",
+        "source": "bmri_2025.pdf hal 37",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2025.pdf hal 958",
+          "chunk_id": "bmri_2025_0210",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 8,
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga dan Syariah - Neto",
+        "year": 2022,
+        "printed_million": "87.903.354",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 8,
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga dan Syariah - Neto",
+        "year": 2023,
+        "printed_million": "95.886.574",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 8,
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga dan Syariah - Neto",
+        "year": 2024,
+        "printed_million": "101.756.920",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 8,
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga dan Syariah - Neto",
+        "year": 2025,
+        "printed_million": "106.210.035",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 9,
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2022,
+        "printed_million": "56.377.726",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 9,
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2023,
+        "printed_million": "74.684.881",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 9,
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2024,
+        "printed_million": "76.403.486",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 9,
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2025,
+        "printed_million": "76.417.563",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 10,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih (Laba Tahun Berjalan)",
+        "year": 2022,
+        "printed_million": "44.952.368",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003",
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 10,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih (Laba Tahun Berjalan)",
+        "year": 2023,
+        "printed_million": "60.051.870",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003",
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 10,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih (Laba Tahun Berjalan)",
+        "year": 2024,
+        "printed_million": "61.165.121",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003",
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 10,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih (Laba Tahun Berjalan)",
+        "year": 2025,
+        "printed_million": "61.346.133",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0003",
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 11,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2022,
+        "printed_million": "41.170.637",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 11,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2023,
+        "printed_million": "55.060.057",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 11,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2024,
+        "printed_million": "55.782.742",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 11,
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2025,
+        "printed_million": "56.293.950",
+        "source": "bmri_2025.pdf hal 38",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0004"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 13,
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2022,
+        "printed_million": "181.072.852",
+        "source": "bmri_2023.pdf hal 1425",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1045"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 13,
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2023,
+        "printed_million": "209.724.274",
+        "source": "bmri_2023.pdf hal 1425",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1045"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 13,
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2024,
+        "printed_million": "229.932.670",
+        "source": "bmri_2024.pdf hal 1701",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1387"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 13,
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2025,
+        "printed_million": "238.082.036",
+        "source": "bmri_2025.pdf hal 1432",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1362"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 14,
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2022,
+        "printed_million": "191.844.453",
+        "source": "bmri_2023.pdf hal 1425",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1045"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 14,
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2023,
+        "printed_million": "221.988.279",
+        "source": "bmri_2023.pdf hal 1425",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1045"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 14,
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2024,
+        "printed_million": "244.258.632",
+        "source": "bmri_2024.pdf hal 1701",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1387"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 14,
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2025,
+        "printed_million": "253.294.877",
+        "source": "bmri_2025.pdf hal 1432",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1362"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 15,
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2022,
+        "printed_million": "986.051.285",
+        "source": "bmri_2023.pdf hal 1425",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1045"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 15,
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2023,
+        "printed_million": "1.033.407.212",
+        "source": "bmri_2023.pdf hal 1425",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1045"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 15,
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2024,
+        "printed_million": "1.215.157.443",
+        "source": "bmri_2024.pdf hal 1701",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1387"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 15,
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2025,
+        "printed_million": "1.308.455.053",
+        "source": "bmri_2025.pdf hal 1432",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1362"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 17,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2022,
+        "printed_million": "223.271.290",
+        "source": "bmri_2023.pdf hal 403",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_0118"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 17,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2023,
+        "printed_million": "258.956.049",
+        "source": "bmri_2023.pdf hal 403",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_0118"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 17,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2024,
+        "printed_million": "286.910.930",
+        "source": "bmri_2024.pdf hal 430",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_0152"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 17,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2025,
+        "printed_million": "304.433.779",
+        "source": "bmri_2025.pdf hal 356",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0139"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 18,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2022,
+        "printed_million": "236.470.218",
+        "source": "bmri_2023.pdf hal 404",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": null
+      },
+      {
+        "row": 18,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2023,
+        "printed_million": "273.922.880",
+        "source": "bmri_2023.pdf hal 404",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2024.pdf hal 431",
+          "chunk_id": "bmri_2024_0154",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 18,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2024,
+        "printed_million": "304.285.722",
+        "source": "bmri_2024.pdf hal 431",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_0154"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 18,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2025,
+        "printed_million": "322.895.630",
+        "source": "bmri_2025.pdf hal 357",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0141"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 19,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2022,
+        "printed_million": "1.203.506.671",
+        "source": "bmri_2023.pdf hal 405",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": null
+      },
+      {
+        "row": 19,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2023,
+        "printed_million": "1.245.624.433",
+        "source": "bmri_2023.pdf hal 405",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2024.pdf hal 431",
+          "chunk_id": "bmri_2024_0155",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 19,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2024,
+        "printed_million": "1.461.593.484",
+        "source": "bmri_2024.pdf hal 431",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_0155"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 19,
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2025,
+        "printed_million": "1.580.301.328",
+        "source": "bmri_2025.pdf hal 357",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0142"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 21,
+        "block": "D. Basis Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2022,
+        "printed_million": "17.443.642",
+        "source": "bmri_2023.pdf hal 401",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2024.pdf hal 428",
+          "chunk_id": "bmri_2024_0148",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 21,
+        "block": "D. Basis Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2023,
+        "printed_million": "10.999.536",
+        "source": "bmri_2023.pdf hal 401",
+        "page_kept": false,
+        "status": "filtered_out",
+        "chunk_ids": [],
+        "units": [],
+        "fallback": {
+          "source": "bmri_2024.pdf hal 428",
+          "chunk_id": "bmri_2024_0148",
+          "unit": "million_idr"
+        }
+      },
+      {
+        "row": 21,
+        "block": "D. Basis Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2024,
+        "printed_million": "12.609.239",
+        "source": "bmri_2024.pdf hal 428",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_0148"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 21,
+        "block": "D. Basis Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2025,
+        "printed_million": "14.367.697",
+        "source": "bmri_2025.pdf hal 354",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_0135"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 22,
+        "block": "D. Basis Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2022,
+        "printed_million": "932.639.051",
+        "source": "bmri_2023.pdf hal 1502",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 22,
+        "block": "D. Basis Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2023,
+        "printed_million": "1.085.787.427",
+        "source": "bmri_2023.pdf hal 1502",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 22,
+        "block": "D. Basis Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2024,
+        "printed_million": "1.310.779.402",
+        "source": "bmri_2024.pdf hal 1714",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1416"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 22,
+        "block": "D. Basis Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2025,
+        "printed_million": "1.497.108.664",
+        "source": "bmri_2025.pdf hal 1456",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1425"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 23,
+        "block": "D. Basis Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2022,
+        "printed_million": "54.267.417",
+        "source": "bmri_2023.pdf hal 1502",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 23,
+        "block": "D. Basis Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2023,
+        "printed_million": "42.323.522",
+        "source": "bmri_2023.pdf hal 1502",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 23,
+        "block": "D. Basis Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2024,
+        "printed_million": "38.257.611",
+        "source": "bmri_2024.pdf hal 1714",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1416"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 23,
+        "block": "D. Basis Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2025,
+        "printed_million": "36.284.414",
+        "source": "bmri_2025.pdf hal 1456",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1425"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 24,
+        "block": "D. Basis Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2022,
+        "printed_million": "1.193.164.326",
+        "source": "bmri_2023.pdf hal 1503",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1243"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 24,
+        "block": "D. Basis Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2023,
+        "printed_million": "1.242.145.598",
+        "source": "bmri_2023.pdf hal 1503",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1243"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 24,
+        "block": "D. Basis Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2024,
+        "printed_million": "1.326.887.854",
+        "source": "bmri_2024.pdf hal 1715",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1418"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 24,
+        "block": "D. Basis Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2025,
+        "printed_million": "1.674.679.144",
+        "source": "bmri_2025.pdf hal 1457",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1426"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 25,
+        "block": "D. Basis Bank",
+        "item": "Total Aset - BANK (Entitas Induk)",
+        "year": 2022,
+        "printed_million": "1.570.332.063",
+        "source": "bmri_2023.pdf hal 1502",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 25,
+        "block": "D. Basis Bank",
+        "item": "Total Aset - BANK (Entitas Induk)",
+        "year": 2023,
+        "printed_million": "1.688.850.385",
+        "source": "bmri_2023.pdf hal 1502",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 25,
+        "block": "D. Basis Bank",
+        "item": "Total Aset - BANK (Entitas Induk)",
+        "year": 2024,
+        "printed_million": "1.877.321.726",
+        "source": "bmri_2024.pdf hal 1714",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1417"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 25,
+        "block": "D. Basis Bank",
+        "item": "Total Aset - BANK (Entitas Induk)",
+        "year": 2025,
+        "printed_million": "2.228.096.582",
+        "source": "bmri_2025.pdf hal 1456",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1425"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 26,
+        "block": "D. Basis Bank",
+        "item": "Pendapatan Bunga Neto - BANK (Entitas Induk)",
+        "year": 2022,
+        "printed_million": "65.105.537",
+        "source": "bmri_2023.pdf hal 1506",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1248"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 26,
+        "block": "D. Basis Bank",
+        "item": "Pendapatan Bunga Neto - BANK (Entitas Induk)",
+        "year": 2023,
+        "printed_million": "71.226.722",
+        "source": "bmri_2023.pdf hal 1506",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1248"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 26,
+        "block": "D. Basis Bank",
+        "item": "Pendapatan Bunga Neto - BANK (Entitas Induk)",
+        "year": 2024,
+        "printed_million": "75.829.984",
+        "source": "bmri_2024.pdf hal 1718",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1421"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 26,
+        "block": "D. Basis Bank",
+        "item": "Pendapatan Bunga Neto - BANK (Entitas Induk)",
+        "year": 2025,
+        "printed_million": "78.300.753",
+        "source": "bmri_2025.pdf hal 1460",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1431"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 27,
+        "block": "D. Basis Bank",
+        "item": "Laba Sebelum Pajak - BANK (Entitas Induk)",
+        "year": 2022,
+        "printed_million": "46.778.433",
+        "source": "bmri_2023.pdf hal 1506",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1248"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 27,
+        "block": "D. Basis Bank",
+        "item": "Laba Sebelum Pajak - BANK (Entitas Induk)",
+        "year": 2023,
+        "printed_million": "62.787.209",
+        "source": "bmri_2023.pdf hal 1506",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1248"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 27,
+        "block": "D. Basis Bank",
+        "item": "Laba Sebelum Pajak - BANK (Entitas Induk)",
+        "year": 2024,
+        "printed_million": "63.026.222",
+        "source": "bmri_2024.pdf hal 1718",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1421"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 27,
+        "block": "D. Basis Bank",
+        "item": "Laba Sebelum Pajak - BANK (Entitas Induk)",
+        "year": 2025,
+        "printed_million": "63.464.981",
+        "source": "bmri_2025.pdf hal 1460",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1431"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 28,
+        "block": "D. Basis Bank",
+        "item": "Laba Bersih (Laba Tahun Berjalan) - BANK (Entitas Induk)",
+        "year": 2022,
+        "printed_million": "37.692.426",
+        "source": "bmri_2023.pdf hal 1506",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1248"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 28,
+        "block": "D. Basis Bank",
+        "item": "Laba Bersih (Laba Tahun Berjalan) - BANK (Entitas Induk)",
+        "year": 2023,
+        "printed_million": "51.096.878",
+        "source": "bmri_2023.pdf hal 1506",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2023_1248"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 28,
+        "block": "D. Basis Bank",
+        "item": "Laba Bersih (Laba Tahun Berjalan) - BANK (Entitas Induk)",
+        "year": 2024,
+        "printed_million": "51.135.963",
+        "source": "bmri_2024.pdf hal 1718",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2024_1421"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      },
+      {
+        "row": 28,
+        "block": "D. Basis Bank",
+        "item": "Laba Bersih (Laba Tahun Berjalan) - BANK (Entitas Induk)",
+        "year": 2025,
+        "printed_million": "51.539.726",
+        "source": "bmri_2025.pdf hal 1460",
+        "page_kept": true,
+        "status": "ok",
+        "chunk_ids": [
+          "bmri_2025_1431"
+        ],
+        "units": [
+          "million_idr"
+        ],
+        "fallback": null
+      }
+    ]
+  },
+  "computed_components": {
+    "total": 26,
+    "ok": 26,
+    "failed": 0,
+    "items": [
+      {
+        "item": "DPK Konsolidasian (komponen)",
+        "year": 2023,
+        "printed_million": "1.351.448.149",
+        "source": "bmri_2023.pdf hal (1073,)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_0246"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "DPK Konsolidasian (komponen)",
+        "year": 2023,
+        "printed_million": "225.501.470",
+        "source": "bmri_2023.pdf hal (1075,)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_0249"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "DPK Konsolidasian (komponen)",
+        "year": 2024,
+        "printed_million": "1.446.234.957",
+        "source": "bmri_2024.pdf hal (1285,)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_0331"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "DPK Konsolidasian (komponen)",
+        "year": 2024,
+        "printed_million": "252.661.959",
+        "source": "bmri_2024.pdf hal (1287,)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_0334"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "DPK Konsolidasian (komponen)",
+        "year": 2025,
+        "printed_million": "1.816.897.208",
+        "source": "bmri_2025.pdf hal (36, 954)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_0002",
+          "bmri_2025_0203"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "DPK Konsolidasian (komponen)",
+        "year": 2025,
+        "printed_million": "288.866.943",
+        "source": "bmri_2025.pdf hal (956,)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_0208"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2022,
+        "printed_million": "78.360.194",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2022,
+        "printed_million": "44.932.352",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2022,
+        "printed_million": "262.007.141",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2022,
+        "printed_million": "6.312.523",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2022,
+        "printed_million": "932.639.051",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2023,
+        "printed_million": "55.274.570",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2023,
+        "printed_million": "43.134.871",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2023,
+        "printed_million": "239.245.751",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2023,
+        "printed_million": "16.205.580",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1241"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2023,
+        "printed_million": "1.085.787.427",
+        "source": "bmri_2023.pdf hal (1501, 1502)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2023_1242"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2024,
+        "printed_million": "22.667.518",
+        "source": "bmri_2024.pdf hal (1713, 1714)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_1414"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2024,
+        "printed_million": "44.703.514",
+        "source": "bmri_2024.pdf hal (1713, 1714)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_1414"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2024,
+        "printed_million": "221.138.442",
+        "source": "bmri_2024.pdf hal (1713, 1714)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_1414"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2024,
+        "printed_million": "7.166.266",
+        "source": "bmri_2024.pdf hal (1713, 1714)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_1414"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2024,
+        "printed_million": "1.310.779.402",
+        "source": "bmri_2024.pdf hal (1713, 1714)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2024_1416"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2025,
+        "printed_million": "19.689.791",
+        "source": "bmri_2025.pdf hal (1455, 1456)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_1423"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2025,
+        "printed_million": "81.717.307",
+        "source": "bmri_2025.pdf hal (1455, 1456)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_1423"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2025,
+        "printed_million": "219.792.906",
+        "source": "bmri_2025.pdf hal (1455, 1456)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_1423"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2025,
+        "printed_million": "2.771.530",
+        "source": "bmri_2025.pdf hal (1455, 1456)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_1423"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      },
+      {
+        "item": "Aset Produktif Inti Bank (komponen)",
+        "year": 2025,
+        "printed_million": "1.497.108.664",
+        "source": "bmri_2025.pdf hal (1455, 1456)",
+        "ok": true,
+        "chunk_ids": [
+          "bmri_2025_1425"
+        ],
+        "units": [
+          "million_idr"
+        ]
+      }
+    ]
+  },
+  "official_ratios": {
+    "total": 18,
+    "ok": 18,
+    "failed": 0,
+    "items": [
+      {
+        "year": 2023,
+        "ratio": "CAR",
+        "value": 21.48,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2023_0008"
+        ]
+      },
+      {
+        "year": 2023,
+        "ratio": "ROA",
+        "value": 4.03,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2023_0009"
+        ]
+      },
+      {
+        "year": 2023,
+        "ratio": "ROE",
+        "value": 27.31,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2023_0009"
+        ]
+      },
+      {
+        "year": 2023,
+        "ratio": "NIM",
+        "value": 5.25,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2023_0009"
+        ]
+      },
+      {
+        "year": 2023,
+        "ratio": "NPL",
+        "value": 1.02,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2023_0008"
+        ]
+      },
+      {
+        "year": 2023,
+        "ratio": "LDR",
+        "value": 86.75,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2023_0009"
+        ]
+      },
+      {
+        "year": 2024,
+        "ratio": "CAR",
+        "value": 20.1,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2024_0006"
+        ]
+      },
+      {
+        "year": 2024,
+        "ratio": "ROA",
+        "value": 3.59,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2024_0007"
+        ]
+      },
+      {
+        "year": 2024,
+        "ratio": "ROE",
+        "value": 24.19,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2024_0007"
+        ]
+      },
+      {
+        "year": 2024,
+        "ratio": "NIM",
+        "value": 4.93,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2024_0007"
+        ]
+      },
+      {
+        "year": 2024,
+        "ratio": "NPL",
+        "value": 0.97,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2024_0006"
+        ]
+      },
+      {
+        "year": 2024,
+        "ratio": "LDR",
+        "value": 98.04,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2024_0007"
+        ]
+      },
+      {
+        "year": 2025,
+        "ratio": "CAR",
+        "value": 19.36,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2025_0006"
+        ]
+      },
+      {
+        "year": 2025,
+        "ratio": "ROA",
+        "value": 3.19,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2025_0007"
+        ]
+      },
+      {
+        "year": 2025,
+        "ratio": "ROE",
+        "value": 23.15,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2025_0007"
+        ]
+      },
+      {
+        "year": 2025,
+        "ratio": "NIM",
+        "value": 4.59,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2025_0007"
+        ]
+      },
+      {
+        "year": 2025,
+        "ratio": "NPL",
+        "value": 0.96,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2025_0006"
+        ]
+      },
+      {
+        "year": 2025,
+        "ratio": "LDR",
+        "value": 88.92,
+        "in_2025_hal39_40": true,
+        "in_own_report": true,
+        "own_report_chunks": [
+          "bmri_2025_0007"
+        ]
+      }
+    ]
+  },
+  "passed": true,
+  "failures": []
+}

@@ -1,0 +1,2072 @@
+{
+  "created": "2026-11-26T17:59:03",
+  "dataset": {
+    "path": "eval\\datasets\\retrieval_queries_bmri.jsonl",
+    "sha256": "8b0840dc96dd695f6ab0e43ac43b83727991067c69339c651acc8a814e9098c4",
+    "matches_locked_hash": null,
+    "queries": 10,
+    "abbreviation_queries": 5,
+    "non_abbreviation_queries": 5
+  },
+  "parameters": {
+    "top_k_dense": 10,
+    "top_k_sparse": 10,
+    "top_k_final": 5,
+    "rrf_k": 60,
+    "embed_model": "BAAI/bge-m3",
+    "embed_dtype": "float16"
+  },
+  "configs": {
+    "dense": {
+      "label": "Dense saja",
+      "mode": "dense",
+      "expand": false,
+      "all": {
+        "n": 10,
+        "hit1_count": 4,
+        "hit1": 0.4,
+        "hit5_count": 6,
+        "hit5": 0.6,
+        "mrr": 0.5
+      },
+      "abbreviation": {
+        "n": 5,
+        "hit1_count": 1,
+        "hit1": 0.2,
+        "hit5_count": 2,
+        "hit5": 0.4,
+        "mrr": 0.3
+      },
+      "non_abbreviation": {
+        "n": 5,
+        "hit1_count": 3,
+        "hit1": 0.6,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.7
+      }
+    },
+    "bm25": {
+      "label": "BM25 saja",
+      "mode": "bm25",
+      "expand": false,
+      "all": {
+        "n": 10,
+        "hit1_count": 5,
+        "hit1": 0.5,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.6033
+      },
+      "abbreviation": {
+        "n": 5,
+        "hit1_count": 2,
+        "hit1": 0.4,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.5067
+      },
+      "non_abbreviation": {
+        "n": 5,
+        "hit1_count": 3,
+        "hit1": 0.6,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.7
+      }
+    },
+    "hybrid": {
+      "label": "Hybrid RRF",
+      "mode": "hybrid",
+      "expand": false,
+      "all": {
+        "n": 10,
+        "hit1_count": 6,
+        "hit1": 0.6,
+        "hit5_count": 7,
+        "hit5": 0.7,
+        "mrr": 0.6333
+      },
+      "abbreviation": {
+        "n": 5,
+        "hit1_count": 2,
+        "hit1": 0.4,
+        "hit5_count": 3,
+        "hit5": 0.6,
+        "mrr": 0.4667
+      },
+      "non_abbreviation": {
+        "n": 5,
+        "hit1_count": 4,
+        "hit1": 0.8,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.8
+      }
+    },
+    "dense_expanded": {
+      "label": "Dense + perluasan",
+      "mode": "dense",
+      "expand": true,
+      "all": {
+        "n": 10,
+        "hit1_count": 4,
+        "hit1": 0.4,
+        "hit5_count": 6,
+        "hit5": 0.6,
+        "mrr": 0.5
+      },
+      "abbreviation": {
+        "n": 5,
+        "hit1_count": 1,
+        "hit1": 0.2,
+        "hit5_count": 2,
+        "hit5": 0.4,
+        "mrr": 0.3
+      },
+      "non_abbreviation": {
+        "n": 5,
+        "hit1_count": 3,
+        "hit1": 0.6,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.7
+      }
+    },
+    "bm25_expanded": {
+      "label": "BM25 + perluasan",
+      "mode": "bm25",
+      "expand": true,
+      "all": {
+        "n": 10,
+        "hit1_count": 6,
+        "hit1": 0.6,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.67
+      },
+      "abbreviation": {
+        "n": 5,
+        "hit1_count": 3,
+        "hit1": 0.6,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.64
+      },
+      "non_abbreviation": {
+        "n": 5,
+        "hit1_count": 3,
+        "hit1": 0.6,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.7
+      }
+    },
+    "hybrid_expanded": {
+      "label": "Hybrid RRF + perluasan",
+      "mode": "hybrid",
+      "expand": true,
+      "all": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      },
+      "abbreviation": {
+        "n": 5,
+        "hit1_count": 4,
+        "hit1": 0.8,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.8
+      },
+      "non_abbreviation": {
+        "n": 5,
+        "hit1_count": 4,
+        "hit1": 0.8,
+        "hit5_count": 4,
+        "hit5": 0.8,
+        "mrr": 0.8
+      }
+    }
+  },
+  "sensitivity": {
+    "rrf_k": {
+      "10": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      },
+      "60": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      },
+      "100": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      }
+    },
+    "candidate_k": {
+      "5": {
+        "n": 10,
+        "hit1_count": 7,
+        "hit1": 0.7,
+        "hit5_count": 7,
+        "hit5": 0.7,
+        "mrr": 0.7
+      },
+      "10": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      },
+      "20": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      },
+      "30": {
+        "n": 10,
+        "hit1_count": 8,
+        "hit1": 0.8,
+        "hit5_count": 8,
+        "hit5": 0.8,
+        "mrr": 0.8
+      }
+    }
+  },
+  "latency": {
+    "rounds": 3,
+    "queries_per_round": 10,
+    "mean_ms": 52.3,
+    "median_ms": 51.0,
+    "min_ms": 46.3,
+    "max_ms": 63.0
+  },
+  "gate3": {
+    "threshold": 0.8,
+    "hit5_count": 8,
+    "total": 10,
+    "hit5": 0.8,
+    "passed": true,
+    "failed_queries": [
+      "m02",
+      "m08"
+    ]
+  },
+  "per_query": [
+    {
+      "id": "m01",
+      "query": "Berapa total aset Bank Mandiri tahun 2025?",
+      "ticker": "bmri",
+      "year": 2025,
+      "abbreviation": false,
+      "relevant_count": 8,
+      "relevant_pages": [
+        36,
+        318,
+        331,
+        953,
+        954,
+        958,
+        959,
+        1350,
+        1355,
+        1357
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2025_0094",
+          "bmri_2025_0126",
+          "bmri_2025_0017",
+          "bmri_2025_0102",
+          "bmri_2025_0114"
+        ],
+        "bm25": [
+          "bmri_2025_0094",
+          "bmri_2025_0262",
+          "bmri_2025_0093",
+          "bmri_2025_1406",
+          "bmri_2025_1023"
+        ],
+        "hybrid": [
+          "bmri_2025_0094",
+          "bmri_2025_0093",
+          "bmri_2025_1023",
+          "bmri_2025_0126",
+          "bmri_2025_0262"
+        ],
+        "dense_expanded": [
+          "bmri_2025_0094",
+          "bmri_2025_0126",
+          "bmri_2025_0017",
+          "bmri_2025_0102",
+          "bmri_2025_0114"
+        ],
+        "bm25_expanded": [
+          "bmri_2025_0094",
+          "bmri_2025_0262",
+          "bmri_2025_0093",
+          "bmri_2025_1406",
+          "bmri_2025_1023"
+        ],
+        "hybrid_expanded": [
+          "bmri_2025_0094",
+          "bmri_2025_0093",
+          "bmri_2025_1023",
+          "bmri_2025_0126",
+          "bmri_2025_0262"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            331
+          ],
+          [
+            351
+          ],
+          [
+            258
+          ],
+          [
+            338
+          ],
+          [
+            346
+          ]
+        ],
+        "bm25": [
+          [
+            331
+          ],
+          [
+            982
+          ],
+          [
+            329,
+            331
+          ],
+          [
+            1446
+          ],
+          [
+            1301
+          ]
+        ],
+        "hybrid": [
+          [
+            331
+          ],
+          [
+            329,
+            331
+          ],
+          [
+            1301
+          ],
+          [
+            351
+          ],
+          [
+            982
+          ]
+        ],
+        "dense_expanded": [
+          [
+            331
+          ],
+          [
+            351
+          ],
+          [
+            258
+          ],
+          [
+            338
+          ],
+          [
+            346
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            331
+          ],
+          [
+            982
+          ],
+          [
+            329,
+            331
+          ],
+          [
+            1446
+          ],
+          [
+            1301
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            331
+          ],
+          [
+            329,
+            331
+          ],
+          [
+            1301
+          ],
+          [
+            351
+          ],
+          [
+            982
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m02",
+      "query": "Berapa laba bersih Bank Mandiri tahun 2024?",
+      "ticker": "bmri",
+      "year": 2024,
+      "abbreviation": false,
+      "relevant_count": 11,
+      "relevant_pages": [
+        33,
+        386,
+        420,
+        430,
+        1291,
+        1292,
+        1293,
+        1628,
+        1630
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": null,
+        "hybrid": null,
+        "dense_expanded": null,
+        "bm25_expanded": null,
+        "hybrid_expanded": null
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": null,
+        "dense_expanded": null,
+        "bm25_expanded": null
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2024_0073",
+          "bmri_2024_0124",
+          "bmri_2024_0127",
+          "bmri_2024_0139",
+          "bmri_2024_0133"
+        ],
+        "bm25": [
+          "bmri_2024_0073",
+          "bmri_2024_0071",
+          "bmri_2024_0123",
+          "bmri_2024_0083",
+          "bmri_2024_1079"
+        ],
+        "hybrid": [
+          "bmri_2024_0073",
+          "bmri_2024_0123",
+          "bmri_2024_0083",
+          "bmri_2024_1423",
+          "bmri_2024_0071"
+        ],
+        "dense_expanded": [
+          "bmri_2024_0073",
+          "bmri_2024_0124",
+          "bmri_2024_0127",
+          "bmri_2024_0139",
+          "bmri_2024_0133"
+        ],
+        "bm25_expanded": [
+          "bmri_2024_0073",
+          "bmri_2024_0071",
+          "bmri_2024_0123",
+          "bmri_2024_0083",
+          "bmri_2024_1079"
+        ],
+        "hybrid_expanded": [
+          "bmri_2024_0073",
+          "bmri_2024_0123",
+          "bmri_2024_0083",
+          "bmri_2024_1423",
+          "bmri_2024_0071"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            393
+          ],
+          [
+            420
+          ],
+          [
+            421
+          ],
+          [
+            425
+          ],
+          [
+            422
+          ]
+        ],
+        "bm25": [
+          [
+            393
+          ],
+          [
+            392
+          ],
+          [
+            419
+          ],
+          [
+            398
+          ],
+          [
+            1582
+          ]
+        ],
+        "hybrid": [
+          [
+            393
+          ],
+          [
+            419
+          ],
+          [
+            398
+          ],
+          [
+            1720
+          ],
+          [
+            392
+          ]
+        ],
+        "dense_expanded": [
+          [
+            393
+          ],
+          [
+            420
+          ],
+          [
+            421
+          ],
+          [
+            425
+          ],
+          [
+            422
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            393
+          ],
+          [
+            392
+          ],
+          [
+            419
+          ],
+          [
+            398
+          ],
+          [
+            1582
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            393
+          ],
+          [
+            419
+          ],
+          [
+            398
+          ],
+          [
+            1720
+          ],
+          [
+            392
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m03",
+      "query": "Berapa DPK entitas induk Bank Mandiri tahun 2023?",
+      "ticker": "bmri",
+      "year": 2023,
+      "abbreviation": true,
+      "relevant_count": 3,
+      "relevant_pages": [
+        412,
+        1503
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 5,
+        "hybrid": 1,
+        "dense_expanded": 2,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 5,
+        "dense_expanded": 2,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2023_0123",
+          "bmri_2023_1250",
+          "bmri_2023_0102",
+          "bmri_2023_0254",
+          "bmri_2023_0236"
+        ],
+        "bm25": [
+          "bmri_2023_1253",
+          "bmri_2023_0019",
+          "bmri_2023_1258",
+          "bmri_2023_0083",
+          "bmri_2023_0123"
+        ],
+        "hybrid": [
+          "bmri_2023_0123",
+          "bmri_2023_1250",
+          "bmri_2023_0083",
+          "bmri_2023_1253",
+          "bmri_2023_0019"
+        ],
+        "dense_expanded": [
+          "bmri_2023_1241",
+          "bmri_2023_0123",
+          "bmri_2023_1243",
+          "bmri_2023_0246",
+          "bmri_2023_1250"
+        ],
+        "bm25_expanded": [
+          "bmri_2023_1243",
+          "bmri_2023_0246",
+          "bmri_2023_0928",
+          "bmri_2023_0031",
+          "bmri_2023_0251"
+        ],
+        "hybrid_expanded": [
+          "bmri_2023_1243",
+          "bmri_2023_0246",
+          "bmri_2023_0249",
+          "bmri_2023_1241",
+          "bmri_2023_0123"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            412
+          ],
+          [
+            1508
+          ],
+          [
+            372
+          ],
+          [
+            1077
+          ],
+          [
+            944
+          ]
+        ],
+        "bm25": [
+          [
+            1510
+          ],
+          [
+            266
+          ],
+          [
+            1513
+          ],
+          [
+            362
+          ],
+          [
+            412
+          ]
+        ],
+        "hybrid": [
+          [
+            412
+          ],
+          [
+            1508
+          ],
+          [
+            362
+          ],
+          [
+            1510
+          ],
+          [
+            266
+          ]
+        ],
+        "dense_expanded": [
+          [
+            1501
+          ],
+          [
+            412
+          ],
+          [
+            1503
+          ],
+          [
+            1073
+          ],
+          [
+            1508
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            1503
+          ],
+          [
+            1073
+          ],
+          [
+            1375
+          ],
+          [
+            320
+          ],
+          [
+            1076
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            1503
+          ],
+          [
+            1073
+          ],
+          [
+            1075
+          ],
+          [
+            1501
+          ],
+          [
+            412
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m04",
+      "query": "Berapa CAR bank Bank Mandiri tahun 2024?",
+      "ticker": "bmri",
+      "year": 2024,
+      "abbreviation": true,
+      "relevant_count": 6,
+      "relevant_pages": [
+        34,
+        287,
+        427,
+        430,
+        431,
+        1701
+      ],
+      "ranks": {
+        "dense": 2,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 2,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2024_0139",
+          "bmri_2024_0144",
+          "bmri_2024_0127",
+          "bmri_2024_0109",
+          "bmri_2024_0129"
+        ],
+        "bm25": [
+          "bmri_2024_1387",
+          "bmri_2024_0144",
+          "bmri_2024_0533",
+          "bmri_2024_0016",
+          "bmri_2024_0015"
+        ],
+        "hybrid": [
+          "bmri_2024_0144",
+          "bmri_2024_0139",
+          "bmri_2024_1387",
+          "bmri_2024_0127",
+          "bmri_2024_0533"
+        ],
+        "dense_expanded": [
+          "bmri_2024_0144",
+          "bmri_2024_1387",
+          "bmri_2024_0016",
+          "bmri_2024_0151",
+          "bmri_2024_0150"
+        ],
+        "bm25_expanded": [
+          "bmri_2024_1387",
+          "bmri_2024_0016",
+          "bmri_2024_0151",
+          "bmri_2024_1388",
+          "bmri_2024_0144"
+        ],
+        "hybrid_expanded": [
+          "bmri_2024_1387",
+          "bmri_2024_0016",
+          "bmri_2024_0144",
+          "bmri_2024_0151",
+          "bmri_2024_1388"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            425
+          ],
+          [
+            427
+          ],
+          [
+            421
+          ],
+          [
+            412
+          ],
+          [
+            421
+          ]
+        ],
+        "bm25": [
+          [
+            1701
+          ],
+          [
+            427
+          ],
+          [
+            1382
+          ],
+          [
+            287
+          ],
+          [
+            282
+          ]
+        ],
+        "hybrid": [
+          [
+            427
+          ],
+          [
+            425
+          ],
+          [
+            1701
+          ],
+          [
+            421
+          ],
+          [
+            1382
+          ]
+        ],
+        "dense_expanded": [
+          [
+            427
+          ],
+          [
+            1701
+          ],
+          [
+            287
+          ],
+          [
+            430
+          ],
+          [
+            429
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            1701
+          ],
+          [
+            287
+          ],
+          [
+            430
+          ],
+          [
+            1701
+          ],
+          [
+            427
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            1701
+          ],
+          [
+            287
+          ],
+          [
+            427
+          ],
+          [
+            430
+          ],
+          [
+            1701
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m05",
+      "query": "Berapa modal inti tier 1 Bank Mandiri tahun 2025?",
+      "ticker": "bmri",
+      "year": 2025,
+      "abbreviation": false,
+      "relevant_count": 5,
+      "relevant_pages": [
+        355,
+        356,
+        842,
+        844,
+        1432
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 2,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 2,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 2,
+        "dense_expanded": 1,
+        "bm25_expanded": 2
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2025_0137",
+          "bmri_2025_0114",
+          "bmri_2025_0017",
+          "bmri_2025_0154",
+          "bmri_2025_0209"
+        ],
+        "bm25": [
+          "bmri_2025_0141",
+          "bmri_2025_0139",
+          "bmri_2025_0162",
+          "bmri_2025_0140",
+          "bmri_2025_0159"
+        ],
+        "hybrid": [
+          "bmri_2025_0137",
+          "bmri_2025_0141",
+          "bmri_2025_0114",
+          "bmri_2025_0139",
+          "bmri_2025_0017"
+        ],
+        "dense_expanded": [
+          "bmri_2025_0137",
+          "bmri_2025_0114",
+          "bmri_2025_0017",
+          "bmri_2025_0154",
+          "bmri_2025_0209"
+        ],
+        "bm25_expanded": [
+          "bmri_2025_0141",
+          "bmri_2025_0139",
+          "bmri_2025_0162",
+          "bmri_2025_0140",
+          "bmri_2025_0159"
+        ],
+        "hybrid_expanded": [
+          "bmri_2025_0137",
+          "bmri_2025_0141",
+          "bmri_2025_0114",
+          "bmri_2025_0139",
+          "bmri_2025_0017"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            355
+          ],
+          [
+            346
+          ],
+          [
+            258
+          ],
+          [
+            361
+          ],
+          [
+            957,
+            958
+          ]
+        ],
+        "bm25": [
+          [
+            357
+          ],
+          [
+            356
+          ],
+          [
+            402
+          ],
+          [
+            356
+          ],
+          [
+            401
+          ]
+        ],
+        "hybrid": [
+          [
+            355
+          ],
+          [
+            357
+          ],
+          [
+            346
+          ],
+          [
+            356
+          ],
+          [
+            258
+          ]
+        ],
+        "dense_expanded": [
+          [
+            355
+          ],
+          [
+            346
+          ],
+          [
+            258
+          ],
+          [
+            361
+          ],
+          [
+            957,
+            958
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            357
+          ],
+          [
+            356
+          ],
+          [
+            402
+          ],
+          [
+            356
+          ],
+          [
+            401
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            355
+          ],
+          [
+            357
+          ],
+          [
+            346
+          ],
+          [
+            356
+          ],
+          [
+            258
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m06",
+      "query": "Berapa laba sebelum pajak Bank Mandiri tahun 2023?",
+      "ticker": "bmri",
+      "year": 2023,
+      "abbreviation": false,
+      "relevant_count": 4,
+      "relevant_pages": [
+        35,
+        1079,
+        1331,
+        1332
+      ],
+      "ranks": {
+        "dense": 2,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 2,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 2,
+        "bm25": 1,
+        "dense_expanded": 2,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2023_0083",
+          "bmri_2023_0823",
+          "bmri_2023_0097",
+          "bmri_2023_0092",
+          "bmri_2023_1250"
+        ],
+        "bm25": [
+          "bmri_2023_0824",
+          "bmri_2023_0822",
+          "bmri_2023_0823",
+          "bmri_2023_1248",
+          "bmri_2023_0256"
+        ],
+        "hybrid": [
+          "bmri_2023_0823",
+          "bmri_2023_1248",
+          "bmri_2023_1250",
+          "bmri_2023_1254",
+          "bmri_2023_0083"
+        ],
+        "dense_expanded": [
+          "bmri_2023_0083",
+          "bmri_2023_0823",
+          "bmri_2023_0097",
+          "bmri_2023_0092",
+          "bmri_2023_1250"
+        ],
+        "bm25_expanded": [
+          "bmri_2023_0824",
+          "bmri_2023_0822",
+          "bmri_2023_0823",
+          "bmri_2023_1248",
+          "bmri_2023_0256"
+        ],
+        "hybrid_expanded": [
+          "bmri_2023_0823",
+          "bmri_2023_1248",
+          "bmri_2023_1250",
+          "bmri_2023_1254",
+          "bmri_2023_0083"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            362
+          ],
+          [
+            1331
+          ],
+          [
+            368
+          ],
+          [
+            366
+          ],
+          [
+            1508
+          ]
+        ],
+        "bm25": [
+          [
+            1332
+          ],
+          [
+            1331
+          ],
+          [
+            1331
+          ],
+          [
+            1506,
+            1507
+          ],
+          [
+            1079
+          ]
+        ],
+        "hybrid": [
+          [
+            1331
+          ],
+          [
+            1506,
+            1507
+          ],
+          [
+            1508
+          ],
+          [
+            1510,
+            1511
+          ],
+          [
+            362
+          ]
+        ],
+        "dense_expanded": [
+          [
+            362
+          ],
+          [
+            1331
+          ],
+          [
+            368
+          ],
+          [
+            366
+          ],
+          [
+            1508
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            1332
+          ],
+          [
+            1331
+          ],
+          [
+            1331
+          ],
+          [
+            1506,
+            1507
+          ],
+          [
+            1079
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            1331
+          ],
+          [
+            1506,
+            1507
+          ],
+          [
+            1508
+          ],
+          [
+            1510,
+            1511
+          ],
+          [
+            362
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m07",
+      "query": "Berapa nominal NPL Bank Mandiri tahun 2024?",
+      "ticker": "bmri",
+      "year": 2024,
+      "abbreviation": true,
+      "relevant_count": 4,
+      "relevant_pages": [
+        428,
+        1072,
+        1074,
+        1076
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 3,
+        "hybrid": null,
+        "dense_expanded": null,
+        "bm25_expanded": 5,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": 3,
+        "dense_expanded": 7,
+        "bm25_expanded": 5
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2024_0127",
+          "bmri_2024_0133",
+          "bmri_2024_0139",
+          "bmri_2024_0164",
+          "bmri_2024_0113"
+        ],
+        "bm25": [
+          "bmri_2024_0016",
+          "bmri_2024_0136",
+          "bmri_2024_0148",
+          "bmri_2024_1259",
+          "bmri_2024_0018"
+        ],
+        "hybrid": [
+          "bmri_2024_0136",
+          "bmri_2024_0016",
+          "bmri_2024_0127",
+          "bmri_2024_0133",
+          "bmri_2024_0139"
+        ],
+        "dense_expanded": [
+          "bmri_2024_0113",
+          "bmri_2024_1421",
+          "bmri_2024_0136",
+          "bmri_2024_0310",
+          "bmri_2024_0127"
+        ],
+        "bm25_expanded": [
+          "bmri_2024_1409",
+          "bmri_2024_1403",
+          "bmri_2024_0016",
+          "bmri_2024_0006",
+          "bmri_2024_0148"
+        ],
+        "hybrid_expanded": [
+          "bmri_2024_0148",
+          "bmri_2024_0113",
+          "bmri_2024_1409",
+          "bmri_2024_1403",
+          "bmri_2024_1421"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            421
+          ],
+          [
+            422
+          ],
+          [
+            425
+          ],
+          [
+            439
+          ],
+          [
+            416
+          ]
+        ],
+        "bm25": [
+          [
+            287
+          ],
+          [
+            423
+          ],
+          [
+            428
+          ],
+          [
+            1645
+          ],
+          [
+            340
+          ]
+        ],
+        "hybrid": [
+          [
+            423
+          ],
+          [
+            287
+          ],
+          [
+            421
+          ],
+          [
+            422
+          ],
+          [
+            425
+          ]
+        ],
+        "dense_expanded": [
+          [
+            416
+          ],
+          [
+            1718
+          ],
+          [
+            423
+          ],
+          [
+            1138,
+            1139
+          ],
+          [
+            421
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            1710,
+            1711
+          ],
+          [
+            1708
+          ],
+          [
+            287
+          ],
+          [
+            34
+          ],
+          [
+            428
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            428
+          ],
+          [
+            416
+          ],
+          [
+            1710,
+            1711
+          ],
+          [
+            1708
+          ],
+          [
+            1718
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m08",
+      "query": "Berapa CKPN kredit yang diberikan Bank Mandiri tahun 2023?",
+      "ticker": "bmri",
+      "year": 2023,
+      "abbreviation": true,
+      "relevant_count": 1,
+      "relevant_pages": [
+        1502
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": null,
+        "hybrid": null,
+        "dense_expanded": null,
+        "bm25_expanded": null,
+        "hybrid_expanded": null
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": null,
+        "dense_expanded": null,
+        "bm25_expanded": null
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2023_0123",
+          "bmri_2023_0063",
+          "bmri_2023_0055",
+          "bmri_2023_0128",
+          "bmri_2023_0049"
+        ],
+        "bm25": [
+          "bmri_2023_0161",
+          "bmri_2023_0162",
+          "bmri_2023_0080",
+          "bmri_2023_0662",
+          "bmri_2023_0150"
+        ],
+        "hybrid": [
+          "bmri_2023_0123",
+          "bmri_2023_0161",
+          "bmri_2023_0063",
+          "bmri_2023_0162",
+          "bmri_2023_0055"
+        ],
+        "dense_expanded": [
+          "bmri_2023_0646",
+          "bmri_2023_0239",
+          "bmri_2023_0242",
+          "bmri_2023_0248",
+          "bmri_2023_0254"
+        ],
+        "bm25_expanded": [
+          "bmri_2023_0002",
+          "bmri_2023_0646",
+          "bmri_2023_0826",
+          "bmri_2023_1133",
+          "bmri_2023_0162"
+        ],
+        "hybrid_expanded": [
+          "bmri_2023_0646",
+          "bmri_2023_1090",
+          "bmri_2023_0002",
+          "bmri_2023_0239",
+          "bmri_2023_0242"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            412
+          ],
+          [
+            340
+          ],
+          [
+            339
+          ],
+          [
+            445
+          ],
+          [
+            337
+          ]
+        ],
+        "bm25": [
+          [
+            872
+          ],
+          [
+            872
+          ],
+          [
+            361
+          ],
+          [
+            1269
+          ],
+          [
+            852
+          ]
+        ],
+        "hybrid": [
+          [
+            412
+          ],
+          [
+            872
+          ],
+          [
+            340
+          ],
+          [
+            872
+          ],
+          [
+            339
+          ]
+        ],
+        "dense_expanded": [
+          [
+            1258
+          ],
+          [
+            1070
+          ],
+          [
+            1071
+          ],
+          [
+            1074
+          ],
+          [
+            1077
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            32
+          ],
+          [
+            1258
+          ],
+          [
+            1334
+          ],
+          [
+            1456
+          ],
+          [
+            872
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            1258
+          ],
+          [
+            1440
+          ],
+          [
+            32
+          ],
+          [
+            1070
+          ],
+          [
+            1071
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m09",
+      "query": "Berapa total ekuitas Bank Mandiri tahun 2024?",
+      "ticker": "bmri",
+      "year": 2024,
+      "abbreviation": false,
+      "relevant_count": 4,
+      "relevant_pages": [
+        401,
+        419,
+        1289,
+        1293
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2024_0123",
+          "bmri_2024_0139",
+          "bmri_2024_0088",
+          "bmri_2024_1420",
+          "bmri_2024_0086"
+        ],
+        "bm25": [
+          "bmri_2024_0088",
+          "bmri_2024_0123",
+          "bmri_2024_1062",
+          "bmri_2024_0310",
+          "bmri_2024_0070"
+        ],
+        "hybrid": [
+          "bmri_2024_0123",
+          "bmri_2024_0088",
+          "bmri_2024_0072",
+          "bmri_2024_0082",
+          "bmri_2024_0139"
+        ],
+        "dense_expanded": [
+          "bmri_2024_0123",
+          "bmri_2024_0139",
+          "bmri_2024_0088",
+          "bmri_2024_1420",
+          "bmri_2024_0086"
+        ],
+        "bm25_expanded": [
+          "bmri_2024_0088",
+          "bmri_2024_0123",
+          "bmri_2024_1062",
+          "bmri_2024_0310",
+          "bmri_2024_0070"
+        ],
+        "hybrid_expanded": [
+          "bmri_2024_0123",
+          "bmri_2024_0088",
+          "bmri_2024_0072",
+          "bmri_2024_0082",
+          "bmri_2024_0139"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            419
+          ],
+          [
+            425
+          ],
+          [
+            401
+          ],
+          [
+            1717
+          ],
+          [
+            401
+          ]
+        ],
+        "bm25": [
+          [
+            401
+          ],
+          [
+            419
+          ],
+          [
+            1574
+          ],
+          [
+            1138,
+            1139
+          ],
+          [
+            392
+          ]
+        ],
+        "hybrid": [
+          [
+            419
+          ],
+          [
+            401
+          ],
+          [
+            393
+          ],
+          [
+            398
+          ],
+          [
+            425
+          ]
+        ],
+        "dense_expanded": [
+          [
+            419
+          ],
+          [
+            425
+          ],
+          [
+            401
+          ],
+          [
+            1717
+          ],
+          [
+            401
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            401
+          ],
+          [
+            419
+          ],
+          [
+            1574
+          ],
+          [
+            1138,
+            1139
+          ],
+          [
+            392
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            419
+          ],
+          [
+            401
+          ],
+          [
+            393
+          ],
+          [
+            398
+          ],
+          [
+            425
+          ]
+        ]
+      }
+    },
+    {
+      "id": "m10",
+      "query": "Berapa LDR Bank Mandiri tahun 2025?",
+      "ticker": "bmri",
+      "year": 2025,
+      "abbreviation": true,
+      "relevant_count": 2,
+      "relevant_pages": [
+        40,
+        258,
+        259
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 1,
+        "hybrid": 3,
+        "dense_expanded": null,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": 1,
+        "dense_expanded": 10,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bmri_2025_0017",
+          "bmri_2025_0154",
+          "bmri_2025_0115",
+          "bmri_2025_0120",
+          "bmri_2025_0093"
+        ],
+        "bm25": [
+          "bmri_2025_0018",
+          "bmri_2025_0245",
+          "bmri_2025_0007",
+          "bmri_2025_0063",
+          "bmri_2025_0690"
+        ],
+        "hybrid": [
+          "bmri_2025_0158",
+          "bmri_2025_0017",
+          "bmri_2025_0018",
+          "bmri_2025_0154",
+          "bmri_2025_0245"
+        ],
+        "dense_expanded": [
+          "bmri_2025_0154",
+          "bmri_2025_0052",
+          "bmri_2025_0096",
+          "bmri_2025_0061",
+          "bmri_2025_1393"
+        ],
+        "bm25_expanded": [
+          "bmri_2025_0018",
+          "bmri_2025_0007",
+          "bmri_2025_0016",
+          "bmri_2025_1406",
+          "bmri_2025_0134"
+        ],
+        "hybrid_expanded": [
+          "bmri_2025_0018",
+          "bmri_2025_0026",
+          "bmri_2025_0154",
+          "bmri_2025_0007",
+          "bmri_2025_0052"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            258
+          ],
+          [
+            361
+          ],
+          [
+            347
+          ],
+          [
+            348
+          ],
+          [
+            329,
+            331
+          ]
+        ],
+        "bm25": [
+          [
+            258,
+            259
+          ],
+          [
+            974
+          ],
+          [
+            40
+          ],
+          [
+            313
+          ],
+          [
+            1153
+          ]
+        ],
+        "hybrid": [
+          [
+            363
+          ],
+          [
+            258
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            361
+          ],
+          [
+            974
+          ]
+        ],
+        "dense_expanded": [
+          [
+            361
+          ],
+          [
+            308,
+            309
+          ],
+          [
+            335,
+            337
+          ],
+          [
+            313
+          ],
+          [
+            1441
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            258,
+            259
+          ],
+          [
+            40
+          ],
+          [
+            253
+          ],
+          [
+            1446
+          ],
+          [
+            353,
+            354
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            258,
+            259
+          ],
+          [
+            290
+          ],
+          [
+            361
+          ],
+          [
+            40
+          ],
+          [
+            308,
+            309
+          ]
+        ]
+      }
+    }
+  ]
+}
