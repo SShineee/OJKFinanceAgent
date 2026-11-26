@@ -1,0 +1,2952 @@
+{
+  "created": "2026-11-26T13:07:27",
+  "dataset": {
+    "path": "eval\\datasets\\retrieval_queries.jsonl",
+    "sha256": "cfab3a1830003cc868ef2c069a2d9364d8dad0d7ce232a6005a3e5ed07246fc2",
+    "matches_locked_hash": true,
+    "queries": 15,
+    "abbreviation_queries": 7,
+    "non_abbreviation_queries": 8
+  },
+  "parameters": {
+    "top_k_dense": 10,
+    "top_k_sparse": 10,
+    "top_k_final": 5,
+    "rrf_k": 60,
+    "embed_model": "BAAI/bge-m3",
+    "embed_dtype": "float16"
+  },
+  "configs": {
+    "dense": {
+      "label": "Dense saja",
+      "mode": "dense",
+      "expand": false,
+      "all": {
+        "n": 15,
+        "hit1_count": 6,
+        "hit1": 0.4,
+        "hit5_count": 7,
+        "hit5": 0.4667,
+        "mrr": 0.4333
+      },
+      "abbreviation": {
+        "n": 7,
+        "hit1_count": 3,
+        "hit1": 0.4286,
+        "hit5_count": 3,
+        "hit5": 0.4286,
+        "mrr": 0.4286
+      },
+      "non_abbreviation": {
+        "n": 8,
+        "hit1_count": 3,
+        "hit1": 0.375,
+        "hit5_count": 4,
+        "hit5": 0.5,
+        "mrr": 0.4375
+      }
+    },
+    "bm25": {
+      "label": "BM25 saja",
+      "mode": "bm25",
+      "expand": false,
+      "all": {
+        "n": 15,
+        "hit1_count": 6,
+        "hit1": 0.4,
+        "hit5_count": 12,
+        "hit5": 0.8,
+        "mrr": 0.55
+      },
+      "abbreviation": {
+        "n": 7,
+        "hit1_count": 3,
+        "hit1": 0.4286,
+        "hit5_count": 4,
+        "hit5": 0.5714,
+        "mrr": 0.4762
+      },
+      "non_abbreviation": {
+        "n": 8,
+        "hit1_count": 3,
+        "hit1": 0.375,
+        "hit5_count": 8,
+        "hit5": 1.0,
+        "mrr": 0.6146
+      }
+    },
+    "hybrid": {
+      "label": "Hybrid RRF",
+      "mode": "hybrid",
+      "expand": false,
+      "all": {
+        "n": 15,
+        "hit1_count": 7,
+        "hit1": 0.4667,
+        "hit5_count": 11,
+        "hit5": 0.7333,
+        "mrr": 0.5556
+      },
+      "abbreviation": {
+        "n": 7,
+        "hit1_count": 3,
+        "hit1": 0.4286,
+        "hit5_count": 4,
+        "hit5": 0.5714,
+        "mrr": 0.4643
+      },
+      "non_abbreviation": {
+        "n": 8,
+        "hit1_count": 4,
+        "hit1": 0.5,
+        "hit5_count": 7,
+        "hit5": 0.875,
+        "mrr": 0.6354
+      }
+    },
+    "dense_expanded": {
+      "label": "Dense + perluasan",
+      "mode": "dense",
+      "expand": true,
+      "all": {
+        "n": 15,
+        "hit1_count": 8,
+        "hit1": 0.5333,
+        "hit5_count": 9,
+        "hit5": 0.6,
+        "mrr": 0.5667
+      },
+      "abbreviation": {
+        "n": 7,
+        "hit1_count": 4,
+        "hit1": 0.5714,
+        "hit5_count": 4,
+        "hit5": 0.5714,
+        "mrr": 0.5714
+      },
+      "non_abbreviation": {
+        "n": 8,
+        "hit1_count": 4,
+        "hit1": 0.5,
+        "hit5_count": 5,
+        "hit5": 0.625,
+        "mrr": 0.5625
+      }
+    },
+    "bm25_expanded": {
+      "label": "BM25 + perluasan",
+      "mode": "bm25",
+      "expand": true,
+      "all": {
+        "n": 15,
+        "hit1_count": 6,
+        "hit1": 0.4,
+        "hit5_count": 15,
+        "hit5": 1.0,
+        "mrr": 0.6044
+      },
+      "abbreviation": {
+        "n": 7,
+        "hit1_count": 3,
+        "hit1": 0.4286,
+        "hit5_count": 7,
+        "hit5": 1.0,
+        "mrr": 0.5929
+      },
+      "non_abbreviation": {
+        "n": 8,
+        "hit1_count": 3,
+        "hit1": 0.375,
+        "hit5_count": 8,
+        "hit5": 1.0,
+        "mrr": 0.6146
+      }
+    },
+    "hybrid_expanded": {
+      "label": "Hybrid RRF + perluasan",
+      "mode": "hybrid",
+      "expand": true,
+      "all": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      },
+      "abbreviation": {
+        "n": 7,
+        "hit1_count": 4,
+        "hit1": 0.5714,
+        "hit5_count": 6,
+        "hit5": 0.8571,
+        "mrr": 0.6714
+      },
+      "non_abbreviation": {
+        "n": 8,
+        "hit1_count": 5,
+        "hit1": 0.625,
+        "hit5_count": 7,
+        "hit5": 0.875,
+        "mrr": 0.7292
+      }
+    }
+  },
+  "sensitivity": {
+    "rrf_k": {
+      "10": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      },
+      "60": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      },
+      "100": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      }
+    },
+    "candidate_k": {
+      "5": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 12,
+        "hit5": 0.8,
+        "mrr": 0.6611
+      },
+      "10": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      },
+      "20": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      },
+      "30": {
+        "n": 15,
+        "hit1_count": 9,
+        "hit1": 0.6,
+        "hit5_count": 13,
+        "hit5": 0.8667,
+        "mrr": 0.7022
+      }
+    }
+  },
+  "latency": {
+    "rounds": 3,
+    "queries_per_round": 15,
+    "mean_ms": 26.4,
+    "median_ms": 25.3,
+    "min_ms": 20.1,
+    "max_ms": 51.4
+  },
+  "gate3": {
+    "threshold": 0.8,
+    "hit5_count": 13,
+    "total": 15,
+    "hit5": 0.8667,
+    "passed": true,
+    "failed_queries": [
+      "q08",
+      "q09"
+    ]
+  },
+  "per_query": [
+    {
+      "id": "q01",
+      "query": "Berapa total aset BCA tahun 2025?",
+      "ticker": "bbca",
+      "year": 2025,
+      "abbreviation": false,
+      "relevant_count": 2,
+      "relevant_pages": [
+        15,
+        202
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 2,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 2,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 2,
+        "dense_expanded": 1,
+        "bm25_expanded": 2
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2025_0135",
+          "bbca_2025_0161",
+          "bbca_2025_0155",
+          "bbca_2025_0156",
+          "bbca_2025_0146"
+        ],
+        "bm25": [
+          "bbca_2025_0012",
+          "bbca_2025_0135",
+          "bbca_2025_0163",
+          "bbca_2025_0156",
+          "bbca_2025_0021"
+        ],
+        "hybrid": [
+          "bbca_2025_0135",
+          "bbca_2025_0156",
+          "bbca_2025_0133",
+          "bbca_2025_0162",
+          "bbca_2025_0012"
+        ],
+        "dense_expanded": [
+          "bbca_2025_0135",
+          "bbca_2025_0161",
+          "bbca_2025_0155",
+          "bbca_2025_0156",
+          "bbca_2025_0146"
+        ],
+        "bm25_expanded": [
+          "bbca_2025_0012",
+          "bbca_2025_0135",
+          "bbca_2025_0163",
+          "bbca_2025_0156",
+          "bbca_2025_0021"
+        ],
+        "hybrid_expanded": [
+          "bbca_2025_0135",
+          "bbca_2025_0156",
+          "bbca_2025_0133",
+          "bbca_2025_0162",
+          "bbca_2025_0012"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            202
+          ],
+          [
+            213
+          ],
+          [
+            212
+          ],
+          [
+            212
+          ],
+          [
+            207
+          ]
+        ],
+        "bm25": [
+          [
+            95
+          ],
+          [
+            202
+          ],
+          [
+            219
+          ],
+          [
+            212
+          ],
+          [
+            98
+          ]
+        ],
+        "hybrid": [
+          [
+            202
+          ],
+          [
+            212
+          ],
+          [
+            200
+          ],
+          [
+            219
+          ],
+          [
+            95
+          ]
+        ],
+        "dense_expanded": [
+          [
+            202
+          ],
+          [
+            213
+          ],
+          [
+            212
+          ],
+          [
+            212
+          ],
+          [
+            207
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            95
+          ],
+          [
+            202
+          ],
+          [
+            219
+          ],
+          [
+            212
+          ],
+          [
+            98
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            202
+          ],
+          [
+            212
+          ],
+          [
+            200
+          ],
+          [
+            219
+          ],
+          [
+            95
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q02",
+      "query": "Berapa laba bersih BCA tahun 2024?",
+      "ticker": "bbca",
+      "year": 2024,
+      "abbreviation": false,
+      "relevant_count": 8,
+      "relevant_pages": [
+        20,
+        265,
+        268,
+        542,
+        543,
+        544,
+        545,
+        661
+      ],
+      "ranks": {
+        "dense": 2,
+        "bm25": 3,
+        "hybrid": 1,
+        "dense_expanded": 2,
+        "bm25_expanded": 3,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 2,
+        "bm25": 3,
+        "dense_expanded": 2,
+        "bm25_expanded": 3
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2024_0148",
+          "bbca_2024_0142",
+          "bbca_2024_0006",
+          "bbca_2024_0120",
+          "bbca_2024_0141"
+        ],
+        "bm25": [
+          "bbca_2024_0383",
+          "bbca_2024_0120",
+          "bbca_2024_0142",
+          "bbca_2024_0150",
+          "bbca_2024_0384"
+        ],
+        "hybrid": [
+          "bbca_2024_0142",
+          "bbca_2024_0120",
+          "bbca_2024_0148",
+          "bbca_2024_0141",
+          "bbca_2024_0383"
+        ],
+        "dense_expanded": [
+          "bbca_2024_0148",
+          "bbca_2024_0142",
+          "bbca_2024_0006",
+          "bbca_2024_0120",
+          "bbca_2024_0141"
+        ],
+        "bm25_expanded": [
+          "bbca_2024_0383",
+          "bbca_2024_0120",
+          "bbca_2024_0142",
+          "bbca_2024_0150",
+          "bbca_2024_0384"
+        ],
+        "hybrid_expanded": [
+          "bbca_2024_0142",
+          "bbca_2024_0120",
+          "bbca_2024_0148",
+          "bbca_2024_0141",
+          "bbca_2024_0383"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            269
+          ],
+          [
+            268
+          ],
+          [
+            22
+          ],
+          [
+            259
+          ],
+          [
+            267
+          ]
+        ],
+        "bm25": [
+          [
+            630
+          ],
+          [
+            259
+          ],
+          [
+            268
+          ],
+          [
+            275
+          ],
+          [
+            630
+          ]
+        ],
+        "hybrid": [
+          [
+            268
+          ],
+          [
+            259
+          ],
+          [
+            269
+          ],
+          [
+            267
+          ],
+          [
+            630
+          ]
+        ],
+        "dense_expanded": [
+          [
+            269
+          ],
+          [
+            268
+          ],
+          [
+            22
+          ],
+          [
+            259
+          ],
+          [
+            267
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            630
+          ],
+          [
+            259
+          ],
+          [
+            268
+          ],
+          [
+            275
+          ],
+          [
+            630
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            268
+          ],
+          [
+            259
+          ],
+          [
+            269
+          ],
+          [
+            267
+          ],
+          [
+            630
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q03",
+      "query": "Berapa DPK BCA tahun 2023?",
+      "ticker": "bbca",
+      "year": 2023,
+      "abbreviation": true,
+      "relevant_count": 3,
+      "relevant_pages": [
+        18,
+        266
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": null,
+        "hybrid": null,
+        "dense_expanded": 1,
+        "bm25_expanded": 5,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": null,
+        "dense_expanded": 1,
+        "bm25_expanded": 5
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2023_0148",
+          "bbca_2023_0128",
+          "bbca_2023_0008",
+          "bbca_2023_0129",
+          "bbca_2023_0144"
+        ],
+        "bm25": [
+          "bbca_2023_0123",
+          "bbca_2023_0077",
+          "bbca_2023_0078",
+          "bbca_2023_0076",
+          "bbca_2023_0357"
+        ],
+        "hybrid": [
+          "bbca_2023_0128",
+          "bbca_2023_0123",
+          "bbca_2023_0148",
+          "bbca_2023_0077",
+          "bbca_2023_0008"
+        ],
+        "dense_expanded": [
+          "bbca_2023_0134",
+          "bbca_2023_0136",
+          "bbca_2023_0148",
+          "bbca_2023_0160",
+          "bbca_2023_0144"
+        ],
+        "bm25_expanded": [
+          "bbca_2023_0348",
+          "bbca_2023_0135",
+          "bbca_2023_0508",
+          "bbca_2023_0502",
+          "bbca_2023_0134"
+        ],
+        "hybrid_expanded": [
+          "bbca_2023_0134",
+          "bbca_2023_0348",
+          "bbca_2023_0135",
+          "bbca_2023_0136",
+          "bbca_2023_0148"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            273
+          ],
+          [
+            263
+          ],
+          [
+            35
+          ],
+          [
+            264
+          ],
+          [
+            273
+          ]
+        ],
+        "bm25": [
+          [
+            261
+          ],
+          [
+            202
+          ],
+          [
+            202
+          ],
+          [
+            201
+          ],
+          [
+            665
+          ]
+        ],
+        "hybrid": [
+          [
+            263
+          ],
+          [
+            261
+          ],
+          [
+            273
+          ],
+          [
+            202
+          ],
+          [
+            35
+          ]
+        ],
+        "dense_expanded": [
+          [
+            266
+          ],
+          [
+            267
+          ],
+          [
+            273
+          ],
+          [
+            279
+          ],
+          [
+            273
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            659
+          ],
+          [
+            267
+          ],
+          [
+            734
+          ],
+          [
+            728
+          ],
+          [
+            266
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            266
+          ],
+          [
+            659
+          ],
+          [
+            267
+          ],
+          [
+            267
+          ],
+          [
+            273
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q04",
+      "query": "Berapa CAR bank BCA tahun 2024?",
+      "ticker": "bbca",
+      "year": 2024,
+      "abbreviation": true,
+      "relevant_count": 5,
+      "relevant_pages": [
+        21,
+        143,
+        259,
+        269,
+        703
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2024_0148",
+          "bbca_2024_0120",
+          "bbca_2024_0127",
+          "bbca_2024_0126",
+          "bbca_2024_0119"
+        ],
+        "bm25": [
+          "bbca_2024_0120",
+          "bbca_2024_0119",
+          "bbca_2024_0148",
+          "bbca_2024_0016",
+          "bbca_2024_0150"
+        ],
+        "hybrid": [
+          "bbca_2024_0120",
+          "bbca_2024_0148",
+          "bbca_2024_0119",
+          "bbca_2024_0121",
+          "bbca_2024_0003"
+        ],
+        "dense_expanded": [
+          "bbca_2024_0004",
+          "bbca_2024_0126",
+          "bbca_2024_0540",
+          "bbca_2024_0339",
+          "bbca_2024_0127"
+        ],
+        "bm25_expanded": [
+          "bbca_2024_0004",
+          "bbca_2024_0016",
+          "bbca_2024_0540",
+          "bbca_2024_0518",
+          "bbca_2024_0117"
+        ],
+        "hybrid_expanded": [
+          "bbca_2024_0004",
+          "bbca_2024_0540",
+          "bbca_2024_0016",
+          "bbca_2024_0119",
+          "bbca_2024_0120"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            269
+          ],
+          [
+            259
+          ],
+          [
+            262
+          ],
+          [
+            261
+          ],
+          [
+            258,
+            259
+          ]
+        ],
+        "bm25": [
+          [
+            259
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            269
+          ],
+          [
+            143
+          ],
+          [
+            275
+          ]
+        ],
+        "hybrid": [
+          [
+            259
+          ],
+          [
+            269
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            259
+          ],
+          [
+            20
+          ]
+        ],
+        "dense_expanded": [
+          [
+            21
+          ],
+          [
+            261
+          ],
+          [
+            703
+          ],
+          [
+            609
+          ],
+          [
+            262
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            21
+          ],
+          [
+            143
+          ],
+          [
+            703
+          ],
+          [
+            689
+          ],
+          [
+            234
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            21
+          ],
+          [
+            703
+          ],
+          [
+            143
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            259
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q05",
+      "query": "Berapa modal inti tier 1 BCA tahun 2025?",
+      "ticker": "bbca",
+      "year": 2025,
+      "abbreviation": false,
+      "relevant_count": 10,
+      "relevant_pages": [
+        98,
+        114,
+        115,
+        122,
+        124,
+        164,
+        166,
+        594
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 2,
+        "hybrid": 2,
+        "dense_expanded": null,
+        "bm25_expanded": 2,
+        "hybrid_expanded": 2
+      },
+      "candidate_ranks": {
+        "dense": 7,
+        "bm25": 2,
+        "dense_expanded": 7,
+        "bm25_expanded": 2
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2025_0161",
+          "bbca_2025_0006",
+          "bbca_2025_0021",
+          "bbca_2025_0007",
+          "bbca_2025_0155"
+        ],
+        "bm25": [
+          "bbca_2025_0021",
+          "bbca_2025_0030",
+          "bbca_2025_0016",
+          "bbca_2025_0471",
+          "bbca_2025_0496"
+        ],
+        "hybrid": [
+          "bbca_2025_0021",
+          "bbca_2025_0016",
+          "bbca_2025_0028",
+          "bbca_2025_0161",
+          "bbca_2025_0006"
+        ],
+        "dense_expanded": [
+          "bbca_2025_0161",
+          "bbca_2025_0006",
+          "bbca_2025_0021",
+          "bbca_2025_0007",
+          "bbca_2025_0155"
+        ],
+        "bm25_expanded": [
+          "bbca_2025_0021",
+          "bbca_2025_0030",
+          "bbca_2025_0016",
+          "bbca_2025_0471",
+          "bbca_2025_0496"
+        ],
+        "hybrid_expanded": [
+          "bbca_2025_0021",
+          "bbca_2025_0016",
+          "bbca_2025_0028",
+          "bbca_2025_0161",
+          "bbca_2025_0006"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            213
+          ],
+          [
+            17
+          ],
+          [
+            98
+          ],
+          [
+            17
+          ],
+          [
+            212
+          ]
+        ],
+        "bm25": [
+          [
+            98
+          ],
+          [
+            115
+          ],
+          [
+            98
+          ],
+          [
+            578
+          ],
+          [
+            594
+          ]
+        ],
+        "hybrid": [
+          [
+            98
+          ],
+          [
+            98
+          ],
+          [
+            114
+          ],
+          [
+            213
+          ],
+          [
+            17
+          ]
+        ],
+        "dense_expanded": [
+          [
+            213
+          ],
+          [
+            17
+          ],
+          [
+            98
+          ],
+          [
+            17
+          ],
+          [
+            212
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            98
+          ],
+          [
+            115
+          ],
+          [
+            98
+          ],
+          [
+            578
+          ],
+          [
+            594
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            98
+          ],
+          [
+            98
+          ],
+          [
+            114
+          ],
+          [
+            213
+          ],
+          [
+            17
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q06",
+      "query": "Berapa total ATMR konsolidasian BCA tahun 2023?",
+      "ticker": "bbca",
+      "year": 2023,
+      "abbreviation": false,
+      "relevant_count": 3,
+      "relevant_pages": [
+        144,
+        277,
+        727
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 1,
+        "hybrid": 4,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2023_0123",
+          "bbca_2023_0148",
+          "bbca_2023_0172",
+          "bbca_2023_0164",
+          "bbca_2023_0128"
+        ],
+        "bm25": [
+          "bbca_2023_0500",
+          "bbca_2023_0104",
+          "bbca_2023_0083",
+          "bbca_2023_0085",
+          "bbca_2023_0148"
+        ],
+        "hybrid": [
+          "bbca_2023_0148",
+          "bbca_2023_0128",
+          "bbca_2023_0123",
+          "bbca_2023_0500",
+          "bbca_2023_0104"
+        ],
+        "dense_expanded": [
+          "bbca_2023_0500",
+          "bbca_2023_0148",
+          "bbca_2023_0104",
+          "bbca_2023_0172",
+          "bbca_2023_0123"
+        ],
+        "bm25_expanded": [
+          "bbca_2023_0500",
+          "bbca_2023_0018",
+          "bbca_2023_0013",
+          "bbca_2023_0152",
+          "bbca_2023_0003"
+        ],
+        "hybrid_expanded": [
+          "bbca_2023_0500",
+          "bbca_2023_0013",
+          "bbca_2023_0104",
+          "bbca_2023_0018",
+          "bbca_2023_0148"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            261
+          ],
+          [
+            273
+          ],
+          [
+            580,
+            581
+          ],
+          [
+            389
+          ],
+          [
+            263
+          ]
+        ],
+        "bm25": [
+          [
+            727
+          ],
+          [
+            216
+          ],
+          [
+            204,
+            205
+          ],
+          [
+            205,
+            206
+          ],
+          [
+            273
+          ]
+        ],
+        "hybrid": [
+          [
+            273
+          ],
+          [
+            263
+          ],
+          [
+            261
+          ],
+          [
+            727
+          ],
+          [
+            216
+          ]
+        ],
+        "dense_expanded": [
+          [
+            727
+          ],
+          [
+            273
+          ],
+          [
+            216
+          ],
+          [
+            580,
+            581
+          ],
+          [
+            261
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            727
+          ],
+          [
+            156
+          ],
+          [
+            144
+          ],
+          [
+            277
+          ],
+          [
+            18
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            727
+          ],
+          [
+            144
+          ],
+          [
+            216
+          ],
+          [
+            156
+          ],
+          [
+            273
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q07",
+      "query": "Berapa nominal NPL BCA tahun 2024?",
+      "ticker": "bbca",
+      "year": 2024,
+      "abbreviation": true,
+      "relevant_count": 2,
+      "relevant_pages": [
+        199,
+        701
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": null,
+        "hybrid": null,
+        "dense_expanded": null,
+        "bm25_expanded": 2,
+        "hybrid_expanded": 2
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": 10,
+        "dense_expanded": 7,
+        "bm25_expanded": 2
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2024_0148",
+          "bbca_2024_0119",
+          "bbca_2024_0142",
+          "bbca_2024_0006",
+          "bbca_2024_0139"
+        ],
+        "bm25": [
+          "bbca_2024_0129",
+          "bbca_2024_0128",
+          "bbca_2024_0119",
+          "bbca_2024_0139",
+          "bbca_2024_0148"
+        ],
+        "hybrid": [
+          "bbca_2024_0119",
+          "bbca_2024_0148",
+          "bbca_2024_0129",
+          "bbca_2024_0139",
+          "bbca_2024_0126"
+        ],
+        "dense_expanded": [
+          "bbca_2024_0129",
+          "bbca_2024_0119",
+          "bbca_2024_0148",
+          "bbca_2024_0126",
+          "bbca_2024_0142"
+        ],
+        "bm25_expanded": [
+          "bbca_2024_0129",
+          "bbca_2024_0537",
+          "bbca_2024_0254",
+          "bbca_2024_0004",
+          "bbca_2024_0128"
+        ],
+        "hybrid_expanded": [
+          "bbca_2024_0129",
+          "bbca_2024_0537",
+          "bbca_2024_0119",
+          "bbca_2024_0127",
+          "bbca_2024_0126"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            269
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            268
+          ],
+          [
+            22
+          ],
+          [
+            267
+          ]
+        ],
+        "bm25": [
+          [
+            262,
+            263
+          ],
+          [
+            262
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            267
+          ],
+          [
+            269
+          ]
+        ],
+        "hybrid": [
+          [
+            258,
+            259
+          ],
+          [
+            269
+          ],
+          [
+            262,
+            263
+          ],
+          [
+            267
+          ],
+          [
+            261
+          ]
+        ],
+        "dense_expanded": [
+          [
+            262,
+            263
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            269
+          ],
+          [
+            261
+          ],
+          [
+            268
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            262,
+            263
+          ],
+          [
+            701
+          ],
+          [
+            577
+          ],
+          [
+            21
+          ],
+          [
+            262
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            262,
+            263
+          ],
+          [
+            701
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            262
+          ],
+          [
+            261
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q08",
+      "query": "Berapa CKPN kredit yang diberikan BCA tahun 2023?",
+      "ticker": "bbca",
+      "year": 2023,
+      "abbreviation": true,
+      "relevant_count": 2,
+      "relevant_pages": [
+        180,
+        738,
+        739
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 3,
+        "hybrid": 4,
+        "dense_expanded": null,
+        "bm25_expanded": 4,
+        "hybrid_expanded": null
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": 3,
+        "dense_expanded": null,
+        "bm25_expanded": 4
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2023_0128",
+          "bbca_2023_0127",
+          "bbca_2023_0160",
+          "bbca_2023_0129",
+          "bbca_2023_0316"
+        ],
+        "bm25": [
+          "bbca_2023_0316",
+          "bbca_2023_0127",
+          "bbca_2023_0040",
+          "bbca_2023_0075",
+          "bbca_2023_0163"
+        ],
+        "hybrid": [
+          "bbca_2023_0127",
+          "bbca_2023_0316",
+          "bbca_2023_0128",
+          "bbca_2023_0040",
+          "bbca_2023_0160"
+        ],
+        "dense_expanded": [
+          "bbca_2023_0316",
+          "bbca_2023_0160",
+          "bbca_2023_0128",
+          "bbca_2023_0129",
+          "bbca_2023_0132"
+        ],
+        "bm25_expanded": [
+          "bbca_2023_0316",
+          "bbca_2023_0315",
+          "bbca_2023_0310",
+          "bbca_2023_0517",
+          "bbca_2023_0070"
+        ],
+        "hybrid_expanded": [
+          "bbca_2023_0316",
+          "bbca_2023_0315",
+          "bbca_2023_0160",
+          "bbca_2023_0128",
+          "bbca_2023_0310"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            263
+          ],
+          [
+            263
+          ],
+          [
+            279
+          ],
+          [
+            264
+          ],
+          [
+            645
+          ]
+        ],
+        "bm25": [
+          [
+            645
+          ],
+          [
+            263
+          ],
+          [
+            180
+          ],
+          [
+            201
+          ],
+          [
+            389
+          ]
+        ],
+        "hybrid": [
+          [
+            263
+          ],
+          [
+            645
+          ],
+          [
+            263
+          ],
+          [
+            180
+          ],
+          [
+            279
+          ]
+        ],
+        "dense_expanded": [
+          [
+            645
+          ],
+          [
+            279
+          ],
+          [
+            263
+          ],
+          [
+            264
+          ],
+          [
+            265
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            645
+          ],
+          [
+            644
+          ],
+          [
+            642
+          ],
+          [
+            738,
+            739
+          ],
+          [
+            198,
+            199
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            645
+          ],
+          [
+            644
+          ],
+          [
+            279
+          ],
+          [
+            263
+          ],
+          [
+            642
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q09",
+      "query": "Berapa total ekuitas BCA tahun 2024?",
+      "ticker": "bbca",
+      "year": 2024,
+      "abbreviation": false,
+      "relevant_count": 4,
+      "relevant_pages": [
+        20,
+        265,
+        541,
+        544,
+        545
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 4,
+        "hybrid": null,
+        "dense_expanded": null,
+        "bm25_expanded": 4,
+        "hybrid_expanded": null
+      },
+      "candidate_ranks": {
+        "dense": 6,
+        "bm25": 4,
+        "dense_expanded": 6,
+        "bm25_expanded": 4
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2024_0148",
+          "bbca_2024_0120",
+          "bbca_2024_0006",
+          "bbca_2024_0142",
+          "bbca_2024_0121"
+        ],
+        "bm25": [
+          "bbca_2024_0120",
+          "bbca_2024_0210",
+          "bbca_2024_0139",
+          "bbca_2024_0135",
+          "bbca_2024_0126"
+        ],
+        "hybrid": [
+          "bbca_2024_0120",
+          "bbca_2024_0012",
+          "bbca_2024_0148",
+          "bbca_2024_0210",
+          "bbca_2024_0006"
+        ],
+        "dense_expanded": [
+          "bbca_2024_0148",
+          "bbca_2024_0120",
+          "bbca_2024_0006",
+          "bbca_2024_0142",
+          "bbca_2024_0121"
+        ],
+        "bm25_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0210",
+          "bbca_2024_0139",
+          "bbca_2024_0135",
+          "bbca_2024_0126"
+        ],
+        "hybrid_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0012",
+          "bbca_2024_0148",
+          "bbca_2024_0210",
+          "bbca_2024_0006"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            269
+          ],
+          [
+            259
+          ],
+          [
+            22
+          ],
+          [
+            268
+          ],
+          [
+            259
+          ]
+        ],
+        "bm25": [
+          [
+            259
+          ],
+          [
+            562
+          ],
+          [
+            267
+          ],
+          [
+            265
+          ],
+          [
+            261
+          ]
+        ],
+        "hybrid": [
+          [
+            259
+          ],
+          [
+            104
+          ],
+          [
+            269
+          ],
+          [
+            562
+          ],
+          [
+            22
+          ]
+        ],
+        "dense_expanded": [
+          [
+            269
+          ],
+          [
+            259
+          ],
+          [
+            22
+          ],
+          [
+            268
+          ],
+          [
+            259
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            259
+          ],
+          [
+            562
+          ],
+          [
+            267
+          ],
+          [
+            265
+          ],
+          [
+            261
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            259
+          ],
+          [
+            104
+          ],
+          [
+            269
+          ],
+          [
+            562
+          ],
+          [
+            22
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q10",
+      "query": "Berapa pendapatan bunga bersih BCA tahun 2025?",
+      "ticker": "bbca",
+      "year": 2025,
+      "abbreviation": false,
+      "relevant_count": 6,
+      "relevant_pages": [
+        15,
+        209,
+        210,
+        213,
+        463,
+        557
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": 1,
+        "hybrid": 3,
+        "dense_expanded": null,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 3
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": 1,
+        "dense_expanded": null,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2025_0161",
+          "bbca_2025_0006",
+          "bbca_2025_0155",
+          "bbca_2025_0156",
+          "bbca_2025_0133"
+        ],
+        "bm25": [
+          "bbca_2025_0416",
+          "bbca_2025_0171",
+          "bbca_2025_0150",
+          "bbca_2025_0156",
+          "bbca_2025_0500"
+        ],
+        "hybrid": [
+          "bbca_2025_0156",
+          "bbca_2025_0161",
+          "bbca_2025_0416",
+          "bbca_2025_0006",
+          "bbca_2025_0171"
+        ],
+        "dense_expanded": [
+          "bbca_2025_0161",
+          "bbca_2025_0006",
+          "bbca_2025_0155",
+          "bbca_2025_0156",
+          "bbca_2025_0133"
+        ],
+        "bm25_expanded": [
+          "bbca_2025_0416",
+          "bbca_2025_0171",
+          "bbca_2025_0150",
+          "bbca_2025_0156",
+          "bbca_2025_0500"
+        ],
+        "hybrid_expanded": [
+          "bbca_2025_0156",
+          "bbca_2025_0161",
+          "bbca_2025_0416",
+          "bbca_2025_0006",
+          "bbca_2025_0171"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            213
+          ],
+          [
+            17
+          ],
+          [
+            212
+          ],
+          [
+            212
+          ],
+          [
+            200
+          ]
+        ],
+        "bm25": [
+          [
+            557
+          ],
+          [
+            463
+          ],
+          [
+            210
+          ],
+          [
+            212
+          ],
+          [
+            597,
+            598
+          ]
+        ],
+        "hybrid": [
+          [
+            212
+          ],
+          [
+            213
+          ],
+          [
+            557
+          ],
+          [
+            17
+          ],
+          [
+            463
+          ]
+        ],
+        "dense_expanded": [
+          [
+            213
+          ],
+          [
+            17
+          ],
+          [
+            212
+          ],
+          [
+            212
+          ],
+          [
+            200
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            557
+          ],
+          [
+            463
+          ],
+          [
+            210
+          ],
+          [
+            212
+          ],
+          [
+            597,
+            598
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            212
+          ],
+          [
+            213
+          ],
+          [
+            557
+          ],
+          [
+            17
+          ],
+          [
+            463
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q11",
+      "query": "Berapa laba sebelum pajak BCA tahun 2023?",
+      "ticker": "bbca",
+      "year": 2023,
+      "abbreviation": false,
+      "relevant_count": 2,
+      "relevant_pages": [
+        18,
+        268,
+        269
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 3,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 3,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 3,
+        "dense_expanded": 1,
+        "bm25_expanded": 3
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2023_0138",
+          "bbca_2023_0148",
+          "bbca_2023_0142",
+          "bbca_2023_0006",
+          "bbca_2023_0137"
+        ],
+        "bm25": [
+          "bbca_2023_0355",
+          "bbca_2023_0357",
+          "bbca_2023_0138",
+          "bbca_2023_0332",
+          "bbca_2023_0519"
+        ],
+        "hybrid": [
+          "bbca_2023_0138",
+          "bbca_2023_0355",
+          "bbca_2023_0148",
+          "bbca_2023_0357",
+          "bbca_2023_0142"
+        ],
+        "dense_expanded": [
+          "bbca_2023_0138",
+          "bbca_2023_0148",
+          "bbca_2023_0142",
+          "bbca_2023_0006",
+          "bbca_2023_0137"
+        ],
+        "bm25_expanded": [
+          "bbca_2023_0355",
+          "bbca_2023_0357",
+          "bbca_2023_0138",
+          "bbca_2023_0332",
+          "bbca_2023_0519"
+        ],
+        "hybrid_expanded": [
+          "bbca_2023_0138",
+          "bbca_2023_0355",
+          "bbca_2023_0148",
+          "bbca_2023_0357",
+          "bbca_2023_0142"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            268,
+            269
+          ],
+          [
+            273
+          ],
+          [
+            272
+          ],
+          [
+            20
+          ],
+          [
+            268
+          ]
+        ],
+        "bm25": [
+          [
+            663
+          ],
+          [
+            665
+          ],
+          [
+            268,
+            269
+          ],
+          [
+            653
+          ],
+          [
+            740
+          ]
+        ],
+        "hybrid": [
+          [
+            268,
+            269
+          ],
+          [
+            663
+          ],
+          [
+            273
+          ],
+          [
+            665
+          ],
+          [
+            272
+          ]
+        ],
+        "dense_expanded": [
+          [
+            268,
+            269
+          ],
+          [
+            273
+          ],
+          [
+            272
+          ],
+          [
+            20
+          ],
+          [
+            268
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            663
+          ],
+          [
+            665
+          ],
+          [
+            268,
+            269
+          ],
+          [
+            653
+          ],
+          [
+            740
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            268,
+            269
+          ],
+          [
+            663
+          ],
+          [
+            273
+          ],
+          [
+            665
+          ],
+          [
+            272
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q12",
+      "query": "Berapa LDR BCA tahun 2024?",
+      "ticker": "bbca",
+      "year": 2024,
+      "abbreviation": true,
+      "relevant_count": 3,
+      "relevant_pages": [
+        21,
+        259,
+        269
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2024_0148",
+          "bbca_2024_0120",
+          "bbca_2024_0127",
+          "bbca_2024_0119",
+          "bbca_2024_0142"
+        ],
+        "bm25": [
+          "bbca_2024_0120",
+          "bbca_2024_0148",
+          "bbca_2024_0119",
+          "bbca_2024_0150",
+          "bbca_2024_0121"
+        ],
+        "hybrid": [
+          "bbca_2024_0120",
+          "bbca_2024_0148",
+          "bbca_2024_0119",
+          "bbca_2024_0126",
+          "bbca_2024_0139"
+        ],
+        "dense_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0119",
+          "bbca_2024_0127",
+          "bbca_2024_0148",
+          "bbca_2024_0126"
+        ],
+        "bm25_expanded": [
+          "bbca_2024_0004",
+          "bbca_2024_0119",
+          "bbca_2024_0120",
+          "bbca_2024_0139",
+          "bbca_2024_0133"
+        ],
+        "hybrid_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0119",
+          "bbca_2024_0148",
+          "bbca_2024_0005",
+          "bbca_2024_0004"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            269
+          ],
+          [
+            259
+          ],
+          [
+            262
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            268
+          ]
+        ],
+        "bm25": [
+          [
+            259
+          ],
+          [
+            269
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            275
+          ],
+          [
+            259
+          ]
+        ],
+        "hybrid": [
+          [
+            259
+          ],
+          [
+            269
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            261
+          ],
+          [
+            267
+          ]
+        ],
+        "dense_expanded": [
+          [
+            259
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            262
+          ],
+          [
+            269
+          ],
+          [
+            261
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            21
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            259
+          ],
+          [
+            267
+          ],
+          [
+            264
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            259
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            269
+          ],
+          [
+            21
+          ],
+          [
+            21
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q13",
+      "query": "Berapa ROE BCA tahun 2025?",
+      "ticker": "bbca",
+      "year": 2025,
+      "abbreviation": true,
+      "relevant_count": 2,
+      "relevant_pages": [
+        16,
+        213
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2025_0161",
+          "bbca_2025_0006",
+          "bbca_2025_0133",
+          "bbca_2025_0007",
+          "bbca_2025_0014"
+        ],
+        "bm25": [
+          "bbca_2025_0161",
+          "bbca_2025_0163",
+          "bbca_2025_0134",
+          "bbca_2025_0012",
+          "bbca_2025_0133"
+        ],
+        "hybrid": [
+          "bbca_2025_0161",
+          "bbca_2025_0133",
+          "bbca_2025_0014",
+          "bbca_2025_0006",
+          "bbca_2025_0163"
+        ],
+        "dense_expanded": [
+          "bbca_2025_0161",
+          "bbca_2025_0006",
+          "bbca_2025_0155",
+          "bbca_2025_0133",
+          "bbca_2025_0014"
+        ],
+        "bm25_expanded": [
+          "bbca_2025_0004",
+          "bbca_2025_0133",
+          "bbca_2025_0161",
+          "bbca_2025_0140",
+          "bbca_2025_0028"
+        ],
+        "hybrid_expanded": [
+          "bbca_2025_0161",
+          "bbca_2025_0133",
+          "bbca_2025_0004",
+          "bbca_2025_0140",
+          "bbca_2025_0006"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            213
+          ],
+          [
+            17
+          ],
+          [
+            200
+          ],
+          [
+            17
+          ],
+          [
+            95
+          ]
+        ],
+        "bm25": [
+          [
+            213
+          ],
+          [
+            219
+          ],
+          [
+            202
+          ],
+          [
+            95
+          ],
+          [
+            200
+          ]
+        ],
+        "hybrid": [
+          [
+            213
+          ],
+          [
+            200
+          ],
+          [
+            95
+          ],
+          [
+            17
+          ],
+          [
+            219
+          ]
+        ],
+        "dense_expanded": [
+          [
+            213
+          ],
+          [
+            17
+          ],
+          [
+            212
+          ],
+          [
+            200
+          ],
+          [
+            95
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            16
+          ],
+          [
+            200
+          ],
+          [
+            213
+          ],
+          [
+            205
+          ],
+          [
+            114
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            213
+          ],
+          [
+            200
+          ],
+          [
+            16
+          ],
+          [
+            205
+          ],
+          [
+            17
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q14",
+      "query": "Berapa total kredit yang diberikan BCA tahun 2025?",
+      "ticker": "bbca",
+      "year": 2025,
+      "abbreviation": false,
+      "relevant_count": 5,
+      "relevant_pages": [
+        15,
+        202,
+        204,
+        206
+      ],
+      "ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1,
+        "hybrid_expanded": 1
+      },
+      "candidate_ranks": {
+        "dense": 1,
+        "bm25": 1,
+        "dense_expanded": 1,
+        "bm25_expanded": 1
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2025_0138",
+          "bbca_2025_0139",
+          "bbca_2025_0162",
+          "bbca_2025_0133",
+          "bbca_2025_0135"
+        ],
+        "bm25": [
+          "bbca_2025_0138",
+          "bbca_2025_0318",
+          "bbca_2025_0012",
+          "bbca_2025_0135",
+          "bbca_2025_0133"
+        ],
+        "hybrid": [
+          "bbca_2025_0138",
+          "bbca_2025_0133",
+          "bbca_2025_0135",
+          "bbca_2025_0139",
+          "bbca_2025_0162"
+        ],
+        "dense_expanded": [
+          "bbca_2025_0138",
+          "bbca_2025_0139",
+          "bbca_2025_0162",
+          "bbca_2025_0133",
+          "bbca_2025_0135"
+        ],
+        "bm25_expanded": [
+          "bbca_2025_0138",
+          "bbca_2025_0318",
+          "bbca_2025_0012",
+          "bbca_2025_0135",
+          "bbca_2025_0133"
+        ],
+        "hybrid_expanded": [
+          "bbca_2025_0138",
+          "bbca_2025_0133",
+          "bbca_2025_0135",
+          "bbca_2025_0139",
+          "bbca_2025_0162"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            204
+          ],
+          [
+            204
+          ],
+          [
+            219
+          ],
+          [
+            200
+          ],
+          [
+            202
+          ]
+        ],
+        "bm25": [
+          [
+            204
+          ],
+          [
+            515
+          ],
+          [
+            95
+          ],
+          [
+            202
+          ],
+          [
+            200
+          ]
+        ],
+        "hybrid": [
+          [
+            204
+          ],
+          [
+            200
+          ],
+          [
+            202
+          ],
+          [
+            204
+          ],
+          [
+            219
+          ]
+        ],
+        "dense_expanded": [
+          [
+            204
+          ],
+          [
+            204
+          ],
+          [
+            219
+          ],
+          [
+            200
+          ],
+          [
+            202
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            204
+          ],
+          [
+            515
+          ],
+          [
+            95
+          ],
+          [
+            202
+          ],
+          [
+            200
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            204
+          ],
+          [
+            200
+          ],
+          [
+            202
+          ],
+          [
+            204
+          ],
+          [
+            219
+          ]
+        ]
+      }
+    },
+    {
+      "id": "q15",
+      "query": "Berapa DPK entitas induk BCA tahun 2024?",
+      "ticker": "bbca",
+      "year": 2024,
+      "abbreviation": true,
+      "relevant_count": 1,
+      "relevant_pages": [
+        705
+      ],
+      "ranks": {
+        "dense": null,
+        "bm25": null,
+        "hybrid": null,
+        "dense_expanded": null,
+        "bm25_expanded": 5,
+        "hybrid_expanded": 5
+      },
+      "candidate_ranks": {
+        "dense": null,
+        "bm25": null,
+        "dense_expanded": 8,
+        "bm25_expanded": 5
+      },
+      "top5_ids": {
+        "dense": [
+          "bbca_2024_0148",
+          "bbca_2024_0142",
+          "bbca_2024_0150",
+          "bbca_2024_0139",
+          "bbca_2024_0121"
+        ],
+        "bm25": [
+          "bbca_2024_0556",
+          "bbca_2024_0555",
+          "bbca_2024_0554",
+          "bbca_2024_0142",
+          "bbca_2024_0170"
+        ],
+        "hybrid": [
+          "bbca_2024_0142",
+          "bbca_2024_0148",
+          "bbca_2024_0150",
+          "bbca_2024_0121",
+          "bbca_2024_0556"
+        ],
+        "dense_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0148",
+          "bbca_2024_0132",
+          "bbca_2024_0119",
+          "bbca_2024_0210"
+        ],
+        "bm25_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0375",
+          "bbca_2024_0167",
+          "bbca_2024_0133",
+          "bbca_2024_0543"
+        ],
+        "hybrid_expanded": [
+          "bbca_2024_0120",
+          "bbca_2024_0119",
+          "bbca_2024_0375",
+          "bbca_2024_0132",
+          "bbca_2024_0543"
+        ]
+      },
+      "top5_pages": {
+        "dense": [
+          [
+            269
+          ],
+          [
+            268
+          ],
+          [
+            275
+          ],
+          [
+            267
+          ],
+          [
+            259
+          ]
+        ],
+        "bm25": [
+          [
+            712
+          ],
+          [
+            712
+          ],
+          [
+            712
+          ],
+          [
+            268
+          ],
+          [
+            542,
+            543
+          ]
+        ],
+        "hybrid": [
+          [
+            268
+          ],
+          [
+            269
+          ],
+          [
+            275
+          ],
+          [
+            259
+          ],
+          [
+            712
+          ]
+        ],
+        "dense_expanded": [
+          [
+            259
+          ],
+          [
+            269
+          ],
+          [
+            264
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            562
+          ]
+        ],
+        "bm25_expanded": [
+          [
+            259
+          ],
+          [
+            624
+          ],
+          [
+            541
+          ],
+          [
+            264
+          ],
+          [
+            705
+          ]
+        ],
+        "hybrid_expanded": [
+          [
+            259
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            624
+          ],
+          [
+            264
+          ],
+          [
+            705
+          ]
+        ]
+      }
+    }
+  ]
+}

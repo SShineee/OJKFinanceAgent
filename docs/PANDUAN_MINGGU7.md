@@ -26,6 +26,10 @@ Perkiraan kerja: **3–4 hari**. Semua kode dijalankan dari venv (`(.venv)` haru
   - 7.B: "chunk yang benar" = chunk yang memuat angka jawabannya.
 - ⚠️ Bimbingan 1.6 masih tertunda. Bawa juga Keputusan 7.B ke sana, karena itu definisi metrik
   evaluasi yang ditulis di Bab 3.
+- ✅ **MINGGU 7 SELESAI (26-11-2026).**
+  - Langkah 0–6 selesai, `check_retrieval.py` **LULUS** (termasuk 3 uji negatif), dan **GATE 3
+    LULUS** (Hit@5 hybrid + perluasan **13/15 = 86,7%**, Hit@1 **9/15 = 60%**, MRR@5 **0,702**).
+  - Hasil eksperimen lengkap tersimpan di `results/retrieval_eval.json` dan `results/retrieval_eval.csv`.
 
 ---
 
@@ -288,70 +292,105 @@ Aturan:
 
 ---
 
-## Langkah 4 — Eksperimen pembanding (7.5–7.6) · ½ hari
+## Langkah 4 — Eksperimen pembanding (7.5–7.6) · ✅ SELESAI (26-11-2026)
 
 **File:** `eval/retrieval_eval.py` → `results/retrieval_eval.json` + `results/retrieval_eval.csv`. Kode
 evaluasi ditaruh di `eval/`, sejalan dengan `eval/ragas_eval.py` dan `eval/ratio_eval.py` di
-roadmap.
+roadmap. Mendukung argumen `--dataset` dan `--out-prefix` untuk dijalankan ulang pada BMRI di
+Minggu 8.
 
-Untuk setiap query dan setiap konfigurasi, catat **peringkat chunk relevan pertama**. Dari situ
-dihitung **Hit@1, Hit@5, dan MRR**.
+```powershell
+python -m eval.retrieval_eval
+```
 
-| Konfigurasi | Hit@5 (prototipe) |
-|---|---|
-| Dense saja | 7/15 |
-| BM25 saja | 12/15 |
-| Hybrid RRF | 11/15 |
-| Dense saja + perluasan | 9/15 |
-| BM25 saja + perluasan | **15/15** |
-| **Hybrid RRF + perluasan** (konfigurasi sistem) | **13/15** |
+Hash dataset terkunci terverifikasi:
+`cfab3a1830003cc868ef2c069a2d9364d8dad0d7ce232a6005a3e5ed07246fc2`.
 
-Tambahan:
+| Konfigurasi | Hit@1 | Hit@5 | MRR@5 | Singkatan (7) | Tanpa singkatan (8) |
+|---|---|---|---|---|---|
+| Dense saja | 6/15 (40%) | 7/15 (47%) | 0,433 | 3/7 (43%) | 4/8 (50%) |
+| BM25 saja | 6/15 (40%) | 12/15 (80%) | 0,550 | 4/7 (57%) | 8/8 (100%) |
+| Hybrid RRF | 7/15 (47%) | 11/15 (73%) | 0,556 | 4/7 (57%) | 7/8 (88%) |
+| Dense + perluasan | 8/15 (53%) | 9/15 (60%) | 0,567 | 4/7 (57%) | 5/8 (62%) |
+| BM25 + perluasan | 6/15 (40%) | **15/15 (100%)** | 0,604 | 7/7 (100%) | 8/8 (100%) |
+| **Hybrid RRF + perluasan** (sistem) | **9/15 (60%)** | **13/15 (87%)** | **0,702** | **6/7 (86%)** | **7/8 (88%)** |
 
-- **Subkelompok bersingkatan vs tidak:** 7 vs 8 query, untuk menguji hipotesis proposal.
-- **7.6 (opsional, sudah diuji):** `k` RRF 10 / 60 / 100 sama persis. Jumlah kandidat 5 / 10 / 20 /
-  30. Dicatat, **bukan** dipakai untuk memilih parameter.
-- **Tabel per query untuk Bab 4:** query, peringkat di tiap konfigurasi, dan halaman chunk relevan.
+Temuan tambahan (bahan Bab 4):
 
----
-
-## Langkah 5 — Pemeriksaan · ½ hari
-
-**File:** `scripts/check_retrieval.py`
-
-- **RRF:** perhitungan cocok dengan contoh hitung tangan (2 daftar kecil), dan seri dipecah oleh
-  `chunk_id`.
-- **`ticker` wajib:** `hybrid_retrieve(q, ticker="")` dan `ticker="xxxx"` (tidak ada di pustaka) →
-  `ValueError`.
-- **Filter:** semua hasil `year=2024` berasal dari laporan 2024. Hasil `year=None` dikelompokkan per
-  tahun, dengan `k` per tahun.
-- **Perluasan:** query bersingkatan diperluas, query biasa tidak berubah. `expand=False` mematikannya.
-- **Deterministik:** query yang sama dua kali menghasilkan urutan yang sama.
-- **GATE 3:** Hit@5 hybrid + perluasan ≥ 80% (dari `eval/retrieval_eval.py`).
-- **Uji negatif.** Script harus GAGAL kalau:
-  - filter tahun dimatikan (hasil lintas tahun);
-  - RRF memakai skor mentah, bukan peringkat;
-  - `ticker` boleh kosong.
-
-**Manual:**
-- [ ] Baca top-5 hybrid untuk ke-15 query. Untuk 2 query yang gagal, catat sebabnya (bahan Bab 4).
-- [ ] Coba 5 pertanyaan bebas di luar set uji (mis. "rasio BOPO 2024", "jumlah kantor cabang
-      2025"). Jawabannya masuk akal? Ini bukan angka evaluasi, hanya pemeriksaan kewajaran.
+- **Hybrid RRF + perluasan unggul di peringkat teratas:** meski BM25 + perluasan unggul di Hit@5
+  (15/15 vs 13/15), **Hybrid + perluasan tertinggi di Hit@1 (60% vs BM25 40% & Dense 53%) dan MRR@5
+  (0,702 vs BM25 0,604 & Dense 0,567)**. Pada `q01`, `q02`, `q03`, `q06`, dan `q11`, kesepakatan
+  dense dan BM25 mengangkat chunk jawaban ke peringkat 1.
+- **Sensitivitas parameter (7.6 — dicatat, bukan penyetelan):**
+  - RRF `k` = 10 / 60 / 100 → identik di ketiganya: Hit@5 **13/15**, Hit@1 **9/15**, MRR@5 **0,702**.
+  - Jumlah kandidat = 5 / 10 / 20 / 30 → Hit@5 **12 / 13 / 13 / 13** (MRR 0,661 / 0,702 / 0,702 / 0,702).
+- **Latensi `hybrid_retrieve` (warm, 3×15 query):** rata-rata **26,4 ms**, median **25,3 ms**
+  (min 20,1 ms, maks 51,4 ms).
+- **Tabel per query lengkap** tersimpan di `results/retrieval_eval.csv` (termasuk peringkat di
+  keenam konfigurasi dan halaman relevan).
 
 ---
 
-## Langkah 6 — Catat · ½ jam
+## Langkah 5 — Pemeriksaan · ✅ SELESAI (26-11-2026)
 
-Isi lembar hasil. Untuk Bab 4 (4.3), yang dibutuhkan adalah tabel Dense / Sparse / Hybrid, dengan
-dan tanpa perluasan, plus pembahasan hybrid vs BM25.
+### a. Otomatis — `scripts/check_retrieval.py` · **LULUS** (8,3 s)
+
+```powershell
+python scripts\check_retrieval.py
+python scripts\check_retrieval.py --quick   # tanpa uji negatif
+```
+
+| Cek | Isi | Hasil |
+|---|---|---|
+| A. RRF | hitung tangan 2 daftar kecil, seri dipecah `chunk_id`, komutatif, duplikat dihitung sekali, daftar kosong, peringkat tidak valid ditolak | OK |
+| B. `ticker` wajib | `""`, `"   "`, `None`, `"xxxx"` ditolak `ValueError` di `hybrid_retrieve`, `dense_search`, `sparse_search`; `"BBCA"` dinormalisasi | OK |
+| C. Filter tahun | `year=2023/2024/2025` terisolasi; `year=None` → 5 chunk per tahun (15 total); `year=[2025, 2023]` terurut; tahun tak valid ditolak | OK |
+| D. Perluasan istilah | 7 singkatan diperluas, query biasa & `"Carrefour card scar"` tak berubah, idempoten, `expand=False` mengubah hasil CKPN | OK |
+| E. Deterministik & skema | 5 query dijalankan 2× urutan & skor identik; 13 field lengkap; `dense_rank` & `sparse_rank` cocok | OK |
+| F. GATE 3 | SHA-256 cocok hash terkunci; Hit@5 hybrid + perluasan **13/15 (86,7%) ≥ 80%**; `results/retrieval_eval.json` & `.csv` sinkron | OK |
+| **G. Uji negatif** | (1) filter tahun dimatikan → tertangkap (**38/75** chunk top-5 dari tahun salah); (2) RRF skor mentah → tertangkap; (3) `ticker` boleh kosong → tertangkap (4 pelanggaran) | **3/3 tertangkap** |
+
+### b. Manual · semua ✅
+
+- [x] **Baca top-5 hybrid untuk ke-15 query & diagnosis 2 query meleset (`q08`, `q09`):**
+  - **`q08` ("Berapa CKPN kredit yang diberikan BCA tahun 2023?"):** chunk relevan `bbca_2023_0517`
+    (Entitas Induk hal 738–739, memuat CKPN Bank `33.168.491` juta) ada di **BM25 peringkat 4**,
+    tetapi tidak masuk top-15 dense sehingga jatuh ke **peringkat 7 RRF** (`0,015625`). Top-2
+    terisi Catatan 12 Kredit yang Diberikan konsolidasian hal 644–645 (`d=1/s=1`, `d=7/s=2`), dan
+    slot #3–#4 terambil chunk dense-only (`d=2`, `d=3`). Catatan: query uji juga tidak menyebut
+    "entitas induk" secara eksplisit; di Minggu 9 Extraction Agent menyertakan basis bank.
+  - **`q09` ("Berapa total ekuitas BCA tahun 2024?"):** chunk relevan `bbca_2024_0135` (hal 265,
+    ringkasan posisi keuangan) ada di **BM25 peringkat 4** (tidak masuk top-15 dense → **peringkat 7
+    RRF**), sedangkan `bbca_2024_0171` (hal 544–545, Laporan Perubahan Ekuitas) ada di **dense
+    peringkat 6** (tidak masuk BM25 → **peringkat 11 RRF**). Top-5 terisi narasi kinerja/entitas
+    anak/rasio utama yang sering menyebut "BCA", "2024", dan "ekuitas".
+- [x] **5 pertanyaan bebas di luar set uji (pemeriksaan kewajaran — 5/5 tepat di top-2):**
+
+| Pertanyaan bebas | Top hasil relevan | Jawaban terverifikasi di chunk |
+|---|---|---|
+| `rasio BOPO BCA 2024` | #2 `bbca_2024_0148` hal 269 (`d=2, s=1`) | Tabel Rasio Keuangan Utama: **BOPO 41,7%** |
+| `jumlah kantor cabang dan ATM BCA 2025` | #2 `bbca_2025_0005` hal 16; #3 `bbca_2025_0180` hal 470 | Ikhtisar & Catatan 1: **1.270 cabang**, **20.163 ATM** |
+| `rasio LCR BCA tahun 2024` | #1 `bbca_2024_0106` hal 220 (`d=1, s=1`); #2 `bbca_2024_0005` hal 21 | Laporan LCR Triwulanan & Ikhtisar: **LCR 323,0%** |
+| `laba bersih yang diatribusikan kepada pemilik entitas induk 2023` | #1 `bbca_2023_0171` hal 578–580 (`d=2, s=1`); #2–#3 hal 272 | Laporan Laba Rugi Konsolidasian & segmen |
+| `dividen tunai per saham BCA tahun 2025` | #1 `bbca_2025_0389` hal 547 (`d=2, s=2`); #2 hal 548 | Catatan 36 Penggunaan Laba Bersih: **Rp 300/saham** + dividen interim |
+
+---
+
+## Langkah 6 — Catat · ✅ SELESAI (26-11-2026)
+
+Lembar hasil di bawah terisi lengkap. Bahan Bab 4 (4.3 Implementasi RAG) tersedia di tabel Langkah
+4, `results/retrieval_eval.json`, dan `results/retrieval_eval.csv`.
 
 ---
 
 ## Dampak ke Minggu 8–9 dan Bab 4
 
 - **Bab 4 — hybrid vs BM25.** Pada 15 query angka, BM25 + perluasan (15/15) mengungguli hybrid
-  (13/15). Ini **tidak membatalkan** arsitektur hybrid, tetapi harus dibahas jujur:
+  (13/15) di **Hit@5**, tetapi **hybrid + perluasan unggul jelas di Hit@1 (60% vs 40%) dan MRR@5
+  (0,702 vs 0,604)**. Ini **tidak membatalkan** arsitektur hybrid, dan justru memberi pembahasan
+  yang berimbang:
   - query uji berisi istilah persis dan angka, yang memang kekuatan BM25;
+  - kesepakatan dense + BM25 di RRF memperbaiki peringkat teratas (Hit@1 & MRR);
   - dense membantu pertanyaan **berparafrase** atau naratif, yang tidak terwakili di set ini;
   - RAGAS (Minggu 17) memakai 30 pertanyaan yang lebih beragam.
 
@@ -376,9 +415,9 @@ dan tanpa perluasan, plus pembahasan hybrid vs BM25.
 - [x] 15 query uji dikunci di `eval/datasets/retrieval_queries.jsonl` sebelum eksperimen
       *(15-11-2026; SHA-256 `cfab3a18…46fc2`, angka diverifikasi terhadap ground truth)*
 - [x] `hybrid_retrieve` dengan `ticker` wajib, filter tahun, `year=None` per tahun, dan perluasan istilah *(26-11-2026)*
-- [ ] `eval/retrieval_eval.py`: tabel 6 konfigurasi + subkelompok singkatan tersimpan di `results/`
-- [ ] **GATE 3: Hit@5 hybrid ≥ 80%** (prototipe: 13/15 = 87%)
-- [ ] `check_retrieval.py` LULUS, termasuk uji negatif
+- [x] `eval/retrieval_eval.py`: tabel 6 konfigurasi + subkelompok singkatan tersimpan di `results/` *(26-11-2026: `results/retrieval_eval.json` & `.csv`)*
+- [x] **GATE 3: Hit@5 hybrid ≥ 80%** *(26-11-2026: **13/15 = 86,7% LULUS**)*
+- [x] `check_retrieval.py` LULUS, termasuk uji negatif *(26-11-2026: A–F OK, 3/3 uji negatif tertangkap, 8,3 s)*
 
 ---
 
@@ -401,12 +440,12 @@ dan tanpa perluasan, plus pembahasan hybrid vs BM25.
 |---|---|
 | Keputusan 7.A (perluasan istilah) | **pakai**, disetujui 15-11-2026 |
 | Keputusan 7.B (definisi chunk benar) | **chunk yang memuat angka jawabannya**, disetujui 15-11-2026 |
-| Hit@5 dense / BM25 / hybrid (tanpa perluasan) | |
-| Hit@5 dense / BM25 / hybrid (dengan perluasan) | |
-| Hit@5 hybrid: query bersingkatan / tanpa singkatan | |
-| Hit@1 dan MRR hybrid | |
-| RRF k 10 / 60 / 100 | |
-| Latensi `hybrid_retrieve` (ms) | |
-| `check_retrieval.py` | |
-| GATE 3 | |
-| Catatan | |
+| Hit@5 dense / BM25 / hybrid (tanpa perluasan) | 7/15 (47%) / 12/15 (80%) / 11/15 (73%) |
+| Hit@5 dense / BM25 / hybrid (dengan perluasan) | 9/15 (60%) / **15/15 (100%)** / **13/15 (87%)** |
+| Hit@5 hybrid: query bersingkatan / tanpa singkatan | 6/7 (86%) / 7/8 (88%) *(tanpa perluasan: 4/7 vs 7/8)* |
+| Hit@1 dan MRR hybrid | **Hit@1 9/15 (60%)**, **MRR@5 0,702** *(tertinggi dari 6 konfigurasi; BM25+ Hit@1 40%, MRR@5 0,604)* |
+| RRF k 10 / 60 / 100 | sama persis: **13/15** (Hit@1 9/15, MRR@5 0,702); kandidat 5/10/20/30: 12/13/13/13 |
+| Latensi `hybrid_retrieve` (ms) | rata-rata **26,4 ms**, median **25,3 ms** (warm, 3×15 query) |
+| `check_retrieval.py` | **LULUS** (A–F OK, 3/3 uji negatif tertangkap, 8,3 s) |
+| GATE 3 | **LULUS** — Hit@5 hybrid + perluasan 13/15 (**86,7%** ≥ 80%) |
+| Catatan | **Minggu 7 selesai 26-11-2026.** Gagal di `q08` (CKPN 2023) & `q09` (total ekuitas 2024) — keduanya peringkat 4 BM25 tapi tidak masuk top-15 dense sehingga jatuh ke #7 RRF. 5 pertanyaan bebas (BOPO, cabang/ATM, LCR, laba induk, dividen) 5/5 tepat di top-2. `results/retrieval_eval.json` & `.csv` tersimpan. |

@@ -474,22 +474,30 @@ rencana di bawah:
 - [x] **7.3** `rrf_fuse(lists, k=60)` → `score(d) = Σ 1/(k + rank_i(d))`, sort desc, ambil top-5 *(26-11-2026, `src/retrieval/hybrid.py`)*
 - [x] **7.4** `hybrid_retrieve(query, ticker, year=None, k=5)` sebagai API tunggal *(26-11-2026, `src/retrieval/hybrid.py`)*.
       `ticker` **wajib**, bukan opsional — tidak boleh ada pencarian lintas emiten tanpa sengaja.
-- [ ] **7.5** **Eksperimen pembanding** (bahan Bab 4): 15 query uji, ukur apakah chunk yang benar masuk top-5:
+- [x] **7.5** **Eksperimen pembanding** (bahan Bab 4, `eval/retrieval_eval.py` → `results/retrieval_eval.json` & `.csv`, ✅ 26-11-2026): 15 query uji terkunci (SHA-256 `cfab3a18…46fc2`):
 
-      | Konfigurasi | Hit@5 |
-      |---|---|
-      | Dense only (Chroma) | ? |
-      | Sparse only (BM25) | ? |
-      | Hybrid + RRF | ? |
+      | Konfigurasi | Hit@1 | Hit@5 | MRR@5 |
+      |---|---|---|---|
+      | Dense only (Chroma) — tanpa / + perluasan | 40% / 53% | 7/15 (47%) / 9/15 (60%) | 0,433 / 0,567 |
+      | Sparse only (BM25) — tanpa / + perluasan | 40% / 40% | 12/15 (80%) / **15/15 (100%)** | 0,550 / 0,604 |
+      | **Hybrid + RRF** — tanpa / **+ perluasan** | 47% / **60%** | 11/15 (73%) / **13/15 (87%)** | 0,556 / **0,702** |
 
-      Hipotesis dari proposal: hybrid menang pada query berisi singkatan (NPL, CAR, DPK).
-- [ ] **7.6** *(opsional)* uji sensitivitas `k` RRF: 10, 60, 100
+      Temuan: pada query angka, BM25+ unggul di Hit@5 (15/15 vs 13/15), tetapi **Hybrid+ unggul di
+      Hit@1 (60% vs 40%) dan MRR@5 (0,702 vs 0,604)**; pada subkelompok singkatan, perluasan
+      menaikkan Hybrid dari 4/7 → 6/7. Latensi warm median 25,3 ms.
+- [x] **7.6** *(opsional)* uji sensitivitas `k` RRF: 10, 60, 100 ✅ 26-11-2026 (`eval/retrieval_eval.py`:
+      ketiganya identik — Hit@5 13/15, Hit@1 9/15, MRR@5 0,702; kandidat 5/10/20/30 = 12/13/13/13).
 
 - [x] **7.7** Pastikan `ticker` sudah jadi parameter **wajib** di semua fungsi retrieval *(26-11-2026: `dense_search`, `sparse_search`, `hybrid_retrieve` menolak `ticker` kosong/tak terdaftar dengan `ValueError`)*.
       Uji kontaminasi antar bank butuh dua bank di pustaka → dipindah ke **Minggu 8 (8.0d)**.
 
 > **GATE 3:** Hit@5 hybrid ≥ 80% pada 15 query uji (BBCA). Uji kontaminasi → GATE 8.
 > Kalau (a) gagal, masalahnya di chunking (balik ke Minggu 5), bukan di retrieval.
+>
+> **Status (26-11-2026):** ✅ **GATE 3 LULUS — Minggu 7 SELESAI.** Hit@5 hybrid + perluasan
+> **13/15 (86,7%)**, Hit@1 **9/15 (60%)**, MRR@5 **0,702**, `scripts/check_retrieval.py` **LULUS**
+> (A–F OK, 3/3 uji negatif tertangkap). Detail & diagnosis 2 query meleset (`q08`, `q09`) di
+> `docs/PANDUAN_MINGGU7.md`.
 
 ---
 

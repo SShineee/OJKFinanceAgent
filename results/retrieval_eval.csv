@@ -1,0 +1,16 @@
+id,ticker,year,abbreviation,query,relevant_count,relevant_pages,dense_rank,bm25_rank,hybrid_rank,dense_expanded_rank,bm25_expanded_rank,hybrid_expanded_rank,dense_expanded_cand_rank,bm25_expanded_cand_rank,hybrid_expanded_hit5,hybrid_expanded_top5_pages
+q01,bbca,2025,False,Berapa total aset BCA tahun 2025?,2,15; 202,1,2,1,1,2,1,1,2,True,202; 212; 200; 219; 95
+q02,bbca,2024,False,Berapa laba bersih BCA tahun 2024?,8,20; 265; 268; 542; 543; 544; 545; 661,2,3,1,2,3,1,2,3,True,268; 259; 269; 267; 630
+q03,bbca,2023,True,Berapa DPK BCA tahun 2023?,3,18; 266,-,-,-,1,5,1,1,5,True,266; 659; 267; 267; 273
+q04,bbca,2024,True,Berapa CAR bank BCA tahun 2024?,5,21; 143; 259; 269; 703,1,1,1,1,1,1,1,1,True,21; 703; 143; 258/259; 259
+q05,bbca,2025,False,Berapa modal inti tier 1 BCA tahun 2025?,10,98; 114; 115; 122; 124; 164; 166; 594,-,2,2,-,2,2,7,2,True,98; 98; 114; 213; 17
+q06,bbca,2023,False,Berapa total ATMR konsolidasian BCA tahun 2023?,3,144; 277; 727,-,1,4,1,1,1,1,1,True,727; 144; 216; 156; 273
+q07,bbca,2024,True,Berapa nominal NPL BCA tahun 2024?,2,199; 701,-,-,-,-,2,2,7,2,True,262/263; 701; 258/259; 262; 261
+q08,bbca,2023,True,Berapa CKPN kredit yang diberikan BCA tahun 2023?,2,180; 738; 739,-,3,4,-,4,-,-,4,False,645; 644; 279; 263; 642
+q09,bbca,2024,False,Berapa total ekuitas BCA tahun 2024?,4,20; 265; 541; 544; 545,-,4,-,-,4,-,6,4,False,259; 104; 269; 562; 22
+q10,bbca,2025,False,Berapa pendapatan bunga bersih BCA tahun 2025?,6,15; 209; 210; 213; 463; 557,-,1,3,-,1,3,-,1,True,212; 213; 557; 17; 463
+q11,bbca,2023,False,Berapa laba sebelum pajak BCA tahun 2023?,2,18; 268; 269,1,3,1,1,3,1,1,3,True,268/269; 663; 273; 665; 272
+q12,bbca,2024,True,Berapa LDR BCA tahun 2024?,3,21; 259; 269,1,1,1,1,1,1,1,1,True,259; 258/259; 269; 21; 21
+q13,bbca,2025,True,Berapa ROE BCA tahun 2025?,2,16; 213,1,1,1,1,1,1,1,1,True,213; 200; 16; 205; 17
+q14,bbca,2025,False,Berapa total kredit yang diberikan BCA tahun 2025?,5,15; 202; 204; 206,1,1,1,1,1,1,1,1,True,204; 200; 202; 204; 219
+q15,bbca,2024,True,Berapa DPK entitas induk BCA tahun 2024?,1,705,-,-,-,-,5,5,8,5,True,259; 258/259; 624; 264; 705
