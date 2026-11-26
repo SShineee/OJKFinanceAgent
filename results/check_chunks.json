@@ -1,0 +1,863 @@
+{
+  "reports": {
+    "bbca_2023": {
+      "chunks_raw": 656,
+      "boilerplate_dropped": 142,
+      "indexed": 514,
+      "excluded": 18,
+      "bge_median": 350.5,
+      "bge_p90": 973,
+      "bge_max": 1024,
+      "oss_median": 370.0,
+      "oss_p90": 959,
+      "oss_max": 1187,
+      "oss_total": 229293,
+      "short_under_50_bge": 34,
+      "split_tables": 44,
+      "is_table": 285,
+      "multi_page": 34,
+      "units": {
+        "million_idr": 456,
+        "billion_idr": 51,
+        "None": 7
+      },
+      "merged_cells": 17,
+      "fix": {
+        "sub_rows_fixed": 4,
+        "printed_lines_fixed": 19,
+        "flagged_rows": 57
+      },
+      "seconds_fixing": 6.0,
+      "seconds_chunking": 4.8
+    },
+    "bbca_2024": {
+      "chunks_raw": 706,
+      "boilerplate_dropped": 166,
+      "indexed": 540,
+      "excluded": 17,
+      "bge_median": 329.5,
+      "bge_p90": 972,
+      "bge_max": 1024,
+      "oss_median": 355.5,
+      "oss_p90": 963,
+      "oss_max": 1263,
+      "oss_total": 236534,
+      "short_under_50_bge": 32,
+      "split_tables": 44,
+      "is_table": 287,
+      "multi_page": 27,
+      "units": {
+        "million_idr": 482,
+        "billion_idr": 47,
+        "None": 11
+      },
+      "merged_cells": 13,
+      "fix": {
+        "sub_rows_fixed": 5,
+        "printed_lines_fixed": 19,
+        "flagged_rows": 28
+      },
+      "seconds_fixing": 7.3,
+      "seconds_chunking": 4.9
+    },
+    "bbca_2025": {
+      "chunks_raw": 659,
+      "boilerplate_dropped": 161,
+      "indexed": 498,
+      "excluded": 17,
+      "bge_median": 306.0,
+      "bge_p90": 961,
+      "bge_max": 1024,
+      "oss_median": 336.0,
+      "oss_p90": 957,
+      "oss_max": 1191,
+      "oss_total": 214795,
+      "short_under_50_bge": 31,
+      "split_tables": 38,
+      "is_table": 286,
+      "multi_page": 25,
+      "units": {
+        "million_idr": 445,
+        "billion_idr": 46,
+        "None": 7
+      },
+      "merged_cells": 19,
+      "fix": {
+        "sub_rows_fixed": 0,
+        "printed_lines_fixed": 5,
+        "flagged_rows": 59
+      },
+      "seconds_fixing": 3.8,
+      "seconds_chunking": 4.5
+    }
+  },
+  "ground_truth": {
+    "ok": 76,
+    "total": 76,
+    "results": [
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2022,
+        "expected": "1.314.732",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2023,
+        "expected": "1.408.107",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2024,
+        "expected": "1.449.301",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset",
+        "year": 2025,
+        "expected": "1.586.829",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset Produktif",
+        "year": 2022,
+        "expected": "1.173.144",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset Produktif",
+        "year": 2023,
+        "expected": "1.266.223",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset Produktif",
+        "year": 2024,
+        "expected": "1.354.435",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Aset Produktif",
+        "year": 2025,
+        "expected": "1.479.307",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit",
+        "year": 2022,
+        "expected": "711.262",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit",
+        "year": 2023,
+        "expected": "810.392",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit",
+        "year": 2024,
+        "expected": "921.878",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Kredit",
+        "year": 2025,
+        "expected": "992.901",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Dana Pihak Ketiga (DPK)",
+        "year": 2022,
+        "expected": "1.039.718",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Dana Pihak Ketiga (DPK)",
+        "year": 2023,
+        "expected": "1.101.673",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Dana Pihak Ketiga (DPK)",
+        "year": 2024,
+        "expected": "1.133.612",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Dana Pihak Ketiga (DPK)",
+        "year": 2025,
+        "expected": "1.249.044",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2022,
+        "expected": "221.182",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2023,
+        "expected": "242.538",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2024,
+        "expected": "262.835",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Total Ekuitas",
+        "year": 2025,
+        "expected": "281.688",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga Bersih",
+        "year": 2022,
+        "expected": "63.863",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga Bersih",
+        "year": 2023,
+        "expected": "74.938",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga Bersih",
+        "year": 2024,
+        "expected": "82.264",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Pendapatan Bunga Bersih",
+        "year": 2025,
+        "expected": "85.548",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2022,
+        "expected": "50.467",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2023,
+        "expected": "60.180",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2024,
+        "expected": "68.218",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Sebelum Pajak",
+        "year": 2025,
+        "expected": "71.261",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih",
+        "year": 2022,
+        "expected": "40.756",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih",
+        "year": 2023,
+        "expected": "48.658",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih",
+        "year": 2024,
+        "expected": "54.851",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih",
+        "year": 2025,
+        "expected": "57.563",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2022,
+        "expected": "40.736",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2023,
+        "expected": "48.639",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2024,
+        "expected": "54.836",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "A. Ikhtisar",
+        "item": "Laba Bersih - atribusi pemilik entitas induk",
+        "year": 2025,
+        "expected": "57.537",
+        "source": "bbca_2025 hal 15",
+        "chunk_id": "bbca_2025_0002",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2022,
+        "expected": "196.799.387",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2023,
+        "expected": "217.686.126",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2024,
+        "expected": "239.468.855",
+        "source": "bbca_2024 hal 703",
+        "chunk_id": "bbca_2024_0540",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Modal Inti (Tier 1) - BANK",
+        "year": 2025,
+        "expected": "258.057.396",
+        "source": "bbca_2025 hal 594",
+        "chunk_id": "bbca_2025_0496",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2022,
+        "expected": "204.705.741",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2023,
+        "expected": "226.426.139",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2024,
+        "expected": "249.056.422",
+        "source": "bbca_2024 hal 703",
+        "chunk_id": "bbca_2024_0540",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total Modal - BANK",
+        "year": 2025,
+        "expected": "268.244.808",
+        "source": "bbca_2025 hal 594",
+        "chunk_id": "bbca_2025_0496",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2022,
+        "expected": "794.395.454",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2023,
+        "expected": "769.200.928",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2024,
+        "expected": "848.181.552",
+        "source": "bbca_2024 hal 703",
+        "chunk_id": "bbca_2024_0540",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "B. KPMM Bank",
+        "item": "Total ATMR - BANK",
+        "year": 2025,
+        "expected": "901.270.630",
+        "source": "bbca_2025 hal 594",
+        "chunk_id": "bbca_2025_0496",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2022,
+        "expected": "212.445.689",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2023,
+        "expected": "233.701.580",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2024,
+        "expected": "255.311.302",
+        "source": "bbca_2024 hal 703",
+        "chunk_id": "bbca_2024_0540",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Modal Inti (Tier 1) - KONSOLIDASIAN",
+        "year": 2025,
+        "expected": "273.828.527",
+        "source": "bbca_2025 hal 594",
+        "chunk_id": "bbca_2025_0496",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2022,
+        "expected": "220.568.562",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2023,
+        "expected": "242.694.176",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2024,
+        "expected": "265.198.025",
+        "source": "bbca_2024 hal 703",
+        "chunk_id": "bbca_2024_0540",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total Modal - KONSOLIDASIAN",
+        "year": 2025,
+        "expected": "284.351.775",
+        "source": "bbca_2025 hal 594",
+        "chunk_id": "bbca_2025_0496",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2022,
+        "expected": "821.723.312",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2023,
+        "expected": "825.610.552",
+        "source": "bbca_2023 hal 727",
+        "chunk_id": "bbca_2023_0500",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2024,
+        "expected": "910.183.696",
+        "source": "bbca_2024 hal 703",
+        "chunk_id": "bbca_2024_0540",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "C. KPMM Konsolidasian",
+        "item": "Total ATMR - KONSOLIDASIAN",
+        "year": 2025,
+        "expected": "936.368.457",
+        "source": "bbca_2025 hal 594",
+        "chunk_id": "bbca_2025_0496",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2022,
+        "expected": "11.795.528",
+        "source": "bbca_2023 hal 646",
+        "chunk_id": "bbca_2023_0317",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2022,
+        "expected": "33.892.635",
+        "source": "bbca_2023 hal 738",
+        "chunk_id": "bbca_2023_0517",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2022,
+        "expected": "691.141.340",
+        "source": "bbca_2023 hal 738",
+        "chunk_id": "bbca_2023_0517",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2022,
+        "expected": "1.023.659.603",
+        "source": "bbca_2023 hal 739",
+        "chunk_id": "bbca_2023_0518",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2023,
+        "expected": "14.147.246",
+        "source": "bbca_2023 hal 646",
+        "chunk_id": "bbca_2023_0317",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2023,
+        "expected": "33.168.491",
+        "source": "bbca_2023 hal 738",
+        "chunk_id": "bbca_2023_0517",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2023,
+        "expected": "787.499.389",
+        "source": "bbca_2023 hal 738",
+        "chunk_id": "bbca_2023_0517",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2023,
+        "expected": "1.081.852.159",
+        "source": "bbca_2023 hal 739",
+        "chunk_id": "bbca_2023_0518",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2024,
+        "expected": "15.498.016",
+        "source": "bbca_2024 hal 701",
+        "chunk_id": "bbca_2024_0537",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2024,
+        "expected": "32.382.006",
+        "source": "bbca_2024 hal 704",
+        "chunk_id": "bbca_2024_0542",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2024,
+        "expected": "894.912.082",
+        "source": "bbca_2024 hal 704",
+        "chunk_id": "bbca_2024_0542",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2024,
+        "expected": "1.108.908.832",
+        "source": "bbca_2024 hal 705",
+        "chunk_id": "bbca_2024_0543",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit Bermasalah KL+D+Macet, nominal - BANK",
+        "year": 2025,
+        "expected": "15.965.436",
+        "source": "bbca_2025 hal 590",
+        "chunk_id": "bbca_2025_0490",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "CKPN Kredit - BANK",
+        "year": 2025,
+        "expected": "29.390.498",
+        "source": "bbca_2025 hal 595",
+        "chunk_id": "bbca_2025_0498",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Kredit yang Diberikan BRUTO - BANK",
+        "year": 2025,
+        "expected": "961.903.505",
+        "source": "bbca_2025 hal 595",
+        "chunk_id": "bbca_2025_0498",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "block": "D. Kredit & NPL Bank",
+        "item": "Dana Pihak Ketiga (DPK) - BANK",
+        "year": 2025,
+        "expected": "1.219.567.546",
+        "source": "bbca_2025 hal 596",
+        "chunk_id": "bbca_2025_0499",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  "failures": [],
+  "passed": true,
+  "seconds": 73.0
+}

@@ -1,0 +1,119 @@
+{
+  "chroma_count": 1552,
+  "indexed": {
+    "bbca_2023": 514,
+    "bbca_2024": 540,
+    "bbca_2025": 498
+  },
+  "smoke": {
+    "query": "laba bersih",
+    "dense_pages": [
+      [
+        267
+      ],
+      [
+        268
+      ],
+      [
+        711,
+        712
+      ],
+      [
+        265
+      ],
+      [
+        647
+      ]
+    ],
+    "bm25_pages": [
+      [
+        647
+      ],
+      [
+        646
+      ],
+      [
+        587
+      ],
+      [
+        647
+      ],
+      [
+        267
+      ]
+    ]
+  },
+  "preview": {
+    "dense": "7/7",
+    "bm25": "7/7",
+    "rows": [
+      {
+        "query": "total aset tahun 2025",
+        "answer": [
+          "1.586.829",
+          "1.586,8"
+        ],
+        "dense": true,
+        "bm25": true
+      },
+      {
+        "query": "total kredit tahun 2025",
+        "answer": [
+          "992.901",
+          "992,9"
+        ],
+        "dense": true,
+        "bm25": true
+      },
+      {
+        "query": "dana pihak ketiga tahun 2025",
+        "answer": [
+          "1.249.044",
+          "1.249,0"
+        ],
+        "dense": true,
+        "bm25": true
+      },
+      {
+        "query": "total ekuitas tahun 2025",
+        "answer": [
+          "281.688",
+          "281,7"
+        ],
+        "dense": true,
+        "bm25": true
+      },
+      {
+        "query": "pendapatan bunga bersih tahun 2025",
+        "answer": [
+          "85.548",
+          "85,5"
+        ],
+        "dense": true,
+        "bm25": true
+      },
+      {
+        "query": "laba sebelum pajak tahun 2025",
+        "answer": [
+          "71.261",
+          "71,3"
+        ],
+        "dense": true,
+        "bm25": true
+      },
+      {
+        "query": "laba bersih tahun 2025",
+        "answer": [
+          "57.563",
+          "57,6"
+        ],
+        "dense": true,
+        "bm25": true
+      }
+    ]
+  },
+  "failures": [],
+  "passed": true,
+  "chroma_mb": 23.9,
+  "seconds": 3.5
+}

@@ -1,0 +1,54 @@
+# Paket langsung yang dipakai proyek ini -- SENGAJA tanpa nomor versi.
+# Versi yang benar-benar terpasang dikunci di requirements.txt (hasil `uv pip freeze`).
+#
+# torch TIDAK ada di sini: harus dipasang terpisah dari index CUDA, kalau tidak
+# pip/uv mengambil versi CPU dari PyPI dan GPU tidak terpakai.
+# Lihat docs/PANDUAN_MINGGU2.md langkah 3.
+
+# --- parsing & ingest (Minggu 3-4)
+docling
+pypdf
+pdfplumber        # hanya pembanding Docling untuk Bab 4 (tugas 3.9), bukan bagian pipeline
+
+# --- retrieval (Minggu 5-7)
+sentence-transformers
+chromadb
+rank-bm25
+
+# --- LLM & agent (Minggu 9-16)
+langchain
+langchain-core
+langchain-groq
+langchain-community==0.4.1   # DIKUNCI -- lihat catatan di bawah
+langchain-experimental
+langchain-text-splitters
+langgraph
+
+# --- web search (Minggu 13) & LLM judge (Minggu 17)
+tavily-python
+langchain-google-genai
+
+# --- evaluasi & hasil (Minggu 17-20)
+ragas
+datasets
+pandas
+openpyxl
+matplotlib
+
+# --- antarmuka bot Telegram (Minggu 16) -- menggantikan Chainlit (27-10-2026)
+python-telegram-bot
+
+# --- utilitas
+python-dotenv
+
+# ------------------------------------------------------------------------------
+# KENAPA langchain-community DIKUNCI DI 0.4.1 (26-10-2026)
+# ragas 0.4.3 (rilis terakhir, Jan 2026) mengimpor
+#     langchain_community.chat_models.vertexai
+# tanpa syarat di ragas/llms/base.py baris 12. Modul itu DIHAPUS di
+# langchain-community 0.4.2 (Mei 2026) -> `import ragas` gagal.
+# 0.4.1 adalah versi terakhir yang masih memuatnya dan sudah cocok dengan
+# langchain-core 1.x. Efek samping: langchain-experimental ikut turun ke 0.4.1
+# (PythonAstREPLTool masih ada -- sudah dicek).
+# Lepas kunci ini kalau ragas merilis versi baru yang memperbaikinya.
+# ------------------------------------------------------------------------------

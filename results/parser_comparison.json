@@ -1,0 +1,482 @@
+[
+  {
+    "tool": "Docling (TableFormer ACCURATE, GPU)",
+    "seconds_per_page": 1.75,
+    "tables": 10,
+    "visible_values": 700,
+    "found_in_tables": 692,
+    "foreign_values": 0,
+    "value_cells": 662,
+    "merged_cells": 30,
+    "checks": {
+      "tepat": 9,
+      "cacat": 1,
+      "salah": 0
+    },
+    "row_checks": 10,
+    "check_detail": [
+      {
+        "page": 703,
+        "label": "Modal Inti \\(Tier 1\\)",
+        "column": "2024 bank",
+        "expected": "239.468.855",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "Modal Inti \\(Tier 1\\)",
+        "column": "2024 konsolidasian",
+        "expected": "255.311.302",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "^Total Modal$",
+        "column": "2024 bank",
+        "expected": "249.056.422",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "^Total Modal$",
+        "column": "2024 konsolidasian",
+        "expected": "265.198.025",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "^Total ATMR$",
+        "column": "2024 bank",
+        "expected": "848.181.552",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "^Total ATMR$",
+        "column": "2024 konsolidasian",
+        "expected": "910.183.696",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 704,
+        "label": "Pihak ketiga",
+        "column": "2024",
+        "expected": "855.233.239",
+        "status": "cacat",
+        "detail": "sel berisi '7.296.837 855.233.239'",
+        "intact_in_row": true
+      },
+      {
+        "page": 705,
+        "label": "Pihak ketiga",
+        "column": "2024",
+        "expected": "1.105.647.994",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 21,
+        "label": "^Rasio Kecukupan Modal",
+        "column": "2024",
+        "expected": "29,4%",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 21,
+        "label": "Pengembalian atas Ekuitas",
+        "column": "2024",
+        "expected": "24,6%",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      }
+    ],
+    "per_page": {
+      "21": {
+        "tables": 1,
+        "found": 170,
+        "visible": 170
+      },
+      "156": {
+        "tables": 1,
+        "found": 68,
+        "visible": 68
+      },
+      "157": {
+        "tables": 1,
+        "found": 60,
+        "visible": 60
+      },
+      "540": {
+        "tables": 1,
+        "found": 65,
+        "visible": 65
+      },
+      "541": {
+        "tables": 1,
+        "found": 56,
+        "visible": 56
+      },
+      "542": {
+        "tables": 1,
+        "found": 62,
+        "visible": 62
+      },
+      "701": {
+        "tables": 1,
+        "found": 36,
+        "visible": 44
+      },
+      "703": {
+        "tables": 1,
+        "found": 76,
+        "visible": 76
+      },
+      "704": {
+        "tables": 1,
+        "found": 55,
+        "visible": 55
+      },
+      "705": {
+        "tables": 1,
+        "found": 44,
+        "visible": 44
+      }
+    }
+  },
+  {
+    "tool": "pdfplumber (garis)",
+    "seconds_per_page": 0.24,
+    "tables": 11,
+    "visible_values": 700,
+    "found_in_tables": 34,
+    "foreign_values": 0,
+    "value_cells": 34,
+    "merged_cells": 0,
+    "checks": {
+      "tepat": 0,
+      "cacat": 0,
+      "salah": 10
+    },
+    "row_checks": 0,
+    "check_detail": [
+      {
+        "page": 703,
+        "label": "Modal Inti \\(Tier 1\\)",
+        "column": "2024 bank",
+        "expected": "239.468.855",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "Modal Inti \\(Tier 1\\)",
+        "column": "2024 konsolidasian",
+        "expected": "255.311.302",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "^Total Modal$",
+        "column": "2024 bank",
+        "expected": "249.056.422",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "^Total Modal$",
+        "column": "2024 konsolidasian",
+        "expected": "265.198.025",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "^Total ATMR$",
+        "column": "2024 bank",
+        "expected": "848.181.552",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "^Total ATMR$",
+        "column": "2024 konsolidasian",
+        "expected": "910.183.696",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 704,
+        "label": "Pihak ketiga",
+        "column": "2024",
+        "expected": "855.233.239",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 705,
+        "label": "Pihak ketiga",
+        "column": "2024",
+        "expected": "1.105.647.994",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 21,
+        "label": "^Rasio Kecukupan Modal",
+        "column": "2024",
+        "expected": "29,4%",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      },
+      {
+        "page": 21,
+        "label": "Pengembalian atas Ekuitas",
+        "column": "2024",
+        "expected": "24,6%",
+        "status": "salah",
+        "detail": "baris/kolom tidak ditemukan",
+        "intact_in_row": false
+      }
+    ],
+    "per_page": {
+      "21": {
+        "tables": 7,
+        "found": 34,
+        "visible": 170
+      },
+      "156": {
+        "tables": 2,
+        "found": 0,
+        "visible": 68
+      },
+      "157": {
+        "tables": 2,
+        "found": 0,
+        "visible": 60
+      },
+      "540": {
+        "tables": 0,
+        "found": 0,
+        "visible": 65
+      },
+      "541": {
+        "tables": 0,
+        "found": 0,
+        "visible": 56
+      },
+      "542": {
+        "tables": 0,
+        "found": 0,
+        "visible": 62
+      },
+      "701": {
+        "tables": 0,
+        "found": 0,
+        "visible": 44
+      },
+      "703": {
+        "tables": 0,
+        "found": 0,
+        "visible": 76
+      },
+      "704": {
+        "tables": 0,
+        "found": 0,
+        "visible": 55
+      },
+      "705": {
+        "tables": 0,
+        "found": 0,
+        "visible": 44
+      }
+    }
+  },
+  {
+    "tool": "pdfplumber (teks)",
+    "seconds_per_page": 0.38,
+    "tables": 10,
+    "visible_values": 700,
+    "found_in_tables": 678,
+    "foreign_values": 146,
+    "value_cells": 824,
+    "merged_cells": 0,
+    "checks": {
+      "tepat": 2,
+      "cacat": 0,
+      "salah": 8
+    },
+    "row_checks": 7,
+    "check_detail": [
+      {
+        "page": 703,
+        "label": "Modal Inti \\(Tier 1\\)",
+        "column": "2024 bank",
+        "expected": "239.468.855",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024 bank' tidak ada",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "Modal Inti \\(Tier 1\\)",
+        "column": "2024 konsolidasian",
+        "expected": "255.311.302",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024 konsolidasian' tidak ada",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "^Total Modal$",
+        "column": "2024 bank",
+        "expected": "249.056.422",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024 bank' tidak ada",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "^Total Modal$",
+        "column": "2024 konsolidasian",
+        "expected": "265.198.025",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024 konsolidasian' tidak ada",
+        "intact_in_row": false
+      },
+      {
+        "page": 703,
+        "label": "^Total ATMR$",
+        "column": "2024 bank",
+        "expected": "848.181.552",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024 bank' tidak ada",
+        "intact_in_row": true
+      },
+      {
+        "page": 703,
+        "label": "^Total ATMR$",
+        "column": "2024 konsolidasian",
+        "expected": "910.183.696",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024 konsolidasian' tidak ada",
+        "intact_in_row": false
+      },
+      {
+        "page": 704,
+        "label": "Pihak ketiga",
+        "column": "2024",
+        "expected": "855.233.239",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 705,
+        "label": "Pihak ketiga",
+        "column": "2024",
+        "expected": "1.105.647.994",
+        "status": "tepat",
+        "detail": "",
+        "intact_in_row": true
+      },
+      {
+        "page": 21,
+        "label": "^Rasio Kecukupan Modal",
+        "column": "2024",
+        "expected": "29,4%",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024' tidak ada",
+        "intact_in_row": true
+      },
+      {
+        "page": 21,
+        "label": "Pengembalian atas Ekuitas",
+        "column": "2024",
+        "expected": "24,6%",
+        "status": "salah",
+        "detail": "baris ada, kolom berjudul '2024' tidak ada",
+        "intact_in_row": true
+      }
+    ],
+    "per_page": {
+      "21": {
+        "tables": 1,
+        "found": 170,
+        "visible": 170
+      },
+      "156": {
+        "tables": 1,
+        "found": 68,
+        "visible": 68
+      },
+      "157": {
+        "tables": 1,
+        "found": 60,
+        "visible": 60
+      },
+      "540": {
+        "tables": 1,
+        "found": 60,
+        "visible": 65
+      },
+      "541": {
+        "tables": 1,
+        "found": 54,
+        "visible": 56
+      },
+      "542": {
+        "tables": 1,
+        "found": 62,
+        "visible": 62
+      },
+      "701": {
+        "tables": 1,
+        "found": 39,
+        "visible": 44
+      },
+      "703": {
+        "tables": 1,
+        "found": 69,
+        "visible": 76
+      },
+      "704": {
+        "tables": 1,
+        "found": 53,
+        "visible": 55
+      },
+      "705": {
+        "tables": 1,
+        "found": 43,
+        "visible": 44
+      }
+    }
+  }
+]

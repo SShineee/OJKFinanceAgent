@@ -1,0 +1,35 @@
+# === RAHASIA -- jangan pernah di-commit ===
+.env
+.env.local
+*.key
+
+# === data besar ===
+data/raw/*.pdf
+data/markdown/*
+data/chunks/*
+chroma_db/
+*.pkl
+
+# === file kerja Excel ===
+~$*.xlsx
+
+# === Python ===
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# === cache model & tooling ===
+.cache/
+.chainlit/
+.ragas_cache/
+.ipynb_checkpoints/
+
+# === OS / editor ===
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/

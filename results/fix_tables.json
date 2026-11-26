@@ -1,0 +1,2787 @@
+{
+  "bbca_2023": {
+    "merged_cells_before": 152,
+    "merged_cells_after": 110,
+    "sub_rows_fixed": 4,
+    "printed_lines_fixed": 19,
+    "split_rows_merged": 2,
+    "flagged_rows": 57,
+    "flagged_rows_in_unlabeled_tables": 1,
+    "flagged_reasons": {
+      "teks PDF di kolom 0 tidak cocok dengan sel Docling": 21,
+      "garis cetak dipakai bersama baris tetangga": 7,
+      "angka PDF di kolom 2 tidak cocok dengan sel Docling": 6,
+      "teks PDF di kolom 1 tidak cocok dengan sel Docling": 5,
+      "dua angka sebaris dalam satu sel": 3,
+      "angka PDF di kolom 1 tidak cocok dengan sel Docling": 3,
+      "baris header kolom": 2,
+      "angka PDF di kolom 4 tidak cocok dengan sel Docling": 2,
+      "angka PDF di kolom 3 tidak cocok dengan sel Docling": 2,
+      "angka PDF di kolom 6 tidak cocok dengan sel Docling": 1,
+      "angka PDF di kolom 8 tidak cocok dengan sel Docling": 1,
+      "teks berputar (tabel dicetak menyamping)": 1,
+      "label di bawah angka terakhir (milik baris berikutnya)": 1,
+      "tidak ada garis berangka": 1,
+      "angka PDF di kolom 0 tidak cocok dengan sel Docling": 1
+    },
+    "unlabeled_tables": 18,
+    "unlabeled_pages": [
+      157,
+      159,
+      185,
+      187,
+      189,
+      191,
+      203,
+      207,
+      209,
+      213,
+      215,
+      223,
+      227,
+      229,
+      231,
+      233,
+      237
+    ],
+    "flagged": [
+      {
+        "page": 197,
+        "row": 28,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "24",
+          "Lainnya Total",
+          "42.266.075 1.256.167.285",
+          "384.258 32.451.149",
+          "100.000 3.970.132",
+          "143.067 13.100.720",
+          "26.245 13.305.247",
+          "8.074.751",
+          "57.454 3.171.107"
+        ]
+      },
+      {
+        "page": 198,
+        "row": 26,
+        "reason": "angka PDF di kolom 6 tidak cocok dengan sel Docling",
+        "cells": [
+          "24",
+          "Lainnya",
+          "68.134.927",
+          "75.400",
+          "366.692",
+          "521.500 309.584",
+          "28.410",
+          "322.198",
+          "-"
+        ]
+      },
+      {
+        "page": 198,
+        "row": 24,
+        "reason": "angka PDF di kolom 8 tidak cocok dengan sel Docling",
+        "cells": [
+          "22",
+          "Rumah Tangga",
+          "146.704.132",
+          "2.525.214 203.735",
+          "2.104.908",
+          "652.831",
+          "306.033 50.801",
+          "1.254.134",
+          "853.810"
+        ]
+      },
+      {
+        "page": 207,
+        "row": 20,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "-",
+          "55.297.316 35.799.003",
+          "15.565.412",
+          "",
+          "3.399.714",
+          "",
+          "",
+          "-",
+          "11.941",
+          "198.855.089"
+        ]
+      },
+      {
+        "page": 208,
+        "row": 41,
+        "reason": "baris header kolom",
+        "cells": [
+          "",
+          "",
+          "-",
+          "5",
+          "",
+          "823.488 65.213 - 452.269 62.187.054 50% - -",
+          "6.577.049",
+          "35%",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 208,
+        "row": 39,
+        "reason": "baris header kolom",
+        "cells": [
+          "Tagihan yang Telah Jatuh tempo Aset Lainnya Kredit",
+          "20%",
+          "",
+          "",
+          "13.371.969 - - - - - - -",
+          "100% - 50%",
+          "",
+          "708.346 - - - - 2.001.519 - 35%",
+          "",
+          "Tagihan",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 208,
+        "row": 7,
+        "reason": "angka PDF di kolom 4 tidak cocok dengan sel Docling",
+        "cells": [
+          "Tagihan kepada Bank Tagihan kepada Perusahaan Efek dan",
+          "40.331.295 28.850.289",
+          "",
+          "4",
+          "7.562.269 -",
+          "",
+          "343.097",
+          "343.097",
+          "343.097",
+          "343.097",
+          "343.097",
+          "343.097"
+        ]
+      },
+      {
+        "page": 578,
+        "row": 32,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "Selisih kurs karena penjabaran laporan keuangan dalam valuta asing",
+          "2f",
+          "(877.188) (7.866)",
+          "52.708"
+        ]
+      },
+      {
+        "page": 578,
+        "row": 30,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "Keuntungan (kerugian) yang belum direalisasi atas aset keuangan yang diukur pada nilai wajar melalui penghasilan komprehensif lain",
+          "2j,2r,7,14",
+          "(1.083.532)",
+          "(5.329.799) 1.011.931"
+        ]
+      },
+      {
+        "page": 578,
+        "row": 18,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "Beban umum dan administrasi Lain-lain",
+          "",
+          "(3.807.860) (37.502.567)",
+          "(3.440.771) (32.482.665)"
+        ]
+      },
+      {
+        "page": 578,
+        "row": 17,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "Beban karyawan",
+          "2ag,2aj,33,38,47 2aj,16,34,47",
+          "(16.197.811) (17.496.896)",
+          "(13.651.458) (15.390.436)"
+        ]
+      },
+      {
+        "page": 581,
+        "row": 4,
+        "reason": "teks berputar (tabel dicetak menyamping)",
+        "cells": [
+          "laba Belum ditentukan penggunaannya",
+          "177.067.556",
+          "40.735.722",
+          "34.202",
+          "-",
+          "-",
+          "(283.554)",
+          "40.486.370 (314.227)",
+          "(19.107.633)",
+          "-",
+          "198.132.066"
+        ]
+      },
+      {
+        "page": 630,
+        "row": 1,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "Rupiah Valuta asing",
+          "88.703.316 3.914.389",
+          "100.129.888"
+        ]
+      },
+      {
+        "page": 652,
+        "row": 2,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "- PT Bank BTPN Tbk - PT Bank HSBC Indonesia - PT Bank DBS Indonesia - PT Digital Otomotif Indonesia - Lain-lain (masing-masing di bawah Rp 8.000)",
+          "Perbankan Perbankan Perbankan Marketplace Beragam",
+          "1,02% 1,06% 1,00% 20,00% 0,06% - 13,49%",
+          "297.085 184.025 56.400 8.471 10.378",
+          "1,02% 1,06% 1,00% 20,00% 0,06% - 13,49%",
+          "297.085 184.025 56.400 17.600 3.073"
+        ]
+      },
+      {
+        "page": 678,
+        "row": 9,
+        "reason": "label di bawah angka terakhir (milik baris berikutnya)",
+        "cells": [
+          "yang belum digunakan - committed",
+          "Rupiah USD Lainnya,",
+          "1.455.764.966",
+          "266.143.321 22.414.413",
+          "1.172.915.181",
+          "211.107.626 18.259.357"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 19,
+        "reason": "angka PDF di kolom 4 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "-",
+          "",
+          "",
+          "(33.359) (56.616) (65.000)"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 18,
+        "reason": "tidak ada garis berangka",
+        "cells": [
+          "",
+          "",
+          "",
+          "(283.694) (3.007.525) (9.296)",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 712,
+        "row": 17,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "(1.318.039)",
+          "",
+          "(2.132) (4.063.071) -",
+          "",
+          "-",
+          "- - -"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 16,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "janji",
+          "(9.666.648)",
+          "",
+          "(993.499.482)",
+          "(26.458.718)",
+          "(10.637.444) - - (2.104.172)",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 712,
+        "row": 14,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "(7.936.206)",
+          "",
+          "",
+          "-",
+          "- (578.667)",
+          "- - (70.803) - (209.909)",
+          "-"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 13,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas keuangan non-derivatif Simpanan dari nasabah Dana simpanan syariah Simpanan dari bank-bank lain Utang akseptasi Efek-efek yang dijual dengan dibeli kembali Pinjaman yang diterima Estimasi kerugian komitmen dan kontinjensi Liabilitas lain-lain Obligasi subordinasi",
+          "(1.030.451.783) (3.337.725) (500.000)",
+          "(2.825.862) (7.936.215) (9.666.648) (261.323)",
+          "(2.825.862) (7.934.083) (3.428.602) (261.323) (271.203)",
+          "> 1 - 3 bulan > (258.260) (599.050) (25.801)",
+          "(1.843.673) (64.005) -",
+          "(678.573) (183.778) (435.000)",
+          "- -"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 12,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "pada",
+          "(1.124.093.517) (255.962) (1.316.951) (3.438.349)",
+          "(323.776.209) (1.448.202.022) (1.030.595.644)",
+          "(2.190.519) (295.938.482) (1.347.102.693)",
+          "2022",
+          "(1.409.549) (12.028.167) (13.437.716) (23.351.599) 3 bulan - 1 tahun",
+          "- (5.327.877)",
+          "- - (3.630) (3.630) (159.010)"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 11,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "yang committed bank-bank lain committed tidak kepada",
+          "",
+          "(22.749.308) nominal (keluar)",
+          "",
+          "(70.842)",
+          "-",
+          "(3.571.096) (3.601.324)",
+          "> 5 tahun"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 10,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas keuangan yang diukur nilai wajar melalui laba rugi: Arus keluar Arus masuk Rekening administratif Fasilitas kredit kepada nasabah belum digunakan - Fasilitas kredit kepada yang belum digunakan - Fasilitas Letter of Credit yang dapat dibatalkan Bank garansi yang diterbitkan nasabah",
+          "Nilai tercatat",
+          "(289.338.258) (429.010) (11.259.633) Nilai bruto masuk/",
+          "(289.338.258) (429.010) (3.980.695) Hingga",
+          "- - (5.839.161) (4.955.896) (10.795.057) (72.260.843)",
+          "(663.108) 654.900 (8.208) -",
+          "(1.726.553) - (30.228)",
+          "-"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 9,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "Liabilitas keuangan derivatif",
+          "(1.123.970.752) (122.765) (122.765)",
+          "(1.124.292.309) (19.582.565) 19.449.061 (133.504)",
+          "(10.875.916) 10.821.462 (54.454)",
+          "(8.043.541) 7.972.699",
+          "",
+          "- - -",
+          "- - -"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 7,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Obligasi subordinasi",
+          "(6.673.819) (500.000)",
+          "(509.296)",
+          "",
+          "-",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 712,
+        "row": 6,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas lain-lain",
+          "",
+          "(6.673.819)",
+          "(282.315) (6.425.625) (9.296)",
+          "(564.629) (27.643)",
+          "(1.781.710) (7.110) -",
+          "(157.943) (435.000)",
+          "(34.882) (55.498) (65.000)"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 5,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "dibeli kembali Pinjaman yang diterima Estimasi kerugian komitmen dan kontinjensi",
+          "(1.054.780) (1.629.626) (3.371.674)",
+          "(1.056.596) (1.631.732) (3.371.674)",
+          "(1.056.596) (127.264)",
+          "- (174.649)",
+          "- (1.043.798)",
+          "- (286.021) (708.138)",
+          "- -"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 2,
+        "reason": "angka PDF di kolom 3 tidak cocok dengan sel Docling",
+        "cells": [
+          "Simpanan dari nasabah Dana simpanan syariah",
+          "(1.090.766.807) (10.070.820)",
+          "(1.091.075.101) (10.070.862)",
+          "(1.027.832.600) (10.066.730)",
+          "(57.161.198) - (4.132) (3.462.693)",
+          "(6.081.303) - -",
+          "- - -",
+          "- - - -"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 53,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "JUMLAH LIABILITAS, DANA SYIRKAH TEMPORER, DAN EKUITAS 1.553.605.352 1.455.062.457",
+          "JUMLAH LIABILITAS, DANA SYIRKAH TEMPORER, DAN EKUITAS 1.553.605.352 1.455.062.457",
+          "JUMLAH LIABILITAS, DANA SYIRKAH TEMPORER, DAN EKUITAS 1.553.605.352 1.455.062.457",
+          "JUMLAH LIABILITAS, DANA SYIRKAH TEMPORER, DAN EKUITAS 1.553.605.352 1.455.062.457"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 47,
+        "reason": "angka PDF di kolom 3 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "penghasilan komprehensif lain",
+          "309.189 89.405.763",
+          "790.683 72.177.478"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 32,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "8.",
+          "Utang Pajak Pinjaman yang",
+          "1.780.937 1.629.626",
+          "1.367.273"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 28,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "Liabilitas keuangan",
+          "122.765 6.701.256",
+          "9.666.648"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 24,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "48.161.905",
+          "16.878.246 37.572.956"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 23,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "induk Kepentingan non-pengendali",
+          "",
+          "",
+          "22.520.111 18.375.651 40.895.762"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 22,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "LABA KEPADA: Pemilik entitas Kepentingan",
+          "26.725.195 21.436.710",
+          "21.935.520 49.268.090",
+          "37.572.956"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 19,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "PENGHASILAN KOMPREHENSIF PENGHASILAN",
+          "(7.866) (885.054)",
+          "52.708 (4.265.160)"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 18,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "48.161.905 27.332.570",
+          ""
+        ]
+      },
+      {
+        "page": 745,
+        "row": 15,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "13.",
+          "atas aset melalui atas aset melalui penghasilan keuangan dalam SETELAH PAJAK KEPADA:",
+          "206.344",
+          "(5.329.799) 1.011.931"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 14,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "penghasilan c. Surplus revaluasi aset tetap",
+          "Pos-pos yang akan direklasifikasi ke laba rugi: a. Keuntungan (kerugian) yang belum direalisasi keuangan yang diukur pada nilai wajar penghasilan komprehensif lain Pajak penghasilan Keuntungan (kerugian) yang belum direalisasi keuangan yang diukur pada nilai wajar penghasilan komprehensif lain - setelah pajak",
+          "(452.968) 231.837 (221.131)",
+          "(283.432) 1.225.786 942.354"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 13,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "penghasilan kembali liabilitas",
+          "Pengukuran kembali liabilitas imbalan pasti imbalan pasti - setelah",
+          "",
+          "(349.709) 66.277"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 11,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "12. a. b. Pajak Pengukuran pajak",
+          "(559.418) 106.450",
+          "",
+          ""
+        ]
+      },
+      {
+        "page": 745,
+        "row": 10,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "(11.597.835) 49.268.090",
+          ""
+        ]
+      },
+      {
+        "page": 745,
+        "row": 8,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "(16.223.814) (17.544.564) (4.023.473) (37.791.851)",
+          "(4.526.619)"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 7,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "9.",
+          "Beban Beban umum dan administrasi Lain-lain Jumlah beban operasional lainnya",
+          "60.865.925",
+          "(13.704.192) (15.570.026) (3.518.392) (32.792.610) 50.686.342 (9.790.580) 40.895.762"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 6,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "7. 8.",
+          "Beban penyisihan kerugian penurunan nilai aset BEBAN OPERASIONAL LAINNYA karyawan",
+          "6.881.172 24.992.986 (2.263.049)",
+          "834.408 6.186.439 23.584.973"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 5,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "PENDAPATAN OPERASIONAL 5. 6.",
+          "LAINNYA Pendapatan provisi dan komisi - bersih Pendapatan transaksi yang diukur pada nilai wajar melalui laba rugi - bersih Lain-lain Jumlah pendapatan operasional lainnya",
+          "16.513.249 1.598.565",
+          "16.564.126"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 4,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "3. 4. Beban syariah Jumlah beban bunga dan syariah PENDAPATAN BUNGA DAN",
+          "Beban bunga dan syariah Beban bunga SYARIAH - BERSIH",
+          "(11.959.844) (313.134) (12.272.978) 75.927.839",
+          "(8.080.138) (178.970) (8.259.108) 64.420.598"
+        ]
+      },
+      {
+        "page": 745,
+        "row": 3,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "2. dan",
+          "Pendapatan syariah Jumlah pendapatan bunga syariah",
+          "855.189 88.200.817",
+          "680.585 72.679.706"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 19,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Dividen kas",
+          "",
+          "(24.720.821)",
+          "- 2.442.617",
+          "39.561",
+          "309.189",
+          "(9.860.000) 89.405.763",
+          "",
+          "(9.860.000)",
+          "(11.803.334)",
+          "(21.663.334) 387.927.608"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 16,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "bersih",
+          "-",
+          "-",
+          "-",
+          "-",
+          "(481.494) -",
+          "(248.935)",
+          "- -",
+          "(481.494) (248.935)",
+          "(395.694) (204.033)",
+          "(877.188) (452.968)"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 13,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Laba tahun berjalan",
+          "- -",
+          "-",
+          "- 122.726",
+          "- -",
+          "-",
+          "4.650",
+          "-",
+          "127.376",
+          "21.935.520 104.461",
+          "49.268.090 231.837"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 12,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Surplus revaluasi aset tetap",
+          "",
+          "-",
+          "2.319.891",
+          "43.883",
+          "-",
+          "72.177.478 27.332.570",
+          "(5.073) -",
+          "27.332.570",
+          "",
+          "361.429.036"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 10,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Saldo per 31 Desember 2022",
+          "210.619.700",
+          "- (24.720.821)",
+          "2.319.891",
+          "- 43.883",
+          "- 790.683",
+          "- 72.177.478",
+          "- (5.073)",
+          "- 261.225.741",
+          "7.500 100.203.295",
+          "7.500 361.429.036"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 8,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Jumlah laba komprehensif tahun berjalan Penyesuaian kepentingan non-pengendali entitas sepengendali",
+          "- - -",
+          "- 46.125",
+          "- -",
+          "- -",
+          "- -",
+          "- -",
+          "- -",
+          "- 46.125",
+          "(10.354) -",
+          "(10.354) 46.125"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 7,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "Pengukuran kembali liabilitas imbalan pasti - bersih",
+          "-",
+          "- -",
+          "- 654.682",
+          "- 28.959",
+          "- (2.371.954)",
+          "22.383.023",
+          "- -",
+          "(155.879) 20.694.710",
+          "(127.553) 16.878.246",
+          "(283.432) 37.572.956"
+        ]
+      },
+      {
+        "page": 746,
+        "row": 3,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "2.",
+          "Posisi valas yang akan diterima dari transaksi spot dan derivatif/forward",
+          "19.638.294 478.890 25.383.019",
+          "11.048.683 335.454"
+        ]
+      }
+    ],
+    "unlabeled": [
+      {
+        "page": 157,
+        "subset_page": 9,
+        "table": "#/tables/9",
+        "shape": [
+          26,
+          5
+        ],
+        "left_parts": [
+          "#/tables/8"
+        ]
+      },
+      {
+        "page": 159,
+        "subset_page": 11,
+        "table": "#/tables/11",
+        "shape": [
+          38,
+          5
+        ],
+        "left_parts": [
+          "#/tables/10"
+        ]
+      },
+      {
+        "page": 185,
+        "subset_page": 28,
+        "table": "#/tables/34",
+        "shape": [
+          28,
+          9
+        ],
+        "left_parts": [
+          "#/tables/33"
+        ]
+      },
+      {
+        "page": 187,
+        "subset_page": 30,
+        "table": "#/tables/36",
+        "shape": [
+          27,
+          6
+        ],
+        "left_parts": [
+          "#/tables/35"
+        ]
+      },
+      {
+        "page": 189,
+        "subset_page": 32,
+        "table": "#/tables/38",
+        "shape": [
+          28,
+          9
+        ],
+        "left_parts": [
+          "#/tables/37"
+        ]
+      },
+      {
+        "page": 191,
+        "subset_page": 34,
+        "table": "#/tables/40",
+        "shape": [
+          27,
+          6
+        ],
+        "left_parts": [
+          "#/tables/39"
+        ]
+      },
+      {
+        "page": 203,
+        "subset_page": 46,
+        "table": "#/tables/60",
+        "shape": [
+          10,
+          6
+        ],
+        "left_parts": [
+          "#/tables/57",
+          "#/tables/58"
+        ]
+      },
+      {
+        "page": 203,
+        "subset_page": 46,
+        "table": "#/tables/61",
+        "shape": [
+          10,
+          6
+        ],
+        "left_parts": [
+          "#/tables/57",
+          "#/tables/58"
+        ]
+      },
+      {
+        "page": 207,
+        "subset_page": 50,
+        "table": "#/tables/66",
+        "shape": [
+          34,
+          10
+        ],
+        "left_parts": [
+          "#/tables/65"
+        ]
+      },
+      {
+        "page": 209,
+        "subset_page": 52,
+        "table": "#/tables/68",
+        "shape": [
+          40,
+          11
+        ],
+        "left_parts": [
+          "#/tables/67"
+        ]
+      },
+      {
+        "page": 213,
+        "subset_page": 56,
+        "table": "#/tables/73",
+        "shape": [
+          11,
+          7
+        ],
+        "left_parts": [
+          "#/tables/72"
+        ]
+      },
+      {
+        "page": 215,
+        "subset_page": 58,
+        "table": "#/tables/77",
+        "shape": [
+          18,
+          8
+        ],
+        "left_parts": [
+          "#/tables/75"
+        ]
+      },
+      {
+        "page": 223,
+        "subset_page": 64,
+        "table": "#/tables/85",
+        "shape": [
+          31,
+          6
+        ],
+        "left_parts": [
+          "#/tables/84"
+        ]
+      },
+      {
+        "page": 227,
+        "subset_page": 66,
+        "table": "#/tables/87",
+        "shape": [
+          13,
+          7
+        ],
+        "left_parts": [
+          "#/tables/86"
+        ]
+      },
+      {
+        "page": 229,
+        "subset_page": 68,
+        "table": "#/tables/89",
+        "shape": [
+          22,
+          7
+        ],
+        "left_parts": [
+          "#/tables/88"
+        ]
+      },
+      {
+        "page": 231,
+        "subset_page": 70,
+        "table": "#/tables/91",
+        "shape": [
+          14,
+          7
+        ],
+        "left_parts": [
+          "#/tables/90"
+        ]
+      },
+      {
+        "page": 233,
+        "subset_page": 72,
+        "table": "#/tables/93",
+        "shape": [
+          22,
+          7
+        ],
+        "left_parts": [
+          "#/tables/92"
+        ]
+      },
+      {
+        "page": 237,
+        "subset_page": 74,
+        "table": "#/tables/95",
+        "shape": [
+          18,
+          6
+        ],
+        "left_parts": [
+          "#/tables/94"
+        ]
+      }
+    ]
+  },
+  "bbca_2024": {
+    "merged_cells_before": 101,
+    "merged_cells_after": 58,
+    "sub_rows_fixed": 5,
+    "printed_lines_fixed": 19,
+    "split_rows_merged": 4,
+    "flagged_rows": 28,
+    "flagged_rows_in_unlabeled_tables": 3,
+    "flagged_reasons": {
+      "teks PDF di kolom 0 tidak cocok dengan sel Docling": 5,
+      "angka PDF di kolom 0 tidak cocok dengan sel Docling": 5,
+      "dua angka sebaris dalam satu sel": 3,
+      "garis cetak dipakai bersama baris tetangga": 3,
+      "angka PDF di kolom 3 tidak cocok dengan sel Docling": 3,
+      "angka PDF di kolom 2 tidak cocok dengan sel Docling": 3,
+      "angka PDF di kolom 7 tidak cocok dengan sel Docling": 2,
+      "angka PDF di kolom 1 tidak cocok dengan sel Docling": 2,
+      "teks berputar (tabel dicetak menyamping)": 1,
+      "angka PDF di kolom 6 tidak cocok dengan sel Docling": 1
+    },
+    "unlabeled_tables": 17,
+    "unlabeled_pages": [
+      155,
+      157,
+      183,
+      185,
+      187,
+      189,
+      201,
+      205,
+      207,
+      211,
+      221,
+      225,
+      227,
+      229,
+      231,
+      235
+    ],
+    "flagged": [
+      {
+        "page": 194,
+        "row": 29,
+        "reason": "angka PDF di kolom 7 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "",
+          "348.464",
+          "449.175 16.614.552",
+          "285.174",
+          "122.117",
+          "433.492",
+          "3.295.246"
+        ]
+      },
+      {
+        "page": 195,
+        "row": 29,
+        "reason": "angka PDF di kolom 7 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "Total",
+          "",
+          "75.400",
+          "366.692 15.138.160",
+          "308.586 16.258.930",
+          "28.410",
+          "322.198",
+          ""
+        ]
+      },
+      {
+        "page": 205,
+        "row": 29,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "3.514.018",
+          "",
+          "",
+          "1.920.536",
+          "",
+          "6.599.626 3.478.154",
+          "- 15.512.333"
+        ]
+      },
+      {
+        "page": 205,
+        "row": 20,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "-",
+          "58.831.375",
+          "38.668.301",
+          "17.434.900",
+          "",
+          "4.792.983",
+          "-",
+          "15.396 216.567.990"
+        ]
+      },
+      {
+        "page": 207,
+        "row": 22,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "-",
+          "58.831.375",
+          "38.668.301",
+          "17.434.900",
+          "",
+          "4.792.983",
+          "",
+          "",
+          "-",
+          "11.941 216.567.990"
+        ]
+      },
+      {
+        "page": 545,
+        "row": 4,
+        "reason": "teks berputar (tabel dicetak menyamping)",
+        "cells": [
+          "laba Belum ditentukan penggunaannya",
+          "198.132.066",
+          "48.639.122",
+          "8.463",
+          "-",
+          "-",
+          "(453.130)",
+          "48.194.455 (407.357)",
+          "(26.195.948)",
+          "219.723.216"
+        ]
+      },
+      {
+        "page": 643,
+        "row": 19,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "",
+          "Rupiah USD",
+          "13.960.128",
+          "866.726 224.688",
+          "",
+          "777.109 93.949"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 33,
+        "reason": "angka PDF di kolom 6 tidak cocok dengan sel Docling",
+        "cells": [
+          "pada nilai wajar melalui laba rugi: Arus keluar Arus masuk",
+          "(122.765) (122.765)",
+          "(19.582.565) 19.449.061 (133.504)",
+          "(10.875.916) 10.821.462 (54.454)",
+          "(8.043.541) 7.972.699 (70.842)",
+          "(663.108) 654.900 (8.208)",
+          "- - -",
+          "- - -"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 31,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas lain-lain Obligasi subordinasi",
+          "(6.673.819) (500.000)",
+          "(6.673.819) (509.296)",
+          "(6.425.625) (9.296)",
+          "(27.643) -",
+          "(7.110) -",
+          "(157.943) (435.000)",
+          "(55.498) (65.000)"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 28,
+        "reason": "angka PDF di kolom 3 tidak cocok dengan sel Docling",
+        "cells": [
+          "Efek-efek yang dijual dengan janji dibeli kembali Pinjaman yang diterima",
+          "(1.054.780) (1.629.626)",
+          "(1.056.596) (1.631.732)",
+          "(1.056.596) (127.264)",
+          "- (174.649)",
+          "- (1.043.798)",
+          "- (286.021)",
+          "- -"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 14,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas keuangan yang diukur pada nilai wajar melalui laba rugi: Arus keluar Arus masuk",
+          "(257.613)",
+          "(33.439.150) 33.152.453",
+          "(26.618.772) 26.411.154",
+          "(6.218.655) 6.151.332",
+          "(601.723) 589.967",
+          "- -",
+          "- -"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 9,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "Beban yang masih harus dibayar dan Liabilitas lain-lain",
+          "(3.303.470) (500.000)",
+          "(3.303.470) (500.296)",
+          "(2.966.364)",
+          "(23.549)",
+          "(34.526)",
+          "(232.750)",
+          "(55.516) (46.281) (65.000)"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 5,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Simpanan dari bank-bank lain Utang akseptasi",
+          "(4.651.955)",
+          "(3.656.327) (4.651.955)",
+          "(1.953.035)",
+          "(1.784.655)",
+          "(902.423)",
+          "- (11.842)",
+          "- -"
+        ]
+      },
+      {
+        "page": 677,
+        "row": 4,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "Dana simpanan syariah",
+          "(3.935.363) (3.656.298)",
+          "(3.935.460)",
+          "(3.935.460) (3.621.195)",
+          "- (35.132)",
+          "- -",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 46,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "22.",
+          "lainnya Jumlah ekuitas yang dapat diatribusikan kepada pemilik entitas induk Kepentingan non-pengendali",
+          "287.397.575 119.001.117",
+          "278.090.936"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 45,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "21.",
+          "Saldo laba Komponen ekuitas",
+          "98.952.584 (5.073)",
+          "89.405.763 (5.073)"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 20,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "18.",
+          "Aset takberwujud - setelah akumulasi",
+          "126.411.162 5.496.515",
+          "126.141.448"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 10,
+        "reason": "angka PDF di kolom 3 tidak cocok dengan sel Docling",
+        "cells": [
+          "8.",
+          "Efek-efek yang dibeli dengan janji dijual kembali - setelah cadangan",
+          "1.449.562",
+          "93.096.153 758.887.839"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 36,
+        "reason": "angka PDF di kolom 3 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "Kepentingan non-pengendali",
+          "24.723.490 54.461.368",
+          "21.935.520"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 25,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "c. Surplus revaluasi aset tetap",
+          "238.886 297.224",
+          "231.837 (221.131)"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 6,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "4.",
+          "Beban syariah Jumlah beban bunga dan syariah",
+          "(394.843) (12.529.810)",
+          "(313.134) (12.272.978)"
+        ]
+      },
+      {
+        "page": 711,
+        "row": 3,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "2.",
+          "Jumlah pendapatan bunga dan syariah",
+          "805.105 95.783.506",
+          "663.932 88.009.560"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 16,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Pengukuran kembali liabilitas imbalan pasti - bersih Jumlah laba komprehensif tahun berjalan",
+          "- -",
+          "- - 295",
+          "- 111.222 -",
+          "- 19.387 -",
+          "- (371.086) -",
+          "31.916 29.789.821 -",
+          "- - -",
+          "31.916 29.549.344 295 -",
+          "26.422 24.567.050 (1)",
+          "58.338 54.116.394 294"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 9,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Dividen kas 2023",
+          "- 210.619.700",
+          "- (24.720.821)",
+          "- 2.442.617",
+          "- 39.561",
+          "- 309.189",
+          "(9.860.000) 89.405.763",
+          "- (5.073)",
+          "278.090.936",
+          "(11.803.334) 109.836.672",
+          "(21.663.334) 387.927.608"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 8,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Pengukuran kembali liabilitas imbalan pasti - bersih Jumlah laba komprehensif tahun berjalan Selisih transaksi kombinasi bisnis entitas sepengendali",
+          "- -",
+          "- -",
+          "- 122.726 -",
+          "- (4.322) -",
+          "- (481.494) -",
+          "27.088.285 -",
+          "- -",
+          "26.725.195 - (9.860.000)",
+          "21.436.710 1",
+          "(452.968) 48.161.905 1"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 7,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "Keuntungan (kerugian) yang belum direalisasi atas aset keuangan yang diukur pada nilai wajar melalui penghasilan komprehensif lain - bersih",
+          "- -",
+          "- -",
+          "-",
+          "-",
+          "(481.494)",
+          "- (248.935)",
+          "- -",
+          "(481.494) (248.935)",
+          "(395.694) (204.033)",
+          "(877.188)"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 8,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "1. 2.",
+          "Garansi yang diterima Lainnya",
+          "529.573 - 529.573",
+          "- 559.089"
+        ]
+      },
+      {
+        "page": 712,
+        "row": 4,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "2.",
+          "komitmen: kredit/pembiayaan yang belum ditarik Committed Uncommitted Fasilitas Letter of Credit kepada nasabah yang tidak",
+          "320.618.854 93.421.932",
+          "289.767.268 91.068.656"
+        ]
+      }
+    ],
+    "unlabeled": [
+      {
+        "page": 155,
+        "subset_page": 9,
+        "table": "#/tables/9",
+        "shape": [
+          26,
+          5
+        ],
+        "left_parts": [
+          "#/tables/8"
+        ]
+      },
+      {
+        "page": 157,
+        "subset_page": 11,
+        "table": "#/tables/11",
+        "shape": [
+          39,
+          5
+        ],
+        "left_parts": [
+          "#/tables/10"
+        ]
+      },
+      {
+        "page": 183,
+        "subset_page": 28,
+        "table": "#/tables/34",
+        "shape": [
+          28,
+          9
+        ],
+        "left_parts": [
+          "#/tables/33"
+        ]
+      },
+      {
+        "page": 185,
+        "subset_page": 30,
+        "table": "#/tables/36",
+        "shape": [
+          28,
+          9
+        ],
+        "left_parts": [
+          "#/tables/35"
+        ]
+      },
+      {
+        "page": 187,
+        "subset_page": 32,
+        "table": "#/tables/38",
+        "shape": [
+          28,
+          9
+        ],
+        "left_parts": [
+          "#/tables/37"
+        ]
+      },
+      {
+        "page": 189,
+        "subset_page": 34,
+        "table": "#/tables/40",
+        "shape": [
+          28,
+          9
+        ],
+        "left_parts": [
+          "#/tables/39"
+        ]
+      },
+      {
+        "page": 201,
+        "subset_page": 46,
+        "table": "#/tables/60",
+        "shape": [
+          10,
+          6
+        ],
+        "left_parts": [
+          "#/tables/57",
+          "#/tables/58"
+        ]
+      },
+      {
+        "page": 201,
+        "subset_page": 46,
+        "table": "#/tables/61",
+        "shape": [
+          10,
+          6
+        ],
+        "left_parts": [
+          "#/tables/57",
+          "#/tables/58"
+        ]
+      },
+      {
+        "page": 205,
+        "subset_page": 50,
+        "table": "#/tables/66",
+        "shape": [
+          36,
+          8
+        ],
+        "left_parts": [
+          "#/tables/65"
+        ]
+      },
+      {
+        "page": 207,
+        "subset_page": 52,
+        "table": "#/tables/68",
+        "shape": [
+          42,
+          10
+        ],
+        "left_parts": [
+          "#/tables/67"
+        ]
+      },
+      {
+        "page": 211,
+        "subset_page": 56,
+        "table": "#/tables/73",
+        "shape": [
+          11,
+          7
+        ],
+        "left_parts": [
+          "#/tables/72"
+        ]
+      },
+      {
+        "page": 221,
+        "subset_page": 63,
+        "table": "#/tables/85",
+        "shape": [
+          33,
+          6
+        ],
+        "left_parts": [
+          "#/tables/84"
+        ]
+      },
+      {
+        "page": 225,
+        "subset_page": 65,
+        "table": "#/tables/87",
+        "shape": [
+          14,
+          7
+        ],
+        "left_parts": [
+          "#/tables/86"
+        ]
+      },
+      {
+        "page": 227,
+        "subset_page": 67,
+        "table": "#/tables/89",
+        "shape": [
+          23,
+          7
+        ],
+        "left_parts": [
+          "#/tables/88"
+        ]
+      },
+      {
+        "page": 229,
+        "subset_page": 69,
+        "table": "#/tables/91",
+        "shape": [
+          14,
+          7
+        ],
+        "left_parts": [
+          "#/tables/90"
+        ]
+      },
+      {
+        "page": 231,
+        "subset_page": 71,
+        "table": "#/tables/93",
+        "shape": [
+          24,
+          7
+        ],
+        "left_parts": [
+          "#/tables/92"
+        ]
+      },
+      {
+        "page": 235,
+        "subset_page": 73,
+        "table": "#/tables/95",
+        "shape": [
+          17,
+          6
+        ],
+        "left_parts": [
+          "#/tables/94"
+        ]
+      }
+    ]
+  },
+  "bbca_2025": {
+    "merged_cells_before": 111,
+    "merged_cells_after": 104,
+    "sub_rows_fixed": 0,
+    "printed_lines_fixed": 5,
+    "split_rows_merged": 1,
+    "flagged_rows": 59,
+    "flagged_rows_in_unlabeled_tables": 6,
+    "flagged_reasons": {
+      "dua angka sebaris dalam satu sel": 18,
+      "teks PDF di kolom 0 tidak cocok dengan sel Docling": 13,
+      "angka PDF di kolom 0 tidak cocok dengan sel Docling": 7,
+      "teks PDF di kolom 1 tidak cocok dengan sel Docling": 6,
+      "garis cetak dipakai bersama baris tetangga": 4,
+      "teks berputar (tabel dicetak menyamping)": 3,
+      "angka PDF di kolom 1 tidak cocok dengan sel Docling": 2,
+      "angka PDF di kolom 2 tidak cocok dengan sel Docling": 2,
+      "angka PDF di kolom 7 tidak cocok dengan sel Docling": 1,
+      "baris header kolom": 1,
+      "tidak ada garis berangka": 1,
+      "angka PDF di kolom 6 tidak cocok dengan sel Docling": 1
+    },
+    "unlabeled_tables": 17,
+    "unlabeled_pages": [
+      110,
+      112,
+      130,
+      132,
+      134,
+      136,
+      148,
+      152,
+      154,
+      158,
+      168,
+      172,
+      174,
+      176,
+      178,
+      182
+    ],
+    "flagged": [
+      {
+        "page": 143,
+        "row": 28,
+        "reason": "angka PDF di kolom 7 tidak cocok dengan sel Docling",
+        "cells": [
+          "24.",
+          "Lainnya",
+          "67.006.330",
+          "270.168",
+          "213.504",
+          "344.067",
+          "99.622",
+          "188.363",
+          "1.108.717 8.259.193"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 10,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "3.",
+          "Transaksi Rekening Administratif",
+          "390.380.193 2.856.011",
+          "38.719",
+          "8.101",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 9,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "c. Komersial",
+          "143.168.857 4.882.575",
+          "3.063.096",
+          "2.097.156",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 8,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "b. Ritel",
+          "335.074.464 4.253.150",
+          "6.502.593",
+          "2.529.148",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 7,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "a. Korporasi",
+          "467.694.748 10.602.937",
+          "6.399.747",
+          "5.025.532",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 11,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "3.",
+          "Transaksi Rekening Administratif",
+          "391.173.584 2.858.808",
+          "38.719",
+          "8.101",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 10,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "c. Komersial",
+          "144.775.365 5.023.725",
+          "3.088.324",
+          "2.118.416",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 9,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "b. Ritel",
+          "348.579.675 4.849.882",
+          "6.824.636",
+          "2.763.494",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 8,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "a. Korporasi",
+          "483.058.579 10.831.696",
+          "6.563.191",
+          "5.170.031",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 146,
+        "row": 7,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "2.",
+          "Kredit",
+          "976.413.619 20.705.303",
+          "16.476.151",
+          "10.051.941",
+          "-",
+          "-",
+          "-",
+          "-"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 24,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "Total",
+          "Total",
+          "1.478.616.753 489.376.691",
+          "",
+          "1.440.730.813 158.776.404",
+          "834.916.173",
+          "53%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 21,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "10.",
+          "Tagihan yang Telah Jatuh Tempo",
+          "6.268.872",
+          "30.619",
+          "6.256.398 14.292",
+          "5.516.617",
+          "88%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 19,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Pembayarannya Bergantung Secara",
+          "Kredit Beragun Properti Komersial yang Material pada Arus Kas Properti",
+          "19.842.459",
+          "3.835.364",
+          "19.835.422 1.534.146",
+          "23.131.269",
+          "108%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 18,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "9. Kredit Beragun Properti Pembayarannya Tidak Material pada Arus Kas",
+          "Komersial yang Bergantung Secara Properti",
+          "312.473.846",
+          "134.929.532",
+          "311.433.153 52.226.248",
+          "316.793.849",
+          "87%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 14,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "8. Tagihan kepada Usaha Mikro, Portofolio Ritel",
+          "Usaha Kecil, dan",
+          "91.618.511",
+          "42.713.617 75.317.238",
+          "4.849.733",
+          "59.558.588",
+          "74%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 12,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "Eksposur Pembiayaan Khusus",
+          "",
+          "23.064.511",
+          "4.149.406",
+          "23.064.511 1.659.763",
+          "27.514.179",
+          "111%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 10,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "Tagihan kepada Korporasi - Eksposur Korporasi Umum",
+          "194.511.280",
+          "",
+          "180.526.467",
+          "175.010.256 60.865.258",
+          "187.896.627",
+          "80%"
+        ]
+      },
+      {
+        "page": 149,
+        "row": 7,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "4. Tagihan kepada Bank",
+          "51.044.248",
+          "",
+          "3.505.499 51.015.538",
+          "1.828.074",
+          "14.992.035",
+          "28%"
+        ]
+      },
+      {
+        "page": 151,
+        "row": 39,
+        "reason": "baris header kolom",
+        "cells": [
+          "Modal Lainnya Kategori Portofolio",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "100%",
+          "12.276.315 53.688.000",
+          "12.276.315 53.688.000",
+          "12.276.315 53.688.000",
+          "12.276.315 53.688.000",
+          "12.276.315 53.688.000"
+        ]
+      },
+      {
+        "page": 152,
+        "row": 27,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "- 61.832.779 37.039.252",
+          "- 61.832.779 37.039.252",
+          "- 61.832.779 37.039.252",
+          "20.414.689",
+          "",
+          "7.183.741",
+          "7.183.741",
+          "",
+          "-",
+          "19.991",
+          "228.285.927"
+        ]
+      },
+      {
+        "page": 152,
+        "row": 14,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "42.894.496 128.371.918",
+          "42.894.496 128.371.918",
+          "42.894.496 128.371.918",
+          "",
+          "-",
+          "587.137",
+          "587.137",
+          "",
+          "",
+          "235.875.514 -",
+          "235.875.514 -"
+        ]
+      },
+      {
+        "page": 153,
+        "row": 7,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "4 Tagihan kepada Bank Tagihan kepada Perusahaan Efek dan Lembaga Jasa Keuangan Lain",
+          "40.998.490 54.214.900",
+          "40.998.490 54.214.900",
+          "40.998.490 54.214.900",
+          "679.582 2.593.844",
+          "679.582 2.593.844",
+          "7.666.138 309.761 - 166.039",
+          "7.666.138 309.761 - 166.039",
+          "7.666.138 309.761 - 166.039",
+          "7.666.138 309.761 - 166.039",
+          "7.666.138 309.761 - 166.039"
+        ]
+      },
+      {
+        "page": 154,
+        "row": 24,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "-",
+          "40.077.424 133.557.807",
+          "40.077.424 133.557.807",
+          "",
+          "",
+          "155.239.657",
+          "",
+          "",
+          "-",
+          ""
+        ]
+      },
+      {
+        "page": 154,
+        "row": 20,
+        "reason": "tidak ada garis berangka",
+        "cells": [
+          "",
+          "37.039.593 20.414.689",
+          "37.039.593 20.414.689",
+          "",
+          "",
+          "7.183.741",
+          "",
+          "-",
+          "19.991 -",
+          "228.286.268"
+        ]
+      },
+      {
+        "page": 154,
+        "row": 17,
+        "reason": "dua angka sebaris dalam satu sel",
+        "cells": [
+          "",
+          "2.103.087",
+          "2.103.087",
+          "",
+          "",
+          "19.118.071",
+          "",
+          "",
+          "18.173 91.882.380",
+          "18.173 91.882.380"
+        ]
+      },
+      {
+        "page": 154,
+        "row": 7,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "3.637.048",
+          "903.396",
+          "903.396",
+          "658.747",
+          "",
+          "4.711 53.093",
+          "",
+          "",
+          "- -",
+          "54.199.126 64.842.203"
+        ]
+      },
+      {
+        "page": 466,
+        "row": 2,
+        "reason": "teks berputar (tabel dicetak menyamping)",
+        "cells": [
+          "Jumlah ekuitas pemilik entitas induk",
+          "242.356.256",
+          "54.836.305",
+          "238.886",
+          "",
+          "35.287 (675.413)",
+          "58.126",
+          "54.493.191",
+          "-",
+          "(34.208.826)",
+          "262.640.621"
+        ]
+      },
+      {
+        "page": 466,
+        "row": 0,
+        "reason": "teks berputar (tabel dicetak menyamping)",
+        "cells": [
+          "Jumlah ekuitas",
+          "242.537.593",
+          "54.851.274",
+          "238.886",
+          "35.287",
+          "(677.485)",
+          "",
+          "58.358 54.506.320",
+          "-",
+          "(34.208.826)",
+          "262.835.087"
+        ]
+      },
+      {
+        "page": 543,
+        "row": 34,
+        "reason": "garis cetak dipakai bersama baris tetangga",
+        "cells": [
+          "",
+          "USD Lainnya, ekuivalen USD",
+          "52.267.031",
+          "6.070.304 871.553",
+          "323.378.273 8.639.700",
+          "5.204.773 139.056"
+        ]
+      },
+      {
+        "page": 569,
+        "row": 35,
+        "reason": "angka PDF di kolom 6 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas keuangan yang diukur pada nilai wajar melalui laba rugi: Arus keluar Arus masuk",
+          "(257.613)",
+          "(33.439.150) 33.152.453",
+          "(26.618.772) 26.411.154",
+          "(6.218.655) 6.151.332",
+          "(601.723) 589.967",
+          "- -",
+          "- -"
+        ]
+      },
+      {
+        "page": 569,
+        "row": 32,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Obligasi subordinasi",
+          "(500.000)",
+          "(3.303.470) (500.296)",
+          "(9.296)",
+          "-",
+          "(435.000)",
+          "-",
+          "(65.000)"
+        ]
+      },
+      {
+        "page": 569,
+        "row": 31,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Beban yang masih harus dibayar dan Liabilitas lain-lain",
+          "(3.303.470)",
+          "",
+          "(2.966.364)",
+          "(23.549)",
+          "(34.526)",
+          "(232.750)",
+          "(55.516) (46.281)"
+        ]
+      },
+      {
+        "page": 569,
+        "row": 29,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "dibeli kembali Pinjaman yang diterima",
+          "(1.330.996) (2.242.516)",
+          "(1.330.996) (2.244.833)",
+          "(1.330.996) (298.499)",
+          "- -",
+          "- (1.650.000)",
+          "- (296.334)",
+          "- -"
+        ]
+      },
+      {
+        "page": 569,
+        "row": 12,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Liabilitas keuangan yang diukur pada nilai wajar melalui laba rugi: Arus keluar",
+          "(97.406)",
+          "(25.788.864)",
+          "(18.551.296)",
+          "(4.361.781) 4.337.530",
+          "(2.791.262) 2.772.799",
+          "(84.525) 83.375",
+          "-"
+        ]
+      },
+      {
+        "page": 577,
+        "row": 13,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Cadangan kerugian penurunan nilai Piutang pembiayaan konsumen - bersih",
+          "152.256",
+          "516.518",
+          "1.007.550",
+          "7.516.496",
+          "242.744",
+          "-",
+          "(33.308.875) 9.435.564"
+        ]
+      },
+      {
+        "page": 598,
+        "row": 2,
+        "reason": "teks berputar (tabel dicetak menyamping)",
+        "cells": [
+          "yang yang nilai Saldo laba Telah ditentukan penggunaannya",
+          "280.866 3.720.540",
+          "- -",
+          "- -",
+          "1.625.359 -",
+          "- -",
+          "1.625.359 -",
+          "- 548.363",
+          "- -",
+          "- -",
+          "1.906.225 4.268.903"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 53,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "1.736.923.983 1.592.357.319",
+          "1.736.923.983 1.592.357.319",
+          "1.736.923.983 1.592.357.319",
+          "1.736.923.983 1.592.357.319"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 46,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "Jumlah ekuitas yang dapat kepada pemilik entitas",
+          "303.065.172 126.695.425",
+          "287.397.575"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 45,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "Saldo laba",
+          "113.150.871 (55.869)",
+          "(5.073)"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 44,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "22.",
+          "Komponen ekuitas lainnya diatribusikan",
+          "",
+          "(61.897) 98.952.584"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 40,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "16. Modal saham 17. Tambahan modal 18.",
+          "disetor Surplus revaluasi aset tetap Selisih kurs karena penjabaran",
+          "211.419.700 (24.751.655) 2.685.742",
+          "210.619.700 (24.720.526) 2.553.839"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 36,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "14.",
+          "Obligasi subordinasi JUMLAH LIABILITAS",
+          "65.000 1.296.530.691",
+          "500.000 1.176.471.810"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 24,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "Simpanan dari nasabah 2.",
+          "Dana simpanan syariah",
+          "4.688.209",
+          "1.119.987.754 3.506.071"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 23,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "DIATRIBUSIKAN",
+          "",
+          "29.737.878 24.723.490"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 21,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "",
+          "32.268.309 26.606.321",
+          "29.549.344"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 20,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "PENGHASILAN LABA LABA BERSIH Pemilik entitas Kepentingan",
+          "KOMPREHENSIF YANG DAPAT DIATRIBUSIKAN KEPADA: induk",
+          "1.207.805 58.874.630",
+          "(344.974) 54.116.394"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 19,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "JUMLAH",
+          "non-pengendali LABA KOMPREHENSIF YANG DAPAT KEPADA: Pemilik entitas induk",
+          "31.636.210 26.030.615 57.666.825",
+          ""
+        ]
+      },
+      {
+        "page": 602,
+        "row": 17,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "15.",
+          "Lain-lain PENGHASILAN KOMPREHENSIF LAIN, SETELAH PAJAK",
+          "2.273.789 (101.189) 1.607.863",
+          "(677.485) 35.287 - (642.198)"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 16,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "a. Keuntungan",
+          "(kerugian) yang belum direalisasi atas aset keuangan yang diukur pada nilai wajar melalui penghasilan komprehensif lain b. Pajak penghasilan Keuntungan (kerugian) yang belum direalisasi atas aset keuangan yang diukur pada nilai wajar melalui penghasilan komprehensif lain - setelah pajak penghasilan c. Selisih kurs karena penjabaran laporan keuangan dalam valuta asing",
+          "1.846.845 (137.793)",
+          "(824.292) 146.807"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 15,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "b. Pajak penghasilan Pengukuran kembali liabilitas imbalan pasti - setelah pajak penghasilan c. Surplus revaluasi aset tetap Pos-pos yang akan direklasifikasi ke laba rugi:",
+          "(804.869) 152.755 (652.114) 252.056 (400.058)",
+          "71.847 (13.509) 58.338 238.886 297.224"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 11,
+        "reason": "teks PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "",
+          "BEBAN PAJAK PENGHASILAN",
+          "71.458.175 (13.791.350)",
+          "67.864.287 (13.402.919)"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 10,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "11. 12. 13.",
+          "",
+          "(17.393.156) (2.125.241) (37.549.304)",
+          "(1.986.650) (36.368.510)"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 9,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "10.",
+          "Beban umum dan administrasi Lain-lain Jumlah beban operasional lainnya LABA SEBELUM PAJAK PENGHASILAN",
+          "",
+          "(17.479.907) (16.901.953)"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 8,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "laba rugi - 9. Lain-lain Jumlah pendapatan",
+          "bersih operasional lainnya Beban penyisihan kerugian penurunan nilai aset BEBAN OPERASIONAL LAINNYA Beban karyawan",
+          "3.178.374 3.436.362 26.500.026 (4.447.207) (18.030.907)",
+          "1.500.163 2.257.242 21.656.582 (2.034.453)"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 7,
+        "reason": "angka PDF di kolom 2 tidak cocok dengan sel Docling",
+        "cells": [
+          "PENDAPATAN 7. Pendapatan 8. Pendapatan",
+          "PENDAPATAN ASURANSI - BERSIH OPERASIONAL LAINNYA provisi dan komisi - bersih transaksi yang diukur pada nilai wajar melalui",
+          "(1.858.302) 144.938 19.885.290",
+          "3.110.733 (1.753.761) 1.356.972 17.899.177"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 6,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "5. 6.",
+          "Beban asuransi",
+          "86.809.722 2.003.240",
+          "83.253.696"
+        ]
+      },
+      {
+        "page": 602,
+        "row": 5,
+        "reason": "teks PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "4. Beban syariah Jumlah beban",
+          "bunga dan syariah PENDAPATAN BUNGA DAN SYARIAH - BERSIH Pendapatan asuransi",
+          "(509.258) (13.384.185)",
+          "(394.843) (12.529.810)"
+        ]
+      },
+      {
+        "page": 603,
+        "row": 23,
+        "reason": "angka PDF di kolom 1 tidak cocok dengan sel Docling",
+        "cells": [
+          "Perubahan kepentingan non-pengendali pada entitas anak Dividen kas",
+          "- -",
+          "-",
+          "-",
+          "- -",
+          "- -",
+          "- (17.200.000)",
+          "- -",
+          "- (17.200.000)",
+          "292.986 (16.937.414)",
+          "292.986 (34.137.414)"
+        ]
+      },
+      {
+        "page": 603,
+        "row": 1,
+        "reason": "angka PDF di kolom 0 tidak cocok dengan sel Docling",
+        "cells": [
+          "2. 3. 4. 1. 2. 1. 1. 2. 3. 1.",
+          "KOMITMEN Tagihan komitmen: Fasilitas pinjaman/pembiayaan yang belum ditarik Posisi valas yang akan diterima dari transaksi spot dan derivatif/forward Lainnya Liabilitas komitmen: Fasilitas kredit/pembiayaan yang belum ditarik - Committed - Uncommitted Fasilitas Letter of Credit kepada nasabah yang dapat dibatalkan Posisi valas yang akan diserahkan untuk transaksi spot dan derivatif/forward Lainnya KONTINJENSI Tagihan kontinjensi: Garansi yang diterima Lainnya Liabilitas kontinjensi:",
+          "2.795.000 22.941.216 250.549 25.986.765 351.712.031 100.451.029 10.205.937 26.516.839 335.642 489.221.478 604.625 - 604.625",
+          "2.878.190 29.456.807 524.255 32.859.252 320.618.854 93.421.932 10.055.508 28.755.848 1.091.414 453.943.556 529.573 - 529.573"
+        ]
+      }
+    ],
+    "unlabeled": [
+      {
+        "page": 110,
+        "subset_page": 8,
+        "table": "#/tables/7",
+        "shape": [
+          25,
+          5
+        ],
+        "left_parts": [
+          "#/tables/6"
+        ]
+      },
+      {
+        "page": 112,
+        "subset_page": 10,
+        "table": "#/tables/9",
+        "shape": [
+          39,
+          5
+        ],
+        "left_parts": [
+          "#/tables/8"
+        ]
+      },
+      {
+        "page": 130,
+        "subset_page": 27,
+        "table": "#/tables/34",
+        "shape": [
+          27,
+          9
+        ],
+        "left_parts": [
+          "#/tables/33"
+        ]
+      },
+      {
+        "page": 132,
+        "subset_page": 29,
+        "table": "#/tables/36",
+        "shape": [
+          27,
+          9
+        ],
+        "left_parts": [
+          "#/tables/35"
+        ]
+      },
+      {
+        "page": 134,
+        "subset_page": 31,
+        "table": "#/tables/38",
+        "shape": [
+          27,
+          9
+        ],
+        "left_parts": [
+          "#/tables/37"
+        ]
+      },
+      {
+        "page": 136,
+        "subset_page": 33,
+        "table": "#/tables/40",
+        "shape": [
+          27,
+          9
+        ],
+        "left_parts": [
+          "#/tables/39"
+        ]
+      },
+      {
+        "page": 148,
+        "subset_page": 45,
+        "table": "#/tables/59",
+        "shape": [
+          10,
+          6
+        ],
+        "left_parts": [
+          "#/tables/57",
+          "#/tables/58"
+        ]
+      },
+      {
+        "page": 148,
+        "subset_page": 45,
+        "table": "#/tables/60",
+        "shape": [
+          10,
+          6
+        ],
+        "left_parts": [
+          "#/tables/57",
+          "#/tables/58"
+        ]
+      },
+      {
+        "page": 152,
+        "subset_page": 49,
+        "table": "#/tables/64",
+        "shape": [
+          47,
+          11
+        ],
+        "left_parts": [
+          "#/tables/63"
+        ]
+      },
+      {
+        "page": 154,
+        "subset_page": 51,
+        "table": "#/tables/66",
+        "shape": [
+          38,
+          10
+        ],
+        "left_parts": [
+          "#/tables/65"
+        ]
+      },
+      {
+        "page": 158,
+        "subset_page": 55,
+        "table": "#/tables/71",
+        "shape": [
+          10,
+          8
+        ],
+        "left_parts": [
+          "#/tables/70"
+        ]
+      },
+      {
+        "page": 168,
+        "subset_page": 62,
+        "table": "#/tables/82",
+        "shape": [
+          31,
+          4
+        ],
+        "left_parts": [
+          "#/tables/81"
+        ]
+      },
+      {
+        "page": 172,
+        "subset_page": 64,
+        "table": "#/tables/84",
+        "shape": [
+          13,
+          5
+        ],
+        "left_parts": [
+          "#/tables/83"
+        ]
+      },
+      {
+        "page": 174,
+        "subset_page": 66,
+        "table": "#/tables/86",
+        "shape": [
+          19,
+          5
+        ],
+        "left_parts": [
+          "#/tables/85"
+        ]
+      },
+      {
+        "page": 176,
+        "subset_page": 68,
+        "table": "#/tables/88",
+        "shape": [
+          13,
+          5
+        ],
+        "left_parts": [
+          "#/tables/87"
+        ]
+      },
+      {
+        "page": 178,
+        "subset_page": 70,
+        "table": "#/tables/90",
+        "shape": [
+          21,
+          5
+        ],
+        "left_parts": [
+          "#/tables/89"
+        ]
+      },
+      {
+        "page": 182,
+        "subset_page": 72,
+        "table": "#/tables/93",
+        "shape": [
+          20,
+          5
+        ],
+        "left_parts": [
+          "#/tables/91"
+        ]
+      }
+    ]
+  }
+}
