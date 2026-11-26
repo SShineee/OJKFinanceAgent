@@ -503,6 +503,7 @@ rencana di bawah:
 
 ## Minggu 8 — Mulai Dataset Evaluasi (JANGAN DITUNDA)
 
+**Langkah rinci, skema dataset, dan daftar periksa: `docs/PANDUAN_MINGGU8.md`.**
 Ini penyebab nomor 1 skripsi molor. Cicil dari sekarang: **3 pertanyaan per hari**.
 
 ### 8.0 — Bank uji (BMRI) masuk ke pustaka
