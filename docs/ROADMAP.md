@@ -533,16 +533,16 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 >
 > **Status (26-11-2026):** ✅ **GATE 8 LULUS** (saringan v3, deteksi sektor `bank` 3/3, ingest penuh 3/3, 0 kontaminasi BBCA↔BMRI, regresi BBCA utuh; ⏸ tinggal 1 PDF non-bank untuk melengkapi separuh non-bank 8.0c, backup Google Drive, lalu lanjut 8.5 & 8.1–8.4).
 
-- [ ] **8.1** Buat `eval/datasets/ragas_qa.jsonl`, target **30 pasang**, format:
+- [x] **8.1** Buat `eval/datasets/ragas_qa.jsonl`, target **30 pasang**, format:
       `{"question": "...", "reference": "...", "ref_page": 112, "type": "faktual"}`
-      *(Progres 26-11-2026: **15/30 pasang** tahap Minggu 8 selesai — 10 BBCA + 5 BMRI: 6 `faktual`, 4 `multi_hop`, 3 `komparatif` 2023–2025, 2 `kontekstual`; validator `eval/ragas_dataset.py` **LULUS**, 15/15 `ref_page` ada di `data/chunks/*.jsonl`; SHA-256 `f6949282…b19f`; sisa 15 pasang dicicil Minggu 9–16.)*
-- [ ] **8.2** Komposisi yang disarankan:
-      - 12 faktual 1-hop ("Berapa laba bersih BCA 2024?")
-      - 8 multi-hop ("Berapa ROE 2024?" → butuh laba bersih + ekuitas)
-      - 6 komparatif antar tahun ("Bagaimana tren NPL 2022–2024?")
-      - 4 kontekstual/kualitatif ("Apa penyebab kenaikan pendapatan bunga bersih?")
-- [ ] **8.3** Setiap `reference` **wajib** ditulis dari PDF, dengan nomor halaman. Ini yang dipakai `context_recall`.
-- [ ] **8.4** Sebar 30 pertanyaan: ±20 BBCA, ±10 BMRI — jangan semuanya bank pengembangan.
+      ✅ **Selesai penuh 26-11-2026:** **30/30 pasang** (`qa01–qa30`), `python -m eval.ragas_dataset --strict-final` **LULUS** (SHA-256 `fe67bb42…4723`).
+- [x] **8.2** Komposisi yang disarankan:
+      - 12 faktual 1-hop ("Berapa laba bersih BCA 2024?") ✅ `12/12` (8 BBCA + 4 BMRI)
+      - 8 multi-hop ("Berapa ROE 2024?" → butuh laba bersih + ekuitas) ✅ `8/8` (5 BBCA + 3 BMRI)
+      - 6 komparatif antar tahun ("Bagaimana tren NPL 2022–2024?") ✅ `6/6` (4 BBCA + 2 BMRI, periode final 2023–2025)
+      - 4 kontekstual/kualitatif ("Apa penyebab kenaikan pendapatan bunga bersih?") ✅ `4/4` (3 BBCA + 1 BMRI)
+- [x] **8.3** Setiap `reference` **wajib** ditulis dari PDF, dengan nomor halaman. Ini yang dipakai `context_recall`. ✅ Seluruh 30 `reference` ditulis dari teks tampak PDF asli (`pypdfium2`), **30/30** `ref_page` terverifikasi hadir di `data/chunks/*.jsonl`.
+- [x] **8.4** Sebar 30 pertanyaan: ±20 BBCA, ±10 BMRI — jangan semuanya bank pengembangan. ✅ Tepat **20 BBCA + 10 BMRI**.
 - [x] **8.5** **Ground truth rasio BMRI** — ulangi langkah Minggu 1: ekstrak angka mentah,
       cocokkan ke rasio resmi, verifikasi manual. Perkakasnya sudah ada (`validate_ratios.py`,
       `build_ground_truth.py`, `build_verification_sheet.py`), tinggal diberi parameter emiten.
