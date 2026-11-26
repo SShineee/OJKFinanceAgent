@@ -225,38 +225,66 @@ yang gagal.
 
 ---
 
-## Langkah 3 — Pencarian hybrid (7.1–7.4, 7.7) · 1 hari
+## Langkah 3 — Pencarian hybrid (7.1–7.4, 7.7) · ✅ SELESAI (26-11-2026)
 
 **File:** `src/retrieval/hybrid.py`
 
+```powershell
+python -m src.retrieval.hybrid "Berapa CAR bank BCA tahun 2024?" --ticker bbca --year 2024
+python -m src.retrieval.hybrid "Bagaimana tren NPL BCA?" --ticker bbca -k 2
+```
+
 ```python
-def dense_search(query, ticker, year, k=config.TOP_K_DENSE) -> list[tuple[str, int]]:
+def dense_search(query, ticker, year, k=config.TOP_K_DENSE, expand=False) -> list[tuple[str, int]]:
     """[(chunk_id, peringkat)] dari Chroma, difilter ticker + year."""
 
-def sparse_search(query, ticker, year, k=config.TOP_K_SPARSE) -> list[tuple[str, int]]:
+def sparse_search(query, ticker, year, k=config.TOP_K_SPARSE, expand=False) -> list[tuple[str, int]]:
     """[(chunk_id, peringkat)] dari BM25 laporan itu (sparse.search, Minggu 6)."""
 
 def rrf_fuse(lists, k=config.RRF_K, top=config.TOP_K_FINAL) -> list[tuple[str, float]]:
     """score(d) = sum 1 / (k + rank_i(d)); urut menurun; seri dipecah oleh chunk_id (deterministik)."""
 
-def hybrid_retrieve(query, ticker, year=None, k=config.TOP_K_FINAL, expand=True) -> list[dict]:
-    """API tunggal untuk agen. Mengembalikan chunk lengkap: chunk_id, text, ticker, year, pages,
-    headings, unit, merged_cells, is_table, skor RRF, peringkat dense & BM25."""
+def hybrid_retrieve(query, ticker, year=None, k=config.TOP_K_FINAL, expand=True, *,
+                    dense_k=config.TOP_K_DENSE, sparse_k=config.TOP_K_SPARSE,
+                    rrf_k=config.RRF_K) -> list[dict]:
+    """API tunggal untuk agen. Mengembalikan chunk lengkap: chunk_id, text, ticker, sector, year,
+    pages, headings, unit, merged_cells, is_table, rrf_score, dense_rank, sparse_rank."""
 ```
 
 Aturan:
 
 - **`ticker` wajib** (7.7). Kalau kosong, atau kode saham itu tidak ada di pustaka (`index.indexed()`),
   fungsi berhenti dengan `ValueError`, **bukan** mencari di semua emiten. Ini pagar utama terhadap
-  kontaminasi antar bank (uji di Minggu 8, 8.0d).
+  kontaminasi antar bank (uji di Minggu 8, 8.0d). Untuk pencarian satu tahun, keberadaan laporan
+  dicek langsung dengan `col.get(..., limit=1, include=[])` (~10 ms vs 55–180 ms untuk memindai
+  seluruh koleksi) dan baru memanggil `index.indexed()` bila tidak ditemukan untuk pesan error.
 - **`year` diisi** untuk pertanyaan tentang satu tahun. Agen (Minggu 9) mengambil tahun dari
   pertanyaan.
 - **`year=None` atau daftar tahun** (pertanyaan tren): cari **per tahun**, lalu kembalikan `k` chunk
-  **per tahun**, dikelompokkan per tahun. Jangan satu pencarian lintas tahun: prototipe
-  menunjukkan 45 dari 75 chunk jatuh ke tahun yang salah.
+  **per tahun**, dikelompokkan urut tahun (query cukup di-embed sekali). Jangan satu pencarian
+  lintas tahun: prototipe menunjukkan 45 dari 75 chunk jatuh ke tahun yang salah.
 - **Skor dense dan BM25 tidak dijumlahkan**, karena skalanya berbeda. RRF hanya memakai **peringkat**.
 - **Deterministik:** kalau skor seri, urutan dipecah oleh `chunk_id`. Ada 102 pasang chunk identik
   antar laporan, tetapi filter tahun membuat pasangan itu tidak bertemu.
+
+### Uji Langkah 3 (semua ✅)
+
+- `rrf_fuse`: cocok dengan hitung tangan, seri dipecah `chunk_id`, duplikat dalam satu daftar dihitung
+  sekali, peringkat tidak valid (`0`, `-1`, `bool`, `float`) ditolak.
+- Validasi `ticker` wajib & `year` di `dense_search`, `sparse_search`, dan `hybrid_retrieve`: `""`,
+  `None`, `"xxxx"`, tahun tak terindeks (`2020`), `[]`, `bool`, string tahun → `ValueError`.
+- Filter & pengelompokan: `year=2024` → 5 chunk 2024; `year=None` → 15 chunk dikelompokkan
+  `2023/2024/2025` (5 per tahun); `year=[2025, 2023]` → 6 chunk urut `2023` lalu `2025`.
+- Deterministik: dua panggilan identik memberi urutan `chunk_id` dan `rrf_score` sama persis;
+  `dense_rank` & `sparse_rank` cocok dengan `dense_search` & `sparse_search`.
+- **Hasil 15 query uji cocok persis dengan prototipe:**
+  - tanpa perluasan: dense 7/15, BM25 12/15, hybrid 11/15 (singkatan 4/7, non-singkatan 7/8);
+  - dengan perluasan: dense 9/15, BM25 15/15, **hybrid 13/15 (87%)** (singkatan 6/7, non-singkatan
+    7/8; gagal di `q08` dan `q09`);
+  - RRF `k` 10 / 60 / 100: semua 13/15; kandidat 5 / 10 / 20 / 30: 12 / 13 / 13 / 13.
+- CLI: `"Berapa CAR bank BCA tahun 2024?"` → hal 21 (#1) dan KPMM hal 703 (#2); `"Bagaimana tren
+  NPL BCA?"` → hal 265 & 646 (2023), 262–263 & 701 (2024), 590 & 95 (2025); `--ticker xxxx` gagal
+  dengan pesan jelas (exit code 1).
 
 ---
 
@@ -347,7 +375,7 @@ dan tanpa perluasan, plus pembahasan hybrid vs BM25.
 - [x] Keputusan 7.A (perluasan istilah) dan 7.B (definisi chunk benar) disetujui *(15-11-2026)*
 - [x] 15 query uji dikunci di `eval/datasets/retrieval_queries.jsonl` sebelum eksperimen
       *(15-11-2026; SHA-256 `cfab3a18…46fc2`, angka diverifikasi terhadap ground truth)*
-- [ ] `hybrid_retrieve` dengan `ticker` wajib, filter tahun, `year=None` per tahun, dan perluasan istilah
+- [x] `hybrid_retrieve` dengan `ticker` wajib, filter tahun, `year=None` per tahun, dan perluasan istilah *(26-11-2026)*
 - [ ] `eval/retrieval_eval.py`: tabel 6 konfigurasi + subkelompok singkatan tersimpan di `results/`
 - [ ] **GATE 3: Hit@5 hybrid ≥ 80%** (prototipe: 13/15 = 87%)
 - [ ] `check_retrieval.py` LULUS, termasuk uji negatif
