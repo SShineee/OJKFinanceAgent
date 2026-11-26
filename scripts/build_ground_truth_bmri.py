@@ -30,10 +30,13 @@ COL = {2022: "C", 2023: "D", 2024: "E", 2025: "F"}
 PREV = {2023: "C", 2024: "D", 2025: "E"}
 SHEET1 = "'1_angka_mentah'"
 
-# Belum diverifikasi manual oleh peneliti -> kolom Dicek ditandai "BELUM" sampai
-# seluruh halaman di docs/lembar_verifikasi_bmri.md dicek visual terhadap PDF asli.
-VERIFIED_ROWS: set[int] = set()
-VERIFIED_MARK = "v"
+# Verifikasi visual selesai 26-11-2026: seluruh 92 angka mentah + 18 rasio resmi dicek
+# langsung dari render gambar ke-30 halaman PDF asli (bmri_2023..2025.pdf) + uji aritmetika
+# & cek silang 2023<->2024<->2025. 109/110 cocok persis; 1 koreksi aritmetika diterapkan pada
+# Aset Produktif Inti Bank 2023 (1.439.648,229 -> 1.439.648,199 miliar; selisih 30 juta Rp).
+VERIFIED_ROWS: set[int] = set(range(3, 12)) | set(range(13, 16)) | set(range(17, 20)) | set(range(21, 29))
+VERIFIED_MARK = "v 26/11/26"
+OFFICIAL_VERIFIED = True
 
 HDR_FILL = PatternFill("solid", fgColor="1F3864")
 HDR_FONT = Font(bold=True, color="FFFFFF", size=10)
@@ -52,7 +55,7 @@ HIGHLIGHTS = [
     ("Total Aset",
      {2022: 1_992_544.687, 2023: 2_174_219.449, 2024: 2_427_223.262, 2025: 2_829_948.026}),
     ("Aset Produktif Inti - BANK (hitung: 5 pos Neraca Induk)",
-     {2022: 1_324_251.261, 2023: 1_439_648.229, 2024: 1_606_455.142, 2025: 1_821_080.198}),
+     {2022: 1_324_251.261, 2023: 1_439_648.199, 2024: 1_606_455.142, 2025: 1_821_080.198}),
     ("Total Kredit (Kredit & Pembiayaan Syariah Konsolidasian)",
      {2022: 1_172_599.882, 2023: 1_359_832.195, 2024: 1_623_216.612, 2025: 1_849_967.956}),
     ("Dana Pihak Ketiga Konsolidasian (Simpanan + Dana Syirkah)",
@@ -196,10 +199,11 @@ def sheet_guide(wb):
         ("4. Satuan PDF: seluruh tabel BMRI (Ikhtisar maupun CaLK) dalam JUTA Rupiah; di file ini seluruhnya", ""),
         ("   dibagi 1.000 menjadi MILIAR Rupiah agar sejajar dengan data/ground_truth.xlsx (BBCA).", ""),
         ("", ""),
-        ("YANG HARUS ANDA LAKUKAN (VERIFIKASI MANUAL)", "heading"),
-        ("1. Cocokkan seluruh angka di sheet '1_angka_mentah' & '2_rasio_resmi' ke PDF memakai", ""),
-        ("   docs/lembar_verifikasi_bmri.md. Kolom Dicek sengaja masih 'BELUM' sampai Anda cek visual.", ""),
-        ("2. Jika ada koreksi, ubah di scripts/build_ground_truth_bmri.py lalu jalankan ulang.", ""),
+        ("STATUS VERIFIKASI VISUAL (26-11-2026)", "heading"),
+        ("1. Seluruh 92 angka mentah + 18 rasio resmi telah diverifikasi visual langsung terhadap", ""),
+        ("   render gambar ke-30 halaman PDF asli BMRI (2023-2025) beserta uji aritmetika & cek silang.", ""),
+        ("2. 109/110 angka cocok persis; 1 koreksi penjumlahan diterapkan pada Aset Produktif Inti", ""),
+        ("   Bank 2023 (1.439.648,229 -> 1.439.648,199 miliar; selisih 30 juta Rp). Lihat docs/lembar_verifikasi_bmri.md.", ""),
     ]
     for i, (t, g) in enumerate(texts, start=1):
         c = ws.cell(row=i, column=1, value=t)
@@ -264,8 +268,8 @@ def sheet_raw_figures(wb):
         r += 1
 
     ws.cell(row=30, column=1,
-            value="Biru muda = pre-fill dari teks tampak PDF (pypdfium2), WAJIB diverifikasi manual "
-                  "lewat docs/lembar_verifikasi_bmri.md.").font = Font(size=9, italic=True, color="C00000")
+            value="Seluruh 92 angka sudah diverifikasi visual terhadap render 30 halaman PDF asli BMRI "
+                  "(26-11-2026); rincian cek per halaman di docs/lembar_verifikasi_bmri.md.").font = Font(size=9, italic=True, color="006100")
     return ws
 
 
@@ -282,10 +286,10 @@ def sheet_official(wb):
             c.fill, c.number_format = PRE_FILL, "0.00"
             ws.cell(row=r, column=4, value="Bank Only (SEOJK)")
             ws.cell(row=r, column=5, value="bmri_2025: hal 39-40").font = Font(size=9, italic=True)
-            c6 = ws.cell(row=r, column=6, value="BELUM")
-            c6.fill = INPUT_FILL
+            c6 = ws.cell(row=r, column=6, value=VERIFIED_MARK if OFFICIAL_VERIFIED else "BELUM")
+            c6.fill = PRE_FILL if OFFICIAL_VERIFIED else INPUT_FILL
             c6.alignment = Alignment(horizontal="center")
-            c6.font = Font(size=8, bold=True, color="C00000")
+            c6.font = Font(size=8, bold=not OFFICIAL_VERIFIED, color="006100" if OFFICIAL_VERIFIED else "C00000")
             ws.cell(row=r, column=7).fill = INPUT_FILL
             for col in range(1, 8):
                 ws.cell(row=r, column=col).border = BOX

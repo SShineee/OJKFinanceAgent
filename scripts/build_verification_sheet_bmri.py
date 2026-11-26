@@ -211,7 +211,7 @@ def main():
         "```",
         "  Tahun   Penempatan    + Efek-efek     + Obligasi Pem.  + Reverse Repo  + Kredit Bruto    = Total (juta Rp)",
         "  2022    78.360.194    + 44.932.352    + 262.007.141    +  6.312.523    +   932.639.051   = 1.324.251.261",
-        "  2023    55.274.570    + 43.134.871    + 239.245.751    + 16.205.580    + 1.085.787.427   = 1.439.648.229",
+        "  2023    55.274.570    + 43.134.871    + 239.245.751    + 16.205.580    + 1.085.787.427   = 1.439.648.199",
         "  2024    22.667.518    + 44.703.514    + 221.138.442    +  7.166.266    + 1.310.779.402   = 1.606.455.142",
         "  2025    19.689.791    + 81.717.307    + 219.792.906    +  2.771.530    + 1.497.108.664   = 1.821.080.198",
         "```",
@@ -233,10 +233,12 @@ def main():
         "| NPL nominal — BANK (`KL+D+M`) | 2022–2024 | `bmri_2024.pdf` h428 | `bmri_2025.pdf` h354 (tabel 5 tahun) |",
         "| Ikhtisar Konsolidasian & Rasio Resmi | 2022–2024 | `bmri_2025.pdf` h36–40 | `bmri_2024.pdf` h30–35 & `bmri_2023.pdf` h35–37 |",
         "",
-        "## Setelah semua tercentang",
+        "## Status verifikasi (26-11-2026)",
         "",
-        "- [ ] Perbarui `VERIFIED_ROWS` di `scripts/build_ground_truth_bmri.py` lalu jalankan ulang generatornya",
-        "- [ ] Tandai verifikasi manual selesai di `docs/PANDUAN_MINGGU8.md`",
+        "- [x] Seluruh 92 angka mentah + 18 rasio resmi diverifikasi visual terhadap render gambar 30 halaman PDF asli BMRI (`bmri_2023..2025.pdf`) + uji aritmetika & cross-check antar laporan",
+        "- [x] 1 koreksi penjumlahan diterapkan (`Aset Produktif Inti Bank 2023`: `1.439.648,229` → `1.439.648,199` miliar, selisih 30 juta Rp)",
+        "- [x] `VERIFIED_ROWS` & `OFFICIAL_VERIFIED` diperbarui di `scripts/build_ground_truth_bmri.py` (`v 26/11/26`) dan `data/ground_truth_bmri.xlsx` dibangun ulang",
+        "- [x] Verifikasi dicatat di `docs/PANDUAN_MINGGU8.md` & `docs/ROADMAP.md`",
     ]
 
     OUT.write_text("\n".join(lines), encoding="utf-8")

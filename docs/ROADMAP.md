@@ -543,11 +543,11 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
       - 4 kontekstual/kualitatif ("Apa penyebab kenaikan pendapatan bunga bersih?")
 - [ ] **8.3** Setiap `reference` **wajib** ditulis dari PDF, dengan nomor halaman. Ini yang dipakai `context_recall`.
 - [ ] **8.4** Sebar 30 pertanyaan: ±20 BBCA, ±10 BMRI — jangan semuanya bank pengembangan.
-- [ ] **8.5** **Ground truth rasio BMRI** — ulangi langkah Minggu 1: ekstrak angka mentah,
+- [x] **8.5** **Ground truth rasio BMRI** — ulangi langkah Minggu 1: ekstrak angka mentah,
       cocokkan ke rasio resmi, verifikasi manual. Perkakasnya sudah ada (`validate_ratios.py`,
       `build_ground_truth.py`, `build_verification_sheet.py`), tinggal diberi parameter emiten.
       Rasio resmi BMRI mengikuti SEOJK yang sama dengan BBCA → acuannya sama kuat.
-      *(Progres 26-11-2026: `data/ground_truth_bmri.xlsx`, `docs/lembar_verifikasi_bmri.md`, & `results/validate_ratios_bmri.json` selesai — **6/6 rasio lolos MAPE < 5%**: CAR 0,01%, NPL 0,51%, LDR 0,69%, NIM 1,09%, ROA 3,00% [SEOJK Laba Sebelum Pajak — beda dari fn9 BBCA!], ROE 4,31%; `scripts/check_bmri_chunks.py` **LULUS**; uji retrieval BMRI `results/retrieval_eval_bmri.json` **8/10 = 80,0%**, Hit@1 **80%**, MRR@5 **0,800** tanpa penyetelan `BANK_TERMS` [SHA-256 `8b0840dc…98c4`]; ⏸ tinggal verifikasi visual manual peneliti memakai `docs/lembar_verifikasi_bmri.md`.)*
+      ✅ **Selesai 26-11-2026:** `data/ground_truth_bmri.xlsx`, `docs/lembar_verifikasi_bmri.md`, & `results/validate_ratios_bmri.json` terverifikasi visual pada render gambar seluruh 30 halaman PDF asli (`v 26/11/26`: 109/110 cocok persis, 1 koreksi penjumlahan 30 juta Rp pada `Aset Produktif Inti Bank 2023` → `1.439.648,199` miliar) — **6/6 rasio lolos MAPE < 5%** (CAR 0,01%, NPL 0,51%, LDR 0,69%, NIM 1,09%, ROA 3,00% [SEOJK Laba Sebelum Pajak — beda dari fn9 BBCA!], ROE 4,31%); `scripts/check_bmri_chunks.py` **LULUS**; uji retrieval BMRI `results/retrieval_eval_bmri.json` **8/10 = 80,0%**, Hit@1 **80%**, MRR@5 **0,800** tanpa penyetelan `BANK_TERMS` (SHA-256 `8b0840dc…98c4`).
 
 > **Koreksi atas proposal:** Sub-bab 3.6.1 menyebut RAGAS "tanpa memerlukan ground truth".
 > Itu tidak akurat — `context_recall` **membutuhkan** reference answer. Perbaiki kalimat ini di Bab 3.
