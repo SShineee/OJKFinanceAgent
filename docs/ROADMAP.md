@@ -535,6 +535,7 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 - [ ] **8.1** Buat `eval/datasets/ragas_qa.jsonl`, target **30 pasang**, format:
       `{"question": "...", "reference": "...", "ref_page": 112, "type": "faktual"}`
+      *(Progres 26-11-2026: **15/30 pasang** tahap Minggu 8 selesai — 10 BBCA + 5 BMRI: 6 `faktual`, 4 `multi_hop`, 3 `komparatif` 2023–2025, 2 `kontekstual`; validator `eval/ragas_dataset.py` **LULUS**, 15/15 `ref_page` ada di `data/chunks/*.jsonl`; SHA-256 `f6949282…b19f`; sisa 15 pasang dicicil Minggu 9–16.)*
 - [ ] **8.2** Komposisi yang disarankan:
       - 12 faktual 1-hop ("Berapa laba bersih BCA 2024?")
       - 8 multi-hop ("Berapa ROE 2024?" → butuh laba bersih + ekuitas)
