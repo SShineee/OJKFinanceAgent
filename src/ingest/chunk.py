@@ -93,8 +93,10 @@ RECORD_FIELDS = ["chunk_id", "doc_id", "ticker", "sector", "year", "page", "page
 # versi longgar hanya menambah halaman itu, tanpa halaman campur. page_filter TIDAK diubah, karena
 # aturannya menentukan halaman yang di-parse (dan cache-nya) di Minggu 3.
 UNIT_PHRASES = {
-    "million_idr": ["jutaan rupiah", "juta rupiah", "millions of rupiah"],
-    "billion_idr": ["miliaran rupiah", "miliar rupiah", "billions of rupiah"],
+    "million_idr": ["jutaan rupiah", "juta rupiah", "rp juta", "rp jutaan",
+                    "millions of rupiah", "million rupiah"],
+    "billion_idr": ["miliaran rupiah", "miliar rupiah", "rp miliar", "rp miliaran",
+                    "billions of rupiah", "billion rupiah"],
     "thousand_usd": UNIT_MARKERS["thousand_usd"],    # belum diuji pada laporan sungguhan (R15)
 }
 

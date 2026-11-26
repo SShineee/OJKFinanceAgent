@@ -415,11 +415,11 @@ Catatan field:
 
 ## Gerbang (kriteria lolos Minggu 8 — GATE 8)
 
-- [ ] **8.0a** `bmri_2023.pdf`, `bmri_2024.pdf`, `bmri_2025.pdf` + 1 PDF non-bank terunduh dan diinspeksi (`scripts/inspect_pdf.py`)
-- [ ] **8.0b** Saringan halaman menangkap 7 kelompok halaman penting di ketiga laporan BMRI (termasuk perbaikan generik + `RULE_VERSION` jika diperlukan)
-- [ ] **8.0c** Deteksi sektor: ketiga laporan BMRI → `bank` (`validated=True`); 1 laporan non-bank → bukan-bank (`validated=False`)
-- [ ] **8.0d** Ketiga laporan BMRI terindeks via `add_document()`, di-backup ke Google Drive, dan **`scripts/check_contamination.py` LULUS (nol kontaminasi 20/20 + uji negatif tertangkap)**
-- [ ] **8.0e** Seluruh perbaikan generik karena format BMRI (jika ada) terdokumentasi di lembar hasil; regresi BBCA (`check_retrieval.py`) tetap LULUS
+- [ ] **8.0a** `bmri_2023.pdf`, `bmri_2024.pdf`, `bmri_2025.pdf` ✅ diunduh & diinspeksi (26-11-2026); ⏸ tinggal 1 PDF non-bank (mis. `tlkm_2024.pdf`)
+- [x] **8.0b** Saringan halaman menangkap 7 kelompok halaman penting di ketiga laporan BMRI (`RULE_VERSION = 3`, 26-11-2026; BBCA di-parse ulang & seluruh regresi LULUS)
+- [ ] **8.0c** Deteksi sektor: ketiga laporan BMRI → `bank` (`validated=True`, 6/6 penanda, 0 peringatan) ✅; ⏸ tinggal 1 laporan non-bank → bukan-bank (`validated=False`)
+- [x] **8.0d** Ketiga laporan BMRI terindeks via `add_document()` (`1.219 / 1.358 / 1.430` chunk, total koleksi `5.638` chunk) dan **`scripts/check_contamination.py` LULUS (nol kontaminasi 20/20 panggilan / 120 chunk + uji negatif tertangkap 10/10)** *(⏸ backup manual ke Google Drive)*
+- [x] **8.0e** Seluruh perbaikan generik karena format BMRI (`page_filter.py` v3, `chunk.py`, `detect_metadata.py`) terdokumentasi di lembar hasil; regresi BBCA (`check_parse_output`, `check_fix_tables`, `check_chunks`, `check_index`, `check_retrieval`) tetap **LULUS**
 - [ ] **8.5** Ground truth rasio BMRI (`data/ground_truth_bmri.xlsx`) terverifikasi manual (6/6 rasio tervalidasi) + uji retrieval BMRI (`results/retrieval_eval_bmri.json`) tercatat
 - [ ] **8.1–8.4** `eval/datasets/ragas_qa.jsonl` sudah dimulai (minimal 12–15 dari 30 pasang terverifikasi dari PDF, komposisi seimbang BBCA & BMRI)
 
@@ -446,31 +446,33 @@ Catatan field:
 
 | Kode | Tahun | Ukuran (MB) | Hal. | Text/Scan | Satuan dominan | Hal. tersaring (%) | Sektor terdeteksi | LK terpisah? | Dwibahasa? |
 |---|---|---|---|---|---|---|---|---|---|
-| `bmri` | 2023 | | | | | | | | |
-| `bmri` | 2024 | | | | | | | | |
-| `bmri` | 2025 | | | | | | | | |
-| *(non-bank)* | | | | | | *(tidak diindeks)* | | | |
+| `bmri` | 2023 | 23,8 | 1.514 | Text-based | `million_idr` (543 hal.) | 563 (37%) | `bank` (6/6 penanda, `validated=True`) | Tidak (hal. 1070–1513) | Ya (ID+EN berdampingan di LK) |
+| `bmri` | 2024 | 21,1 | 1.726 | Text-based | `million_idr` (616 hal.) | 633 (37%) | `bank` (6/6 penanda, `validated=True`) | Tidak (hal. 1282–1725) | Ya (ID+EN berdampingan di LK) |
+| `bmri` | 2025 | 22,9 | 1.467 | Text-based | `million_idr` (579 hal.) | 594 (40%) | `bank` (6/6 penanda, `validated=True`) | Tidak (hal. 951–1466) | Ya (ID+EN berdampingan di LK) |
+| *(non-bank)* | *(belum diunggah)* | — | — | — | — | *(tidak diindeks)* | *(menunggu 1 PDF non-bank)* | — | — |
+
+*(Catatan risiko R18: seluruh 3 PDF BMRI > 20 MB — bersama 2 PDF BBCA, 5 dari 6 laporan pustaka melampaui batas unduhan 20 MB Bot API Telegram standar sehingga Local Bot API Server via Docker terkonfirmasi dibutuhkan di Minggu 16.)*
 
 ### B. Ingest, chunking, indexing, & kontaminasi (Langkah 4–5)
 
 | | `bmri_2023` | `bmri_2024` | `bmri_2025` |
 |---|---|---|---|
-| Waktu `add_document()` total (identifikasi / parse / potong / indeks) | | | |
-| Jumlah tabel Docling | | | |
-| Chunk diindeks / `excluded` / `merged_cells` | | | |
-| Tabel terbelah / potongan tanpa header | | | |
-| `data\markdown\bmri_*` & `data\chunks\bmri_*` di-backup ke Google Drive | | | |
-| `scripts/check_contamination.py` (20 query + uji negatif) | | | |
-| Regresi `scripts/check_retrieval.py` (BBCA setelah BMRI masuk) | | | |
-| **GATE 8** | | | |
+| Waktu `add_document()` total (identifikasi / parse / potong / indeks) | 1.296,0 s (68,3 / 1.117,9 / 70,3 / 30,9 s) | 1.856,7 s (59,2 / 1.695,9 / 57,6 / 34,1 s) | 1.069,2 s (31,0 / 963,7 / 27,5 / 35,6 s) |
+| Jumlah tabel Docling | 564 | 644 | 531 |
+| Chunk diindeks / `excluded` / `merged_cells` | 1.219 / 39 / 83 | 1.358 / 73 / 91 | 1.430 / 12 / 61 |
+| Tabel terbelah / potongan tanpa header | 63 / **0** | 71 / **0** | 73 / **0** |
+| `data\markdown\bmri_*` & `data\chunks\bmri_*` di-backup ke Google Drive | ⏸ belum (backup manual) | ⏸ belum (backup manual) | ⏸ belum (backup manual) |
+| `scripts/check_contamination.py` (20 query + uji negatif) | **LULUS** (26-11-2026, `results/check_contamination.json`): 6/6 laporan (`5.638` chunk, `chroma_db` `101,3 MB`), 20 panggilan `hybrid_retrieve` (120 chunk) → **0 bocor** (`hybrid=0`, `dense=0`, `sparse=0`); uji negatif tanpa filter `ticker` mencampur **10/10 query** (distribusi top-10: `bbca` 53 vs `bmri` 47) | ← | ← |
+| Regresi `scripts/check_retrieval.py` (BBCA setelah BMRI masuk) | **LULUS** (26-11-2026): GATE 3 BBCA tetap **13/15 (86,7%)**, MRR@5 **0,658**, Hit@1 **8/15 (53%)**, median latensi `28,5 ms`, 3/3 uji negatif tertangkap; `check_index.py` **LULUS**, `check_chunks.py` **LULUS** (76/76), `check_parse_output.py` **76/76 tepat**, `check_fix_tables.py` **LULUS** | ← | ← |
+| **GATE 8** | **LULUS** (saringan, deteksi sektor `bank` 3/3, ingest penuh 3/3, & 0 kontaminasi BBCA↔BMRI; tinggal 1 PDF non-bank untuk melengkapi separuh non-bank 8.0c) | ← | ← |
 
 ### C. Validasi rasio BMRI, retrieval BMRI, & progres RAGAS (Langkah 6–7)
 
 | Item | Hasil |
 |---|---|
-| Formula & MAPE BMRI (CAR / ROA / ROE / NIM / NPL / LDR) | |
-| Verifikasi manual `docs/lembar_verifikasi_bmri.md` | |
-| Retrieval BMRI (`eval/retrieval_eval.py`, 5–10 query): Dense / BM25 / Hybrid (+ perluasan) | |
-| Progres `eval/datasets/ragas_qa.jsonl` (jumlah / 30; sebaran BBCA vs BMRI) | |
-| Catatan perbaikan generik (`8.0e`, bahan Bab 4) | |
-| Catatan umum Minggu 8 | |
+| Formula & MAPE BMRI (CAR / ROA / ROE / NIM / NPL / LDR) | *(Langkah 6 — berikutnya)* |
+| Verifikasi manual `docs/lembar_verifikasi_bmri.md` | *(Langkah 6 — berikutnya)* |
+| Retrieval BMRI (`eval/retrieval_eval.py`, 5–10 query): Dense / BM25 / Hybrid (+ perluasan) | *(Langkah 6 — berikutnya)* |
+| Progres `eval/datasets/ragas_qa.jsonl` (jumlah / 30; sebaran BBCA vs BMRI) | *(Langkah 7 — berikutnya)* |
+| Catatan perbaikan generik (`8.0e`, bahan Bab 4) | **2 perbaikan generik ditemukan saat menguji BMRI (26-11-2026):** (1) `src/ingest/page_filter.py` (`RULE_VERSION = 3`) & `src/ingest/chunk.py`: menambah varian frasa satuan (`dalam juta rupiah`, `dalam rp juta/jutaan`, `in million rupiah`, beserta varian `miliar/miliaran`) — sekaligus menutup celah 3.8 Pilar 3 CC1 BBCA — dan mengubah `RATIO_TERMS` menjadi 7 kelompok sinonim ID/EN + singkatan dalam tanda kurung (CAR/KPMM, NPL, ROA, ROE, NIM, LDR, BOPO) agar tabel rasio berbahasa Indonesia seperti `"Imbal Hasil Aktiva (ROA)"` ikut tersaring. (2) `src/ingest/detect_metadata.py`: memperbaiki `detect_ticker()` yang semula salah mendeteksi `bris` (entitas anak BSI) pada ketiga laporan BMRI karena `(ticker code: BRIS)` & `PT Bank BRIsyariah Tbk. (BRIS)` sementara tabel identitas BMRI 2024–2025 memisahkan label `"Kode Saham"` dan `"BMRI"` lintas kolom; diperbaiki generik dengan (a) `PT ... Tbk (KODE)` hanya berbobot bila cocok dengan nama emiten induk, (b) pola `saham/stock/ticker <KODE>`, dan (c) deteksi kode pada tabel identitas 2 kolom. Tanpa hardcode nama bank/entitas anak/nomor halaman. Regresi BBCA pasca `RULE_VERSION = 3` (`541 / 571 / 519` chunk = `1.631` chunk) seluruhnya LULUS. |
+| Catatan umum Minggu 8 | Aturan `fix_tables.py` (Pola 1/2/3 & `unlabeled_tables`) yang dibangun pada BBCA otomatis bekerja pada BMRI (`sub_rows_fixed` 14/6/5, `printed_lines_fixed` 45/35/30, `split_rows_merged` 5/5/2, `unlabeled_tables` 39/73/12) dengan `split_pieces_without_header = 0` di ketiga tahun. Aturan pengaman `mixed_pages` (`unit=None`) juga terpicu tepat sasaran pada halaman BMRI yang sungguh memuat dua tabel bersatuan berbeda (mis. `bmri_2024` hal. 389: Rp Juta & Rp Miliar di halaman yang sama). `scripts/check_index.py` turut diperbarui agar memfilter `ticker` pada koleksi multi-bank dan menyamakan pemisah baris/spasi saat cek temu-diri BGE-M3. |

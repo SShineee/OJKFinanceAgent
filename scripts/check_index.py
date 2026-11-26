@@ -53,7 +53,8 @@ from src.ingest.chunk import load_chunks
 from src.retrieval import index, sparse
 from src.retrieval.embed import embed_query, embed_texts
 
-EXPECTED = {2023: 514, 2024: 540, 2025: 498}
+# Diukur 26-11-2026, aturan saringan versi 3 (8.0e)
+EXPECTED = {2023: 541, 2024: 571, 2025: 519}
 TICKER = config.DEV_TICKER
 SELF_SAMPLES = 250
 # baris xlsx (sheet 1_angka_mentah) -> nama item seperti pertanyaan pengguna; nilai 2025 dalam miliar
@@ -76,10 +77,10 @@ def expected_records(years) -> tuple[dict, set]:
 
 
 def check_contents(col, years) -> list[str]:
-    """A + B: isi dan metadata koleksi = chunk diindeks di .jsonl."""
+    """A + B: isi dan metadata koleksi untuk TICKER = chunk diindeks di .jsonl."""
     out = []
     want, excluded = expected_records(years)
-    got = col.get(include=["metadatas", "documents"])
+    got = col.get(where={"ticker": TICKER}, include=["metadatas", "documents"])
     ids = got["ids"]
     if len(ids) != len(set(ids)):
         out.append(f"[A] id ganda di Chroma: {len(ids) - len(set(ids))}")
@@ -133,8 +134,11 @@ def check_vectors(col, seed: int = 0) -> list[str]:
     position = {i: k for k, i in enumerate(ids)}
     sample = random.Random(seed).sample(range(len(ids)), min(SELF_SAMPLES, len(ids)))
     res = col.query(query_embeddings=E[sample], n_results=1, include=["distances"])
+    # BGE-M3 (SentencePiece) menyamakan spasi dan baris baru, jadi dua chunk yang hanya berbeda
+    # pemisah baris menghasilkan vektor identik (jarak ~0, mis. bbca_2023_0223 vs bbca_2023_0226).
+    same = lambda a, b: " ".join(a.split()) == " ".join(b.split())
     wrong = [ids[s] for r, d, s in zip(res["ids"], res["distances"], sample)
-             if not (r[0] == ids[s] or (docs[position[r[0]]] == docs[s] and d[0] < 1e-4))]
+             if not (r[0] == ids[s] or (same(docs[position[r[0]]], docs[s]) and d[0] < 1e-4))]
     if wrong:
         out.append(f"[C] temu-diri gagal {len(wrong)}/{len(sample)}: {wrong[:3]}")
     return out
@@ -160,7 +164,8 @@ def check_filters(col) -> list[str]:
                         where={"$and": [{"ticker": TICKER}, {"year": y}]})
         if any(m["year"] != y or m["ticker"] != TICKER for m in res["metadatas"][0]):
             out.append(f"[E] filter {TICKER}+{y} mengembalikan laporan lain")
-    res = col.get(where={"$and": [{"year": 2024}, {"pages": {"$contains": 703}}]}, include=["documents", "metadatas"])
+    res = col.get(where={"$and": [{"ticker": TICKER}, {"year": 2024}, {"pages": {"$contains": 703}}]},
+                  include=["documents", "metadatas"])
     if not res["ids"] or not any("Rasio KPMM" in d for d in res["documents"]):
         out.append("[E] filter {'pages': {'$contains': 703}} 2024 tidak mengembalikan chunk KPMM")
     before = col.count()

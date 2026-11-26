@@ -121,6 +121,17 @@ def synthetic_cases():
           warn=True, ticker=None)
     check("dua kode saham sama kuat", detect_metadata(report(code="Kode Saham CNTH Kode Saham ZZZZ")),
           warn=True)
+    # Temuan Minggu 8 (8.0c/8.0e): anak usaha menyebut kode saham sendiri + tabel identitas 2 kolom
+    sub_and_2col = report(
+        page("IDENTITAS PERUSAHAAN", "Modal Dasar", "Kode Saham", "Pencatatan di Bursa Efek Indonesia",
+             "PT Contoh Sejahtera Tbk", "CNTH", "14 Juli 2003"),
+        *[page("Kinerja Saham CNTH tahun 2024")] * 6,
+        page("Entitas anak tercatat di bursa (ticker code: ANAK) melalui PT Bank Anak Tbk. (ANAK)"),
+        page("PT Bank Anak Tbk (ANAK) merupakan entitas anak"),
+        code="Tanggal pencatatan 14 Juli 2003",
+    )
+    check("tabel identitas 2 kolom + anak usaha menyebut kode sendiri -> induk",
+          detect_metadata(sub_and_2col), ticker="cnth")
     check("hasil scan (hampir tanpa teks)", detect_metadata(report() + [""] * 10),
           warn=True, year=2024)
 

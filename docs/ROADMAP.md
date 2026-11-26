@@ -511,25 +511,27 @@ Ini penyebab nomor 1 skripsi molor. Cicil dari sekarang: **3 pertanyaan per hari
 Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ada di
 `docs/PANDUAN_MINGGU2.md` Langkah 12 (disusun di Minggu 2, dipakai sekarang).
 
-- [ ] **8.0a** Unduh laporan tahunan **BMRI** 2023–2025 ke `data/raw/bmri_<tahun>.pdf`, lalu
+- [x] **8.0a** Unduh laporan tahunan **BMRI** 2023–2025 ke `data/raw/bmri_<tahun>.pdf`, lalu
       `python scripts/inspect_pdf.py`. Catat satuan, ukuran file, dwibahasa / LK terpisah. BBRI opsional.
-- [ ] **8.0b** Uji saringan halaman pada BMRI: apakah Catatan KPMM, Entitas Induk, dan Catatan
+      ✅ **26-11-2026:** ketiganya text-based (`23,8 / 21,1 / 22,9 MB` — semua > 20 MB, menguatkan R18; `1.514 / 1.726 / 1.467` hal.), satuan dominan `million_idr`, LK menyatu & dwibahasa ID+EN.
+- [x] **8.0b** Uji saringan halaman pada BMRI: apakah Catatan KPMM, Entitas Induk, dan Catatan
       NPL ikut tersaring? Kalau tidak, saringan terlalu khas BBCA.
-      ⚠️ Dari 3.8 (15-11-2026): saringan **belum mengenali "dalam juta rupiah"** (tanpa "-an") —
-      BBCA kehilangan 8 / 8 / 1 halaman karenanya (Pilar 3 Komposisi Permodalan CC1, hal 161–167
-      `bbca_2023`, 159–165 `bbca_2024`); formulir "Laporan KPMM dan ATMR" sebagian tanpa penanda
-      satuan sama sekali. Tak satu pun angka ground truth hilang (angkanya juga di Catatan KPMM).
-      Tambahkan variannya di sini, bersama varian BMRI → RULE_VERSION 3 → parse ulang BBCA.
+      ✅ **26-11-2026 (`RULE_VERSION = 3`):** ditambah varian penanda satuan (`dalam juta rupiah`, `dalam rp juta/jutaan`, `in million rupiah`, beserta `miliar/miliaran`) + 7 kelompok sinonim rasio ID/EN (`RATIO_TERMS`), sekaligus menutup celah 3.8 Pilar 3 CC1 BBCA. BMRI lolos `563 / 633 / 594` hal. (37–40%) mencakup seluruh 7 kelompok halaman penting; BBCA di-parse ulang (`273 / 274 / 235` hal., `541 / 571 / 519` chunk) dan seluruh regresi (`check_page_filter`, `check_parse_output` 76/76, `check_fix_tables`, `check_chunks`, `check_index`, `check_retrieval`) **LULUS**.
 - [ ] **8.0c** Uji deteksi sektor: BMRI → bank; **1 laporan non-bank apa saja** (cukup 1 tahun,
       mis. TLKM) → bukan bank → profil umum.
-- [ ] **8.0d** Masukkan BMRI ke pustaka, lalu **uji kontaminasi**: 10 query per bank, **tidak
+      *(BMRI ✅ 26-11-2026: 3/3 `ticker=bmri`, `company=PT Bank Mandiri (Persero) Tbk`, `sector=bank` 6/6 penanda, 0 peringatan; ⏸ tinggal 1 PDF non-bank.)*
+- [x] **8.0d** Masukkan BMRI ke pustaka, lalu **uji kontaminasi**: 10 query per bank, **tidak
       boleh ada satu pun chunk bank lain** di hasil. Tier 1 BBCA yang terselip ke analisis BMRI
       tidak akan terlihat salah — tapi hasilnya salah.
-- [ ] **8.0e** Kalau pipeline perlu diperbaiki karena format BMRI: perbaikan harus **generik**
+      ✅ **26-11-2026:** 3 laporan BMRI masuk via `add_document()` (`1.219 / 1.358 / 1.430` chunk, `0` potongan tabel tanpa header; total koleksi `5.638` chunk, `chroma_db` `101,3 MB`). `scripts/check_contamination.py` **LULUS** (`results/check_contamination.json`): **0/120 bocor** (20 panggilan `hybrid_retrieve` + `dense`/`sparse`), uji negatif tanpa filter `ticker` mencampur **10/10 query** (`bbca` 53 vs `bmri` 47), regresi GATE 3 BBCA tetap **13/15 (86,7%)**.
+- [x] **8.0e** Kalau pipeline perlu diperbaiki karena format BMRI: perbaikan harus **generik**
       (mis. menangani laporan dwibahasa), bukan menyesuaikan prompt ke isi BMRI — dan dicatat
       untuk Bab 4. Prompt Extraction Agent tetap dirancang dengan BBCA saja.
+      ✅ **26-11-2026:** 2 perbaikan generik terdokumentasi di `docs/PANDUAN_MINGGU8.md` (`page_filter.py` v3 + `chunk.py` untuk varian satuan & rasio ID/EN; `detect_metadata.py` untuk mencegah kode saham anak usaha mengalahkan induk + tabel identitas 2 kolom).
 
 > **GATE 8:** saringan & deteksi sektor bekerja pada BMRI; **nol kontaminasi** antar bank.
+>
+> **Status (26-11-2026):** ✅ **GATE 8 LULUS** (saringan v3, deteksi sektor `bank` 3/3, ingest penuh 3/3, 0 kontaminasi BBCA↔BMRI, regresi BBCA utuh; ⏸ tinggal 1 PDF non-bank untuk melengkapi separuh non-bank 8.0c, backup Google Drive, lalu lanjut 8.5 & 8.1–8.4).
 
 - [ ] **8.1** Buat `eval/datasets/ragas_qa.jsonl`, target **30 pasang**, format:
       `{"question": "...", "reference": "...", "ref_page": 112, "type": "faktual"}`

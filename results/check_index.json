@@ -1,9 +1,12 @@
 {
-  "chroma_count": 1552,
+  "chroma_count": 5638,
   "indexed": {
-    "bbca_2023": 514,
-    "bbca_2024": 540,
-    "bbca_2025": 498
+    "bbca_2023": 541,
+    "bbca_2024": 571,
+    "bbca_2025": 519,
+    "bmri_2023": 1219,
+    "bmri_2024": 1358,
+    "bmri_2025": 1430
   },
   "smoke": {
     "query": "laba bersih",
@@ -114,6 +117,6 @@
   },
   "failures": [],
   "passed": true,
-  "chroma_mb": 23.9,
-  "seconds": 3.5
+  "chroma_mb": 101.3,
+  "seconds": 4.3
 }

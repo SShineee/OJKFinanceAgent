@@ -59,9 +59,25 @@ COMPANY = re.compile(rf"\bPT\.? ((?:{NAME_WORD} ){{1,8}}?)(?:Tbk|TBK)\b")
 TICKER_PATTERNS = (   # (pola, bobot, nama)
     (re.compile(r"(?i:kode saham|kode efek|stock code|ticker code|share code|stock ticker)"
                 r" ?:? ?([A-Z]{4})\b"), 5, "kode saham"),
-    (re.compile(r"\((?i:idx|bei) ?: ?([A-Z]{4})\)"), 1, "(IDX: kode)"),
-    (re.compile(r"(?:Tbk|TBK)\.? ?\(([A-Z]{4})\)"), 1, "Tbk (kode)"),
+    (re.compile(r"\((?i:idx|bei) ?: ?([A-Z]{4})\)"), 2, "(IDX: kode)"),
 )
+COMPANY_TBK_CODE = re.compile(rf"\bPT\.? ((?:{NAME_WORD} ){{1,8}}?)(?:Tbk|TBK)\.? ?\(([A-Z]{{4}})\)")
+SAHAM_CODE = re.compile(r"(?i:\bsaham|\bstock|\bticker)\s+([A-Z]{4})\b")
+IDENTITY_LABEL = re.compile(r"(?i:kode saham|kode efek|stock code|ticker code|share code|stock ticker)")
+IDENTITY_CUES = ("modal dasar", "pencatatan di bursa", "identitas perusahaan", "corporate identity")
+FOUR_CAPS = re.compile(r"\b([A-Z]{4})\b")
+# Kata/singkatan umum 4 huruf kapital yang bukan kode saham BEI (bukan daftar pengecualian emiten)
+NON_TICKER_WORDS = frozenset({
+    "AKTA", "ASET", "ASIA", "ATAS", "ATAU", "ATMR", "AUTO", "BANK", "BARU", "BASE", "BEST", "BOND",
+    "BOPO", "BMPK", "BUKU", "BUMN", "BVPS", "CAGR", "CARD", "CARE", "CASA", "CASH", "CKPN", "CORE",
+    "CORP", "COST", "DANA", "DARI", "DATA", "DATE", "DEBT", "DESA", "ESOP", "FILE", "FREE", "FTSE",
+    "FUND", "GAIN", "GOOD", "HIGH", "IFRS", "IHSG", "INDO", "INFO", "ITEM", "JAYA", "JUTA", "KBMI",
+    "KODE", "KOTA", "KPEI", "KPMM", "KSEI", "LABA", "LAIN", "LIFE", "LINE", "LOAN", "LOSS", "MAIN",
+    "MSCI", "MSOP", "NAMA", "NOTE", "NPWP", "NSFR", "OPEN", "PADA", "PAGE", "PART", "PERS", "PLAN",
+    "POJK", "PSAK", "QRIS", "RATE", "REAL", "RISK", "ROLE", "RUGI", "RUPS", "SALE", "SEBI", "SELF",
+    "SERI", "SIUP", "SWIF", "TEAM", "TERM", "TEXT", "TIME", "TRUE", "UMKM", "UNIT", "VISA", "WORK",
+    "YANG", "YEAR",
+})
 
 # --- sektor (teks sesudah normalize(): huruf kecil, tanda hubung antar kata = spasi) -------
 BANK_MARKERS = {
@@ -178,13 +194,39 @@ def detect_company(flat: list[str]) -> tuple[str | None, str, list[str]]:
     return company, f"{total}x", []
 
 
-def detect_ticker(flat: list[str]) -> tuple[str | None, str, list[str]]:
+def detect_ticker(flat: list[str], company: str | None = None) -> tuple[str | None, str, list[str]]:
+    # Hitung seberapa banyak halaman setiap token 4 huruf kapital muncul (untuk tabel identitas 2 kolom)
+    code_pages: Counter = Counter()
+    for text in flat:
+        code_pages.update(set(FOUR_CAPS.findall(text)))
+
+    company_key = company.casefold() if company else None
     votes, seen = Counter(), {}
     for page, text in enumerate(flat, 1):
         for pattern, weight, name in TICKER_PATTERNS:
             for code in pattern.findall(text):
                 votes[code] += weight
                 seen.setdefault(code, {}).setdefault(name, page)
+        # PT ... Tbk (KODE): hanya dihitung bila nama perusahaannya cocok dengan `company` utama
+        # (mencegah narasi anak usaha seperti "PT Bank Anak Tbk (ANAK)" mencuri suara emiten induk).
+        for m in COMPANY_TBK_CODE.finditer(text):
+            found_company = f"PT {m.group(1).strip().rstrip(',')} Tbk".casefold()
+            code = m.group(2)
+            if company_key is None or found_company == company_key:
+                votes[code] += 2
+                seen.setdefault(code, {}).setdefault("Tbk (kode)", page)
+        for code in SAHAM_CODE.findall(text):
+            if code not in NON_TICKER_WORDS:
+                votes[code] += 1
+                seen.setdefault(code, {}).setdefault("saham kode", page)
+        # Tabel identitas 2 kolom: label "Kode Saham" berada di blok kiri dan nilai kode di blok kanan
+        # teks linear pada halaman yang sama (mis. BMRI 2024 hal 94 & 2025 hal 87).
+        low = text.lower()
+        if IDENTITY_LABEL.search(text) and any(cue in low for cue in IDENTITY_CUES):
+            for code in set(FOUR_CAPS.findall(text)):
+                if code not in NON_TICKER_WORDS and code_pages[code] >= 3:
+                    votes[code] += 5
+                    seen.setdefault(code, {}).setdefault("tabel identitas", page)
     if not votes:
         return None, "", ["kode saham tidak ditemukan"]
     (code, score), *rest = votes.most_common()
@@ -243,7 +285,7 @@ def detect_metadata(texts: list[str], source: str = "",
 
     year, year_ev, year_w = detect_year(norm)
     company, company_ev, company_w = detect_company(flat)
-    ticker, ticker_ev, ticker_w = detect_ticker(flat)
+    ticker, ticker_ev, ticker_w = detect_ticker(flat, company)
     sector, sector_ev, sector_w = detect_sector(norm)
     warnings = year_w + company_w + ticker_w + sector_w
 

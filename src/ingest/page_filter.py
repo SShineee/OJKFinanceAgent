@@ -36,21 +36,36 @@ from pypdf import PdfReader
 # parse yang dibuat dengan aturan lama bisa dikenali dan diparse ulang.
 #   1 (28-10-2026) penanda satuan + >= 3 istilah rasio, teks hanya di-lowercase
 #   2 (30-10-2026) + normalize(): istilah yang terpotong ganti baris / tanda hubung tetap cocok
-RULE_VERSION = 2
+#   3 (26-11-2026) + varian satuan ("dalam juta rupiah" / "dalam rp juta") dan sinonim rasio
+#                  Indonesia + singkatan dalam kurung di RATIO_TERMS (temuan 3.8 & uji BMRI 8.0b)
+RULE_VERSION = 3
 
 # satuan -> penandanya. Kunci satuan dipakai juga oleh detect_metadata & .meta.json.
 UNIT_MARKERS = {
-    "million_idr": ["dalam jutaan rupiah", "in millions of rupiah"],
-    "billion_idr": ["dalam miliaran rupiah", "dalam miliar rupiah", "in billions of rupiah"],
+    "million_idr": [
+        "dalam jutaan rupiah", "dalam juta rupiah", "dalam rp juta", "dalam rp jutaan",
+        "in millions of rupiah", "in million rupiah",
+    ],
+    "billion_idr": [
+        "dalam miliaran rupiah", "dalam miliar rupiah", "dalam rp miliar", "dalam rp miliaran",
+        "in billions of rupiah", "in billion rupiah",
+    ],
     # Untuk emiten berlaporan Dolar AS (risiko R15). BELUM DIUJI pada laporan sungguhan --
-    # di ketiga laporan BCA penanda ini muncul di 0 halaman.
+    # di laporan BCA & BMRI penanda ini muncul di 0 halaman.
     "thousand_usd": ["dalam ribuan dolar amerika serikat", "in thousands of us dollars",
                      "in thousands of united states dollars"],
 }
+# Kelompok sinonim per rasio perbankan (Inggris, Indonesia, dan singkatan dalam kurung).
+# Satu kelompok dihitung maksimal sekali -> halaman lolos kalau memuat >= MIN_RATIO_TERMS rasio berbeda.
 RATIO_TERMS = [
-    "capital adequacy ratio", "non performing loan", "return on asset",
-    "return on equity", "net interest margin", "loan to deposit ratio",
-    "beban operasional terhadap pendapatan operasional",
+    ("capital adequacy ratio", "kewajiban penyediaan modal minimum", "(car)", "(kpmm)"),
+    ("non performing loan", "kredit bermasalah", "(npl)"),
+    ("return on asset", "imbal hasil aset", "imbal hasil aktiva", "(roa)"),
+    ("return on equity", "imbal hasil ekuitas", "(roe)"),
+    ("net interest margin", "marjin bunga bersih", "(nim)"),
+    ("loan to deposit ratio", "(ldr)"),
+    ("beban operasional terhadap pendapatan operasional",
+     "beban operasional terhadap penghasilan operasional", "(bopo)"),
 ]
 MIN_RATIO_TERMS = 3
 
@@ -137,7 +152,7 @@ def select_pages(texts: list[str], source: str = "") -> PageSelection:
         text = normalize(raw)
         units = [u for u, markers in UNIT_MARKERS.items() if any(m in text for m in markers)]
         unit_counts.update(units)
-        has_ratio_terms = sum(term in text for term in RATIO_TERMS) >= MIN_RATIO_TERMS
+        has_ratio_terms = sum(any(alias in text for alias in group) for group in RATIO_TERMS) >= MIN_RATIO_TERMS
         reason = "+".join(name for name, hit in (("unit", units), ("ratio", has_ratio_terms)) if hit)
         if reason:
             reasons[number] = reason

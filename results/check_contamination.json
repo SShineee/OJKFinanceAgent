@@ -1,0 +1,361 @@
+{
+  "library": {
+    "chroma_total": 5638,
+    "reports": {
+      "bbca_2023": 541,
+      "bbca_2024": 571,
+      "bbca_2025": 519,
+      "bmri_2023": 1219,
+      "bmri_2024": 1358,
+      "bmri_2025": 1430
+    },
+    "expected_reports": 6,
+    "found_reports": 6
+  },
+  "isolation": {
+    "queries_per_bank": 10,
+    "total_calls": 20,
+    "total_chunks_checked": 120,
+    "hybrid_leaks": 0,
+    "dense_leaks": 0,
+    "sparse_leaks": 0,
+    "details": [
+      {
+        "id": "c01",
+        "ticker": "bbca",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2024_0044",
+        "top1_pages": [
+          161
+        ]
+      },
+      {
+        "id": "c01",
+        "ticker": "bmri",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2024_0152",
+        "top1_pages": [
+          430
+        ]
+      },
+      {
+        "id": "c02",
+        "ticker": "bbca",
+        "year": 2025,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2025_0517",
+        "top1_pages": [
+          594
+        ]
+      },
+      {
+        "id": "c02",
+        "ticker": "bmri",
+        "year": 2025,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2025_1363",
+        "top1_pages": [
+          1433
+        ]
+      },
+      {
+        "id": "c03",
+        "ticker": "bbca",
+        "year": 2023,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2023_0007",
+        "top1_pages": [
+          19
+        ]
+      },
+      {
+        "id": "c03",
+        "ticker": "bmri",
+        "year": 2023,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2023_0008",
+        "top1_pages": [
+          36
+        ]
+      },
+      {
+        "id": "c04",
+        "ticker": "bbca",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2024_0201",
+        "top1_pages": [
+          542,
+          543
+        ]
+      },
+      {
+        "id": "c04",
+        "ticker": "bmri",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2024_0126",
+        "top1_pages": [
+          420
+        ]
+      },
+      {
+        "id": "c05",
+        "ticker": "bbca",
+        "year": 2025,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2025_0159",
+        "top1_pages": [
+          207
+        ]
+      },
+      {
+        "id": "c05",
+        "ticker": "bmri",
+        "year": 2025,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2025_0106",
+        "top1_pages": [
+          340
+        ]
+      },
+      {
+        "id": "c06",
+        "ticker": "bbca",
+        "year": 2023,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2023_0326",
+        "top1_pages": [
+          637
+        ]
+      },
+      {
+        "id": "c06",
+        "ticker": "bmri",
+        "year": 2023,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2023_1133",
+        "top1_pages": [
+          1456
+        ]
+      },
+      {
+        "id": "c07",
+        "ticker": "bbca",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2024_0011",
+        "top1_pages": [
+          28
+        ]
+      },
+      {
+        "id": "c07",
+        "ticker": "bmri",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2024_0146",
+        "top1_pages": [
+          427
+        ]
+      },
+      {
+        "id": "c08",
+        "ticker": "bbca",
+        "year": 2025,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2025_0162",
+        "top1_pages": [
+          208
+        ]
+      },
+      {
+        "id": "c08",
+        "ticker": "bmri",
+        "year": 2025,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2025_0094",
+        "top1_pages": [
+          331
+        ]
+      },
+      {
+        "id": "c09",
+        "ticker": "bbca",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bbca_2024_0025",
+        "top1_pages": [
+          140
+        ]
+      },
+      {
+        "id": "c09",
+        "ticker": "bmri",
+        "year": 2024,
+        "returned": 5,
+        "leaks": 0,
+        "top1_id": "bmri_2024_0015",
+        "top1_pages": [
+          282
+        ]
+      },
+      {
+        "id": "c10",
+        "ticker": "bbca",
+        "year": null,
+        "returned": 15,
+        "leaks": 0,
+        "top1_id": "bbca_2023_0007",
+        "top1_pages": [
+          19
+        ]
+      },
+      {
+        "id": "c10",
+        "ticker": "bmri",
+        "year": null,
+        "returned": 15,
+        "leaks": 0,
+        "top1_id": "bmri_2023_0008",
+        "top1_pages": [
+          36
+        ]
+      }
+    ]
+  },
+  "bbca_regression": {
+    "dataset_matches_locked_hash": true,
+    "hit5_count": 13,
+    "total": 15,
+    "hit5": 0.8667,
+    "mrr5": 0.6578,
+    "passed": true
+  },
+  "negative_unfiltered": {
+    "queries_tested": 10,
+    "top_k": 10,
+    "mixed_queries": 10,
+    "ticker_distribution": {
+      "bbca": 53,
+      "bmri": 47
+    },
+    "leaked_if_querying_bbca": 47,
+    "leaked_if_querying_bmri": 53,
+    "detected": true,
+    "per_query": [
+      {
+        "id": "c01",
+        "year": 2024,
+        "counts": {
+          "bbca": 6,
+          "bmri": 4
+        },
+        "mixed": true
+      },
+      {
+        "id": "c02",
+        "year": 2025,
+        "counts": {
+          "bbca": 5,
+          "bmri": 5
+        },
+        "mixed": true
+      },
+      {
+        "id": "c03",
+        "year": 2023,
+        "counts": {
+          "bbca": 6,
+          "bmri": 4
+        },
+        "mixed": true
+      },
+      {
+        "id": "c04",
+        "year": 2024,
+        "counts": {
+          "bbca": 3,
+          "bmri": 7
+        },
+        "mixed": true
+      },
+      {
+        "id": "c05",
+        "year": 2025,
+        "counts": {
+          "bbca": 3,
+          "bmri": 7
+        },
+        "mixed": true
+      },
+      {
+        "id": "c06",
+        "year": 2023,
+        "counts": {
+          "bmri": 3,
+          "bbca": 7
+        },
+        "mixed": true
+      },
+      {
+        "id": "c07",
+        "year": 2024,
+        "counts": {
+          "bmri": 5,
+          "bbca": 5
+        },
+        "mixed": true
+      },
+      {
+        "id": "c08",
+        "year": 2025,
+        "counts": {
+          "bbca": 6,
+          "bmri": 4
+        },
+        "mixed": true
+      },
+      {
+        "id": "c09",
+        "year": 2024,
+        "counts": {
+          "bbca": 8,
+          "bmri": 2
+        },
+        "mixed": true
+      },
+      {
+        "id": "c10",
+        "year": 2024,
+        "counts": {
+          "bbca": 4,
+          "bmri": 6
+        },
+        "mixed": true
+      }
+    ]
+  },
+  "failures": [],
+  "passed": true,
+  "seconds": 10.6
+}

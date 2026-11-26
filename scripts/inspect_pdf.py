@@ -47,7 +47,8 @@ SECTIONS = {
                                         "tinjauan keuangan"],
     # --- khusus BANK: menentukan apakah bank lain bisa diproses dengan formula &
     #     saringan halaman yang sama dengan BBCA (risiko R11, tugas 2.7)
-    "Lap. Entitas Induk (basis Bank)": ["entitas induk saja", "parent entity only"],
+    "Lap. Entitas Induk (basis Bank)": ["entitas induk saja", "parent entity only",
+                                        "entitas induk", "parent entity"],
     "Fn rasio 'induk perusahaan saja'": ["induk perusahaan saja", "bank only"],
     # --- khusus NON-KEUANGAN: angka untuk profil rasio non-keuangan (tugas 2.8)
     "Aset lancar (utk Current Ratio)": ["jumlah aset lancar", "total aset lancar",

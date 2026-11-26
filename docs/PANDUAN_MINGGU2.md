@@ -449,10 +449,10 @@ Lalu **bimbingan** sebelum Minggu 3 — lihat pengecualian GATE 1 di `docs/ROADM
 | `check_tool_calling.py` — rata-rata token per tugas | 2.527 token, 5,3 detik |
 | Commit pertama (hash 7 karakter: `git log --oneline -1`) | ⏸ git ditunda |
 
-**Bank uji (Langkah 12 — diisi di Minggu 8):**
+**Bank uji (Langkah 12 — diisi di Minggu 8, 26-11-2026):**
 
 | Kode | Tahun | Ukuran (MB) | Hal. | Text/Scan | Satuan dominan | Penanda tabel | KPMM | Entitas Induk | Fn "induk saja" | LK terpisah? | Dwibahasa? |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| BMRI | 2023 | | | | | | | | | | |
-| BMRI | 2024 | | | | | | | | | | |
-| BMRI | 2025 | | | | | | | | | | |
+| BMRI | 2023 | 23,8 | 1.514 | Text-based | `million_idr` (543 hal.) | 563 hal. tersaring (37%) | hal. 1425–1426 | hal. 1500–1513 | Dicek rinci di 8.5 (hal. 36–37) | Tidak (hal. 1070–1513) | Ya (ID+EN di LK) |
+| BMRI | 2024 | 21,1 | 1.726 | Text-based | `million_idr` (616 hal.) | 633 hal. tersaring (37%) | hal. 1700–1701 | hal. 1712–1725 | Ya — `RASIO KEUANGAN (BANK ONLY)` (hal. 34–35) | Tidak (hal. 1282–1725) | Ya (ID+EN di LK) |
+| BMRI | 2025 | 22,9 | 1.467 | Text-based | `million_idr` (579 hal.) | 594 hal. tersaring (40%) | hal. 1431–1433 | hal. 1454–1466 | Ya — `RASIO KEUANGAN (BANK ONLY)` (hal. 39–40) | Tidak (hal. 951–1466) | Ya (ID+EN di LK) |

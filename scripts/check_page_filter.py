@@ -37,8 +37,8 @@ CRITICAL_PAGES = {
     "Entitas Induk -- liabilitas":           {2023: [739],      2024: [705],      2025: [596]},
 }
 EXPECTED_UNIT = "million_idr"
-# Diukur 30-10-2026, aturan versi 2, pypdf 6.21.2
-EXPECTED_TOTAL = {2023: 261, 2024: 262, 2025: 230}
+# Diukur 26-11-2026, aturan versi 3 (perluasan penanda satuan Rp Juta/Miliar + sinonim rasio ID/EN, 8.0e), pypdf 6.21.2
+EXPECTED_TOTAL = {2023: 273, 2024: 274, 2025: 235}
 
 
 def main():
