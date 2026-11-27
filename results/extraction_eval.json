@@ -1,0 +1,226 @@
+{
+  "generated": "2026-11-27T19:46:59",
+  "tolerance_pct": 0.5,
+  "per_ticker": {
+    "bbca": {
+      "meta": {
+        "task": "9.6-9.7 GATE 4 extraction eval",
+        "ticker": "bbca",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "role": "pengembangan",
+        "model": "openai/gpt-oss-120b",
+        "reasoning_effort": "low",
+        "tolerance_pct": 0.5,
+        "ground_truth": "ground_truth.xlsx",
+        "fingerprint": {
+          "sha256": "3874399a9a482dd34b4e0bbd7b5cb559bf6ef2245959591799cf08dc5e3f85d4",
+          "files": {
+            "src/agents/extraction.py": "c9e02590d711d8caeaacff769bc45cdd8d2b99a3485157caf7aede5645e1c1ce",
+            "src/ratio_profiles.py": "3d0179b4be4aaa692056a72f1a73550763956e090fb43ca30edd992fb35d0491",
+            "src/agents/parse_number.py": "26bd27e62efb325f59027f43d12ef62fd560a7a9c3db8ef5a6e61ef3f73cd460",
+            "src/agents/tools.py": "94a38fd57321425886749de681a41e5df7b297428f5628716b905835d32ec519",
+            "src/agents/state.py": "6692b7cc77f672660414beb1e5e4b7cee7be69893c2c4e548bbceceebbe3e0fc"
+          }
+        },
+        "git": {
+          "head": "5f236c9",
+          "branch": "dev",
+          "locked_files_dirty": [
+            "src/agents/extraction.py",
+            "src/ratio_profiles.py"
+          ]
+        },
+        "forced": false,
+        "timestamp": "2026-11-27T19:44:04"
+      },
+      "summary": {
+        "n_expected": 24,
+        "n_scored": 24,
+        "complete": true,
+        "hits": 23,
+        "accuracy": 0.9583,
+        "threshold": 0.9,
+        "passed": true,
+        "by_metric": {
+          "net_income": {
+            "hits": 3,
+            "n": 3
+          },
+          "tier1_capital_bank": {
+            "hits": 3,
+            "n": 3
+          },
+          "total_assets": {
+            "hits": 3,
+            "n": 3
+          },
+          "gross_loans_bank": {
+            "hits": 3,
+            "n": 3
+          },
+          "deposits_bank": {
+            "hits": 3,
+            "n": 3
+          },
+          "npl_amount_bank": {
+            "hits": 2,
+            "n": 3
+          },
+          "net_interest_income": {
+            "hits": 3,
+            "n": 3
+          },
+          "rwa_bank": {
+            "hits": 3,
+            "n": 3
+          }
+        },
+        "by_year": {
+          "2023": {
+            "hits": 7,
+            "n": 8
+          },
+          "2024": {
+            "hits": 8,
+            "n": 8
+          },
+          "2025": {
+            "hits": 8,
+            "n": 8
+          }
+        },
+        "diagnosis_counts": {
+          "tepat": 23,
+          "nilai_salah": 1
+        },
+        "totals": {
+          "llm_calls": 13,
+          "tool_calls": 19,
+          "followup_calls": 1,
+          "input_tokens": 73521,
+          "output_tokens": 5276,
+          "total_tokens": 78797,
+          "rate_limit_retries": 0,
+          "tool_error_retries": 0,
+          "seconds": 33.66
+        },
+        "avg_tokens_per_year": 26266,
+        "avg_seconds_per_year": 11.22
+      }
+    },
+    "bmri": {
+      "meta": {
+        "task": "9.6-9.7 GATE 4 extraction eval",
+        "ticker": "bmri",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "role": "uji",
+        "model": "openai/gpt-oss-120b",
+        "reasoning_effort": "low",
+        "tolerance_pct": 0.5,
+        "ground_truth": "ground_truth_bmri.xlsx",
+        "fingerprint": {
+          "sha256": "3874399a9a482dd34b4e0bbd7b5cb559bf6ef2245959591799cf08dc5e3f85d4",
+          "files": {
+            "src/agents/extraction.py": "c9e02590d711d8caeaacff769bc45cdd8d2b99a3485157caf7aede5645e1c1ce",
+            "src/ratio_profiles.py": "3d0179b4be4aaa692056a72f1a73550763956e090fb43ca30edd992fb35d0491",
+            "src/agents/parse_number.py": "26bd27e62efb325f59027f43d12ef62fd560a7a9c3db8ef5a6e61ef3f73cd460",
+            "src/agents/tools.py": "94a38fd57321425886749de681a41e5df7b297428f5628716b905835d32ec519",
+            "src/agents/state.py": "6692b7cc77f672660414beb1e5e4b7cee7be69893c2c4e548bbceceebbe3e0fc"
+          }
+        },
+        "git": {
+          "head": "34ac9eb",
+          "branch": "dev",
+          "locked_files_dirty": []
+        },
+        "forced": false,
+        "timestamp": "2026-11-27T19:46:17"
+      },
+      "summary": {
+        "n_expected": 24,
+        "n_scored": 24,
+        "complete": true,
+        "hits": 21,
+        "accuracy": 0.875,
+        "threshold": 0.8,
+        "passed": true,
+        "by_metric": {
+          "net_income": {
+            "hits": 3,
+            "n": 3
+          },
+          "tier1_capital_bank": {
+            "hits": 3,
+            "n": 3
+          },
+          "total_assets": {
+            "hits": 3,
+            "n": 3
+          },
+          "gross_loans_bank": {
+            "hits": 2,
+            "n": 3
+          },
+          "deposits_bank": {
+            "hits": 2,
+            "n": 3
+          },
+          "npl_amount_bank": {
+            "hits": 2,
+            "n": 3
+          },
+          "net_interest_income": {
+            "hits": 3,
+            "n": 3
+          },
+          "rwa_bank": {
+            "hits": 3,
+            "n": 3
+          }
+        },
+        "by_year": {
+          "2023": {
+            "hits": 5,
+            "n": 8
+          },
+          "2024": {
+            "hits": 8,
+            "n": 8
+          },
+          "2025": {
+            "hits": 8,
+            "n": 8
+          }
+        },
+        "diagnosis_counts": {
+          "tepat": 21,
+          "parse_error": 2,
+          "nilai_salah": 1
+        },
+        "totals": {
+          "llm_calls": 15,
+          "tool_calls": 22,
+          "followup_calls": 2,
+          "input_tokens": 80286,
+          "output_tokens": 5493,
+          "total_tokens": 85779,
+          "rate_limit_retries": 0,
+          "tool_error_retries": 0,
+          "seconds": 42.75
+        },
+        "avg_tokens_per_year": 28593,
+        "avg_seconds_per_year": 14.25
+      }
+    }
+  },
+  "generalization_gap_pct_points": 8.33,
+  "gate4_passed": true
+}

@@ -582,13 +582,17 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 - [x] **9.5b** **Daftar angka yang diekstrak diambil dari profil rasio sektor** (lihat 11.2), bukan
       ditulis tetap di prompt. Bank butuh Tier 1, ATMR, kredit bruto; profil umum (non-bank)
       cukup laba, total aset, dan ekuitas. *(27-11-2026: `src/ratio_profiles.py` — profil `bank` 15 metrik / 8 GATE 4 & `general` 3 metrik, 0 kebocoran nama emiten)*
-- [ ] **9.6** Tes ekstraksi: 8 angka bank (laba bersih, Tier 1, total aset, kredit bruto, DPK,
+- [x] **9.6** Tes ekstraksi: 8 angka bank (laba bersih, Tier 1, total aset, kredit bruto, DPK,
       kredit bermasalah, pendapatan bunga bersih, ATMR) × 3 tahun, untuk **BBCA dan BMRI**.
-- [ ] **9.7** Catat akurasi ekstraksi **per emiten, terpisah** → masuk Bab 4. Selisih emiten
+      *(27-11-2026: `eval/extraction_eval.py` → `results/extraction_eval.json` & `.csv`; dukungan OpenRouter prabayar di `src/config.py` untuk `openai/gpt-oss-120b`)*
+- [x] **9.7** Catat akurasi ekstraksi **per emiten, terpisah** → masuk Bab 4. Selisih emiten
       pengembangan vs emiten uji adalah ukuran seberapa jauh agent hanya "hafal" format.
+      *(27-11-2026, dicatat jujur sebelum & sesudah perbaikan generik di `docs/PANDUAN_MINGGU9.md`: v1 `6d325d9` BBCA `22/24 = 91,7%` vs BMRI `16/24 = 66,7%`, gap `25,0` pp → setelah perbaikan generik fragmentasi tabel multi-halaman, anti-segmen, & query dwibahasa v2 `34ac9eb`: **BBCA `23/24 = 95,8%`** [`7/8`, `8/8`, `8/8`] vs **BMRI `21/24 = 87,5%`** [`5/8`, `8/8`, `8/8`], **gap turun ke `8,33` pp**; rata-rata `11,2–14,3 s`/tahun via OpenRouter)*
 
 > **GATE 4:** akurasi ekstraksi ≥ 90% (≥22/24) pada BBCA **dan** ≥ 80% pada BMRI. Kalau meleset, MAPE rasio pasti gagal —
 > perbaiki di sini, jangan berharap agent berikutnya menutupi.
+>
+> **Status (27-11-2026):** ✅ **GATE 4 LULUS PENUH — MINGGU 9–10 SELESAI 100%.** BBCA **23/24 (95,8%)**, BMRI **21/24 (87,5%)** pada commit terkunci `34ac9eb` (sidik jari `3874399a9a48…`), `scripts/check_extraction.py` **LULUS** (termasuk 3/3 uji negatif & 0 kebocoran emiten). Rincian v1 vs v2 untuk Bab 4 ada di `docs/PANDUAN_MINGGU9.md`.
 
 ---
 

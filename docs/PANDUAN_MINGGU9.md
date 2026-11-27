@@ -439,9 +439,9 @@ python -m eval.extraction_eval --ticker bmri --out-prefix extraction_eval_bmri
 - [x] **9.4** Structured output Pydantic (`GroupExtractionOutput` / `RawMetricExtraction`, `method="json_schema"` + fallback `json_mode` + backoff HTTP `429`) terintegrasi di `src/agents/extraction.py` & `extraction_node(state)` (27-11-2026)
 - [x] **9.5** Prompt & `src/ratio_profiles.py` 100% generik (0 nama emiten, 0 nomor halaman, 0 nomor Catatan — lulus audit otomatis pada `ratio_profiles.py`, `tools.py`, `extraction.py`, dan `EXTRACTION_SYSTEM_PROMPT`; 27-11-2026)
 - [x] **9.5b** `src/ratio_profiles.py` memuat profil `bank` (`validated=True`, 15 metrik / 8 GATE 4 dalam 4 kelompok) & `general` (`validated=False`, 3 metrik umum), daftar angka ekstraksi diambil dari profil sektor (27-11-2026)
-- [ ] **9.6** Evaluasi ekstraksi 8 angka × 3 tahun (`eval/extraction_eval.py` → `results/extraction_eval.json` & `.csv`) dijalankan pada BBCA lalu BMRI
-- [ ] **9.7** Akurasi dicatat **terpisah per emiten** (BBCA vs BMRI) beserta analisis selisih & error untuk Bab 4
-- [ ] **GATE 4:** akurasi **BBCA ≥ 90% (≥ 22/24)** **dan** **BMRI ≥ 80% (≥ 20/24)**; `scripts/check_extraction.py` **LULUS** (termasuk uji negatif)
+- [x] **9.6** Evaluasi ekstraksi 8 angka × 3 tahun (`eval/extraction_eval.py` → `results/extraction_eval.json` & `.csv`) dijalankan pada BBCA lalu BMRI (27-11-2026: v1 `6d325d9` diarsipkan + v2 generik `34ac9eb` final)
+- [x] **9.7** Akurasi dicatat **terpisah per emiten** (BBCA vs BMRI, termasuk hasil *sebelum vs sesudah* perbaikan generik) beserta analisis selisih & error untuk Bab 4 (27-11-2026)
+- [x] **GATE 4:** **LULUS PENUH** (27-11-2026) — akurasi **BBCA 23/24 (95,8% ≥ 90%)** **dan** **BMRI 21/24 (87,5% ≥ 80%)** pada commit terkunci `34ac9eb` (sidik jari `3874399a9a48…`); `scripts/check_extraction.py` **LULUS** (termasuk 3/3 uji negatif & 0 kebocoran emiten)
 
 ---
 
@@ -469,31 +469,32 @@ python -m eval.extraction_eval --ticker bmri --out-prefix extraction_eval_bmri
 | Metode structured output terpilih pada `openai/gpt-oss-120b` (`effort="low"`) | **`method="json_schema"`** (27-11-2026, `0,97 s` — menjaga `source_pages=[703]`, `raw_value='239.468.855'` utuh, dan `null` jujur untuk metrik tak ada; `function_calling` menghilangkan `source_pages=[]`; `json_mode` `1,02 s` sebagai cadangan) |
 | `scripts/check_extraction.py --offline` (parser, grounding, bebas-emiten, uji negatif) | **LULUS** (27-11-2026, `3,8 s` — cek A–D + kontrak `AgentState` + 3/3 uji negatif: halusinasi → `ungrounded`/`None`, metrik tak ada → `not_found`/`None`, skala LLM tertukar → dikoreksi `chunk["unit"]`) |
 | `scripts/check_extraction.py` (dengan live smoke test BBCA 2024) | **LULUS 8/8 (100%)** (27-11-2026 — seluruh 8 metrik GATE 4 BBCA 2024 error **`0,000%`**: `total_assets` hal. 20 [`billion_idr` → juta], `net_interest_income` & `net_income` hal. 542, `tier1_capital_bank` & `rwa_bank` hal. 703, `npl_amount_bank` hal. 701, `gross_loans_bank` hal. 704–705 [`sum` komponen Neto+CKPN], `deposits_bank` hal. 705 [`sum` komponen]; `4` LLM call, `20.455` token, `90,21 s`, `retry429=0x`, `tool_err=0x`; BMRI belum disentuh) |
-| Hash commit saat prompt & `ratio_profiles.py` dikunci sebelum uji BMRI | *(Langkah 6 — Tahap 1)* |
+| Hash commit saat prompt & `ratio_profiles.py` dikunci sebelum uji BMRI | **v1 (sebelum perbaikan generik):** `6d325d9` (sidik jari `f8569a3d6e69…`, BBCA `22/24 = 91,7%` → BMRI `16/24 = 66,7%`, arsip `*_v1_before_fix.*`) · **v2 (sesudah perbaikan generik, final):** **`34ac9eb`** (sidik jari `3874399a9a48…`, BBCA `23/24 = 95,8%` → BMRI `21/24 = 87,5%`) |
 
-### B. Hasil evaluasi GATE 4 — 8 metrik × 3 tahun (terpisah per emiten, Langkah 6)
+### B. Hasil evaluasi GATE 4 — 8 metrik × 3 tahun (terpisah per emiten, Langkah 6 — v2 terkunci `34ac9eb`)
 
 | # | `metric_key` | BBCA (2023 / 2024 / 2025) | Skor BBCA | BMRI (2023 / 2024 / 2025) | Skor BMRI |
 |---:|---|---|---:|---|---:|
-| 1 | `net_income` | — / — / — | `/3` | — / — / — | `/3` |
-| 2 | `tier1_capital_bank` | — / — / — | `/3` | — / — / — | `/3` |
-| 3 | `total_assets` | — / — / — | `/3` | — / — / — | `/3` |
-| 4 | `gross_loans_bank` | — / — / — | `/3` | — / — / — | `/3` |
-| 5 | `deposits_bank` | — / — / — | `/3` | — / — / — | `/3` |
-| 6 | `npl_amount_bank` | — / — / — | `/3` | — / — / — | `/3` |
-| 7 | `net_interest_income` | — / — / — | `/3` | — / — / — | `/3` |
-| 8 | `rwa_bank` | — / — / — | `/3` | — / — / — | `/3` |
-| | **TOTAL** | | **`/24` (`%`)** | | **`/24` (`%`)** |
+| 1 | `net_income` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` |
+| 2 | `tier1_capital_bank` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` |
+| 3 | `total_assets` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` |
+| 4 | `gross_loans_bank` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | MISS (`parse_error` API) / OK (`0,000%`) / OK (`0,000%`) | `2/3` |
+| 5 | `deposits_bank` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | MISS (`parse_error` API) / OK (`0,000%`) / OK (`0,000%`) | `2/3` |
+| 6 | `npl_amount_bank` | MISS (`2,515%`, h265 MD&A) / OK (`0,000%`) / OK (`0,000%`) | `2/3` | MISS (`197,7%`, h380) / OK (`0,000%`) / OK (`0,000%`) | `2/3` |
+| 7 | `net_interest_income` | OK (`0,255%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` |
+| 8 | `rwa_bank` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` | OK (`0,000%`) / OK (`0,000%`) / OK (`0,000%`) | `3/3` |
+| | **TOTAL (v2 final, `34ac9eb`)** | `2023: 7/8` · `2024: 8/8` · `2025: 8/8` | **`23/24` (`95,8%`)** | `2023: 5/8` · `2024: 8/8` · `2025: 8/8` | **`21/24` (`87,5%`)** |
+| | *Pembanding v1 (sebelum perbaikan generik, `6d325d9`)* | `2023: 8/8` · `2024: 8/8` · `2025: 6/8` | *`22/24` (`91,7%`)* | `2023: 7/8` · `2024: 6/8` · `2025: 3/8` | *`16/24` (`66,7%`)* |
 
 ### C. Efisiensi, keandalan, & diagnosis (bahan Bab 4)
 
 | Item | BBCA (dev) | BMRI (uji) |
 |---|---|---|
-| Akurasi total (GATE 4: BBCA ≥ 90%, BMRI ≥ 80%) | *(Langkah 6)* | *(Langkah 6)* |
-| Selisih akurasi BBCA − BMRI (gap generalisasi) | ← | *(Langkah 6)* |
-| Kasus `ungrounded` (ditolak pagar anti-halusinasi) | *(Langkah 6)* | *(Langkah 6)* |
-| Kasus `not_found` (`null` jujur) | *(Langkah 6)* | *(Langkah 6)* |
-| Retry `tool_use_failed` / HTTP `429` | *(Langkah 6)* | *(Langkah 6)* |
-| Rata-rata token & waktu per laporan (tahun) | *(Langkah 6)* | *(Langkah 6)* |
-| Ringkasan akar masalah titik meleset | *(Langkah 6)* | *(Langkah 6)* |
-| **GATE 4** | *(menunggu Langkah 6)* | ← |
+| Akurasi total v1 → **v2 final** (GATE 4: BBCA ≥ 90%, BMRI ≥ 80%) | `22/24 (91,7%)` → **`23/24 (95,8%)`** | `16/24 (66,7%)` → **`21/24 (87,5%)`** |
+| Selisih akurasi BBCA − BMRI (gap generalisasi) | v1: `25,00` poin persen → **v2: `8,33` poin persen** | ← |
+| Kasus `ungrounded` (ditolak pagar anti-halusinasi) | `0` (3/3 uji negatif lolos di `check_extraction.py`) | `0` |
+| Kasus `not_found` / `parse_error` (v2) | `0` `not_found`, `0` `parse_error` | `0` `not_found`, `2` `parse_error` (`bmri_2023` `parent_loans_deposits` kena `finish_reason='error'` transien upstream) |
+| Retry `tool_use_failed` / HTTP `429` (v2 lewat OpenRouter `openai/gpt-oss-120b`) | `0x` / `0x` | `0x` / `0x` |
+| Rata-rata token & waktu per laporan (v2, OpenRouter prabayar) | `26.266` token · **`11,22 s`/tahun** (`33,66 s` total; Groq free v1: `130,6 s`/tahun) | `28.593` token · **`14,25 s`/tahun** (`42,75 s` total) |
+| Ringkasan akar masalah & perbaikan generik v1 → v2 (untuk Bab 4) | **v1 → v2 (+4,1 pp BBCA, +20,8 pp BMRI):** (1) ekspansi chunk tabel tetangga berbasis `basis` (`_expand_split_statement_chunks`) menutup fragmentasi neraca multi-halaman; (2) urutan *table-first* (`prefer_tables=False` untuk `npl_bank`) + deprioritisasi tabel Informasi Segmen; (3) query generik dwibahasa ID/EN + istilah OJK `"kolektibilitas"` + instruksi baris subtotal tanpa label sebelum CKPN. Sisa error v2: 1 titik BBCA (`npl` 2023 hal. 265 MD&A) & 3 titik `bmri_2023` (2 `parse_error` upstream transien pada `parent_loans_deposits`, 1 `npl` 2023 hal. 380 karena hal. 401 terlewat penyaring v3). | ← |
+| **GATE 4** | **✅ LULUS PENUH (27-11-2026)** | ← |
