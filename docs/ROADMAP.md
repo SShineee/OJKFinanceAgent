@@ -638,9 +638,11 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 **Langkah rinci, keputusan rancangan (14.A–14.D), dan daftar periksa: `docs/PANDUAN_MINGGU14.md`.**
 
-- [ ] **14.1** Prompt: susun laporan terstruktur (Ringkasan Eksekutif → Rasio & Interpretasi → Tren Antar Tahun → Konteks Pasar → Kesimpulan)
-- [ ] **14.2** Wajib mencantumkan sumber setiap angka
-- [ ] **14.3** Output Markdown
+- [x] **14.1** Prompt: susun laporan terstruktur (Ringkasan Eksekutif → Rasio & Interpretasi → Tren Antar Tahun → Konteks Pasar → Kesimpulan) *(27-11-2026: arsitektur hibrida 3-lapis di `src/agents/reporting.py`, `ReportNarrative` structured output + fallback deterministik + `reporting_node`)*
+- [x] **14.2** Wajib mencantumkan sumber setiap angka *(27-11-2026: tabel deterministik Python mengunci sitasi halaman PDF asli `hal. ...` per angka/rasio + `format_idr_for_llm()` cegah salah konversi skala + `sanitize_and_audit_urls()` hapus URL palsu LLM)*
+- [x] **14.3** Output Markdown *(27-11-2026: `state["report"]` Markdown valid 5 bagian + label `belum divalidasi` profil non-bank R17 + helper `format_telegram_summary()` HTML ≤ 4.096 karakter siap Minggu 16; `scripts/check_reporting.py` `--offline` `0,02 s` & `--live` `11,28 s` **LULUS** → `results/sample_report_{bbca,bmri}.md` & `results/check_reporting.json`)*
+
+> **Status Minggu 14 (27-11-2026):** ✅ **SELESAI 100%** (`14.1`–`14.3` — keempat agent selesai & lolos regresi offline/live). Siap masuk Minggu 15 (Orkestrasi LangGraph).
 
 ## Minggu 15 — Orkestrasi LangGraph
 

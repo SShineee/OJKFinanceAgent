@@ -146,6 +146,47 @@ class MarketNewsItem(BaseModel):
     relevance_score: float | None = None
 
 
+class ReportNarrative(BaseModel):
+    """Keluaran narasi terstruktur LLM untuk Reporting Agent (tugas 14.1-14.3)."""
+
+    direct_answer: str = Field(
+        description=(
+            "Jawaban langsung 2-4 kalimat bahasa Indonesia atas pertanyaan pengguna, "
+            "berbasis angka terverifikasi beserta sitasi halaman (hal. X)."
+        )
+    )
+    executive_summary: str = Field(
+        description=(
+            "Ringkasan Eksekutif (1-2 paragraf padat) menyintesis kondisi keuangan utama, "
+            "rasio kunci, dan sorotan risiko/peluang dengan sitasi halaman."
+        )
+    )
+    ratio_analysis: str = Field(
+        description=(
+            "Analisis rasio keuangan terhadap ambang batas prudensial OJK dan keterkaitan antar "
+            "indikator (permodalan, profitabilitas, kualitas aset, likuiditas). "
+            "HANYA gunakan angka dari DATA TERVERIFIKASI dan sebutkan jujur bila ada rasio tidak cukup data."
+        )
+    )
+    trend_analysis: str = Field(
+        description=(
+            "Analisis pergerakan tren rasio dan metrik antar tahun berdasarkan tabel tren yang diberikan; "
+            "jika hanya 1 tahun tersedia, nyatakan secara jujur."
+        )
+    )
+    market_synthesis: str = Field(
+        description=(
+            "Sintesis konteks berita emiten dan regulasi OJK/BI terhadap posisi keuangan emiten. "
+            "DILARANG mengarang berita atau URL; jika konteks pasar kosong, nyatakan secara jujur."
+        )
+    )
+    conclusion: str = Field(
+        description=(
+            "Kesimpulan objektif menyeluruh beserta keterbatasan analisis (bukan rekomendasi beli/jual saham)."
+        )
+    )
+
+
 class AgentState(TypedDict, total=False):
     """State bersama LangGraph untuk keempat agent (tugas 9.1)."""
 
@@ -163,4 +204,6 @@ class AgentState(TypedDict, total=False):
     market_errors: list[str]
     market_stats: dict[str, Any]
     report: str                                          # diisi Reporting Agent (Minggu 14)
+    report_audit: dict[str, Any]                         # audit struktur 5 bagian, sitasi halaman, & anti-URL palsu
+    report_stats: dict[str, Any]                         # token, waktu, panggilan LLM Reporting Agent
     messages: Annotated[list[AnyMessage], add_messages]

@@ -1,0 +1,90 @@
+{
+  "timestamp": "2026-11-27T21:56:25",
+  "provider": "openrouter",
+  "model": "openai/gpt-oss-120b",
+  "reasoning_effort": "medium",
+  "results": {
+    "bbca": {
+      "ticker": "bbca",
+      "company": "PT Bank Central Asia Tbk",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "sample_report_path": "results/sample_report_bbca.md",
+      "report_audit": {
+        "passed": true,
+        "all_sections_present": true,
+        "sections_present": {
+          "## 1. Ringkasan Eksekutif": true,
+          "## 2. Rasio Keuangan & Interpretasi": true,
+          "## 3. Tren Antar Tahun": true,
+          "## 4. Konteks Pasar & Regulasi": true,
+          "## 5. Kesimpulan": true
+        },
+        "profile_validated": true,
+        "has_unvalidated_label": true,
+        "page_citation_count": 44,
+        "verified_url_count": 5,
+        "stripped_urls": [],
+        "unauthorized_urls_remaining": [],
+        "ratios_ok": 18,
+        "ratios_total": 18,
+        "is_failure_report": false,
+        "markdown_chars": 12558
+      },
+      "report_stats": {
+        "llm_calls": 1,
+        "input_tokens": 5270,
+        "output_tokens": 2063,
+        "total_tokens": 7333,
+        "used_fallback_narrative": false,
+        "narrative_errors": [],
+        "seconds": 6.724
+      },
+      "telegram_summary_chars": 2323
+    },
+    "bmri": {
+      "ticker": "bmri",
+      "company": "PT Bank Mandiri (Persero) Tbk",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "sample_report_path": "results/sample_report_bmri.md",
+      "report_audit": {
+        "passed": true,
+        "all_sections_present": true,
+        "sections_present": {
+          "## 1. Ringkasan Eksekutif": true,
+          "## 2. Rasio Keuangan & Interpretasi": true,
+          "## 3. Tren Antar Tahun": true,
+          "## 4. Konteks Pasar & Regulasi": true,
+          "## 5. Kesimpulan": true
+        },
+        "profile_validated": true,
+        "has_unvalidated_label": true,
+        "page_citation_count": 33,
+        "verified_url_count": 5,
+        "stripped_urls": [],
+        "unauthorized_urls_remaining": [],
+        "ratios_ok": 14,
+        "ratios_total": 18,
+        "is_failure_report": false,
+        "markdown_chars": 12214
+      },
+      "report_stats": {
+        "llm_calls": 1,
+        "input_tokens": 4807,
+        "output_tokens": 1850,
+        "total_tokens": 6657,
+        "used_fallback_narrative": false,
+        "narrative_errors": [],
+        "seconds": 4.522
+      },
+      "telegram_summary_chars": 2108
+    }
+  }
+}

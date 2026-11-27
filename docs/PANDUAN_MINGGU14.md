@@ -173,7 +173,7 @@ Tambahkan ke [state.py](file:///c:/TugasAkhir/src/agents/state.py):
 
 ---
 
-## Langkah 2 — Bangun Reporting Agent (`src/agents/reporting.py`, `14.1`–`14.3`) · ½–1 hari
+## Langkah 2 — Bangun Reporting Agent (`src/agents/reporting.py`, `14.1`–`14.3`) · ½–1 hari 
 
 Bangun [reporting.py](file:///c:/TugasAkhir/src/agents/reporting.py) (100% generik, 0 hardcode emiten):
 
@@ -224,7 +224,7 @@ Bangun [reporting.py](file:///c:/TugasAkhir/src/agents/reporting.py) (100% gener
 
 ---
 
-## Langkah 3 — Pemeriksaan Otomatis & Uji Negatif (`scripts/check_reporting.py`) · 2–3 jam
+## Langkah 3 — Pemeriksaan Otomatis & Uji Negatif (`scripts/check_reporting.py`) · 2–3 jam 
 
 Buat `scripts/check_reporting.py` dengan mode `--offline` (`0` token LLM, `< 1 s`) dan mode `--live`
 (1 panggilan LLM per bank pada BBCA & BMRI menggunakan hasil nyata Minggu 9–13):
@@ -315,10 +315,10 @@ berdasarkan **4 dimensi rubrik Skenario 3** (persiapan Minggu 20):
 
 ## Gerbang (kriteria lolos Minggu 14)
 
-- [ ] **14.1** Prompt & perakit laporan menyusun 5 bagian wajib (*Ringkasan Eksekutif → Rasio & Interpretasi → Tren Antar Tahun → Konteks Pasar → Kesimpulan*) di `src/agents/reporting.py`
-- [ ] **14.2** Setiap angka laporan keuangan/rasio wajib menyertakan sumber halaman PDF asli (`hal. ...`) dan setiap berita pasar menyertakan URL + tanggal asli Tavily (dilindungi audit anti-halusinasi URL)
-- [ ] **14.3** Output Markdown valid (`state["report"]`) + label *belum divalidasi* untuk profil non-bank (R17) + helper ringkasan HTML siap-Telegram (`≤ 4.096` karakter)
-- [ ] **Kriteria lolos Minggu 14:** `scripts/check_reporting.py --offline` (termasuk 5 uji negatif & 0 kebocoran emiten) dan `--live` (BBCA & BMRI → `results/sample_report_{bbca,bmri}.md`) **LULUS**, serta inspeksi manual 4 dimensi lolos
+- [x] **14.1** Prompt & perakit laporan menyusun 5 bagian wajib (*Ringkasan Eksekutif → Rasio & Interpretasi → Tren Antar Tahun → Konteks Pasar → Kesimpulan*) di `src/agents/reporting.py` (27-11-2026)
+- [x] **14.2** Setiap angka laporan keuangan/rasio wajib menyertakan sumber halaman PDF asli (`hal. ...`) dan setiap berita pasar menyertakan URL + tanggal asli Tavily (dilindungi audit anti-halusinasi URL `sanitize_and_audit_urls()`; 27-11-2026)
+- [x] **14.3** Output Markdown valid (`state["report"]`) + label *belum divalidasi* untuk profil non-bank (R17) + helper ringkasan HTML siap-Telegram (`≤ 4.096` karakter, `format_telegram_summary()`; 27-11-2026)
+- [x] **Kriteria lolos Minggu 14:** **LULUS** (27-11-2026) — `scripts/check_reporting.py --offline` (`0,02 s`, 5/5 uji negatif & 0 kebocoran emiten) dan `--live` (`11,28 s`, BBCA `18/18` rasio & `44` sitasi halaman, BMRI `14/18` rasio & `33` sitasi halaman, 0 URL palsu → `results/sample_report_{bbca,bmri}.md` & `results/check_reporting.json`) **LULUS**, serta inspeksi manual 4 dimensi lolos (termasuk perbaikan generik konversi setara triliun oleh Python `format_idr_for_llm()`)
 
 ---
 
@@ -331,29 +331,29 @@ berdasarkan **4 dimensi rubrik Skenario 3** (persiapan Minggu 20):
 | LLM menyisipkan tautan eksternal yang tidak ada di `market_context` | Pengetahuan pra-latih LLM menebak URL situs berita/OJK | Tangkap otomatis lewat `sanitize_and_audit_urls()` terhadap whitelist `market_context` agar 0 URL tak terverifikasi lolos ke output akhir |
 | Error parse HTML di Telegram (Minggu 16) | Karakter `<`, `>`, `&` di judul berita / nama perusahaan tidak di-escape | Selalu lewatkan semua teks dinamis melalui `html.escape()` di `format_telegram_summary()` sebelum dibungkus tag `<b>` / `<a>` |
 
----
+--- 
 
-## Lembar hasil — isi sambil jalan
+## Lembar hasil — isi sambil jalan 
 
-### A. Pemeriksaan otomatis & uji negatif (Langkah 3)
+### A. Pemeriksaan otomatis & uji negatif (Langkah 3) 
 
 | Item | Hasil |
 |---|---|
-| `scripts/check_reporting.py --offline` (struktur 5 bagian, sitasi halaman/URL, R17 non-bank, Telegram HTML, 5 uji negatif) | *(isi setelah Langkah 3)* |
-| Regresi 4 agent offline (`check_reporting`, `check_market`, `check_analyst`, `check_extraction`) | *(isi setelah Langkah 5)* |
+| `scripts/check_reporting.py --offline` (struktur 5 bagian, sitasi halaman/URL, R17 non-bank, Telegram HTML, 5 uji negatif) | **LULUS** (27-11-2026, `0,02 s` — A: 5 bagian wajib berurutan & 3 tabel Markdown valid; B: sitasi `hal.` + URL/tanggal Tavily + `format_idr_for_llm()`; C: profil `non_financial` memuat label *belum divalidasi* & 0 kebocoran emiten di `reporting.py`; D: ringkasan HTML Telegram `≤ 4.096` char aman `html.escape` & kontrak `reporting_node`; E: 5/5 uji negatif lulus termasuk pembersihan 3 URL palsu LLM & fallback deterministik) |
+| Regresi 4 agent offline (`check_reporting`, `check_market`, `check_analyst`, `check_extraction`) | **LULUS** (27-11-2026 — seluruh 4 agent lulus 100% tanpa regresi & 0 kebocoran emiten) |
 
 ### B. Uji live Laporan Lengkap BBCA & BMRI (Langkah 3–4 — `results/check_reporting.json`)
 
 | Emiten | Audit 5 bagian & URL | Rasio terhitung | Sitasi halaman / URL | Panjang Markdown / Telegram HTML | Latensi & token |
 |---|---|---:|---|---|---|
-| **BBCA** (2023–2025) | *(isi)* | *(isi)* | *(isi)* | *(isi)* | *(isi)* |
-| **BMRI** (2023–2025) | *(isi)* | *(isi)* | *(isi)* | *(isi)* | *(isi)* |
+| **BBCA** (2023–2025) | **LULUS** (`5/5` bagian, `0` URL palsu) | `18/18` | `44` sitasi `hal.` · `5` URL terverifikasi | `12.558` ch Markdown / `2.323` ch HTML | `6,72 s` · `1` LLM call (`7.333` tok) |
+| **BMRI** (2023–2025) | **LULUS** (`5/5` bagian, `0` URL palsu) | `14/18` *(NIM 2023–2025 & ROA 2025 jujur `insufficient_data`)* | `33` sitasi `hal.` · `5` URL terverifikasi | `12.214` ch Markdown / `2.108` ch HTML | `4,52 s` · `1` LLM call (`6.657` tok) |
 
 ### C. Catatan inspeksi manual & bahan Bab 4 (Langkah 4)
 
 | Dimensi | Catatan |
 |---|---|
-| Akurasi faktual (kesesuaian narasi vs tabel Python & kejujuran `insufficient_data`) | *(isi)* |
-| Kelengkapan & keterlacakan sumber (`hal.` + URL Tavily) | *(isi)* |
-| Struktur & keterbacaan Markdown | *(isi)* |
-| Kedalaman analisis & sintesis konteks pasar/OJK | *(isi)* |
+| Akurasi faktual (kesesuaian narasi vs tabel Python & kejujuran `insufficient_data`) | Inspeksi awal menemukan LLM sempat salah mengonversi skala di kepala (`Rp 1.408.107.000 juta` ditulis `Rp 1.408.107 triliun`). Diperbaiki secara generik dengan `format_idr_for_llm()` yang menyertakan nilai setara triliun hitungan Python + larangan konversi mental di prompt → hasil final BBCA & BMRI **0 kesalahan angka/skala** dan jujur melaporkan `NIM` & `ROA 2025` BMRI sebagai tidak tersedia (`insufficient_data`). |
+| Kelengkapan & keterlacakan sumber (`hal.` + URL Tavily) | Kedua laporan lengkap 5 bagian wajib, melampirkan tabel rasio, tabel komponen metrik, tabel tren, indeks sumber halaman PDF per tahun (`2022–2025`), 5 tautan berita/OJK terverifikasi, serta penafian bukan rekomendasi investasi. |
+| Struktur & keterbacaan Markdown | Kategori OJK diformat rapi (`Sangat Kuat`, `Sangat Sehat`, `Ideal OJK` melalui `format_ojk_category()`), keterangan basis bersih, seluruh tabel valid kolom, dan narasi Bagian 4 memakai tautan Markdown rapi tanpa URL mentah. |
+| Kedalaman analisis & sintesis konteks pasar/OJK | Narasi berhasil menghubungkan kekuatan modal (CAR), profitabilitas (ROA/ROE/NIM), kualitas kredit (NPL), dan likuiditas (LDR) terhadap siaran pers resmi emiten serta rata-rata LDR perbankan OJK Triwulan II 2025 (`86,40%`). |
