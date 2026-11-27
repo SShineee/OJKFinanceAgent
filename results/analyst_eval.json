@@ -1,0 +1,515 @@
+{
+  "generated": "2026-11-27T20:24:58",
+  "per_ticker": {
+    "bbca": {
+      "meta": {
+        "task": "11.5 Financial Analyst Agent MAE/MAPE evaluation",
+        "ticker": "bbca",
+        "role": "pengembangan",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "provider": "openrouter",
+        "model": "openai/gpt-oss-120b",
+        "timestamp": "2026-11-27T20:23:11"
+      },
+      "layer1_gt": {
+        "seojk_unified": {
+          "layer": "layer1_gt",
+          "mode": "seojk_unified",
+          "ratios_passed_5pct": 4,
+          "ratios_computed_all_years": 6,
+          "avg_mape_pct": 6.29,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0034,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.8298,
+              "mape_pct": 21.86,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.2616,
+              "mape_pct": 1.08,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "NIM": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.4867,
+              "mape_pct": 8.63,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.054,
+              "mape_pct": 3.02,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 2.3221,
+              "mape_pct": 3.11,
+              "classification": "akurat",
+              "passed_5pct": true
+            }
+          }
+        },
+        "after_tax_nim_ending": {
+          "layer": "layer1_gt",
+          "mode": "after_tax_nim_ending",
+          "ratios_passed_5pct": 6,
+          "ratios_computed_all_years": 6,
+          "avg_mape_pct": 2.25,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0034,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0649,
+              "mape_pct": 1.68,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.2616,
+              "mape_pct": 1.08,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "NIM": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.2583,
+              "mape_pct": 4.59,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.054,
+              "mape_pct": 3.02,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 2.3221,
+              "mape_pct": 3.11,
+              "classification": "akurat",
+              "passed_5pct": true
+            }
+          }
+        }
+      },
+      "layer2_e2e": {
+        "seojk_unified": {
+          "layer": "layer2_e2e",
+          "mode": "seojk_unified",
+          "ratios_passed_5pct": 4,
+          "ratios_computed_all_years": 6,
+          "avg_mape_pct": 7.25,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0034,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.8864,
+              "mape_pct": 23.33,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.453,
+              "mape_pct": 1.89,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "NIM": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.1315,
+              "mape_pct": 2.36,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.2082,
+              "mape_pct": 11.3,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 3.4951,
+              "mape_pct": 4.61,
+              "classification": "akurat",
+              "passed_5pct": true
+            }
+          }
+        },
+        "after_tax_nim_ending": {
+          "layer": "layer2_e2e",
+          "mode": "after_tax_nim_ending",
+          "ratios_passed_5pct": 5,
+          "ratios_computed_all_years": 6,
+          "avg_mape_pct": 3.56,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0034,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0254,
+              "mape_pct": 0.66,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.453,
+              "mape_pct": 1.89,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "NIM": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.166,
+              "mape_pct": 2.91,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.2082,
+              "mape_pct": 11.3,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 3.4951,
+              "mape_pct": 4.61,
+              "classification": "akurat",
+              "passed_5pct": true
+            }
+          }
+        }
+      },
+      "e2e_extraction_stats": {
+        "llm_calls": 19,
+        "tool_calls": 28,
+        "total_tokens": 122659,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 59.7
+      }
+    },
+    "bmri": {
+      "meta": {
+        "task": "11.5 Financial Analyst Agent MAE/MAPE evaluation",
+        "ticker": "bmri",
+        "role": "uji",
+        "years": [
+          2023,
+          2024,
+          2025
+        ],
+        "provider": "openrouter",
+        "model": "openai/gpt-oss-120b",
+        "timestamp": "2026-11-27T20:24:58"
+      },
+      "layer1_gt": {
+        "seojk_unified": {
+          "layer": "layer1_gt",
+          "mode": "seojk_unified",
+          "ratios_passed_5pct": 6,
+          "ratios_computed_all_years": 6,
+          "avg_mape_pct": 1.6,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0013,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.1102,
+              "mape_pct": 3.0,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 1.0711,
+              "mape_pct": 4.31,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "NIM": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0553,
+              "mape_pct": 1.09,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0051,
+              "mape_pct": 0.51,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.6283,
+              "mape_pct": 0.69,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            }
+          }
+        },
+        "after_tax_nim_ending": {
+          "layer": "layer1_gt",
+          "mode": "after_tax_nim_ending",
+          "ratios_passed_5pct": 4,
+          "ratios_computed_all_years": 6,
+          "avg_mape_pct": 5.36,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0013,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.7653,
+              "mape_pct": 21.2,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 1.0711,
+              "mape_pct": 4.31,
+              "classification": "akurat",
+              "passed_5pct": true
+            },
+            "NIM": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.2675,
+              "mape_pct": 5.45,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0051,
+              "mape_pct": 0.51,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.6283,
+              "mape_pct": 0.69,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            }
+          }
+        }
+      },
+      "layer2_e2e": {
+        "seojk_unified": {
+          "layer": "layer2_e2e",
+          "mode": "seojk_unified",
+          "ratios_passed_5pct": 1,
+          "ratios_computed_all_years": 4,
+          "avg_mape_pct": 23.71,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0013,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 2,
+              "n_total": 3,
+              "mae_pp": 2.4379,
+              "mape_pct": 61.79,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 1.7179,
+              "mape_pct": 7.11,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "NIM": {
+              "n_ok": 0,
+              "n_total": 3,
+              "mae_pp": null,
+              "mape_pct": null,
+              "classification": "tidak_terhitung",
+              "passed_5pct": false
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.3083,
+              "mape_pct": 30.24,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 16.8705,
+              "mape_pct": 19.41,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            }
+          }
+        },
+        "after_tax_nim_ending": {
+          "layer": "layer2_e2e",
+          "mode": "after_tax_nim_ending",
+          "ratios_passed_5pct": 1,
+          "ratios_computed_all_years": 5,
+          "avg_mape_pct": 17.66,
+          "by_ratio": {
+            "CAR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.0013,
+              "mape_pct": 0.01,
+              "classification": "sangat_akurat",
+              "passed_5pct": true
+            },
+            "ROA": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 1.1664,
+              "mape_pct": 31.54,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "ROE": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 1.7179,
+              "mape_pct": 7.11,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "NIM": {
+              "n_ok": 0,
+              "n_total": 3,
+              "mae_pp": null,
+              "mape_pct": null,
+              "classification": "tidak_terhitung",
+              "passed_5pct": false
+            },
+            "NPL": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 0.3083,
+              "mape_pct": 30.24,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            },
+            "LDR": {
+              "n_ok": 3,
+              "n_total": 3,
+              "mae_pp": 16.8705,
+              "mape_pct": 19.41,
+              "classification": "kurang_akurat",
+              "passed_5pct": false
+            }
+          }
+        }
+      },
+      "e2e_extraction_stats": {
+        "llm_calls": 28,
+        "tool_calls": 40,
+        "total_tokens": 153717,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 106.49
+      }
+    }
+  }
+}

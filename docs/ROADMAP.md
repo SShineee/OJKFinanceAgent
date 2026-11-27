@@ -610,9 +610,11 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
       Formula tetap ditulis di kode, jangan biarkan LLM mengarang formula.
 - [x] **11.3** Implementasi basis perhitungan sesuai keputusan GATE 1 (rata-rata vs saldo akhir — harus konsisten) *(27-11-2026: `average_vars` via `PythonAstREPLTool` + `source_doc_year` di `extraction.py` untuk kolom pembanding `t-1` + fallback eksplisit)*
 - [x] **11.4** Validasi: agent harus menolak menghitung kalau input `null` (cegah halusinasi) *(27-11-2026: `src/agents/analyst.py` menolak `null`/`ungrounded`/penyebut `≤ 0` → `status="insufficient_data"`)*
-- [ ] **11.5** Tes 6 rasio × 3 tahun pada BBCA, bandingkan ke ground truth, hitung MAE & MAPE *(Langkah 5–6: `scripts/check_analyst.py` & `eval/ratio_analyst_eval.py`; smoke test `--from-gt` BBCA & BMRI sudah cocok presisi ✅)*
+- [x] **11.5** Tes 6 rasio × 3 tahun pada BBCA, bandingkan ke ground truth, hitung MAE & MAPE *(27-11-2026: `scripts/check_analyst.py` `--offline` `0,21 s` & `--live` `4,12 s` **LULUS** + 4/4 uji negatif; `eval/ratio_analyst_eval.py` → `results/analyst_eval.json/.csv` 2 lapis: Lapis 1 GT **6/6 < 5%** BBCA `2,25%` [fn9] & BMRI `1,60%` [SEOJK]; Lapis 2 E2E BBCA **5/6 < 5%** [`3,56%`, ROA `0,66%`, NIM `2,36%`] & BMRI `CAR` `0,01%`, `NPL/LDR` 24–25 `< 0,85%`, `NIM` ditolak jujur `insufficient_data` — diagnosis lengkap di `docs/PANDUAN_MINGGU11-12.md`)*
 - [x] **11.6** Tambah interpretasi terhadap ambang batas OJK (Tabel 2.2) → "CAR 29,4% → jauh di atas
       minimum 8%, permodalan sangat kuat" *(27-11-2026: `interpret_ratio()` + tren antar tahun + `analyst_node()` di `src/agents/analyst.py` & `RatioResult` di `src/agents/state.py`)*
+
+> **Status Minggu 11–12 (27-11-2026):** ✅ **SELESAI 100%** (`11.1`–`11.6`, `check_analyst.py` LULUS, evaluasi 2 lapis MAE/MAPE BBCA & BMRI tersimpan di `results/analyst_eval.*`). Siap masuk Minggu 13 (Market Observer Agent).
 
 ---
 

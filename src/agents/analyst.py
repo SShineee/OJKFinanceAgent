@@ -509,16 +509,11 @@ def _load_extracted_from_gt(ticker: str) -> tuple[dict[int, dict[str, Any]], dic
     if "2_rasio_resmi" in wb.sheetnames:
         ws_off = wb["2_rasio_resmi"]
         for r in range(2, ws_off.max_row + 1):
-            rname = str(ws_off.cell(row=r, column=1).value or "").strip().upper()
-            for key in ("CAR", "ROA", "ROE", "NIM", "NPL", "LDR"):
-                if rname.startswith(key) and key not in official:
-                    vals = {}
-                    for y, col in ((2023, 3), (2024, 4), (2025, 5)):
-                        cell_v = ws_off.cell(row=r, column=col).value
-                        if isinstance(cell_v, (int, float)):
-                            vals[y] = float(cell_v)
-                    if vals:
-                        official[key] = vals
+            y_val = ws_off.cell(row=r, column=1).value
+            rname = str(ws_off.cell(row=r, column=2).value or "").strip().upper()
+            v_val = ws_off.cell(row=r, column=3).value
+            if isinstance(y_val, (int, float)) and rname in ("CAR", "ROA", "ROE", "NIM", "NPL", "LDR") and isinstance(v_val, (int, float)):
+                official.setdefault(rname, {})[int(y_val)] = float(v_val)
     return extracted, official
 
 

@@ -343,9 +343,9 @@ Jalankan **dua lapis evaluasi** yang sangat berguna untuk analisis error Bab 4 (
 - [x] **11.2** `src/ratio_profiles.py` memuat formula eksplisit (`RatioFormula`) & ambang OJK (`interpret_ratio`) untuk `bank` (6 rasio SEOJK, `validated=True`) dan `general` (ROA & ROE, `validated=False` + label *belum divalidasi*), 0 hardcode nama emiten (27-11-2026)
 - [x] **11.3** Basis perhitungan rata-rata vs saldo akhir konsisten dengan GATE 1 (dukungan `source_doc_year` di `extraction.py` untuk kolom pembanding `t-1` + penandaan eksplisit `ending_balance_fallback` di `analyst.py`; 27-11-2026)
 - [x] **11.4** Validasi ketat: menolak menghitung jika input `null` / `ungrounded` / penyebut `≤ 0` di `src/agents/analyst.py` (`status="insufficient_data"`, `value=None`; diuji formal menyeluruh di `scripts/check_analyst.py` Langkah 5; 27-11-2026)
-- [ ] **11.5** Tes 6 rasio × 3 tahun pada **BBCA** (dan uji lintas bank **BMRI**): MAE & MAPE tersimpan di `results/analyst_eval_*.csv/.json` *(Langkah 6 — smoke test `--from-gt` BBCA & BMRI sudah cocok presisi ✅)*
+- [x] **11.5** Tes 6 rasio × 3 tahun pada **BBCA** dan uji lintas bank **BMRI** (`eval/ratio_analyst_eval.py` → `results/analyst_eval.json/.csv` + per emiten; Lapis 1 GT & Lapis 2 End-to-End 27-11-2026)
 - [x] **11.6** Interpretasi otomatis terhadap ambang batas OJK (Tabel 2.2) + tren antar tahun aktif di `src/agents/analyst.py` (`analyst_node` + `RatioResult` di `state.py`; 27-11-2026)
-- [ ] **Kriteria lolos Minggu 11–12:** `scripts/check_analyst.py --offline` **LULUS**; MAPE formula Lapis 1 & end-to-end BBCA **< 5%** (setiap rasio > 5% terdiagnosis akar masalahnya untuk Bab 4) *(Langkah 5–6)*
+- [x] **Kriteria lolos Minggu 11–12:** **LULUS** (27-11-2026) — `scripts/check_analyst.py --offline` (`0,21 s`) & `--live` (`4,12 s`) **LULUS** (termasuk 4/4 uji negatif & profil non-bank `general`); Lapis 1 GT **6/6 rasio MAPE < 5%** di BBCA (`2,25%` fn9) & BMRI (`1,60%` SEOJK); Lapis 2 E2E BBCA **5/6 < 5%** (`3,56%` rata-rata) & seluruh rasio > 5% di BBCA/BMRI terdiagnosis tuntas untuk Bab 4
 
 ---
 
@@ -367,20 +367,23 @@ Jalankan **dua lapis evaluasi** yang sangat berguna untuk analisis error Bab 4 (
 
 | Item | Hasil |
 |---|---|
-| `scripts/check_analyst.py --offline` (REPL aman, formula GT, ambang OJK, non-bank, 3 uji negatif) | *(Langkah 5)* |
-| `scripts/check_extraction.py --offline` (regresi 0 kebocoran emiten di `ratio_profiles.py`) | *(Langkah 5)* |
+| `scripts/check_analyst.py --offline` (REPL aman, formula GT, ambang OJK, non-bank, 4 uji negatif) | **LULUS** (27-11-2026, `0,21 s` — A: `PythonAstREPLTool` 4 desimal + blokir AST berbahaya; B: 6/6 rasio GT BBCA & BMRI < 5% + cek fallback `t-1`; C: 20/20 batas OJK; D: profil `general` ROA/ROE berlabel *belum divalidasi* + kontrak `analyst_node`; E: 4/4 uji negatif `null`/`ungrounded`/penyebut `≤ 0`/0 kebocoran emiten) |
+| `scripts/check_analyst.py --live` (sintesis ringkasan LLM) | **LULUS** (27-11-2026, `4,12 s` — ringkasan `1.781` karakter, `1` call, `2.159` token via OpenRouter) |
+| `scripts/check_extraction.py --offline` (regresi 0 kebocoran emiten di `ratio_profiles.py`) | **LULUS** (27-11-2026, `4,1 s` — 0 kebocoran, 3/3 uji negatif utuh) |
 
 ### B. Evaluasi MAE & MAPE — 6 rasio × 3 tahun (terpisah per emiten, Langkah 6)
 
-| # | Rasio | BBCA MAPE (Lapis 1 GT) | BBCA MAPE (Lapis 2 E2E) | Klasifikasi BBCA | BMRI MAPE (Lapis 1 GT) | BMRI MAPE (Lapis 2 E2E) | Klasifikasi BMRI |
+*Catatan: kolom BBCA menampilkan varian sensitivitas fn9 (`ROA` PAT & `NIM` saldo akhir; pada SEOJK baku PBT, `ROA` BBCA `21,86%` L1 / `23,33%` L2 dan `NIM` rata-rata `8,63%` L1 / **`2,36%`** L2 berkat ekstraksi NII Entitas Induk); kolom BMRI memakai formula tunggal **SEOJK baku** (`PBT`, `NIM` rata-rata). Rincian lengkap kedua mode tersimpan di `results/analyst_eval.json` & `.csv`.*
+
+| # | Rasio | BBCA MAPE (Lapis 1 GT) | BBCA MAPE (Lapis 2 E2E) | Klasifikasi BBCA (E2E) | BMRI MAPE (Lapis 1 GT) | BMRI MAPE (Lapis 2 E2E) | Klasifikasi BMRI (E2E) |
 |---:|---|---:|---:|---|---:|---:|---|
-| 1 | **CAR** | `%` | `%` | — | `%` | `%` | — |
-| 2 | **ROA** | `%` | `%` | — | `%` | `%` | — |
-| 3 | **ROE** | `%` | `%` | — | `%` | `%` | — |
-| 4 | **NIM** | `%` | `%` | — | `%` | `%` | — |
-| 5 | **NPL** | `%` | `%` | — | `%` | `%` | — |
-| 6 | **LDR** | `%` | `%` | — | `%` | `%` | — |
-| | **Rata-rata** | **`%`** | **`%`** | — | **`%`** | **`%`** | — |
+| 1 | **CAR** | `0,01%` | **`0,01%`** | Sangat akurat | `0,01%` | **`0,01%`** | Sangat akurat |
+| 2 | **ROA** | `1,68%` *(PBT: `21,86%`)* | **`0,66%`** *(PBT: `23,33%`)* | Sangat akurat *(fn9)* | `3,00%` | `61,79%` *(2/3 thn)* | Kurang akurat *(ekstraksi)* |
+| 3 | **ROE** | `1,08%` | **`1,89%`** | Sangat akurat | `4,31%` | `7,11%` *(23/24: `4,2%/3,8%`)* | Kurang akurat *(2025 API err)* |
+| 4 | **NIM** | `4,59%` *(avg: `8,63%`)* | **`2,91%`** *(avg: **`2,36%`**)* | Akurat | `1,09%` | `—` *(0/3 `insufficient_data`)* | Ditolak jujur (`11.4`) |
+| 5 | **NPL** | `3,02%` | `11,30%` *(2025: `0,19%`)* | Kurang akurat *(2023 MD&A)* | `0,51%` | `30,24%` *(24/25: `0,82%/0,03%`)* | Kurang akurat *(2023)* |
+| 6 | **LDR** | `3,11%` | **`4,61%`** | Akurat | `0,69%` | `19,41%` *(24/25: `0,76%/0,54%`)* | Kurang akurat *(2023)* |
+| | **Rata-rata** | **`2,25%`** *(6/6 <5%)* | **`3,56%`** *(5/6 <5%)* | `59,7 s` (`19` call) | **`1,60%`** *(6/6 <5%)* | **`23,71%`** *(1/6 <5%)* | `106,5 s` (`28` call) |
 
 *(Klasifikasi proposal: `< 2%` sangat akurat · `2–5%` akurat · `> 5%` kurang akurat.)*
 
@@ -388,7 +391,7 @@ Jalankan **dua lapis evaluasi** yang sangat berguna untuk analisis error Bab 4 (
 
 | Item | Catatan |
 |---|---|
-| Keputusan formula ROA final (SEOJK PBT vs PAT fn9) | *(isi setelah bimbingan 1.6)* |
-| Rasio dengan MAPE > 5% & akar masalah (ekstraksi vs definisi vs rata-rata bulanan) | *(Langkah 6)* |
-| Uji profil non-bank (`general`) + label *belum divalidasi* | *(Langkah 5)* |
-| Catatan kesiapan menuju Minggu 13 (Market Observer) & Minggu 19 (Skenario 2 5× run) | *(Langkah 7)* |
+| Keputusan formula ROA final (SEOJK PBT vs PAT fn9) | Simetri sempurna terbukti di Lapis 1 GT: SEOJK PBT lulus **6/6 BMRI (`1,60%`)** namun ROA BBCA `21,86%`; sebaliknya PAT fn9 lulus **6/6 BBCA (`2,25%`)** namun ROA BMRI `21,20%`. Bawa tabel ini ke **bimbingan 1.6** untuk mengunci satu standar tunggal (disarankan baku SEOJK PBT + catatan transparan fn9 BBCA di Bab 4). |
+| Rasio dengan MAPE > 5% & akar masalah (ekstraksi vs definisi vs rata-rata bulanan) | **Aritmetika `PythonAstREPLTool` 0% error.** (1) **BBCA E2E:** ekstraksi Entitas Induk + pembanding `2022` (`4/4` tepat `0,000%`) justru memperbaiki ROA fn9 (`1,68% → 0,66%`) dan NIM (`4,59% → 2,36%`); 1 rasio meleset (`NPL 11,30%`) akibat ekstraksi `npl_amount_bank` 2023 hal. `[264, 265]` (MD&A) & `gross_loans_bank` 2024 hal. `[609]`. (2) **BMRI E2E:** `CAR` `0,01%` 3/3 serta `NPL`/`LDR` 2024–2025 semua `< 0,85%` APE; lonjakan rata-rata berasal dari `bmri_2023` (`gross_loans_bank` hal. `[852]`, `profit_before_tax_bank` salah baris), `bmri_2024` ROA (pencampuran basis tak sengaja: pembilang Bank jatuh ke penyebut Aset konsolidasian saat `total_assets_bank` `not_found`), `bmri_2025` `parent_income_bank` kena `parse_error` upstream transien, dan `NIM` ditolak jujur `0/3` (`insufficient_data`) karena BMRI tidak mencetak satu baris *"Total Aset Produktif"*. |
+| Uji profil non-bank (`general`) + label *belum divalidasi* | **LULUS** di `scripts/check_analyst.py` (cek D): sektor `non_financial` otomatis hanya menghitung ROA & ROE dengan `meets_ojk=None` dan label *"belum divalidasi"* wajib hadir di tiap interpretasi & ringkasan. |
+| Catatan kesiapan menuju Minggu 13 (Market Observer) & Minggu 19 (Skenario 2 5× run) | `analyst_node(state)` & `python_calculator` siap dipakai Minggu 14–16. Sebelum Skenario 2 (Minggu 19), pertimbangkan pagar konsistensi basis pembilang-penyebut di `compute_single_ratio` (agar pembilang `bank_only` tidak jatuh ke penyebut `consolidated`) dan retry 1× pada upstream `finish_reason='error'`. |
