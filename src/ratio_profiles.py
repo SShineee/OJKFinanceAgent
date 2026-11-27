@@ -120,12 +120,16 @@ _BANK_METRICS = {
             label="Kredit yang Diberikan Bruto (Bank)",
             basis="bank_only",
             description=(
-                "Total Kredit yang Diberikan BRUTO (sebelum dikurangi cadangan kerugian penurunan nilai / "
-                "CKPN) pada Laporan Posisi Keuangan Entitas Induk (Bank saja). Jika tabel mencetak baris "
-                "subtotal kredit bruto sebelum CKPN, kutip langsung di `raw_value`. Jika tabel hanya "
-                "mencetak kredit neto (termasuk bila dipecah Pihak berelasi + Pihak ketiga) dan menulis "
-                "nilai CKPN di baris atau keterangan kredit, kutip seluruh angka penyusunnya di "
-                "`components` dengan `component_operation='sum'` (Python yang menjumlahkan)."
+                "Total Kredit yang Diberikan BRUTO (SEBELUM dikurangi cadangan kerugian penurunan nilai / "
+                "CKPN) pada Laporan Posisi Keuangan Entitas Induk (Bank saja). "
+                "Aturan penting: (a) jika tabel mencetak baris jumlah/subtotal kredit bruto sebelum "
+                "dikurangi CKPN, kutip langsung di `raw_value` (`component_operation='none'`); "
+                "(b) jika baris tabel tertulis 'setelah dikurangi cadangan kerugian penurunan nilai sebesar ...' "
+                "(berarti kolom angka adalah Kredit NETO, bukan Bruto!), JANGAN hanya mengutip Kredit Neto — "
+                "masukkan seluruh angka Kredit Neto tahun target (mis. Pihak berelasi + Pihak ketiga) "
+                "DITAMBAH nilai CKPN tahun target tersebut (cukup SATU KALI walau keterangan baris diulang "
+                "di sub-baris) ke dalam `components` dengan `component_operation='sum'` agar Python "
+                "menghitung Kredit Bruto = Kredit Neto + CKPN."
             ),
             abs_value=True,
             gate4=True,
@@ -225,7 +229,7 @@ _BANK_GROUPS = (
             "laporan laba rugi konsolidasian pendapatan bunga bersih laba bersih laba tahun berjalan",
         ),
         metric_keys=("total_assets", "net_interest_income", "net_income", "earning_assets"),
-        top_k=4,
+        top_k=3,
     ),
     ExtractionGroup(
         group_id="capital_bank",
@@ -234,17 +238,17 @@ _BANK_GROUPS = (
             "kewajiban penyediaan modal minimum KPMM modal inti tier 1 total modal ATMR bank",
         ),
         metric_keys=("tier1_capital_bank", "total_capital_bank", "rwa_bank"),
-        top_k=4,
+        top_k=3,
     ),
     ExtractionGroup(
         group_id="parent_loans_deposits",
         title="Kredit, CKPN, DPK, & Aset Entitas Induk (Basis Bank)",
         search_queries=(
-            "laporan posisi keuangan entitas induk kredit yang diberikan cadangan kerugian penurunan nilai CKPN jumlah aset",
+            "laporan posisi keuangan entitas induk aset kas giro pada bank indonesia kredit yang diberikan jumlah aset",
             "laporan posisi keuangan entitas induk liabilitas simpanan dari nasabah DPK",
         ),
         metric_keys=("gross_loans_bank", "ckpn_loans_bank", "deposits_bank", "total_assets_bank"),
-        top_k=4,
+        top_k=3,
     ),
     ExtractionGroup(
         group_id="npl_bank",
@@ -253,7 +257,7 @@ _BANK_GROUPS = (
             "kredit bermasalah non performing loan NPL gross kurang lancar diragukan macet bank",
         ),
         metric_keys=("npl_amount_bank",),
-        top_k=4,
+        top_k=3,
     ),
     ExtractionGroup(
         group_id="parent_income_bank",
@@ -262,7 +266,7 @@ _BANK_GROUPS = (
             "laporan laba rugi entitas induk pendapatan bunga neto laba sebelum beban pajak laba tahun berjalan",
         ),
         metric_keys=("net_interest_income_bank", "profit_before_tax_bank", "net_income_bank"),
-        top_k=4,
+        top_k=3,
     ),
 )
 

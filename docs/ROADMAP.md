@@ -563,7 +563,7 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 - [x] **9.1** `src/agents/state.py` — `AgentState(TypedDict)`:
       `query, year, extracted_data, ratios, market_context, report, messages` *(+ `ticker`, `sector`, `retrieved_chunks`, skema Pydantic `RawMetricExtraction` / `NormalizedMetric`; 27-11-2026)*
 - [x] **9.2** Bungkus `hybrid_retrieve` jadi LangChain `@tool` *(27-11-2026: `src/agents/tools.py`, `search_annual_report` bahasa Inggris + metadata halaman/satuan/`merged_cells` + `ContextVar` recorder)*
-- [ ] **9.3** Prompt Extraction Agent *(parser angka & grounding `src/agents/parse_number.py` ✅ 27-11-2026; prompt & agen `src/agents/extraction.py` di Langkah 4)*. Aturan wajib:
+- [x] **9.3** Prompt Extraction Agent *(27-11-2026: `src/agents/parse_number.py` + `src/agents/extraction.py` — output terstruktur, sitasi wajib, `null` jujur, konversi angka ID + `U+202F` + penjumlahan komponen + normalisasi ke juta Rp + pagar grounding oleh Python; `scripts/check_extraction.py` LULUS termasuk 3 uji negatif & live BBCA 2024 **8/8 = 100%** error `0,000%`)*. Aturan wajib:
       - output **JSON terstruktur**, bukan prose
       - setiap angka wajib disertai `sumber` (halaman/header)
       - kalau angka tidak ditemukan → `null`, **dilarang menebak**
@@ -575,10 +575,10 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
         **kode Python**, bukan LLM — LLM cukup mengutip teks angka apa adanya.
       - jawaban gpt-oss memuat spasi sempit `U+202F` di dalam angka (`Rp 54.851`) — parser
         angka harus membuangnya
-- [ ] **9.4** Pakai structured output (Pydantic) supaya tidak perlu parsing string
-- [ ] **9.5** Prompt **tidak boleh** memuat hal khas emiten tertentu: nomor halaman, nomor Catatan
+- [x] **9.4** Pakai structured output (Pydantic) supaya tidak perlu parsing string *(27-11-2026: `method="json_schema"` pada `openai/gpt-oss-120b` `effort="low"` + fallback `json_mode` + backoff 429 di `src/agents/extraction.py` & `extraction_node`)*
+- [x] **9.5** Prompt **tidak boleh** memuat hal khas emiten tertentu: nomor halaman, nomor Catatan
       ("Catatan 51f"), atau nama perusahaan. Jelaskan *apa* yang dicari secara semantik
-      ("tabel KPMM, kolom basis Bank"), bukan *di mana* letaknya di laporan BBCA.
+      ("tabel KPMM, kolom basis Bank"), bukan *di mana* letaknya di laporan BBCA. *(27-11-2026: audit otomatis `check_extraction.py` lulus 0 kebocoran di `ratio_profiles.py`, `tools.py`, `extraction.py`, dan `EXTRACTION_SYSTEM_PROMPT`)*
 - [x] **9.5b** **Daftar angka yang diekstrak diambil dari profil rasio sektor** (lihat 11.2), bukan
       ditulis tetap di prompt. Bank butuh Tier 1, ATMR, kredit bruto; profil umum (non-bank)
       cukup laba, total aset, dan ekuitas. *(27-11-2026: `src/ratio_profiles.py` — profil `bank` 15 metrik / 8 GATE 4 & `general` 3 metrik, 0 kebocoran nama emiten)*
