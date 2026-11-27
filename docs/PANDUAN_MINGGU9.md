@@ -57,7 +57,7 @@ Empat keputusan ini langsung menjawab temuan nyata dari Minggu 1–8:
 - **Aturan:**
   1. LLM **hanya mengutip teks angka persis seperti tercetak di chunk** (`raw_value`, atau daftar
      `components` jika subtotal tidak tercetak langsung) beserta `unit` dan `source_chunk_id`.
-  2. **Kode Python (`src/agents/parse_number.py`)** membersihkan `U+202F` / `"Rp"` / tanda kurung,
+  2. **Kode Python (`src/tools/parse_number.py`)** membersihkan `U+202F` / `"Rp"` / tanda kurung,
      mengonversi format Indonesia (titik = ribuan, koma = desimal), menjumlahkan `components` bila
      ada, dan menormalisasi seluruh nominal ke **juta Rupiah** (`billion_idr` × 1.000, `million_idr`
      × 1, `thousand_idr` / 1.000, `idr` / 1.000.000).
@@ -157,7 +157,7 @@ reasoning_effort="low")`:
 
 ## Langkah 1 — Parser angka Indonesia & normalisasi satuan · ½ hari
 
-**File:** `src/agents/parse_number.py`
+**File:** `src/tools/parse_number.py`
 
 Modul murni Python (deterministik, 0 panggilan LLM, sangat mudah diuji menyeluruh):
 
@@ -253,7 +253,7 @@ Satu sumber kebenaran per sektor:
 
 ---
 
-## Langkah 3 — Tool Retrieval LangChain (`src/agents/tools.py`, `9.2`) · 2 jam
+## Langkah 3 — Tool Retrieval LangChain (`src/tools/retrieval.py`, `9.2`) · 2 jam
 
 Bungkus `hybrid_retrieve` dari [hybrid.py](file:///c:/TugasAkhir/src/retrieval/hybrid.py) sebagai
 LangChain `@tool`:
@@ -434,10 +434,10 @@ python -m eval.extraction_eval --ticker bmri --out-prefix extraction_eval_bmri
 ## Gerbang (kriteria lolos Minggu 9–10 — GATE 4)
 
 - [x] **9.1** `src/agents/state.py` (`AgentState` + skema Pydantic `RawMetricExtraction` / `GroupExtractionOutput` / `NormalizedMetric`, 27-11-2026)
-- [x] **9.2** `src/agents/tools.py` — `hybrid_retrieve` dibungkus LangChain `@tool` bernama bahasa Inggris (`search_annual_report`) dengan metadata halaman, satuan, `merged_cells`, & `ContextVar` recorder (27-11-2026)
-- [ ] **9.3** `src/agents/parse_number.py` ✅ (27-11-2026) + prompt Extraction Agent (`src/agents/extraction.py`, Langkah 4): output JSON terstruktur, sitasi sumber wajib, `null` bila tak ada, format angka Indonesia + `U+202F` & normalisasi ke juta Rupiah oleh kode Python + pagar grounding
+- [x] **9.2** `src/tools/retrieval.py` — `hybrid_retrieve` dibungkus LangChain `@tool` bernama bahasa Inggris (`search_annual_report`) dengan metadata halaman, satuan, `merged_cells`, & `ContextVar` recorder (27-11-2026)
+- [ ] **9.3** `src/tools/parse_number.py` ✅ (27-11-2026) + prompt Extraction Agent (`src/agents/extraction.py`, Langkah 4): output JSON terstruktur, sitasi sumber wajib, `null` bila tak ada, format angka Indonesia + `U+202F` & normalisasi ke juta Rupiah oleh kode Python + pagar grounding
 - [ ] **9.4** Structured output Pydantic (`method="json_schema"` terverifikasi `0,97 s` pada `openai/gpt-oss-120b` `effort="low"` di Langkah 0 ✅; integrasi di `extraction.py` pada Langkah 4)
-- [ ] **9.5** Prompt & `ratio_profiles.py` 100% generik (0 nama emiten, 0 nomor halaman, 0 nomor Catatan — `ratio_profiles.py` & `tools.py` sudah lulus audit otomatis ✅; menunggu `extraction.py` Langkah 4–5)
+- [ ] **9.5** Prompt & `ratio_profiles.py` 100% generik (0 nama emiten, 0 nomor halaman, 0 nomor Catatan — `ratio_profiles.py` & `src/tools/retrieval.py` sudah lulus audit otomatis ✅; menunggu `extraction.py` Langkah 4–5)
 - [x] **9.5b** `src/ratio_profiles.py` memuat profil `bank` (`validated=True`, 15 metrik / 8 GATE 4 dalam 4 kelompok) & `general` (`validated=False`, 3 metrik umum), daftar angka ekstraksi diambil dari profil sektor (27-11-2026)
 - [ ] **9.6** Evaluasi ekstraksi 8 angka × 3 tahun (`eval/extraction_eval.py` → `results/extraction_eval.json` & `.csv`) dijalankan pada BBCA lalu BMRI
 - [ ] **9.7** Akurasi dicatat **terpisah per emiten** (BBCA vs BMRI) beserta analisis selisih & error untuk Bab 4
