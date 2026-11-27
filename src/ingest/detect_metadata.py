@@ -57,9 +57,10 @@ COVER_PAGES = 30
 NAME_WORD = r"(?!(?:PT|Tbk|TBK)\b)\(?[A-Z0-9][\w&.'’\-]*\)?,?"   # "Bank", "(Persero)", "Asia,"
 COMPANY = re.compile(rf"\bPT\.? ((?:{NAME_WORD} ){{1,8}}?)(?:Tbk|TBK)\b")
 TICKER_PATTERNS = (   # (pola, bobot, nama)
-    (re.compile(r"(?i:kode saham|kode efek|stock code|ticker code|share code|stock ticker)"
+    (re.compile(r"(?i:kode saham|kode efek|stock code|ticker code|share code|stock ticker|idx ticker|bei ticker)"
                 r" ?:? ?([A-Z]{4})\b"), 5, "kode saham"),
     (re.compile(r"\((?i:idx|bei) ?: ?([A-Z]{4})\)"), 2, "(IDX: kode)"),
+    (re.compile(r"\((?i:idx|bei)\) ?: ?([A-Z]{4})\b"), 2, "(IDX): kode"),
 )
 COMPANY_TBK_CODE = re.compile(rf"\bPT\.? ((?:{NAME_WORD} ){{1,8}}?)(?:Tbk|TBK)\.? ?\(([A-Z]{{4}})\)")
 SAHAM_CODE = re.compile(r"(?i:\bsaham|\bstock|\bticker)\s+([A-Z]{4})\b")

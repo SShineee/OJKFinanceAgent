@@ -453,6 +453,7 @@ Lalu **bimbingan** sebelum Minggu 3 — lihat pengecualian GATE 1 di `docs/ROADM
 
 | Kode | Tahun | Ukuran (MB) | Hal. | Text/Scan | Satuan dominan | Penanda tabel | KPMM | Entitas Induk | Fn "induk saja" | LK terpisah? | Dwibahasa? |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| BMRI | 2023 | 23,8 | 1.514 | Text-based | `million_idr` (543 hal.) | 563 hal. tersaring (37%) | hal. 1425–1426 | hal. 1500–1513 | Dicek rinci di 8.5 (hal. 36–37) | Tidak (hal. 1070–1513) | Ya (ID+EN di LK) |
+| BMRI | 2023 | 23,8 | 1.514 | Text-based | `million_idr` (543 hal.) | 563 hal. tersaring (37%) | hal. 1425–1426 | hal. 1500–1513 | Ya — `RASIO KEUANGAN (BANK ONLY)` (hal. 36–37) | Tidak (hal. 1070–1513) | Ya (ID+EN di LK) |
 | BMRI | 2024 | 21,1 | 1.726 | Text-based | `million_idr` (616 hal.) | 633 hal. tersaring (37%) | hal. 1700–1701 | hal. 1712–1725 | Ya — `RASIO KEUANGAN (BANK ONLY)` (hal. 34–35) | Tidak (hal. 1282–1725) | Ya (ID+EN di LK) |
 | BMRI | 2025 | 22,9 | 1.467 | Text-based | `million_idr` (579 hal.) | 594 hal. tersaring (40%) | hal. 1431–1433 | hal. 1454–1466 | Ya — `RASIO KEUANGAN (BANK ONLY)` (hal. 39–40) | Tidak (hal. 951–1466) | Ya (ID+EN di LK) |
+| TLKM *(non-bank)* | 2024 | 21,0 | 588 | Text-based | `billion_idr` (116 hal.) | 140 hal. tersaring (24%, tak diindeks) | Tidak ada (0/6 bank) | — | — (`non_financial`, *belum divalidasi*) | Tidak (hal. 438–584) | Inggris (IDX/NYSE) |

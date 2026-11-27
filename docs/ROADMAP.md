@@ -517,21 +517,21 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 - [x] **8.0b** Uji saringan halaman pada BMRI: apakah Catatan KPMM, Entitas Induk, dan Catatan
       NPL ikut tersaring? Kalau tidak, saringan terlalu khas BBCA.
       ✅ **26-11-2026 (`RULE_VERSION = 3`):** ditambah varian penanda satuan (`dalam juta rupiah`, `dalam rp juta/jutaan`, `in million rupiah`, beserta `miliar/miliaran`) + 7 kelompok sinonim rasio ID/EN (`RATIO_TERMS`), sekaligus menutup celah 3.8 Pilar 3 CC1 BBCA. BMRI lolos `563 / 633 / 594` hal. (37–40%) mencakup seluruh 7 kelompok halaman penting; BBCA di-parse ulang (`273 / 274 / 235` hal., `541 / 571 / 519` chunk) dan seluruh regresi (`check_page_filter`, `check_parse_output` 76/76, `check_fix_tables`, `check_chunks`, `check_index`, `check_retrieval`) **LULUS**.
-- [ ] **8.0c** Uji deteksi sektor: BMRI → bank; **1 laporan non-bank apa saja** (cukup 1 tahun,
+- [x] **8.0c** Uji deteksi sektor: BMRI → bank; **1 laporan non-bank apa saja** (cukup 1 tahun,
       mis. TLKM) → bukan bank → profil umum.
-      *(BMRI ✅ 26-11-2026: 3/3 `ticker=bmri`, `company=PT Bank Mandiri (Persero) Tbk`, `sector=bank` 6/6 penanda, 0 peringatan; ⏸ tinggal 1 PDF non-bank.)*
+      ✅ **26–27-11-2026:** BMRI 3/3 → `ticker=bmri`, `PT Bank Mandiri (Persero) Tbk`, `sector=bank` (6/6 penanda, `validated=True`, 0 peringatan); `tlkm_2024.pdf` (21,0 MB, 588 hal., Inggris) → `ticker=tlkm`, `PT Telekomunikasi Indonesia Tbk`, `2024`, `billion_idr`, `sector=non_financial` (`validated=False` / *belum divalidasi*, penanda bank `0/6`, 0 peringatan; tidak diindeks ke Chroma). `scripts/check_detect_metadata.py` **LULUS**.
 - [x] **8.0d** Masukkan BMRI ke pustaka, lalu **uji kontaminasi**: 10 query per bank, **tidak
       boleh ada satu pun chunk bank lain** di hasil. Tier 1 BBCA yang terselip ke analisis BMRI
       tidak akan terlihat salah — tapi hasilnya salah.
-      ✅ **26-11-2026:** 3 laporan BMRI masuk via `add_document()` (`1.219 / 1.358 / 1.430` chunk, `0` potongan tabel tanpa header; total koleksi `5.638` chunk, `chroma_db` `101,3 MB`). `scripts/check_contamination.py` **LULUS** (`results/check_contamination.json`): **0/120 bocor** (20 panggilan `hybrid_retrieve` + `dense`/`sparse`), uji negatif tanpa filter `ticker` mencampur **10/10 query** (`bbca` 53 vs `bmri` 47), regresi GATE 3 BBCA tetap **13/15 (86,7%)**.
+      ✅ **26–27-11-2026:** 3 laporan BMRI masuk via `add_document()` (`1.219 / 1.358 / 1.430` chunk, `0` potongan tabel tanpa header; total koleksi `5.638` chunk, `chroma_db` `101,3 MB`) + backup Google Drive selesai. `scripts/check_contamination.py` **LULUS** (`results/check_contamination.json`): **0/120 bocor** (20 panggilan `hybrid_retrieve` + `dense`/`sparse`), uji negatif tanpa filter `ticker` mencampur **10/10 query** (`bbca` 53 vs `bmri` 47), regresi GATE 3 BBCA tetap **13/15 (86,7%)**.
 - [x] **8.0e** Kalau pipeline perlu diperbaiki karena format BMRI: perbaikan harus **generik**
       (mis. menangani laporan dwibahasa), bukan menyesuaikan prompt ke isi BMRI — dan dicatat
       untuk Bab 4. Prompt Extraction Agent tetap dirancang dengan BBCA saja.
-      ✅ **26-11-2026:** 2 perbaikan generik terdokumentasi di `docs/PANDUAN_MINGGU8.md` (`page_filter.py` v3 + `chunk.py` untuk varian satuan & rasio ID/EN; `detect_metadata.py` untuk mencegah kode saham anak usaha mengalahkan induk + tabel identitas 2 kolom).
+      ✅ **26–27-11-2026:** 3 perbaikan generik terdokumentasi di `docs/PANDUAN_MINGGU8.md` (`page_filter.py` v3 + `chunk.py` untuk varian satuan & rasio ID/EN; `detect_metadata.py` untuk mencegah kode saham anak usaha mengalahkan induk + tabel identitas 2 kolom + pola `idx/bei ticker` & `(IDX): KODE` pada laporan bahasa Inggris).
 
 > **GATE 8:** saringan & deteksi sektor bekerja pada BMRI; **nol kontaminasi** antar bank.
 >
-> **Status (26-11-2026):** ✅ **GATE 8 LULUS** (saringan v3, deteksi sektor `bank` 3/3, ingest penuh 3/3, 0 kontaminasi BBCA↔BMRI, regresi BBCA utuh; ⏸ tinggal 1 PDF non-bank untuk melengkapi separuh non-bank 8.0c, backup Google Drive, lalu lanjut 8.5 & 8.1–8.4).
+> **Status (27-11-2026):** ✅ **GATE 8 LULUS PENUH — MINGGU 8 SELESAI 100%** (saringan v3, deteksi sektor `bank` 3/3 BMRI + `non_financial` `tlkm_2024.pdf`, ingest penuh 3/3 BMRI + backup Google Drive, 0 kontaminasi BBCA↔BMRI, regresi BBCA utuh, ground truth & retrieval BMRI 8.5 selesai & terverifikasi visual, serta dataset RAGAS 8.1–8.4 selesai penuh 30/30).
 
 - [x] **8.1** Buat `eval/datasets/ragas_qa.jsonl`, target **30 pasang**, format:
       `{"question": "...", "reference": "...", "ref_page": 112, "type": "faktual"}`
