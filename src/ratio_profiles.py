@@ -42,6 +42,7 @@ class ExtractionGroup:
     search_queries: tuple[str, ...]
     metric_keys: tuple[str, ...]
     top_k: int = 4
+    prefer_tables: bool = True               # False bila pengungkapan regulasi bisa berupa paragraf teks (mis. NPL)
 
 
 @dataclass(frozen=True)
@@ -121,9 +122,11 @@ _BANK_METRICS = {
             basis="bank_only",
             description=(
                 "Total Kredit yang Diberikan BRUTO (SEBELUM dikurangi cadangan kerugian penurunan nilai / "
-                "CKPN) pada Laporan Posisi Keuangan Entitas Induk (Bank saja). "
-                "Aturan penting: (a) jika tabel mencetak baris jumlah/subtotal kredit bruto sebelum "
-                "dikurangi CKPN, kutip langsung di `raw_value` (`component_operation='none'`); "
+                "CKPN) pada Laporan Posisi Keuangan Entitas Induk (Bank saja / Parent Entity). "
+                "Aturan penting: (a) jika tabel mencetak baris jumlah/subtotal kredit bruto tepat sebelum "
+                "baris 'Dikurangi: cadangan kerugian penurunan nilai' / 'Less: allowance for impairment losses' "
+                "(meskipun sel label baris subtotal tersebut kosong), kutip langsung angka subtotal itu di "
+                "`raw_value` (`component_operation='none'`); "
                 "(b) jika baris tabel tertulis 'setelah dikurangi cadangan kerugian penurunan nilai sebesar ...' "
                 "(berarti kolom angka adalah Kredit NETO, bukan Bruto!), JANGAN hanya mengutip Kredit Neto — "
                 "masukkan seluruh angka Kredit Neto tahun target (mis. Pihak berelasi + Pihak ketiga) "
@@ -258,6 +261,7 @@ _BANK_GROUPS = (
         ),
         metric_keys=("npl_amount_bank",),
         top_k=4,
+        prefer_tables=False,
     ),
     ExtractionGroup(
         group_id="parent_income_bank",

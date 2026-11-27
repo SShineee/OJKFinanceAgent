@@ -71,6 +71,8 @@ STATEMENT_TABLE_RE = re.compile(
     r"laporan\s+laba\s+rugi|statements?\s+of\s+profit\s+or\s+loss)",
     re.I,
 )
+PARENT_STATEMENT_RE = re.compile(r"\b(entitas\s+induk|parent\s+entity|tersendiri)\b", re.I)
+CONSOLIDATED_STATEMENT_RE = re.compile(r"\b(konsolidasian|consolidated)\b", re.I)
 
 
 class RateLimitExhausted(RuntimeError):
@@ -127,11 +129,17 @@ def _is_segment_chunk(chunk: dict[str, Any]) -> bool:
     return bool(SEGMENT_TABLE_RE.search(head))
 
 
-def _is_primary_statement_chunk(chunk: dict[str, Any]) -> bool:
-    if not chunk.get("is_table") or _is_segment_chunk(chunk):
+def _is_primary_statement_chunk(chunk: dict[str, Any], target_basis: str | None = None) -> bool:
+    if _is_segment_chunk(chunk):
         return False
-    head = f"{chunk.get('headings', '')}\n{chunk.get('text', '')[:320]}"
-    return bool(STATEMENT_TABLE_RE.search(head))
+    head = f"{chunk.get('headings', '')}\n{chunk.get('text', '')[:400]}"
+    if not STATEMENT_TABLE_RE.search(head):
+        return False
+    if target_basis == "bank_only":
+        return bool(PARENT_STATEMENT_RE.search(head))
+    if target_basis == "consolidated":
+        return bool(CONSOLIDATED_STATEMENT_RE.search(head)) and not bool(PARENT_STATEMENT_RE.search(head))
+    return True
 
 
 @lru_cache(maxsize=16)
@@ -172,53 +180,64 @@ def _expand_split_statement_chunks(
     ticker: str,
     year: int,
     max_total: int = MAX_EXPANDED_CHUNKS,
+    target_basis: str | None = None,
 ) -> list[dict[str, Any]]:
-    """Sisipkan chunk tabel tetangga (±1 halaman) tepat di sebelah chunk laporan keuangan utama."""
+    """Sisipkan chunk tabel tetangga (±1 halaman) tanpa pernah membuang chunk hasil retrieval asli."""
     rows, by_id = _doc_chunks(ticker, year)
-    if not rows:
+    budget = max(0, max_total - len(selected))
+    if not rows or budget == 0:
         return selected
     seen = {c["chunk_id"] for c in selected}
     result: list[dict[str, Any]] = []
-    expanded_parents = 0
+    added = 0
     for chunk in selected:
         result.append(chunk)
-        if expanded_parents >= 2 or len(result) >= max_total:
-            continue
-        if not _is_primary_statement_chunk(chunk):
+        if added >= budget or not _is_primary_statement_chunk(chunk, target_basis):
             continue
         idx = by_id.get(chunk["chunk_id"])
         if idx is None:
             continue
-        expanded_parents += 1
         base_pages = chunk.get("pages") or []
         for step in (-1, 1):
-            if len(result) >= max_total:
+            if added >= budget:
                 break
             j = idx + step
             scanned = 0
-            while 0 <= j < len(rows) and scanned < 3:
+            while 0 <= j < len(rows) and scanned < 4:
                 cand = rows[j]
                 scanned += 1
                 if not _pages_adjacent(base_pages, cand.get("pages") or []):
                     break
-                if cand.get("is_table"):
+                if cand.get("is_table") and len(cand.get("text") or "") >= 500:
                     cid = cand["chunk_id"]
                     if cid not in seen:
                         norm = _normalize_doc_chunk(cand)
                         if not _is_segment_chunk(norm):
                             seen.add(cid)
                             result.append(norm)
+                            added += 1
                     break
                 j += step
-    return result[:max_total]
+    return result
 
 
-def _interleave_chunks(lists: Sequence[list[dict[str, Any]]], max_chunks: int) -> list[dict[str, Any]]:
-    """Gabungkan hasil beberapa query secara round-robin tanpa duplikat; taruh tabel segmen di belakang."""
-    ordered_lists = [
-        [c for c in xs if not _is_segment_chunk(c)] + [c for c in xs if _is_segment_chunk(c)]
-        for xs in lists
-    ]
+def _chunk_priority(chunk: dict[str, Any], prefer_tables: bool = True) -> int:
+    """Taruh tabel segmen di belakang; bila prefer_tables=True, utamakan tabel (0) di atas prosa (1)."""
+    if _is_segment_chunk(chunk):
+        return 2
+    if prefer_tables:
+        return 0 if chunk.get("is_table") else 1
+    return 0
+
+
+def _interleave_chunks(
+    lists: Sequence[list[dict[str, Any]]],
+    max_chunks: int,
+    *,
+    prefer_tables: bool = True,
+) -> list[dict[str, Any]]:
+    """Gabungkan hasil beberapa query secara round-robin tanpa duplikat."""
+    ordered_lists = [sorted(xs, key=lambda c: _chunk_priority(c, prefer_tables)) for xs in lists]
     seen: set[str] = set()
     merged: list[dict[str, Any]] = []
     max_len = max((len(xs) for xs in ordered_lists), default=0)
@@ -507,6 +526,8 @@ def _extract_group_once(
     top_k: int,
     stats: dict[str, Any],
     recorder: dict[str, dict[str, Any]] | None = None,
+    *,
+    prefer_tables: bool = True,
 ) -> dict[str, NormalizedMetric]:
     chunk_lists = []
     for q in queries:
@@ -514,8 +535,12 @@ def _extract_group_once(
         # Panggil fungsi retrieval terpadu (juga dipakai @tool `search_annual_report`)
         chunk_lists.append(retrieve_and_record(q, ticker=ticker, year=year, k=top_k, expand=True))
 
-    selected = _interleave_chunks(chunk_lists, max_chunks=MAX_CHUNKS_PER_GROUP)
-    selected = _expand_split_statement_chunks(selected, ticker=ticker, year=year, max_total=MAX_EXPANDED_CHUNKS)
+    bases = {s.basis for s in specs}
+    target_basis = next(iter(bases)) if len(bases) == 1 else None
+    selected = _interleave_chunks(chunk_lists, max_chunks=MAX_CHUNKS_PER_GROUP, prefer_tables=prefer_tables)
+    selected = _expand_split_statement_chunks(
+        selected, ticker=ticker, year=year, max_total=MAX_EXPANDED_CHUNKS, target_basis=target_basis
+    )
     if recorder is not None:
         for c in selected:
             recorder.setdefault(c["chunk_id"], c)
@@ -615,7 +640,8 @@ def extract_metrics(
                     time.sleep(delay_between_groups)
                 try:
                     group_res = _extract_group_once(
-                        active_llm, code, y, group.search_queries, specs, group.top_k, stats, recorder
+                        active_llm, code, y, group.search_queries, specs, group.top_k, stats, recorder,
+                        prefer_tables=group.prefer_tables,
                     )
                 except RateLimitExhausted:
                     raise
@@ -641,7 +667,8 @@ def extract_metrics(
                             time.sleep(delay_between_groups)
                         try:
                             retry_res = _extract_group_once(
-                                active_llm, code, y, followup_queries, missing_specs, top_k=5, stats=stats, recorder=recorder
+                                active_llm, code, y, followup_queries, missing_specs, top_k=5, stats=stats,
+                                recorder=recorder, prefer_tables=group.prefer_tables,
                             )
                             for s in missing_specs:
                                 if retry_res[s.key].status == "ok":
