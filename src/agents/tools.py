@@ -1,6 +1,6 @@
 """
 Langkah 3 Minggu 9 (tugas 9.2, Keputusan 9.C) -- pembungkus `hybrid_retrieve` sebagai LangChain
-`@tool` bernama bahasa Inggris (`search_annual_report`).  docs/PANDUAN_MINGGU9.md, Langkah 3.
+`@tool` bernama bahasa Inggris (`search_annual_report`).  docs/PANDUAN_MINGGU9-10.md, Langkah 3.
 
 Aturan desain:
   1. NAMA tool bahasa Inggris (`search_annual_report`) -- temuan Minggu 2 (`check_tool_calling.py`):

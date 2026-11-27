@@ -1,6 +1,6 @@
 """
 Langkah 2 Minggu 9 (tugas 9.1 & 9.4) -- state bersama LangGraph (`AgentState`) dan skema Pydantic
-untuk ekstraksi terstruktur.  docs/PANDUAN_MINGGU9.md, Langkah 2a.
+untuk ekstraksi terstruktur.  docs/PANDUAN_MINGGU9-10.md, Langkah 2a.
 
 Dipakai bersama oleh seluruh 4 agent (Minggu 9-15):
   - Extraction Agent (Minggu 9-10) mengisi `extracted_data`, `retrieved_chunks`, `extraction_errors`,

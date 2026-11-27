@@ -1,6 +1,6 @@
 """
 Tugas 9.6-9.7 (GATE 4) -- evaluasi akurasi Extraction Agent: 8 metrik bank x 3 tahun = 24 titik per
-emiten, dibandingkan terhadap ground truth terverifikasi visual.  docs/PANDUAN_MINGGU9.md, Langkah 6.
+emiten, dibandingkan terhadap ground truth terverifikasi visual.  docs/PANDUAN_MINGGU9-10.md, Langkah 6.
 
 Urutan WAJIB (disiplin data uji R10 & R11):
   Tahap 1  python -m eval.extraction_eval --ticker bbca      # iterasi hanya di BBCA sampai >= 22/24

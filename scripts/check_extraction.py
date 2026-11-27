@@ -1,6 +1,6 @@
 """
 Langkah 5 Minggu 9 -- pemeriksaan otomatis Extraction Agent + uji negatif.
-docs/PANDUAN_MINGGU9.md, Langkah 5.
+docs/PANDUAN_MINGGU9-10.md, Langkah 5.
 
 Jalankan:
   python scripts/check_extraction.py --offline   # 0 token Groq, < 10 detik

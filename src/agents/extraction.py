@@ -1,7 +1,7 @@
 """
 Langkah 4 Minggu 9 (tugas 9.3-9.5, Keputusan 9.A-9.C) -- Extraction Agent generik berbasis
 hybrid retrieval + Pydantic structured output (`method="json_schema"`) + verifikasi grounding Python.
-docs/PANDUAN_MINGGU9.md, Langkah 4.
+docs/PANDUAN_MINGGU9-10.md, Langkah 4.
 
 ATURAN DISIPLIN DATA UJI (9.5):
   Prompt dan logika di modul ini 100% generik -- TIDAK menyebut nama perusahaan, kode saham,

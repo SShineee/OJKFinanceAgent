@@ -1,6 +1,6 @@
 """
 Langkah 1 Minggu 9 (Keputusan 9.A, tugas 9.3) -- parser angka Indonesia, normalisasi satuan,
-dan verifikasi grounding terhadap teks chunk.  docs/PANDUAN_MINGGU9.md, Langkah 1.
+dan verifikasi grounding terhadap teks chunk.  docs/PANDUAN_MINGGU9-10.md, Langkah 1.
 
 Seluruh konversi angka dan penjumlahan komponen dilakukan oleh KODE PYTHON deterministik, BUKAN LLM.
 Alasan (temuan uji 2.5b): `openai/gpt-oss-120b` salah membaca format angka Indonesia ("239.468,855"
