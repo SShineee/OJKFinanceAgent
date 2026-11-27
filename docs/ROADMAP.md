@@ -636,6 +636,8 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 ## Minggu 14 — Reporting Agent
 
+**Langkah rinci, keputusan rancangan (14.A–14.D), dan daftar periksa: `docs/PANDUAN_MINGGU14.md`.**
+
 - [ ] **14.1** Prompt: susun laporan terstruktur (Ringkasan Eksekutif → Rasio & Interpretasi → Tren Antar Tahun → Konteks Pasar → Kesimpulan)
 - [ ] **14.2** Wajib mencantumkan sumber setiap angka
 - [ ] **14.3** Output Markdown
