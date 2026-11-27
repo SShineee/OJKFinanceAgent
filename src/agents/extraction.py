@@ -53,7 +53,14 @@ from src.retrieval import index
 
 MAX_CHUNKS_PER_GROUP = 6
 MAX_RATE_LIMIT_RETRIES = 4
-RETRY_AFTER_RE = re.compile(r"try again in\s+(\d+(?:\.\d+)?)\s*(ms|s)\b", re.I)
+MAX_RATE_LIMIT_WAIT_S = 90.0     # jeda lebih lama = batas harian (TPD/RPD) -> hentikan, jangan menunggu
+RETRY_AFTER_RE = re.compile(
+    r"try again in\s+(?:(\d+)h)?\s*(?:(\d+)m(?!s))?\s*(?:(\d+(?:\.\d+)?)(ms|s))?", re.I
+)
+
+
+class RateLimitExhausted(RuntimeError):
+    """Kuota Groq habis untuk jangka panjang (mis. token per hari) -- evaluasi harus dilanjutkan nanti."""
 
 EXTRACTION_SYSTEM_PROMPT = """Kamu adalah agen ekstraksi angka laporan keuangan tahunan perusahaan publik Indonesia.
 Tugasmu mengekstrak angka mentah dari potongan laporan (CHUNK) yang diberikan secara sangat teliti.
@@ -304,12 +311,15 @@ def verify_and_normalize(
 
 
 def _retry_delay_seconds(err_msg: str, attempt: int) -> float:
+    """Baca 'try again in 1h2m3.5s' / '7m12s' / '850ms' dari pesan Groq; fallback backoff bertahap."""
     m = RETRY_AFTER_RE.search(err_msg)
-    if m:
-        val = float(m.group(1))
-        if m.group(2).lower() == "ms":
-            val /= 1000.0
-        return max(1.0, val + 1.5)
+    if m and any(m.group(i) for i in (1, 2, 3)):
+        hours = float(m.group(1) or 0)
+        minutes = float(m.group(2) or 0)
+        secs = float(m.group(3) or 0)
+        if m.group(4) and m.group(4).lower() == "ms":
+            secs /= 1000.0
+        return max(1.0, hours * 3600 + minutes * 60 + secs + 1.5)
     return min(45.0, 12.0 * (attempt + 1))
 
 
@@ -342,10 +352,14 @@ def _invoke_structured_group(
             last_err = e
             msg = str(e)
             is_rate_limit = ("429" in msg) or ("rate_limit" in msg.lower()) or ("rate limit" in msg.lower())
-            if is_rate_limit and attempt < MAX_RATE_LIMIT_RETRIES:
-                stats["rate_limit_retries"] += 1
-                time.sleep(_retry_delay_seconds(msg, attempt))
-                continue
+            if is_rate_limit:
+                wait_s = _retry_delay_seconds(msg, attempt)
+                if wait_s > MAX_RATE_LIMIT_WAIT_S or "per day" in msg.lower():
+                    raise RateLimitExhausted(f"kuota Groq habis (tunggu ±{wait_s / 60:.1f} menit): {msg[:300]}") from e
+                if attempt < MAX_RATE_LIMIT_RETRIES:
+                    stats["rate_limit_retries"] += 1
+                    time.sleep(wait_s)
+                    continue
             if "tool_use_failed" in msg.lower() and attempt < 1:
                 stats["tool_error_retries"] += 1
                 continue
@@ -487,6 +501,8 @@ def extract_metrics(
                     group_res = _extract_group_once(
                         active_llm, code, y, group.search_queries, specs, group.top_k, stats
                     )
+                except RateLimitExhausted:
+                    raise
                 except Exception as e:
                     err = f"{code}_{y}/{group.group_id}: {e}"
                     errors.append(err)
@@ -514,6 +530,8 @@ def extract_metrics(
                             for s in missing_specs:
                                 if retry_res[s.key].status == "ok":
                                     group_res[s.key] = retry_res[s.key]
+                        except RateLimitExhausted:
+                            raise
                         except Exception as e:
                             errors.append(f"{code}_{y}/{group.group_id}/followup: {e}")
 
