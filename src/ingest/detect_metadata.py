@@ -80,6 +80,22 @@ NON_TICKER_WORDS = frozenset({
     "YANG", "YEAR",
 })
 
+# --- domain situs resmi emiten (untuk Tavily include_domains dinamis, Minggu 13 tugas 13.1) --
+DOMAIN_RE = re.compile(
+    r"(?:https?://|www\.)([a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?(?:\.[a-z0-9\-]+)*\.(?:co\.id|com|id|net|org))\b",
+    re.I,
+)
+WEBSITE_CUE_RE = re.compile(r"\b(?:website|situs\s+web|laman|homepage|web\s+address)\b", re.I)
+NON_ISSUER_DOMAINS = frozenset({
+    "ojk.go.id", "idx.co.id", "bi.go.id", "ksei.co.id", "kpei.co.id", "lps.go.id",
+    "pajak.go.id", "kemenkeu.go.id", "bps.go.id", "bumn.go.id",
+    "kontan.co.id", "bisnis.com", "cnbcindonesia.com", "bloomberg.com", "reuters.com",
+    "pwc.com", "ey.com", "kpmg.com", "deloitte.com", "bdo.co.id",
+    "google.com", "youtube.com", "instagram.com", "facebook.com", "linkedin.com",
+    "twitter.com", "x.com", "tiktok.com", "whatsapp.com", "gmail.com", "yahoo.com",
+    "globalreporting.org", "ifrs.org", "iso.org", "w3.org", "adobe.com", "microsoft.com",
+})
+
 # --- sektor (teks sesudah normalize(): huruf kecil, tanda hubung antar kata = spasi) -------
 BANK_MARKERS = {
     "KPMM": ("kewajiban penyediaan modal minimum", "capital adequacy ratio"),
@@ -130,6 +146,7 @@ class ReportMetadata:
     year: int | None
     unit: str | None
     sector: str | None
+    domain: str | None = None       # situs web resmi emiten (dinamis untuk Tavily 13.1)
     unit_pages: dict[str, int] = field(default_factory=dict)
     evidence: dict[str, str] = field(default_factory=dict)
     warnings: list[str] = field(default_factory=list)
@@ -276,6 +293,40 @@ def detect_sector(norm: list[str]) -> tuple[str, str, list[str]]:
     return sector, f"{bank_note}; {sector}: {', '.join(hits)}", warnings
 
 
+def _root_domain(host: str) -> str:
+    """Ambil domain utama (mis. 'ir.bankmandiri.co.id' -> 'bankmandiri.co.id')."""
+    h = host.lower().strip().rstrip(".")
+    if h.startswith("www."):
+        h = h[4:]
+    parts = h.split(".")
+    if len(parts) >= 3 and parts[-1] == "id" and parts[-2] in ("co", "go", "or", "ac", "web", "sch"):
+        return ".".join(parts[-3:])
+    if len(parts) >= 2:
+        return ".".join(parts[-2:])
+    return h
+
+
+def detect_domain(flat: list[str]) -> tuple[str | None, str]:
+    """Deteksi domain situs web resmi emiten dari halaman profil/kontak (generik, tanpa hardcode)."""
+    votes: Counter = Counter()
+    first_page: dict[str, int] = {}
+    for page, text in enumerate(flat, 1):
+        weight = 3 if WEBSITE_CUE_RE.search(text) else 1
+        seen_on_page: set[str] = set()
+        for m in DOMAIN_RE.finditer(text):
+            root = _root_domain(m.group(1))
+            if root in NON_ISSUER_DOMAINS or root.endswith(".go.id") or len(root) < 4:
+                continue
+            if root not in seen_on_page:
+                seen_on_page.add(root)
+                votes[root] += weight
+                first_page.setdefault(root, page)
+    if not votes:
+        return None, ""
+    dom, score = votes.most_common(1)[0]
+    return dom, f"{dom} (skor {score}, hal {first_page[dom]})"
+
+
 def detect_metadata(texts: list[str], source: str = "",
                     selection: PageSelection | None = None) -> ReportMetadata:
     """texts = teks per halaman (indeks 0 = halaman 1), dari extract_page_texts()."""
@@ -288,6 +339,7 @@ def detect_metadata(texts: list[str], source: str = "",
     company, company_ev, company_w = detect_company(flat)
     ticker, ticker_ev, ticker_w = detect_ticker(flat, company)
     sector, sector_ev, sector_w = detect_sector(norm)
+    domain, domain_ev = detect_domain(flat)
     warnings = year_w + company_w + ticker_w + sector_w
 
     if selection.unit is None:
@@ -303,13 +355,18 @@ def detect_metadata(texts: list[str], source: str = "",
         if year and named[1] != year:
             warnings.append(f"tahun buku di isi ({year}) berbeda dengan nama file ({named[1]})")
 
+    evidence = {
+        "year": year_ev, "company": company_ev, "ticker": ticker_ev,
+        "unit": ", ".join(f"{u} {n} hal" for u, n in selection.unit_page_counts.items()),
+        "sector": sector_ev,
+    }
+    if domain_ev:
+        evidence["domain"] = domain_ev
+
     return ReportMetadata(
         source=Path(source).name if source else "", ticker=ticker, company=company, year=year,
-        unit=selection.unit, sector=sector, unit_pages=dict(selection.unit_page_counts),
-        evidence={"year": year_ev, "company": company_ev, "ticker": ticker_ev,
-                  "unit": ", ".join(f"{u} {n} hal" for u, n in selection.unit_page_counts.items()),
-                  "sector": sector_ev},
-        warnings=warnings, seconds=round(time.perf_counter() - start, 2))
+        unit=selection.unit, sector=sector, domain=domain, unit_pages=dict(selection.unit_page_counts),
+        evidence=evidence, warnings=warnings, seconds=round(time.perf_counter() - start, 2))
 
 
 def detect_pdf(pdf_path: str | Path) -> ReportMetadata:

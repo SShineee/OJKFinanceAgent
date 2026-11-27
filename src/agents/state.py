@@ -20,6 +20,8 @@ UnitType = Literal["million_idr", "billion_idr", "thousand_idr", "trillion_idr",
 BasisType = Literal["bank_only", "consolidated", "unknown"]
 MetricStatus = Literal["ok", "not_found", "ungrounded", "parse_error", "unit_conflict"]
 RatioStatus = Literal["ok", "insufficient_data", "calc_error"]
+MarketCategory = Literal["kinerja_emiten", "regulasi_ojk", "makro_sektor", "tidak_relevan"]
+MarketSentiment = Literal["positif", "netral", "negatif"]
 
 
 class RawMetricExtraction(BaseModel):
@@ -113,6 +115,37 @@ class RatioResult(BaseModel):
     notes: str | None = None
 
 
+class MarketCandidateDecision(BaseModel):
+    """Keputusan filter relevansi lapis-2 LLM untuk satu kandidat artikel Tavily (tugas 13.2)."""
+
+    idx: int = Field(description="Indeks kandidat persis dari daftar artikel yang diberikan (0..N-1).")
+    relevant: bool = Field(description="True jika relevan untuk analisis keuangan/regulasi emiten; False untuk promo/iklan/emiten lain.")
+    category: MarketCategory = Field(description="Kategori artikel: kinerja_emiten, regulasi_ojk, makro_sektor, atau tidak_relevan.")
+    sentiment: MarketSentiment = Field(default="netral", description="Sentimen berita terhadap emiten/sektor: positif, netral, atau negatif.")
+    summary: str = Field(description="Ringkasan faktual 1-2 kalimat bahasa Indonesia berbasis isi cuplikan (tanpa mengarang angka).")
+
+
+class MarketFilterOutput(BaseModel):
+    """Keluaran terstruktur filter lapis-2 Market Observer Agent."""
+
+    decisions: list[MarketCandidateDecision] = Field(
+        description="Daftar penilaian relevansi untuk kandidat artikel yang diberikan."
+    )
+
+
+class MarketNewsItem(BaseModel):
+    """Satu item konteks pasar terverifikasi (URL & tanggal dikunci dari respons asli Tavily, 13.3)."""
+
+    title: str
+    url: str
+    source_domain: str
+    published_date: str = "tanggal tidak tersedia"
+    category: Literal["kinerja_emiten", "regulasi_ojk", "makro_sektor"]
+    sentiment: MarketSentiment = "netral"
+    summary: str
+    relevance_score: float | None = None
+
+
 class AgentState(TypedDict, total=False):
     """State bersama LangGraph untuk keempat agent (tugas 9.1)."""
 
@@ -127,5 +160,7 @@ class AgentState(TypedDict, total=False):
     extraction_stats: dict[str, Any]                     # token, waktu, jumlah panggilan tool/LLM
     ratios: dict[str, Any]                               # diisi Financial Analyst Agent (Minggu 11)
     market_context: list[dict[str, Any]]                 # diisi Market Observer Agent (Minggu 13)
+    market_errors: list[str]
+    market_stats: dict[str, Any]
     report: str                                          # diisi Reporting Agent (Minggu 14)
     messages: Annotated[list[AnyMessage], add_messages]

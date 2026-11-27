@@ -170,10 +170,15 @@ TELEGRAM_DOWNLOAD_LIMIT_MB = 20                       # tanpa Local Bot API Serv
 TELEGRAM_LOCAL_API_URL = "http://localhost:8081"   # Local Bot API Server; None = server Telegram
 TELEGRAM_MAX_MESSAGE_CHARS = 4096                      # panjang maksimal satu pesan
 
+# Domain umum terpercaya untuk Market Observer Agent (13.1 -- bebas hardcode emiten;
+# domain situs resmi emiten ditambahkan dinamis dari metadata.json).
 TAVILY_DOMAINS = [
-    "bca.co.id", "ojk.go.id", "idx.co.id",
+    "ojk.go.id", "idx.co.id", "bi.go.id",
     "kontan.co.id", "bisnis.com", "cnbcindonesia.com",
 ]
+TAVILY_MAX_RESULTS = 5
+TAVILY_TIMEOUT = 25
+MARKET_MAX_ITEMS = 5
 
 
 # ----------------------------------------------------------------- LLM lazy

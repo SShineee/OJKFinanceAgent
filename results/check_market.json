@@ -1,0 +1,177 @@
+{
+  "timestamp": "2026-11-27T21:29:04",
+  "results": {
+    "bbca": {
+      "ticker": "bbca",
+      "company": "PT Bank Central Asia Tbk",
+      "sector": "bank",
+      "target_year": 2025,
+      "status": "ok",
+      "domains_used": [
+        "ojk.go.id",
+        "idx.co.id",
+        "bi.go.id",
+        "kontan.co.id",
+        "bisnis.com",
+        "cnbcindonesia.com",
+        "bca.co.id"
+      ],
+      "issuer_domain": "bca.co.id",
+      "queries": [
+        "Bank Central Asia BBCA kinerja keuangan laba kredit 2025",
+        "OJK Bank Indonesia kebijakan perbankan NPL LDR suku bunga 2025"
+      ],
+      "market_context": [
+        {
+          "title": "BCA - Kinerja Solid Ditopang Penyaluran Kredit yang Pruden",
+          "url": "https://www.bca.co.id/id/tentang-bca/media-riset/pressroom/siaran-pers/2025/07/31/02/59/kinerja-solid-ditopang-penyaluran-kredit-yang-pruden",
+          "source_domain": "bca.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "netral",
+          "summary": "BCA dan anak perusahaan mencatat pertumbuhan kredit 12,9% YoY menjadi Rp959 triliun per Juni 2025, didukung penyaluran kredit di berbagai segmen dan likuiditas yang terjaga.",
+          "relevance_score": 0.7663
+        },
+        {
+          "title": "BCA - Kinerja Solid dan Berkelanjutan BCA untuk Dukung Perekonomian Nasional",
+          "url": "https://www.bca.co.id/id/tentang-bca/media-riset/pressroom/siaran-pers/2026/01/28/03/09/kinerja-solid-dan-berkelanjutan-bca-untuk-dukung-perekonomian-nasional",
+          "source_domain": "bca.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "netral",
+          "summary": "BCA dan anak perusahaan mencatat pertumbuhan total kredit 7,7% YoY menjadi Rp993 triliun per Desember 2025, dengan distribusi kredit ke sektor manufaktur, perdagangan, restoran, hotel, dan rumah tangga.",
+          "relevance_score": 0.6728
+        },
+        {
+          "title": "BCA - Kredit Tumbuh 13,8%, Kinerja Solid untuk Bisnis Berkelanjutan",
+          "url": "https://www.bca.co.id/id/tentang-bca/media-riset/pressroom/siaran-pers/2025/01/24/03/37/kredit-tumbuh-13-8-kinerja-solid-untuk-bisnis-berkelanjutan",
+          "source_domain": "bca.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "netral",
+          "summary": "BCA menutup tahun 2024 dengan pertumbuhan total kredit 13,8% YoY menjadi Rp922 triliun dan rasio loan at risk membaik menjadi 5,3% dibandingkan 6,9% pada 2023.",
+          "relevance_score": 0.6374
+        },
+        {
+          "title": "20250212-BCA-AR-2024_INA.pdf",
+          "url": "https://pustaka.bca.co.id/-/media/Feature/Report/File/S8/Laporan-Tahunan/2025/20250212-BCA-AR-2024_INA.pdf",
+          "source_domain": "pustaka.bca.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "netral",
+          "summary": "Laporan tahunan BCA menunjukkan laba bersih setelah pajak Rp54,8 triliun, naik 12,7% YoY, serta pertumbuhan kredit tinggi dan likuiditas solid.",
+          "relevance_score": 0.4843
+        },
+        {
+          "title": "Laporan Surveillance Perbankan Indonesia - Triwulan II 2025. ...",
+          "url": "https://www.ojk.go.id/id/kanal/perbankan/data-dan-statistik/laporan-profil-industri-perbankan/Documents/Laporan%20Surveillance%20Perbankan%20Indonesia%20-%20Triwulan%20II%202025.pdf",
+          "source_domain": "ojk.go.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "makro_sektor",
+          "sentiment": "netral",
+          "summary": "Laporan Surveillance OJK Triwulan II 2025 mencatat LDR perbankan 86,40% dan penurunan suku bunga yang mengindikasikan kebutuhan dana short‑term oleh bank.",
+          "relevance_score": 0.5311
+        }
+      ],
+      "market_errors": [],
+      "market_stats": {
+        "search_calls": 2,
+        "raw_candidates": 7,
+        "filtered_items": 5,
+        "llm_calls": 1,
+        "input_tokens": 1955,
+        "output_tokens": 717,
+        "total_tokens": 2672,
+        "used_fallback_filter": false,
+        "filter_errors": [],
+        "seconds": 8.01
+      }
+    },
+    "bmri": {
+      "ticker": "bmri",
+      "company": "PT Bank Mandiri (Persero) Tbk",
+      "sector": "bank",
+      "target_year": 2025,
+      "status": "ok",
+      "domains_used": [
+        "ojk.go.id",
+        "idx.co.id",
+        "bi.go.id",
+        "kontan.co.id",
+        "bisnis.com",
+        "cnbcindonesia.com",
+        "bankmandiri.co.id"
+      ],
+      "issuer_domain": "bankmandiri.co.id",
+      "queries": [
+        "Bank Mandiri BMRI kinerja keuangan laba kredit 2025",
+        "OJK Bank Indonesia kebijakan perbankan NPL LDR suku bunga 2025"
+      ],
+      "market_context": [
+        {
+          "title": "news-detail",
+          "url": "https://www.bankmandiri.co.id/en/news-detail?primaryKey=543173597&backUrl=%2Fnews",
+          "source_domain": "bankmandiri.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "positif",
+          "summary": "Bank Mandiri mempertahankan fundamental keuangan solid hingga 2025 dengan total aset tumbuh 16,6% YoY menjadi Rp2.829,9 triliun.",
+          "relevance_score": 0.6356
+        },
+        {
+          "title": "Press Detail",
+          "url": "https://www.bankmandiri.co.id/in/web/guest/press-detail?primaryKey=522668354&backUrl=%2Fin%2Fpress%3Fp_p_id%3DPressReleasePortlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_PressReleasePortlet_year=2025",
+          "source_domain": "bankmandiri.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "positif",
+          "summary": "Bank Mandiri mencatat pertumbuhan kredit 13,1% YoY menjadi Rp1.452 triliun pada akhir November 2025, menunjukkan kinerja positif.",
+          "relevance_score": 0.6196
+        },
+        {
+          "title": "Book1",
+          "url": "https://www.bankmandiri.co.id/documents/38265486/0/Publikasi+Koran+per+31+Desember+2025.pdf/db1dbfc0-cb20-ca02-47a8-1d835122639e?t=1770282672378",
+          "source_domain": "bankmandiri.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "netral",
+          "summary": "Laporan laba rugi dan penghasilan komprehensif PT Bank Mandiri tahun 2025 dan 2024 disajikan dalam format audit konsolidasi.",
+          "relevance_score": 0.4563
+        },
+        {
+          "title": "Press Detail",
+          "url": "https://www.bankmandiri.co.id/en/web/guest/press-detail?primaryKey=588901355&backUrl=%2Fen%2Fpress",
+          "source_domain": "bankmandiri.co.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "kinerja_emiten",
+          "sentiment": "positif",
+          "summary": "Bank Mandiri memperkuat ekosistem bisnis, UMKM, dan ekonomi kreatif, dengan total aset mencapai Rp2.245 triliun dan tumbuh 16,2%.",
+          "relevance_score": 0.4062
+        },
+        {
+          "title": "Laporan Surveillance Perbankan Indonesia - Triwulan II 2025. ...",
+          "url": "https://www.ojk.go.id/id/kanal/perbankan/data-dan-statistik/laporan-profil-industri-perbankan/Documents/Laporan%20Surveillance%20Perbankan%20Indonesia%20-%20Triwulan%20II%202025.pdf",
+          "source_domain": "ojk.go.id",
+          "published_date": "tanggal tidak tersedia",
+          "category": "makro_sektor",
+          "sentiment": "netral",
+          "summary": "Laporan OJK Triwulan II 2025 mencatat LDR perbankan 86,40% dan penurunan suku bunga yang mengindikasikan kebutuhan dana short‑term.",
+          "relevance_score": 0.5311
+        }
+      ],
+      "market_errors": [],
+      "market_stats": {
+        "search_calls": 2,
+        "raw_candidates": 7,
+        "filtered_items": 5,
+        "llm_calls": 1,
+        "input_tokens": 1906,
+        "output_tokens": 644,
+        "total_tokens": 2550,
+        "used_fallback_filter": false,
+        "filter_errors": [],
+        "seconds": 4.77
+      }
+    }
+  }
+}

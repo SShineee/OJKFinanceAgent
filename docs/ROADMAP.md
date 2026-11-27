@@ -624,13 +624,15 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 **Langkah rinci, keputusan rancangan (13.A–13.D), dan daftar periksa: `docs/PANDUAN_MINGGU13.md`.**
 
-- [ ] **13.1** Tavily tool dengan `include_domains` = domain umum (`ojk.go.id`, `idx.co.id`,
-      `kontan.co.id`, `bisnis.com`, `cnbcindonesia.com`) **ditambah domain emiten yang sedang
+- [x] **13.1** Tavily tool dengan `include_domains` = domain umum (`ojk.go.id`, `idx.co.id`,
+      `bi.go.id`, `kontan.co.id`, `bisnis.com`, `cnbcindonesia.com`) **ditambah domain emiten yang sedang
       dianalisis** — diambil dari metadata dokumen, bukan di-hardcode `bca.co.id`.
-      Daftar domain umum ada di `src/config.py` (`TAVILY_DOMAINS`).
-- [ ] **13.2** Filter lapis-2: LLM menyaring relevansi hasil pencarian
-- [ ] **13.3** Output wajib menyertakan URL + tanggal (agar bisa ditelusuri di laporan)
-- [ ] **13.4** Handling kalau Tavily gagal/kosong → jangan crash, kembalikan list kosong
+      Daftar domain umum ada di `src/config.py` (`TAVILY_DOMAINS`). *(27-11-2026: `"bca.co.id"` dihapus dari `TAVILY_DOMAINS`; `detect_domain()` ditambahkan di `detect_metadata.py` → otomatis mendeteksi `bca.co.id` & `bankmandiri.co.id`; `@tool search_market_news` di `src/agents/tools.py`)*
+- [x] **13.2** Filter lapis-2: LLM menyaring relevansi hasil pencarian *(27-11-2026: `filter_market_candidates()` di `src/agents/market.py`, `method="json_schema"` + fallback deterministik)*
+- [x] **13.3** Output wajib menyertakan URL + tanggal (agar bisa ditelusuri di laporan) *(27-11-2026: `MarketNewsItem` mengunci `url` & `published_date` dari respons asli Tavily oleh Python)*
+- [x] **13.4** Handling kalau Tavily gagal/kosong → jangan crash, kembalikan list kosong *(27-11-2026: `scripts/check_market.py` `--offline` `0,00 s` & `--live` `12,79 s` **LULUS** — 4/4 uji negatif degradasi mulus, BBCA `7 -> 5` item & BMRI `7 -> 5` item tersimpan di `results/check_market.json`)*
+
+> **Status Minggu 13 (27-11-2026):** ✅ **SELESAI 100%** (`13.1`–`13.4`, `market_node` independen siap paralel untuk LangGraph Minggu 15). Siap masuk Minggu 14 (Reporting Agent).
 
 ## Minggu 14 — Reporting Agent
 

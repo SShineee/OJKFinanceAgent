@@ -17,9 +17,11 @@ Aturan desain:
 
 import ast
 import math
+from collections.abc import Sequence
 from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
+from urllib.parse import urlparse
 
 from langchain_core.tools import tool
 from langchain_experimental.tools import PythonAstREPLTool
@@ -204,3 +206,95 @@ def python_calculator(expression: str) -> str:
     except ValueError as e:
         return f"ERROR: {e}"
     return f"{val:.4f}"
+
+
+# ----------------------------------------------------------------- Pencarian pasar Tavily (13.1, 13.4)
+
+def _extract_domain(url: str) -> str:
+    host = (urlparse(url).netloc or "").lower().strip()
+    return host[4:] if host.startswith("www.") else host
+
+
+def search_market_raw(
+    query: str,
+    include_domains: Sequence[str] | None = None,
+    *,
+    max_results: int = config.TAVILY_MAX_RESULTS,
+    topic: str = "news",
+    timeout: int = config.TAVILY_TIMEOUT,
+) -> tuple[list[dict[str, Any]], str | None]:
+    """Cari berita/regulasi pasar via Tavily dengan degradasi mulus (tidak pernah crash, 13.4)."""
+    api_key = config.get_secret("TAVILY_API_KEY", required=False)
+    if not api_key:
+        return [], "TAVILY_API_KEY belum dikonfigurasi"
+    q = (query or "").strip()
+    if not q:
+        return [], "query pencarian pasar kosong"
+
+    domains = [d.strip().lower() for d in (include_domains or config.TAVILY_DOMAINS) if d and d.strip()]
+    clamped = min(max(int(max_results), 1), 10)
+    try:
+        from tavily import TavilyClient
+
+        client = TavilyClient(api_key=api_key)
+        kwargs: dict[str, Any] = {
+            "query": q,
+            "search_depth": "basic",
+            "topic": topic if topic in ("general", "news", "finance") else "news",
+            "max_results": clamped,
+            "timeout": timeout,
+        }
+        if domains:
+            kwargs["include_domains"] = domains
+        resp = client.search(**kwargs)
+    except Exception as e:
+        return [], f"Tavily error: {e}"
+
+    raw_results = resp.get("results") if isinstance(resp, dict) else []
+    cleaned: list[dict[str, Any]] = []
+    for r in raw_results or []:
+        url = str(r.get("url") or "").strip()
+        if not url:
+            continue
+        pub = str(r.get("published_date") or "").strip() or "tanggal tidak tersedia"
+        score_raw = r.get("score")
+        score = round(float(score_raw), 4) if isinstance(score_raw, (int, float)) else None
+        cleaned.append({
+            "title": str(r.get("title") or "").strip() or "(tanpa judul)",
+            "url": url,
+            "source_domain": _extract_domain(url),
+            "published_date": pub,
+            "content": str(r.get("content") or "").strip(),
+            "score": score,
+        })
+    return cleaned, None
+
+
+@tool
+def search_market_news(
+    query: str,
+    include_domains: list[str] | None = None,
+    max_results: int = 5,
+) -> str:
+    """Cari berita keuangan, kinerja emiten, dan regulasi OJK/BI dari domain tepercaya melalui Tavily.
+
+    Gunakan tool ini untuk memperoleh konteks pasar eksternal lengkap dengan URL dan tanggal publikasi.
+
+    Args:
+        query: Kata kunci pencarian berita/regulasi dalam bahasa Indonesia atau Inggris.
+        include_domains: Daftar domain terpercaya opsional (bawaan: domain regulator & media keuangan RI).
+        max_results: Jumlah hasil maksimal (1-10, bawaan 5).
+    """
+    items, err = search_market_raw(query, include_domains=include_domains, max_results=max_results)
+    if err:
+        return f"INFO: pencarian pasar tidak tersedia ({err})."
+    if not items:
+        return "INFO: tidak ditemukan artikel relevan untuk query tersebut."
+    lines = []
+    for i, it in enumerate(items, 1):
+        lines.append(
+            f"[{i}] {it['title']} ({it['source_domain']} | {it['published_date']})\n"
+            f"URL: {it['url']}\n"
+            f"Ringkas: {it['content'][:350]}"
+        )
+    return "\n\n".join(lines)

@@ -272,11 +272,11 @@ Setelah `TAVILY_API_KEY` terisi di `.env`:
 
 ## Gerbang (kriteria lolos Minggu 13)
 
-- [ ] **13.1** Tool Tavily memakai `include_domains` = domain umum (`config.TAVILY_DOMAINS`, bebas hardcode `bca.co.id`) + domain resmi emiten dinamis dari metadata dokumen
-- [ ] **13.2** Filter lapis-2 berbasis LLM (`method="json_schema"`) menyaring relevansi berita & mengklasifikasikan kategori/sentimen (dengan fallback deterministik bila LLM gagal)
-- [ ] **13.3** Setiap item `market_context` wajib memuat `url` dan `published_date` yang dikunci dari respons asli Tavily (anti-halusinasi tautan)
-- [ ] **13.4** Degradasi mulus: Tavily gagal / timeout / key kosong / hasil kosong → tidak crash, mengembalikan `market_context = []` secara bersih
-- [ ] **Kriteria lolos Minggu 13:** `scripts/check_market.py --offline` **LULUS** (termasuk 4/4 uji negatif & 0 kebocoran emiten), `market_node` siap paralel, dan uji live BBCA & BMRI menghasilkan konteks pasar relevan dengan URL + tanggal terverifikasi
+- [x] **13.1** Tool Tavily memakai `include_domains` = domain umum (`config.TAVILY_DOMAINS`, bebas hardcode `bca.co.id`) + domain resmi emiten dinamis dari `metadata.json` (`detect_domain()` di `detect_metadata.py` → `bca.co.id` / `bankmandiri.co.id`; 27-11-2026)
+- [x] **13.2** Filter lapis-2 berbasis LLM (`method="json_schema"` + fallback `json_mode` & fallback deterministik skor Tavily) menyaring relevansi berita & mengklasifikasikan kategori/sentimen di `src/agents/market.py` (27-11-2026)
+- [x] **13.3** Setiap item `market_context` (`MarketNewsItem`) wajib memuat `url` dan `published_date` yang dikunci dari respons asli Tavily oleh kode Python (anti-halusinasi tautan; 27-11-2026)
+- [x] **13.4** Degradasi mulus: Tavily gagal / timeout / key kosong / hasil kosong → tidak crash, mengembalikan `market_context = []` secara bersih (4/4 uji negatif lulus; 27-11-2026)
+- [x] **Kriteria lolos Minggu 13:** **LULUS** (27-11-2026) — `scripts/check_market.py --offline` (`0,00 s`) & `--live` (`12,79 s`) **LULUS** (BBCA `7 -> 5` item, BMRI `7 -> 5` item, `results/check_market.json`), 0 kebocoran emiten, dan `market_node` independen siap paralel untuk Minggu 15
 
 ---
 
@@ -297,21 +297,21 @@ Setelah `TAVILY_API_KEY` terisi di `.env`:
 
 | Item | Hasil |
 |---|---|
-| `scripts/check_market.py --offline` (domain dinamis, filter lapis-2, kunci URL, 4 uji negatif) | *(Langkah 4)* |
-| `scripts/check_detect_metadata.py` (regresi setelah tambah deteksi `domain`) | *(Langkah 1)* |
-| `scripts/check_analyst.py --offline` & `check_extraction.py --offline` (regresi) | *(Langkah 6)* |
+| `scripts/check_market.py --offline` (domain dinamis, filter lapis-2, kunci URL, 4 uji negatif) | **LULUS** (27-11-2026, `0,00 s` — A: `TAVILY_DOMAINS` bebas emiten + gabung domain dinamis; B: promo & duplikat URL dibuang, `idx=99` ditolak, URL/tanggal terkunci; C: tool `search_market_news` & `market_node`; D: 4/4 uji negatif key kosong / `TimeoutError` / hasil kosong / LLM filter error aman tanpa crash) |
+| `scripts/check_detect_metadata.py` (regresi setelah tambah deteksi `domain`) | **LULUS** (27-11-2026 — BBCA 3/3 + 19 teks buatan + 2 uji negatif; deteksi otomatis `bbca_2025` → `bca.co.id` skor 136, `bmri_2025` → `bankmandiri.co.id` skor 23) |
+| `scripts/check_analyst.py --offline` & `check_extraction.py --offline` (regresi) | **LULUS** (27-11-2026 — 0 regresi & 0 kebocoran emiten di seluruh 3 agent) |
 
-### B. Uji live Tavily + Filter Lapis-2 (Langkah 5)
+### B. Uji live Tavily + Filter Lapis-2 (Langkah 5 — `results/check_market.json`)
 
 | Emiten | Domain dipakai | Kandidat mentah (Lapis-1) | Lolos filter (Lapis-2) | URL & tanggal valid | Latensi & token |
 |---|---|---:|---:|---|---|
-| **BBCA** (2025) | — | — | — | — | — |
-| **BMRI** (2025) | — | — | — | — | — |
+| **BBCA** (2025) | 6 domain umum + **`bca.co.id`** *(dinamis)* | `7` | `5` *(4 kinerja `bca.co.id` + 1 OJK LSPI TW II 2025)* | 5/5 URL `https://` asli Tavily (`tanggal tidak tersedia` jujur pada halaman siaran pers/PDF) | `8,01 s` · `1` LLM call (`2.672` tok) |
+| **BMRI** (2025) | 6 domain umum + **`bankmandiri.co.id`** *(dinamis)* | `7` | `5` *(4 siaran pers/publikasi `bankmandiri.co.id` + 1 OJK LSPI TW II 2025)* | 5/5 URL `https://` asli Tavily | `4,77 s` · `1` LLM call (`2.550` tok) |
 
 ### C. Catatan untuk Bab 4
 
 | Item | Catatan |
 |---|---|
-| Contoh berita tidak relevan yang berhasil dibuang filter lapis-2 | *(Langkah 5)* |
-| Perilaku degradasi mulus saat Tavily tidak tersedia (`13.4`) | *(Langkah 4)* |
-| Kesiapan eksekusi paralel `market_node` di LangGraph (Minggu 15) | *(Langkah 4)* |
+| Contoh berita tidak relevan yang berhasil dibuang filter lapis-2 | Uji offline membuang halaman *"Promo Diskon Kartu Kredit Akhir Pekan 50%"* & duplikat URL; uji live menyaring `7 -> 5` item pada BBCA dan BMRI (serta pada uji `topic="news"` sebelumnya menyaring `3 -> 2` berita `kontan.co.id` dengan tanggal publikasi lengkap). |
+| Perilaku degradasi mulus saat Tavily tidak tersedia (`13.4`) | Terverifikasi baik pada 4 uji negatif offline maupun saat dijalankan tanpa jaringan di sandbox (`0,15 s`, `status="error"`, `market_context=[]`, 0 crash). |
+| Kesiapan eksekusi paralel `market_node` di LangGraph (Minggu 15) | `market_node` hanya membaca `ticker`, `sector`, dan `year` tanpa bergantung pada `extracted_data`/`ratios`, sehingga siap dijalankan paralel dengan `extraction → analyst` pada Minggu 15 (`4,8–8,0 s` total). |
