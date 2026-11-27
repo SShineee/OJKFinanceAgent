@@ -433,12 +433,12 @@ python -m eval.extraction_eval --ticker bmri --out-prefix extraction_eval_bmri
 
 ## Gerbang (kriteria lolos Minggu 9–10 — GATE 4)
 
-- [ ] **9.1** `src/agents/state.py` (`AgentState` + skema Pydantic `RawMetricExtraction` / `NormalizedMetric`)
-- [ ] **9.2** `src/agents/tools.py` — `hybrid_retrieve` dibungkus LangChain `@tool` bernama bahasa Inggris (`search_annual_report`) dengan metadata halaman, satuan, & `merged_cells`
-- [ ] **9.3** `src/agents/parse_number.py` + prompt Extraction Agent: output JSON terstruktur, sitasi sumber wajib, `null` bila tak ada, format angka Indonesia + `U+202F` & normalisasi ke juta Rupiah oleh kode Python + pagar grounding
-- [ ] **9.4** Structured output Pydantic terverifikasi stabil pada `openai/gpt-oss-120b` (`reasoning_effort="low"`)
-- [ ] **9.5** Prompt & `ratio_profiles.py` 100% generik (0 nama emiten, 0 nomor halaman, 0 nomor Catatan — dibuktikan oleh cek otomatis di `scripts/check_extraction.py`)
-- [ ] **9.5b** `src/ratio_profiles.py` memuat profil `bank` (`validated=True`) & `general` (`validated=False`), daftar angka ekstraksi diambil dari profil sektor
+- [x] **9.1** `src/agents/state.py` (`AgentState` + skema Pydantic `RawMetricExtraction` / `GroupExtractionOutput` / `NormalizedMetric`, 27-11-2026)
+- [x] **9.2** `src/agents/tools.py` — `hybrid_retrieve` dibungkus LangChain `@tool` bernama bahasa Inggris (`search_annual_report`) dengan metadata halaman, satuan, `merged_cells`, & `ContextVar` recorder (27-11-2026)
+- [ ] **9.3** `src/agents/parse_number.py` ✅ (27-11-2026) + prompt Extraction Agent (`src/agents/extraction.py`, Langkah 4): output JSON terstruktur, sitasi sumber wajib, `null` bila tak ada, format angka Indonesia + `U+202F` & normalisasi ke juta Rupiah oleh kode Python + pagar grounding
+- [ ] **9.4** Structured output Pydantic (`method="json_schema"` terverifikasi `0,97 s` pada `openai/gpt-oss-120b` `effort="low"` di Langkah 0 ✅; integrasi di `extraction.py` pada Langkah 4)
+- [ ] **9.5** Prompt & `ratio_profiles.py` 100% generik (0 nama emiten, 0 nomor halaman, 0 nomor Catatan — `ratio_profiles.py` & `tools.py` sudah lulus audit otomatis ✅; menunggu `extraction.py` Langkah 4–5)
+- [x] **9.5b** `src/ratio_profiles.py` memuat profil `bank` (`validated=True`, 15 metrik / 8 GATE 4 dalam 4 kelompok) & `general` (`validated=False`, 3 metrik umum), daftar angka ekstraksi diambil dari profil sektor (27-11-2026)
 - [ ] **9.6** Evaluasi ekstraksi 8 angka × 3 tahun (`eval/extraction_eval.py` → `results/extraction_eval.json` & `.csv`) dijalankan pada BBCA lalu BMRI
 - [ ] **9.7** Akurasi dicatat **terpisah per emiten** (BBCA vs BMRI) beserta analisis selisih & error untuk Bab 4
 - [ ] **GATE 4:** akurasi **BBCA ≥ 90% (≥ 22/24)** **dan** **BMRI ≥ 80% (≥ 20/24)**; `scripts/check_extraction.py` **LULUS** (termasuk uji negatif)
@@ -466,7 +466,7 @@ python -m eval.extraction_eval --ticker bmri --out-prefix extraction_eval_bmri
 
 | Item | Hasil |
 |---|---|
-| Metode structured output terpilih pada `openai/gpt-oss-120b` (`effort="low"`) | *(Langkah 0)* |
+| Metode structured output terpilih pada `openai/gpt-oss-120b` (`effort="low"`) | **`method="json_schema"`** (27-11-2026, `0,97 s` — menjaga `source_pages=[703]`, `raw_value='239.468.855'` utuh, dan `null` jujur untuk metrik tak ada; `function_calling` menghilangkan `source_pages=[]`; `json_mode` `1,02 s` sebagai cadangan) |
 | `scripts/check_extraction.py --offline` (parser, grounding, bebas-emiten, uji negatif) | *(Langkah 5)* |
 | `scripts/check_extraction.py` (dengan live smoke test BBCA 2024) | *(Langkah 5)* |
 | Hash commit saat prompt & `ratio_profiles.py` dikunci sebelum uji BMRI | *(Langkah 6 — Tahap 1)* |

@@ -560,10 +560,10 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 **Langkah rinci, keputusan rancangan (9.A–9.D), dan daftar periksa: `docs/PANDUAN_MINGGU9.md`.**
 
-- [ ] **9.1** `src/agents/state.py` — `AgentState(TypedDict)`:
-      `query, year, extracted_data, ratios, market_context, report, messages`
-- [ ] **9.2** Bungkus `hybrid_retrieve` jadi LangChain `@tool`
-- [ ] **9.3** Prompt Extraction Agent. Aturan wajib:
+- [x] **9.1** `src/agents/state.py` — `AgentState(TypedDict)`:
+      `query, year, extracted_data, ratios, market_context, report, messages` *(+ `ticker`, `sector`, `retrieved_chunks`, skema Pydantic `RawMetricExtraction` / `NormalizedMetric`; 27-11-2026)*
+- [x] **9.2** Bungkus `hybrid_retrieve` jadi LangChain `@tool` *(27-11-2026: `src/agents/tools.py`, `search_annual_report` bahasa Inggris + metadata halaman/satuan/`merged_cells` + `ContextVar` recorder)*
+- [ ] **9.3** Prompt Extraction Agent *(parser angka & grounding `src/agents/parse_number.py` ✅ 27-11-2026; prompt & agen `src/agents/extraction.py` di Langkah 4)*. Aturan wajib:
       - output **JSON terstruktur**, bukan prose
       - setiap angka wajib disertai `sumber` (halaman/header)
       - kalau angka tidak ditemukan → `null`, **dilarang menebak**
@@ -579,9 +579,9 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 - [ ] **9.5** Prompt **tidak boleh** memuat hal khas emiten tertentu: nomor halaman, nomor Catatan
       ("Catatan 51f"), atau nama perusahaan. Jelaskan *apa* yang dicari secara semantik
       ("tabel KPMM, kolom basis Bank"), bukan *di mana* letaknya di laporan BBCA.
-- [ ] **9.5b** **Daftar angka yang diekstrak diambil dari profil rasio sektor** (lihat 11.2), bukan
+- [x] **9.5b** **Daftar angka yang diekstrak diambil dari profil rasio sektor** (lihat 11.2), bukan
       ditulis tetap di prompt. Bank butuh Tier 1, ATMR, kredit bruto; profil umum (non-bank)
-      cukup laba, total aset, dan ekuitas.
+      cukup laba, total aset, dan ekuitas. *(27-11-2026: `src/ratio_profiles.py` — profil `bank` 15 metrik / 8 GATE 4 & `general` 3 metrik, 0 kebocoran nama emiten)*
 - [ ] **9.6** Tes ekstraksi: 8 angka bank (laba bersih, Tier 1, total aset, kredit bruto, DPK,
       kredit bermasalah, pendapatan bunga bersih, ATMR) × 3 tahun, untuk **BBCA dan BMRI**.
 - [ ] **9.7** Catat akurasi ekstraksi **per emiten, terpisah** → masuk Bab 4. Selisih emiten
