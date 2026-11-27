@@ -225,11 +225,11 @@ _BANK_GROUPS = (
         group_id="consolidated_highlights",
         title="Ikhtisar & Laporan Keuangan Konsolidasian",
         search_queries=(
-            "ikhtisar data keuangan total aset total aset produktif laporan posisi keuangan konsolidasian",
+            "ikhtisar data keuangan total aset laporan posisi keuangan konsolidasian jumlah aset",
             "laporan laba rugi konsolidasian pendapatan bunga bersih laba bersih laba tahun berjalan",
         ),
         metric_keys=("total_assets", "net_interest_income", "net_income", "earning_assets"),
-        top_k=3,
+        top_k=4,
     ),
     ExtractionGroup(
         group_id="capital_bank",
@@ -238,35 +238,35 @@ _BANK_GROUPS = (
             "kewajiban penyediaan modal minimum KPMM modal inti tier 1 total modal ATMR bank",
         ),
         metric_keys=("tier1_capital_bank", "total_capital_bank", "rwa_bank"),
-        top_k=3,
+        top_k=4,
     ),
     ExtractionGroup(
         group_id="parent_loans_deposits",
         title="Kredit, CKPN, DPK, & Aset Entitas Induk (Basis Bank)",
         search_queries=(
             "laporan posisi keuangan entitas induk aset kas giro pada bank indonesia kredit yang diberikan jumlah aset",
-            "laporan posisi keuangan entitas induk liabilitas simpanan dari nasabah DPK",
+            "laporan posisi keuangan entitas induk liabilitas simpanan dari nasabah deposits from customers parent entity",
         ),
         metric_keys=("gross_loans_bank", "ckpn_loans_bank", "deposits_bank", "total_assets_bank"),
-        top_k=3,
+        top_k=4,
     ),
     ExtractionGroup(
         group_id="npl_bank",
         title="Kredit Bermasalah / NPL Nominal (Basis Bank)",
         search_queries=(
-            "kredit bermasalah non performing loan NPL gross kurang lancar diragukan macet bank",
+            "kredit bermasalah NPL gross kurang lancar diragukan macet kolektibilitas bank",
         ),
         metric_keys=("npl_amount_bank",),
-        top_k=3,
+        top_k=4,
     ),
     ExtractionGroup(
         group_id="parent_income_bank",
         title="Laba Rugi Entitas Induk (Basis Bank)",
         search_queries=(
-            "laporan laba rugi entitas induk pendapatan bunga neto laba sebelum beban pajak laba tahun berjalan",
+            "laporan laba rugi entitas induk pendapatan bunga neto laba sebelum beban pajak laba tahun berjalan parent entity",
         ),
         metric_keys=("net_interest_income_bank", "profit_before_tax_bank", "net_income_bank"),
-        top_k=3,
+        top_k=4,
     ),
 )
 

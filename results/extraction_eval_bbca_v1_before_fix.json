@@ -1,0 +1,1060 @@
+{
+  "meta": {
+    "task": "9.6-9.7 GATE 4 extraction eval",
+    "ticker": "bbca",
+    "years": [
+      2023,
+      2024,
+      2025
+    ],
+    "role": "pengembangan",
+    "model": "openai/gpt-oss-120b",
+    "reasoning_effort": "low",
+    "tolerance_pct": 0.5,
+    "ground_truth": "ground_truth.xlsx",
+    "fingerprint": {
+      "sha256": "f8569a3d6e69ccb9b633e96e2228d3a4e21e30d645115da26b5b0c3735b982be",
+      "files": {
+        "src/agents/extraction.py": "eb1e4934659b26859f41c4d5a2dca076a10f92ccd5658cf0e42ec9506124f9b4",
+        "src/ratio_profiles.py": "eb2ebc50b575d1c4819cf6bafe5665d9e356886057733a06e88f8ce1c01b5afe",
+        "src/agents/parse_number.py": "26bd27e62efb325f59027f43d12ef62fd560a7a9c3db8ef5a6e61ef3f73cd460",
+        "src/agents/tools.py": "94a38fd57321425886749de681a41e5df7b297428f5628716b905835d32ec519",
+        "src/agents/state.py": "6692b7cc77f672660414beb1e5e4b7cee7be69893c2c4e548bbceceebbe3e0fc"
+      }
+    },
+    "git": {
+      "head": "a7f3c09",
+      "branch": "dev",
+      "locked_files_dirty": [
+        "src/agents/extraction.py"
+      ]
+    },
+    "forced": false,
+    "timestamp": "2026-11-27T18:31:29"
+  },
+  "summary": {
+    "n_expected": 24,
+    "n_scored": 24,
+    "complete": true,
+    "hits": 22,
+    "accuracy": 0.9167,
+    "threshold": 0.9,
+    "passed": true,
+    "by_metric": {
+      "net_income": {
+        "hits": 3,
+        "n": 3
+      },
+      "tier1_capital_bank": {
+        "hits": 3,
+        "n": 3
+      },
+      "total_assets": {
+        "hits": 3,
+        "n": 3
+      },
+      "gross_loans_bank": {
+        "hits": 3,
+        "n": 3
+      },
+      "deposits_bank": {
+        "hits": 2,
+        "n": 3
+      },
+      "npl_amount_bank": {
+        "hits": 2,
+        "n": 3
+      },
+      "net_interest_income": {
+        "hits": 3,
+        "n": 3
+      },
+      "rwa_bank": {
+        "hits": 3,
+        "n": 3
+      }
+    },
+    "by_year": {
+      "2023": {
+        "hits": 8,
+        "n": 8
+      },
+      "2024": {
+        "hits": 8,
+        "n": 8
+      },
+      "2025": {
+        "hits": 6,
+        "n": 8
+      }
+    },
+    "diagnosis_counts": {
+      "tepat": 22,
+      "nilai_salah": 2
+    },
+    "totals": {
+      "llm_calls": 13,
+      "tool_calls": 19,
+      "followup_calls": 1,
+      "input_tokens": 60675,
+      "output_tokens": 5518,
+      "total_tokens": 66193,
+      "rate_limit_retries": 0,
+      "tool_error_retries": 0,
+      "seconds": 391.86
+    },
+    "avg_tokens_per_year": 22064,
+    "avg_seconds_per_year": 130.62
+  },
+  "per_year": {
+    "2023": {
+      "points": [
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "net_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 48658095.0,
+          "ground_truth_million_idr": 48658000.0,
+          "rel_err_pct": 0.0002,
+          "source_pages": [
+            578
+          ],
+          "source_chunk_id": "bbca_2023_0197",
+          "raw_value": "48.658.095",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "tier1_capital_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 217686126.0,
+          "ground_truth_million_idr": 217686126.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            727
+          ],
+          "source_chunk_id": "bbca_2023_0527",
+          "raw_value": "217.686.126",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023: hal 727 | 2024: hal 703 | 2025: hal 594",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "total_assets",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1408107000.0,
+          "ground_truth_million_idr": 1408107000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            18
+          ],
+          "source_chunk_id": "bbca_2023_0005",
+          "raw_value": "1.408.107",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "gross_loans_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 787499389.0,
+          "ground_truth_million_idr": 787499389.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            738,
+            739
+          ],
+          "source_chunk_id": "bbca_2023_0544",
+          "raw_value": null,
+          "components": [
+            "8.803.131",
+            "745.527.767",
+            "33.168.491"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": "Kredit yang diberikan - setelah dikurangi CKPN disajikan per pihak; CKPN nilai 33.168.491 juta Rupiah ditambahkan untuk memperoleh bruto."
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "deposits_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1081852159.0,
+          "ground_truth_million_idr": 1081852159.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            739
+          ],
+          "source_chunk_id": "bbca_2023_0545",
+          "raw_value": null,
+          "components": [
+            "2.700.327",
+            "1.079.151.832"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": "Simpanan dari nasabah Pihak berelasi dan Pihak ketiga tercantum terpisah; tidak ada baris total, sehingga dijumlahkan."
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "npl_amount_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 14147246.0,
+          "ground_truth_million_idr": 14147246.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            646
+          ],
+          "source_chunk_id": "bbca_2023_0344",
+          "raw_value": "14.147.246",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "net_interest_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 75128822.0,
+          "ground_truth_million_idr": 74938000.0,
+          "rel_err_pct": 0.2546,
+          "source_pages": [
+            578
+          ],
+          "source_chunk_id": "bbca_2023_0197",
+          "raw_value": "75.128.822",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2023,
+          "metric_key": "rwa_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 769200928.0,
+          "ground_truth_million_idr": 769200928.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            727
+          ],
+          "source_chunk_id": "bbca_2023_0527",
+          "raw_value": "769.200.928",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023: hal 727 | 2024: hal 703 | 2025: hal 594",
+          "notes": null
+        }
+      ],
+      "stats": {
+        "llm_calls": 4,
+        "tool_calls": 6,
+        "followup_calls": 0,
+        "input_tokens": 20952,
+        "output_tokens": 1783,
+        "total_tokens": 22735,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 114.47
+      },
+      "errors": [],
+      "llm_failures": 0,
+      "retrieved_chunk_ids": [
+        [
+          "bbca_2023_0005",
+          [
+            18
+          ]
+        ],
+        [
+          "bbca_2023_0007",
+          [
+            19
+          ]
+        ],
+        [
+          "bbca_2023_0233",
+          [
+            595
+          ]
+        ],
+        [
+          "bbca_2023_0197",
+          [
+            578
+          ]
+        ],
+        [
+          "bbca_2023_0295",
+          [
+            622
+          ]
+        ],
+        [
+          "bbca_2023_0546",
+          [
+            740
+          ]
+        ],
+        [
+          "bbca_2023_0526",
+          [
+            726
+          ]
+        ],
+        [
+          "bbca_2023_0044",
+          [
+            166
+          ]
+        ],
+        [
+          "bbca_2023_0527",
+          [
+            727
+          ]
+        ],
+        [
+          "bbca_2023_0544",
+          [
+            738,
+            739
+          ]
+        ],
+        [
+          "bbca_2023_0466",
+          [
+            701
+          ]
+        ],
+        [
+          "bbca_2023_0469",
+          [
+            702
+          ]
+        ],
+        [
+          "bbca_2023_0545",
+          [
+            739
+          ]
+        ],
+        [
+          "bbca_2023_0195",
+          [
+            577
+          ]
+        ],
+        [
+          "bbca_2023_0375",
+          [
+            659
+          ]
+        ],
+        [
+          "bbca_2023_0344",
+          [
+            646
+          ]
+        ],
+        [
+          "bbca_2023_0153",
+          [
+            265
+          ]
+        ],
+        [
+          "bbca_2023_0002",
+          [
+            9
+          ]
+        ]
+      ]
+    },
+    "2024": {
+      "points": [
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "net_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 54851000.0,
+          "ground_truth_million_idr": 54851000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            20
+          ],
+          "source_chunk_id": "bbca_2024_0004",
+          "raw_value": "54.851",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "tier1_capital_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 239468855.0,
+          "ground_truth_million_idr": 239468855.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            703
+          ],
+          "source_chunk_id": "bbca_2024_0571",
+          "raw_value": "239.468.855",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023: hal 727 | 2024: hal 703 | 2025: hal 594",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "total_assets",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1449301000.0,
+          "ground_truth_million_idr": 1449301000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            20
+          ],
+          "source_chunk_id": "bbca_2024_0004",
+          "raw_value": "1.449.301",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "gross_loans_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 894912082.0,
+          "ground_truth_million_idr": 894912082.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            704,
+            705
+          ],
+          "source_chunk_id": "bbca_2024_0573",
+          "raw_value": null,
+          "components": [
+            "7.296.837",
+            "855.233.239",
+            "32.382.006"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": "Kredit bruto tidak tercetak langsung; menggunakan kredit netto (pihak berelasi + pihak ketiga) ditambah CKPN sebesar Rp 32.382.006."
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "deposits_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1108908832.0,
+          "ground_truth_million_idr": 1108908832.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            705
+          ],
+          "source_chunk_id": "bbca_2024_0574",
+          "raw_value": null,
+          "components": [
+            "3.260.838",
+            "1.105.647.994"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": "Total simpanan nasabah (DPK) tidak ada baris subtotal; dijumlahkan dari pihak berelasi dan pihak ketiga."
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "npl_amount_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 15498016.0,
+          "ground_truth_million_idr": 15498016.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            701
+          ],
+          "source_chunk_id": "bbca_2024_0568",
+          "raw_value": "15.498.016",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "net_interest_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 82264000.0,
+          "ground_truth_million_idr": 82264000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            20
+          ],
+          "source_chunk_id": "bbca_2024_0004",
+          "raw_value": "82.264",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2024,
+          "metric_key": "rwa_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 848181552.0,
+          "ground_truth_million_idr": 848181552.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            703
+          ],
+          "source_chunk_id": "bbca_2024_0571",
+          "raw_value": "848.181.552",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023: hal 727 | 2024: hal 703 | 2025: hal 594",
+          "notes": null
+        }
+      ],
+      "stats": {
+        "llm_calls": 4,
+        "tool_calls": 6,
+        "followup_calls": 0,
+        "input_tokens": 18585,
+        "output_tokens": 1760,
+        "total_tokens": 20345,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 122.48
+      },
+      "errors": [],
+      "llm_failures": 0,
+      "retrieved_chunk_ids": [
+        [
+          "bbca_2024_0004",
+          [
+            20
+          ]
+        ],
+        [
+          "bbca_2024_0058",
+          [
+            174
+          ]
+        ],
+        [
+          "bbca_2024_0237",
+          [
+            560
+          ]
+        ],
+        [
+          "bbca_2024_0315",
+          [
+            586
+          ]
+        ],
+        [
+          "bbca_2024_0200",
+          [
+            542
+          ]
+        ],
+        [
+          "bbca_2024_0583",
+          [
+            711
+          ]
+        ],
+        [
+          "bbca_2024_0571",
+          [
+            703
+          ]
+        ],
+        [
+          "bbca_2024_0549",
+          [
+            689
+          ]
+        ],
+        [
+          "bbca_2024_0048",
+          [
+            164
+          ]
+        ],
+        [
+          "bbca_2024_0573",
+          [
+            704,
+            705
+          ]
+        ],
+        [
+          "bbca_2024_0238",
+          [
+            561
+          ]
+        ],
+        [
+          "bbca_2024_0579",
+          [
+            710
+          ]
+        ],
+        [
+          "bbca_2024_0574",
+          [
+            705
+          ]
+        ],
+        [
+          "bbca_2024_0198",
+          [
+            541
+          ]
+        ],
+        [
+          "bbca_2024_0306",
+          [
+            583
+          ]
+        ],
+        [
+          "bbca_2024_0568",
+          [
+            701
+          ]
+        ],
+        [
+          "bbca_2024_0285",
+          [
+            577
+          ]
+        ],
+        [
+          "bbca_2024_0153",
+          [
+            262,
+            263
+          ]
+        ]
+      ]
+    },
+    "2025": {
+      "points": [
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "net_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 57563000.0,
+          "ground_truth_million_idr": 57563000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            15
+          ],
+          "source_chunk_id": "bbca_2025_0006",
+          "raw_value": "57.563",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "tier1_capital_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 258057396.0,
+          "ground_truth_million_idr": 258057396.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            594
+          ],
+          "source_chunk_id": "bbca_2025_0517",
+          "raw_value": "258.057.396",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023: hal 727 | 2024: hal 703 | 2025: hal 594",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "total_assets",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1586829000.0,
+          "ground_truth_million_idr": 1586829000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            15
+          ],
+          "source_chunk_id": "bbca_2025_0006",
+          "raw_value": "1.586.829",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "gross_loans_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 961903505.0,
+          "ground_truth_million_idr": 961903505.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            595
+          ],
+          "source_chunk_id": "bbca_2025_0519",
+          "raw_value": null,
+          "components": [
+            "932.513.007",
+            "29.390.498"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": "Nilai bruto dihitung sebagai Kredit Neto (932.513.007) + Cadangan kerugian penurunan nilai (29.390.498) karena tabel hanya menampilkan nilai setelah dikurangi CKPN."
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "deposits_bank",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 1249044000.0,
+          "ground_truth_million_idr": 1219567546.0,
+          "rel_err_pct": 2.417,
+          "source_pages": [
+            207
+          ],
+          "source_chunk_id": "bbca_2025_0159",
+          "raw_value": "1.249.044",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "npl_amount_bank",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 16479000.0,
+          "ground_truth_million_idr": 15965436.0,
+          "rel_err_pct": 3.2167,
+          "source_pages": [
+            206
+          ],
+          "source_chunk_id": "bbca_2025_0156",
+          "raw_value": "16.479",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "bank_only",
+          "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "net_interest_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 85548000.0,
+          "ground_truth_million_idr": 85548000.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            15
+          ],
+          "source_chunk_id": "bbca_2025_0006",
+          "raw_value": "85.548",
+          "components": null,
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
+          "basis": "consolidated",
+          "gt_source": "2024: hal 20 | 2025: hal 15",
+          "notes": null
+        },
+        {
+          "ticker": "bbca",
+          "year": 2025,
+          "metric_key": "rwa_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 901270630.0,
+          "ground_truth_million_idr": 901270630.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            594
+          ],
+          "source_chunk_id": "bbca_2025_0517",
+          "raw_value": "901.270.630",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023: hal 727 | 2024: hal 703 | 2025: hal 594",
+          "notes": null
+        }
+      ],
+      "stats": {
+        "llm_calls": 5,
+        "tool_calls": 7,
+        "followup_calls": 1,
+        "input_tokens": 21138,
+        "output_tokens": 1975,
+        "total_tokens": 23113,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 154.91
+      },
+      "errors": [],
+      "llm_failures": 0,
+      "retrieved_chunk_ids": [
+        [
+          "bbca_2025_0006",
+          [
+            15
+          ]
+        ],
+        [
+          "bbca_2025_0047",
+          [
+            117
+          ]
+        ],
+        [
+          "bbca_2025_0007",
+          [
+            15
+          ]
+        ],
+        [
+          "bbca_2025_0287",
+          [
+            495
+          ]
+        ],
+        [
+          "bbca_2025_0192",
+          [
+            463
+          ]
+        ],
+        [
+          "bbca_2025_0195",
+          [
+            465
+          ]
+        ],
+        [
+          "bbca_2025_0492",
+          [
+            578
+          ]
+        ],
+        [
+          "bbca_2025_0517",
+          [
+            594
+          ]
+        ],
+        [
+          "bbca_2025_0044",
+          [
+            116
+          ]
+        ],
+        [
+          "bbca_2025_0519",
+          [
+            595
+          ]
+        ],
+        [
+          "bbca_2025_0443",
+          [
+            560
+          ]
+        ],
+        [
+          "bbca_2025_0446",
+          [
+            561
+          ]
+        ],
+        [
+          "bbca_2025_0279",
+          [
+            493
+          ]
+        ],
+        [
+          "bbca_2025_0280",
+          [
+            494
+          ]
+        ],
+        [
+          "bbca_2025_0494",
+          [
+            579
+          ]
+        ],
+        [
+          "bbca_2025_0159",
+          [
+            207
+          ]
+        ],
+        [
+          "bbca_2025_0146",
+          [
+            201
+          ]
+        ],
+        [
+          "bbca_2025_0518",
+          [
+            594
+          ]
+        ],
+        [
+          "bbca_2025_0511",
+          [
+            590
+          ]
+        ],
+        [
+          "bbca_2025_0156",
+          [
+            206
+          ]
+        ],
+        [
+          "bbca_2025_0002",
+          [
+            8
+          ]
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,1166 @@
+{
+  "meta": {
+    "task": "9.6-9.7 GATE 4 extraction eval",
+    "ticker": "bmri",
+    "years": [
+      2023,
+      2024,
+      2025
+    ],
+    "role": "uji",
+    "model": "openai/gpt-oss-120b",
+    "reasoning_effort": "low",
+    "tolerance_pct": 0.5,
+    "ground_truth": "ground_truth_bmri.xlsx",
+    "fingerprint": {
+      "sha256": "f8569a3d6e69ccb9b633e96e2228d3a4e21e30d645115da26b5b0c3735b982be",
+      "files": {
+        "src/agents/extraction.py": "eb1e4934659b26859f41c4d5a2dca076a10f92ccd5658cf0e42ec9506124f9b4",
+        "src/ratio_profiles.py": "eb2ebc50b575d1c4819cf6bafe5665d9e356886057733a06e88f8ce1c01b5afe",
+        "src/agents/parse_number.py": "26bd27e62efb325f59027f43d12ef62fd560a7a9c3db8ef5a6e61ef3f73cd460",
+        "src/agents/tools.py": "94a38fd57321425886749de681a41e5df7b297428f5628716b905835d32ec519",
+        "src/agents/state.py": "6692b7cc77f672660414beb1e5e4b7cee7be69893c2c4e548bbceceebbe3e0fc"
+      }
+    },
+    "git": {
+      "head": "6d325d9",
+      "branch": "dev",
+      "locked_files_dirty": []
+    },
+    "forced": false,
+    "timestamp": "2026-11-27T19:19:43"
+  },
+  "summary": {
+    "n_expected": 24,
+    "n_scored": 24,
+    "complete": true,
+    "hits": 16,
+    "accuracy": 0.6667,
+    "threshold": 0.8,
+    "passed": false,
+    "by_metric": {
+      "net_income": {
+        "hits": 2,
+        "n": 3
+      },
+      "tier1_capital_bank": {
+        "hits": 3,
+        "n": 3
+      },
+      "total_assets": {
+        "hits": 1,
+        "n": 3
+      },
+      "gross_loans_bank": {
+        "hits": 0,
+        "n": 3
+      },
+      "deposits_bank": {
+        "hits": 2,
+        "n": 3
+      },
+      "npl_amount_bank": {
+        "hits": 2,
+        "n": 3
+      },
+      "net_interest_income": {
+        "hits": 3,
+        "n": 3
+      },
+      "rwa_bank": {
+        "hits": 3,
+        "n": 3
+      }
+    },
+    "by_year": {
+      "2023": {
+        "hits": 7,
+        "n": 8
+      },
+      "2024": {
+        "hits": 6,
+        "n": 8
+      },
+      "2025": {
+        "hits": 3,
+        "n": 8
+      }
+    },
+    "diagnosis_counts": {
+      "tepat": 16,
+      "komponen_salah": 2,
+      "nilai_salah": 5,
+      "not_found": 1
+    },
+    "totals": {
+      "llm_calls": 18,
+      "tool_calls": 24,
+      "followup_calls": 6,
+      "input_tokens": 80711,
+      "output_tokens": 7002,
+      "total_tokens": 87713,
+      "rate_limit_retries": 0,
+      "tool_error_retries": 0,
+      "seconds": 225.46
+    },
+    "avg_tokens_per_year": 29238,
+    "avg_seconds_per_year": 75.15
+  },
+  "per_year": {
+    "2023": {
+      "points": [
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "net_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 60051870.0,
+          "ground_truth_million_idr": 60051870.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            354
+          ],
+          "source_chunk_id": "bmri_2023_0073",
+          "raw_value": "60.051.870",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "tier1_capital_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 209724274.0,
+          "ground_truth_million_idr": 209724274.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            402
+          ],
+          "source_chunk_id": "bmri_2023_0116",
+          "raw_value": "209.724.274",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1425 | 2024 h1701 | 2025 h1432",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "total_assets",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 2174219449.0,
+          "ground_truth_million_idr": 2174219449.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1072
+          ],
+          "source_chunk_id": "bmri_2023_0244",
+          "raw_value": "2.174.219.449",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "gross_loans_bank",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "komponen_salah",
+          "value_million_idr": 1691043965.0,
+          "ground_truth_million_idr": 1085787427.0,
+          "rel_err_pct": 55.7436,
+          "source_pages": [
+            852
+          ],
+          "source_chunk_id": "bmri_2023_0150",
+          "raw_value": null,
+          "components": [
+            "11.133.719",
+            "1.679.910.246"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457",
+          "notes": "Total Kredit Bruto tidak tercetak sebagai satu sel; dijumlahkan dari kolom 'Nilai Tercatat Bruto - Tagihan yang Belum Jatuh Tempo' dan 'Nilai Tercatat Bruto - Tagihan yang Telah Jatuh Tempo' pada baris Total."
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "deposits_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1242145598.0,
+          "ground_truth_million_idr": 1242145598.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1503
+          ],
+          "source_chunk_id": "bmri_2023_1243",
+          "raw_value": "1.242.145.598",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "npl_amount_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 10999537.0,
+          "ground_truth_million_idr": 10999536.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            884
+          ],
+          "source_chunk_id": "bmri_2023_0176",
+          "raw_value": "10.999.537",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h401 | 2024 h428 | 2025 h354 (tabel 5 thn)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "net_interest_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 95886574.0,
+          "ground_truth_million_idr": 95886574.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            354
+          ],
+          "source_chunk_id": "bmri_2023_0073",
+          "raw_value": "95.886.574",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2023,
+          "metric_key": "rwa_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1033407212.0,
+          "ground_truth_million_idr": 1033407212.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            402
+          ],
+          "source_chunk_id": "bmri_2023_0116",
+          "raw_value": "1.033.407.212",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1425 | 2024 h1701 | 2025 h1432",
+          "notes": null
+        }
+      ],
+      "stats": {
+        "llm_calls": 7,
+        "tool_calls": 9,
+        "followup_calls": 3,
+        "input_tokens": 32619,
+        "output_tokens": 2563,
+        "total_tokens": 35182,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 174.94
+      },
+      "errors": [],
+      "llm_failures": 0,
+      "retrieved_chunk_ids": [
+        [
+          "bmri_2023_0076",
+          [
+            355
+          ]
+        ],
+        [
+          "bmri_2023_0260",
+          [
+            1081
+          ]
+        ],
+        [
+          "bmri_2023_0272",
+          [
+            1084
+          ]
+        ],
+        [
+          "bmri_2023_0073",
+          [
+            354
+          ]
+        ],
+        [
+          "bmri_2023_0268",
+          [
+            1083
+          ]
+        ],
+        [
+          "bmri_2023_0075",
+          [
+            355
+          ]
+        ],
+        [
+          "bmri_2023_0827",
+          [
+            1334
+          ]
+        ],
+        [
+          "bmri_2023_0244",
+          [
+            1072
+          ]
+        ],
+        [
+          "bmri_2023_0004",
+          [
+            35
+          ]
+        ],
+        [
+          "bmri_2023_0116",
+          [
+            402
+          ]
+        ],
+        [
+          "bmri_2023_1046",
+          [
+            1426
+          ]
+        ],
+        [
+          "bmri_2023_1045",
+          [
+            1425
+          ]
+        ],
+        [
+          "bmri_2023_0002",
+          [
+            32
+          ]
+        ],
+        [
+          "bmri_2023_0103",
+          [
+            372
+          ]
+        ],
+        [
+          "bmri_2023_1243",
+          [
+            1503
+          ]
+        ],
+        [
+          "bmri_2023_0225",
+          [
+            934
+          ]
+        ],
+        [
+          "bmri_2023_0472",
+          [
+            1188
+          ]
+        ],
+        [
+          "bmri_2023_0151",
+          [
+            852
+          ]
+        ],
+        [
+          "bmri_2023_0150",
+          [
+            852
+          ]
+        ],
+        [
+          "bmri_2023_1144",
+          [
+            1460
+          ]
+        ],
+        [
+          "bmri_2023_1140",
+          [
+            1459
+          ]
+        ],
+        [
+          "bmri_2023_0205",
+          [
+            918
+          ]
+        ],
+        [
+          "bmri_2023_0646",
+          [
+            1258
+          ]
+        ],
+        [
+          "bmri_2023_1047",
+          [
+            1426
+          ]
+        ],
+        [
+          "bmri_2023_0020",
+          [
+            271
+          ]
+        ],
+        [
+          "bmri_2023_0176",
+          [
+            884
+          ]
+        ],
+        [
+          "bmri_2023_0173",
+          [
+            882
+          ]
+        ],
+        [
+          "bmri_2023_0177",
+          [
+            884
+          ]
+        ],
+        [
+          "bmri_2023_0428",
+          [
+            1171
+          ]
+        ]
+      ]
+    },
+    "2024": {
+      "points": [
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "net_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 61165121.0,
+          "ground_truth_million_idr": 61165121.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            33
+          ],
+          "source_chunk_id": "bmri_2024_0004",
+          "raw_value": "61.165.121",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "tier1_capital_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 229932670.0,
+          "ground_truth_million_idr": 229932670.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1701
+          ],
+          "source_chunk_id": "bmri_2024_1387",
+          "raw_value": "229.932.670",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1425 | 2024 h1701 | 2025 h1432",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "total_assets",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 1623216612.0,
+          "ground_truth_million_idr": 2427223262.0,
+          "rel_err_pct": 33.1245,
+          "source_pages": [
+            1630
+          ],
+          "source_chunk_id": "bmri_2024_1210",
+          "raw_value": "1.623.216.612",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "gross_loans_bank",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "komponen_salah",
+          "value_million_idr": 1923262945.0,
+          "ground_truth_million_idr": 1310779402.0,
+          "rel_err_pct": 46.7267,
+          "source_pages": [
+            1018
+          ],
+          "source_chunk_id": "bmri_2024_0183",
+          "raw_value": null,
+          "components": [
+            "12.626.728",
+            "1.910.636.217"
+          ],
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457",
+          "notes": "Subtotal Gross Loans not printed; sum of 'Nilai Tercatat Bruto - Tagihan yang Telah Jatuh Tempo' (a) and 'Nilai Tercatat Bruto - Tagihan yang Belum Jatuh Tempo' (b) for total Kredit Bruto."
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "deposits_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1326887854.0,
+          "ground_truth_million_idr": 1326887854.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1715,
+            1716
+          ],
+          "source_chunk_id": "bmri_2024_1418",
+          "raw_value": "1.326.887.854",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "npl_amount_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 12609239.0,
+          "ground_truth_million_idr": 12609239.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            428
+          ],
+          "source_chunk_id": "bmri_2024_0148",
+          "raw_value": "12.609.239",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h401 | 2024 h428 | 2025 h354 (tabel 5 thn)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "net_interest_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 101756920.0,
+          "ground_truth_million_idr": 101756920.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            385
+          ],
+          "source_chunk_id": "bmri_2024_0063",
+          "raw_value": "101.756.920",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2024,
+          "metric_key": "rwa_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1215157443.0,
+          "ground_truth_million_idr": 1215157443.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1701
+          ],
+          "source_chunk_id": "bmri_2024_1387",
+          "raw_value": "1.215.157.443",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1425 | 2024 h1701 | 2025 h1432",
+          "notes": null
+        }
+      ],
+      "stats": {
+        "llm_calls": 5,
+        "tool_calls": 7,
+        "followup_calls": 1,
+        "input_tokens": 22982,
+        "output_tokens": 2282,
+        "total_tokens": 25264,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 28.99
+      },
+      "errors": [],
+      "llm_failures": 0,
+      "retrieved_chunk_ids": [
+        [
+          "bmri_2024_1210",
+          [
+            1630
+          ]
+        ],
+        [
+          "bmri_2024_1212",
+          [
+            1631
+          ]
+        ],
+        [
+          "bmri_2024_0322",
+          [
+            1244
+          ]
+        ],
+        [
+          "bmri_2024_0004",
+          [
+            33
+          ]
+        ],
+        [
+          "bmri_2024_0063",
+          [
+            385
+          ]
+        ],
+        [
+          "bmri_2024_0349",
+          [
+            1296
+          ]
+        ],
+        [
+          "bmri_2024_1387",
+          [
+            1701
+          ]
+        ],
+        [
+          "bmri_2024_1388",
+          [
+            1701
+          ]
+        ],
+        [
+          "bmri_2024_0149",
+          [
+            429
+          ]
+        ],
+        [
+          "bmri_2024_0001",
+          [
+            30
+          ]
+        ],
+        [
+          "bmri_2024_0089",
+          [
+            402
+          ]
+        ],
+        [
+          "bmri_2024_0064",
+          [
+            386
+          ]
+        ],
+        [
+          "bmri_2024_1418",
+          [
+            1715,
+            1716
+          ]
+        ],
+        [
+          "bmri_2024_0110",
+          [
+            412
+          ]
+        ],
+        [
+          "bmri_2024_0580",
+          [
+            1399
+          ]
+        ],
+        [
+          "bmri_2024_0184",
+          [
+            1018
+          ]
+        ],
+        [
+          "bmri_2024_0183",
+          [
+            1018
+          ]
+        ],
+        [
+          "bmri_2024_0754",
+          [
+            1463
+          ]
+        ],
+        [
+          "bmri_2024_1293",
+          [
+            1659
+          ]
+        ],
+        [
+          "bmri_2024_0627",
+          [
+            1416
+          ]
+        ],
+        [
+          "bmri_2024_1403",
+          [
+            1708
+          ]
+        ],
+        [
+          "bmri_2024_0006",
+          [
+            34
+          ]
+        ],
+        [
+          "bmri_2024_0148",
+          [
+            428
+          ]
+        ]
+      ]
+    },
+    "2025": {
+      "points": [
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "net_income",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 31541302.0,
+          "ground_truth_million_idr": 61346133.0,
+          "rel_err_pct": 48.5847,
+          "source_pages": [
+            284
+          ],
+          "source_chunk_id": "bmri_2025_0019",
+          "raw_value": "31.541.302",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "tier1_capital_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 238082036.0,
+          "ground_truth_million_idr": 238082036.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1432
+          ],
+          "source_chunk_id": "bmri_2025_1362",
+          "raw_value": "238.082.036",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1425 | 2024 h1701 | 2025 h1432",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "total_assets",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 2427223262.0,
+          "ground_truth_million_idr": 2829948026.0,
+          "rel_err_pct": 14.2308,
+          "source_pages": [
+            1358
+          ],
+          "source_chunk_id": "bmri_2025_1163",
+          "raw_value": "2.427.223.262",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "gross_loans_bank",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 1623216612.0,
+          "ground_truth_million_idr": 1497108664.0,
+          "rel_err_pct": 8.4234,
+          "source_pages": [
+            1390
+          ],
+          "source_chunk_id": "bmri_2025_1253",
+          "raw_value": "1.623.216.612",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "deposits_bank",
+          "ok": false,
+          "status": "ok",
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 1430230307.0,
+          "ground_truth_million_idr": 1674679144.0,
+          "rel_err_pct": 14.5968,
+          "source_pages": [
+            1358
+          ],
+          "source_chunk_id": "bmri_2025_1163",
+          "raw_value": "(1.430.230.307)",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "npl_amount_bank",
+          "ok": false,
+          "status": "not_found",
+          "diagnosis": "not_found",
+          "value_million_idr": null,
+          "ground_truth_million_idr": 14367697.0,
+          "rel_err_pct": null,
+          "source_pages": [],
+          "source_chunk_id": null,
+          "raw_value": null,
+          "components": null,
+          "original_unit": null,
+          "chunk_unit": null,
+          "basis": "bank_only",
+          "gt_source": "2023 h401 | 2024 h428 | 2025 h354 (tabel 5 thn)",
+          "notes": "Tidak ada nilai nominal NPL bruto untuk Bank Mandiri (bank_only) pada tahun 2025 dalam chunk yang disediakan."
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "net_interest_income",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 106210035.0,
+          "ground_truth_million_idr": 106210035.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            347
+          ],
+          "source_chunk_id": "bmri_2025_0116",
+          "raw_value": "106.210.035",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "consolidated",
+          "gt_source": "bmri_2025: hal 36-38 (silang 2023/2024)",
+          "notes": null
+        },
+        {
+          "ticker": "bmri",
+          "year": 2025,
+          "metric_key": "rwa_bank",
+          "ok": true,
+          "status": "ok",
+          "diagnosis": "tepat",
+          "value_million_idr": 1308455053.0,
+          "ground_truth_million_idr": 1308455053.0,
+          "rel_err_pct": 0.0,
+          "source_pages": [
+            1432
+          ],
+          "source_chunk_id": "bmri_2025_1362",
+          "raw_value": "1.308.455.053",
+          "components": null,
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
+          "basis": "bank_only",
+          "gt_source": "2023 h1425 | 2024 h1701 | 2025 h1432",
+          "notes": null
+        }
+      ],
+      "stats": {
+        "llm_calls": 6,
+        "tool_calls": 8,
+        "followup_calls": 2,
+        "input_tokens": 25110,
+        "output_tokens": 2157,
+        "total_tokens": 27267,
+        "rate_limit_retries": 0,
+        "tool_error_retries": 0,
+        "seconds": 21.53
+      },
+      "errors": [
+        "bmri_2025/npl_amount_bank: status=not_found (Tidak ada nilai nominal NPL bruto untuk Bank Mandiri (bank_only) pada tahun 2025 dalam chunk yang disediakan.)"
+      ],
+      "llm_failures": 0,
+      "retrieved_chunk_ids": [
+        [
+          "bmri_2025_1163",
+          [
+            1358
+          ]
+        ],
+        [
+          "bmri_2025_0019",
+          [
+            284
+          ]
+        ],
+        [
+          "bmri_2025_0338",
+          [
+            1024
+          ]
+        ],
+        [
+          "bmri_2025_0004",
+          [
+            38
+          ]
+        ],
+        [
+          "bmri_2025_0116",
+          [
+            347
+          ]
+        ],
+        [
+          "bmri_2025_0003",
+          [
+            38
+          ]
+        ],
+        [
+          "bmri_2025_1362",
+          [
+            1432
+          ]
+        ],
+        [
+          "bmri_2025_1363",
+          [
+            1433
+          ]
+        ],
+        [
+          "bmri_2025_0136",
+          [
+            355
+          ]
+        ],
+        [
+          "bmri_2025_0001",
+          [
+            36
+          ]
+        ],
+        [
+          "bmri_2025_1236",
+          [
+            1383
+          ]
+        ],
+        [
+          "bmri_2025_0106",
+          [
+            340
+          ]
+        ],
+        [
+          "bmri_2025_0472",
+          [
+            1081
+          ]
+        ],
+        [
+          "bmri_2025_0468",
+          [
+            1080
+          ]
+        ],
+        [
+          "bmri_2025_1225",
+          [
+            1379
+          ]
+        ],
+        [
+          "bmri_2025_0438",
+          [
+            1067
+          ]
+        ],
+        [
+          "bmri_2025_1253",
+          [
+            1390
+          ]
+        ],
+        [
+          "bmri_2025_0679",
+          [
+            1150
+          ]
+        ],
+        [
+          "bmri_2025_1249",
+          [
+            1389
+          ]
+        ],
+        [
+          "bmri_2025_1393",
+          [
+            1441
+          ]
+        ],
+        [
+          "bmri_2025_1406",
+          [
+            1446
+          ]
+        ],
+        [
+          "bmri_2025_0006",
+          [
+            39
+          ]
+        ],
+        [
+          "bmri_2025_1394",
+          [
+            1442
+          ]
+        ],
+        [
+          "bmri_2025_0920",
+          [
+            1254
+          ]
+        ],
+        [
+          "bmri_2025_0925",
+          [
+            1255
+          ]
+        ]
+      ]
+    }
+  }
+}

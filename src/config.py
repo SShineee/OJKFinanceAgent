@@ -32,7 +32,7 @@ except ImportError:                                  # fallback tanpa dependensi
 def get_secret(name: str, required: bool = True) -> str:
     """Ambil API key dari environment. Pesan errornya menyebut cara memperbaiki."""
     v = os.environ.get(name, "").strip()
-    if not v or v.startswith(("isi_disini", "gsk_isi", "tvly-isi")):
+    if not v or v.startswith(("isi_disini", "gsk_isi", "tvly-isi", "sk-or-isi", "sk-isi")):
         if required:
             raise RuntimeError(
                 f"{name} belum di-set.\n"
@@ -47,8 +47,9 @@ def get_secret(name: str, required: bool = True) -> str:
 # Keputusan Minggu 1 (tugas 1.3): `llama3-70b-8192` yang ditulis di proposal
 # sudah tidak tersedia di Groq. Diganti ke gpt-oss-120b -- tetap open weight
 # (Apache 2.0), tetap gratis, tetap di LPU Groq, jadi justifikasi Bab 2.2 utuh.
-GROQ_MODEL = "openai/gpt-oss-120b"          # model utama semua agent
+GROQ_MODEL = "openai/gpt-oss-120b"          # model utama semua agent (ID sama di Groq & OpenRouter)
 GROQ_MODEL_FAST = "openai/gpt-oss-20b"     # cadangan kalau kena rate limit
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 TEMPERATURE = 0.0                            # analisis keuangan: jangan kreatif
 
 # gpt-oss adalah REASONING MODEL: ia memakai token untuk penalaran sebelum
@@ -178,16 +179,50 @@ TAVILY_DOMAINS = [
 # ----------------------------------------------------------------- LLM lazy
 # Dibuat di dalam fungsi, BUKAN di level modul, supaya config.py tetap bisa
 # diimpor sebelum langchain terpasang (Minggu 2).
-def get_llm(fast: bool = False, effort: str = None, **kw):
-    """LLM untuk agent. `effort` mengatur kedalaman penalaran gpt-oss."""
+def get_llm_provider() -> str:
+    """Pilih penyedia LLM: hormati env `LLM_PROVIDER`, atau otomatis pakai OpenRouter bila key terisi."""
+    explicit = os.environ.get("LLM_PROVIDER", "").strip().lower()
+    if explicit in ("groq", "openrouter"):
+        return explicit
+    return "openrouter" if get_secret("OPENROUTER_API_KEY", required=False) else "groq"
+
+
+def get_llm(fast: bool = False, effort: str = None, provider: str = None, **kw):
+    """LLM untuk agent (`openai/gpt-oss-120b`). Otomatis mendukung OpenRouter (prabayar) & Groq."""
+    chosen = (provider or get_llm_provider()).strip().lower()
+    model_name = GROQ_MODEL_FAST if fast else GROQ_MODEL
+    eff = effort or REASONING_EFFORT
+    temp = kw.pop("temperature", TEMPERATURE)
+    max_tok = kw.pop("max_tokens", MAX_TOKENS)
+
+    if chosen == "openrouter":
+        from langchain_openai import ChatOpenAI
+        extra_body = dict(kw.pop("extra_body", None) or {})
+        extra_body.setdefault("reasoning", {"effort": eff})
+        extra_body.setdefault(
+            "provider",
+            {"order": ["groq"], "require_parameters": True, "allow_fallbacks": True},
+        )
+        return ChatOpenAI(
+            model=model_name,
+            api_key=get_secret("OPENROUTER_API_KEY"),
+            base_url=OPENROUTER_BASE_URL,
+            temperature=temp,
+            max_tokens=max_tok,
+            use_responses_api=False,
+            extra_body=extra_body,
+            default_headers={"X-Title": "OJKFinanceAgent"},
+            **kw,
+        )
+
     from langchain_groq import ChatGroq
     # langchain-groq >= 1.x menolak reasoning_effort lewat model_kwargs
     # ("should be specified explicitly") -- harus parameter langsung.
     return ChatGroq(
-        model=GROQ_MODEL_FAST if fast else GROQ_MODEL,
-        temperature=kw.pop("temperature", TEMPERATURE),
-        max_tokens=kw.pop("max_tokens", MAX_TOKENS),
-        reasoning_effort=effort or REASONING_EFFORT,
+        model=model_name,
+        temperature=temp,
+        max_tokens=max_tok,
+        reasoning_effort=eff,
         api_key=get_secret("GROQ_API_KEY"),
         **kw,
     )
@@ -204,6 +239,7 @@ def get_judge(**kw):
 # ----------------------------------------------------------------- self-check
 if __name__ == "__main__":
     print(f"ROOT          : {ROOT}")
+    print(f"Provider LLM  : {get_llm_provider()}")
     print(f"Model sistem  : {GROQ_MODEL}  (reasoning model)")
     print(f"  max_tokens  : {MAX_TOKENS}   reasoning_effort: {REASONING_EFFORT}")
     print(f"Model cadangan: {GROQ_MODEL_FAST}")
@@ -215,7 +251,8 @@ if __name__ == "__main__":
               f"   (opsional {', '.join(e['optional'])})")
 
     print("\nAPI key:")
-    for name, required_now in (("GROQ_API_KEY", True),
+    for name, required_now in (("OPENROUTER_API_KEY", False),
+                                 ("GROQ_API_KEY", not bool(get_secret("OPENROUTER_API_KEY", required=False))),
                                  ("TAVILY_API_KEY", False),
                                  ("GOOGLE_API_KEY", False),
                                  ("TELEGRAM_BOT_TOKEN", False),

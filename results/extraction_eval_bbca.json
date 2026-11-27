@@ -13,24 +13,25 @@
     "tolerance_pct": 0.5,
     "ground_truth": "ground_truth.xlsx",
     "fingerprint": {
-      "sha256": "f8569a3d6e69ccb9b633e96e2228d3a4e21e30d645115da26b5b0c3735b982be",
+      "sha256": "faa27fdeff35ffdb968ce34a2e3ffdd4d66df6c78d86fce0483a6758c49ada12",
       "files": {
-        "src/agents/extraction.py": "eb1e4934659b26859f41c4d5a2dca076a10f92ccd5658cf0e42ec9506124f9b4",
-        "src/ratio_profiles.py": "eb2ebc50b575d1c4819cf6bafe5665d9e356886057733a06e88f8ce1c01b5afe",
+        "src/agents/extraction.py": "a604fb7b27225a18628f478d2947bbe14f7eb22c7a369ac4a4ff704a51540235",
+        "src/ratio_profiles.py": "507e70db240a9dac516139e7c523d7f26e2d7f57eba6abb15a273da6c2319546",
         "src/agents/parse_number.py": "26bd27e62efb325f59027f43d12ef62fd560a7a9c3db8ef5a6e61ef3f73cd460",
         "src/agents/tools.py": "94a38fd57321425886749de681a41e5df7b297428f5628716b905835d32ec519",
         "src/agents/state.py": "6692b7cc77f672660414beb1e5e4b7cee7be69893c2c4e548bbceceebbe3e0fc"
       }
     },
     "git": {
-      "head": "a7f3c09",
+      "head": "6d325d9",
       "branch": "dev",
       "locked_files_dirty": [
-        "src/agents/extraction.py"
+        "src/agents/extraction.py",
+        "src/ratio_profiles.py"
       ]
     },
     "forced": false,
-    "timestamp": "2026-11-27T18:31:29"
+    "timestamp": "2026-11-27T19:33:13"
   },
   "summary": {
     "n_expected": 24,
@@ -58,11 +59,11 @@
         "n": 3
       },
       "deposits_bank": {
-        "hits": 2,
+        "hits": 3,
         "n": 3
       },
       "npl_amount_bank": {
-        "hits": 2,
+        "hits": 1,
         "n": 3
       },
       "net_interest_income": {
@@ -76,7 +77,7 @@
     },
     "by_year": {
       "2023": {
-        "hits": 8,
+        "hits": 7,
         "n": 8
       },
       "2024": {
@@ -84,7 +85,7 @@
         "n": 8
       },
       "2025": {
-        "hits": 6,
+        "hits": 7,
         "n": 8
       }
     },
@@ -93,18 +94,18 @@
       "nilai_salah": 2
     },
     "totals": {
-      "llm_calls": 13,
-      "tool_calls": 19,
-      "followup_calls": 1,
-      "input_tokens": 60675,
-      "output_tokens": 5518,
-      "total_tokens": 66193,
+      "llm_calls": 12,
+      "tool_calls": 18,
+      "followup_calls": 0,
+      "input_tokens": 67963,
+      "output_tokens": 5347,
+      "total_tokens": 73310,
       "rate_limit_retries": 0,
       "tool_error_retries": 0,
-      "seconds": 391.86
+      "seconds": 43.12
     },
-    "avg_tokens_per_year": 22064,
-    "avg_seconds_per_year": 130.62
+    "avg_tokens_per_year": 24437,
+    "avg_seconds_per_year": 14.37
   },
   "per_year": {
     "2023": {
@@ -116,17 +117,17 @@
           "ok": true,
           "status": "ok",
           "diagnosis": "tepat",
-          "value_million_idr": 48658095.0,
+          "value_million_idr": 48658000.0,
           "ground_truth_million_idr": 48658000.0,
-          "rel_err_pct": 0.0002,
+          "rel_err_pct": 0.0,
           "source_pages": [
-            578
+            18
           ],
-          "source_chunk_id": "bbca_2023_0197",
-          "raw_value": "48.658.095",
+          "source_chunk_id": "bbca_2023_0005",
+          "raw_value": "48.658",
           "components": null,
-          "original_unit": "million_idr",
-          "chunk_unit": "million_idr",
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
           "basis": "consolidated",
           "gt_source": "2024: hal 20 | 2025: hal 15",
           "notes": null
@@ -200,7 +201,7 @@
           "chunk_unit": "million_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
-          "notes": "Kredit yang diberikan - setelah dikurangi CKPN disajikan per pihak; CKPN nilai 33.168.491 juta Rupiah ditambahkan untuk memperoleh bruto."
+          "notes": "Subtotal bruto tidak tercetak; komponen neto per pihak berelasi & pihak ketiga plus CKPN 33.168.491 dijumlahkan."
         },
         {
           "ticker": "bbca",
@@ -225,26 +226,27 @@
           "chunk_unit": "million_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
-          "notes": "Simpanan dari nasabah Pihak berelasi dan Pihak ketiga tercantum terpisah; tidak ada baris total, sehingga dijumlahkan."
+          "notes": "Total DPK tidak tercetak sebagai satu baris; dijumlahkan dari Pihak berelasi dan Pihak ketiga."
         },
         {
           "ticker": "bbca",
           "year": 2023,
           "metric_key": "npl_amount_bank",
-          "ok": true,
+          "ok": false,
           "status": "ok",
-          "diagnosis": "tepat",
-          "value_million_idr": 14147246.0,
+          "diagnosis": "nilai_salah",
+          "value_million_idr": 10703000.0,
           "ground_truth_million_idr": 14147246.0,
-          "rel_err_pct": 0.0,
+          "rel_err_pct": 24.3457,
           "source_pages": [
-            646
+            264,
+            265
           ],
-          "source_chunk_id": "bbca_2023_0344",
-          "raw_value": "14.147.246",
+          "source_chunk_id": "bbca_2023_0152",
+          "raw_value": "10.703",
           "components": null,
-          "original_unit": "million_idr",
-          "chunk_unit": "million_idr",
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
           "notes": null
@@ -256,17 +258,17 @@
           "ok": true,
           "status": "ok",
           "diagnosis": "tepat",
-          "value_million_idr": 75128822.0,
+          "value_million_idr": 75129000.0,
           "ground_truth_million_idr": 74938000.0,
-          "rel_err_pct": 0.2546,
+          "rel_err_pct": 0.2549,
           "source_pages": [
-            578
+            18
           ],
-          "source_chunk_id": "bbca_2023_0197",
-          "raw_value": "75.128.822",
+          "source_chunk_id": "bbca_2023_0005",
+          "raw_value": "75.129",
           "components": null,
-          "original_unit": "million_idr",
-          "chunk_unit": "million_idr",
+          "original_unit": "billion_idr",
+          "chunk_unit": "billion_idr",
           "basis": "consolidated",
           "gt_source": "2024: hal 20 | 2025: hal 15",
           "notes": null
@@ -298,12 +300,12 @@
         "llm_calls": 4,
         "tool_calls": 6,
         "followup_calls": 0,
-        "input_tokens": 20952,
-        "output_tokens": 1783,
-        "total_tokens": 22735,
+        "input_tokens": 23049,
+        "output_tokens": 1897,
+        "total_tokens": 24946,
         "rate_limit_retries": 0,
         "tool_error_retries": 0,
-        "seconds": 114.47
+        "seconds": 19.23
       },
       "errors": [],
       "llm_failures": 0,
@@ -315,15 +317,23 @@
           ]
         ],
         [
-          "bbca_2023_0007",
+          "bbca_2023_0255",
           [
-            19
+            607
           ]
         ],
         [
-          "bbca_2023_0233",
+          "bbca_2023_0051",
           [
-            595
+            171,
+            172,
+            173
+          ]
+        ],
+        [
+          "bbca_2023_0004",
+          [
+            18
           ]
         ],
         [
@@ -345,6 +355,26 @@
           ]
         ],
         [
+          "bbca_2023_0554",
+          [
+            745
+          ]
+        ],
+        [
+          "bbca_2023_0196",
+          [
+            577
+          ]
+        ],
+        [
+          "bbca_2023_0198",
+          [
+            578,
+            579,
+            580
+          ]
+        ],
+        [
           "bbca_2023_0526",
           [
             726
@@ -360,6 +390,24 @@
           "bbca_2023_0527",
           [
             727
+          ]
+        ],
+        [
+          "bbca_2023_0040",
+          [
+            163
+          ]
+        ],
+        [
+          "bbca_2023_0043",
+          [
+            165
+          ]
+        ],
+        [
+          "bbca_2023_0045",
+          [
+            167
           ]
         ],
         [
@@ -382,9 +430,10 @@
           ]
         ],
         [
-          "bbca_2023_0545",
+          "bbca_2023_0550",
           [
-            739
+            744,
+            745
           ]
         ],
         [
@@ -394,15 +443,22 @@
           ]
         ],
         [
-          "bbca_2023_0375",
+          "bbca_2023_0545",
           [
-            659
+            739
           ]
         ],
         [
-          "bbca_2023_0344",
+          "bbca_2023_0405",
           [
-            646
+            674
+          ]
+        ],
+        [
+          "bbca_2023_0194",
+          [
+            576,
+            577
           ]
         ],
         [
@@ -412,9 +468,22 @@
           ]
         ],
         [
+          "bbca_2023_0344",
+          [
+            646
+          ]
+        ],
+        [
           "bbca_2023_0002",
           [
             9
+          ]
+        ],
+        [
+          "bbca_2023_0152",
+          [
+            264,
+            265
           ]
         ]
       ]
@@ -512,7 +581,7 @@
           "chunk_unit": "million_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
-          "notes": "Kredit bruto tidak tercetak langsung; menggunakan kredit netto (pihak berelasi + pihak ketiga) ditambah CKPN sebesar Rp 32.382.006."
+          "notes": "Subtotal Kredit Bruto tidak tercetak; komponen Kredit Neto (Pihak berelasi + Pihak ketiga) dan CKPN diambil untuk menghitung Kredit Bruto."
         },
         {
           "ticker": "bbca",
@@ -537,7 +606,7 @@
           "chunk_unit": "million_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
-          "notes": "Total simpanan nasabah (DPK) tidak ada baris subtotal; dijumlahkan dari pihak berelasi dan pihak ketiga."
+          "notes": "Tidak ada baris total Simpanan Nasabah; komponen Pihak berelasi dan Pihak ketiga dijumlahkan."
         },
         {
           "ticker": "bbca",
@@ -610,12 +679,12 @@
         "llm_calls": 4,
         "tool_calls": 6,
         "followup_calls": 0,
-        "input_tokens": 18585,
-        "output_tokens": 1760,
-        "total_tokens": 20345,
+        "input_tokens": 21657,
+        "output_tokens": 1831,
+        "total_tokens": 23488,
         "rate_limit_retries": 0,
         "tool_error_retries": 0,
-        "seconds": 122.48
+        "seconds": 9.71
       },
       "errors": [],
       "llm_failures": 0,
@@ -627,15 +696,21 @@
           ]
         ],
         [
-          "bbca_2024_0058",
+          "bbca_2024_0267",
           [
-            174
+            572
           ]
         ],
         [
-          "bbca_2024_0237",
+          "bbca_2024_0003",
           [
-            560
+            20
+          ]
+        ],
+        [
+          "bbca_2024_0199",
+          [
+            541
           ]
         ],
         [
@@ -657,6 +732,13 @@
           ]
         ],
         [
+          "bbca_2024_0201",
+          [
+            542,
+            543
+          ]
+        ],
+        [
           "bbca_2024_0571",
           [
             703
@@ -672,6 +754,24 @@
           "bbca_2024_0048",
           [
             164
+          ]
+        ],
+        [
+          "bbca_2024_0035",
+          [
+            154
+          ]
+        ],
+        [
+          "bbca_2024_0047",
+          [
+            163
+          ]
+        ],
+        [
+          "bbca_2024_0049",
+          [
+            165
           ]
         ],
         [
@@ -694,9 +794,9 @@
           ]
         ],
         [
-          "bbca_2024_0574",
+          "bbca_2024_0496",
           [
-            705
+            666
           ]
         ],
         [
@@ -712,9 +812,16 @@
           ]
         ],
         [
-          "bbca_2024_0568",
+          "bbca_2024_0574",
           [
-            701
+            705
+          ]
+        ],
+        [
+          "bbca_2024_0197",
+          [
+            540,
+            541
           ]
         ],
         [
@@ -724,10 +831,22 @@
           ]
         ],
         [
+          "bbca_2024_0568",
+          [
+            701
+          ]
+        ],
+        [
           "bbca_2024_0153",
           [
             262,
             263
+          ]
+        ],
+        [
+          "bbca_2024_0002",
+          [
+            9
           ]
         ]
       ]
@@ -823,26 +942,26 @@
           "chunk_unit": "million_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
-          "notes": "Nilai bruto dihitung sebagai Kredit Neto (932.513.007) + Cadangan kerugian penurunan nilai (29.390.498) karena tabel hanya menampilkan nilai setelah dikurangi CKPN."
+          "notes": "Kredit yang diberikan - setelah dikurangi CKPN merupakan nilai kredit netto; CKPN sebesar Rp 29.390.498 pada 2025 ditambahkan untuk memperoleh kredit bruto."
         },
         {
           "ticker": "bbca",
           "year": 2025,
           "metric_key": "deposits_bank",
-          "ok": false,
+          "ok": true,
           "status": "ok",
-          "diagnosis": "nilai_salah",
-          "value_million_idr": 1249044000.0,
+          "diagnosis": "tepat",
+          "value_million_idr": 1219567546.0,
           "ground_truth_million_idr": 1219567546.0,
-          "rel_err_pct": 2.417,
+          "rel_err_pct": 0.0,
           "source_pages": [
-            207
+            596
           ],
-          "source_chunk_id": "bbca_2025_0159",
-          "raw_value": "1.249.044",
+          "source_chunk_id": "bbca_2025_0520",
+          "raw_value": "1.219.567.546",
           "components": null,
-          "original_unit": "billion_idr",
-          "chunk_unit": "billion_idr",
+          "original_unit": "million_idr",
+          "chunk_unit": "million_idr",
           "basis": "bank_only",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
           "notes": null
@@ -865,7 +984,7 @@
           "components": null,
           "original_unit": "billion_idr",
           "chunk_unit": "billion_idr",
-          "basis": "bank_only",
+          "basis": "unknown",
           "gt_source": "NPL: 2023 h646 | 2024 h701 | 2025 h590",
           "notes": null
         },
@@ -915,25 +1034,19 @@
         }
       ],
       "stats": {
-        "llm_calls": 5,
-        "tool_calls": 7,
-        "followup_calls": 1,
-        "input_tokens": 21138,
-        "output_tokens": 1975,
-        "total_tokens": 23113,
+        "llm_calls": 4,
+        "tool_calls": 6,
+        "followup_calls": 0,
+        "input_tokens": 23257,
+        "output_tokens": 1619,
+        "total_tokens": 24876,
         "rate_limit_retries": 0,
         "tool_error_retries": 0,
-        "seconds": 154.91
+        "seconds": 14.18
       },
       "errors": [],
       "llm_failures": 0,
       "retrieved_chunk_ids": [
-        [
-          "bbca_2025_0006",
-          [
-            15
-          ]
-        ],
         [
           "bbca_2025_0047",
           [
@@ -941,9 +1054,21 @@
           ]
         ],
         [
-          "bbca_2025_0007",
+          "bbca_2025_0006",
           [
             15
+          ]
+        ],
+        [
+          "bbca_2025_0005",
+          [
+            15
+          ]
+        ],
+        [
+          "bbca_2025_0191",
+          [
+            462
           ]
         ],
         [
@@ -965,6 +1090,24 @@
           ]
         ],
         [
+          "bbca_2025_0198",
+          [
+            467
+          ]
+        ],
+        [
+          "bbca_2025_0046",
+          [
+            117
+          ]
+        ],
+        [
+          "bbca_2025_0048",
+          [
+            118
+          ]
+        ],
+        [
           "bbca_2025_0492",
           [
             578
@@ -978,6 +1121,25 @@
         ],
         [
           "bbca_2025_0044",
+          [
+            116
+          ]
+        ],
+        [
+          "bbca_2025_0034",
+          [
+            109,
+            110
+          ]
+        ],
+        [
+          "bbca_2025_0043",
+          [
+            115
+          ]
+        ],
+        [
+          "bbca_2025_0045",
           [
             116
           ]
@@ -1001,39 +1163,34 @@
           ]
         ],
         [
+          "bbca_2025_0214",
+          [
+            474
+          ]
+        ],
+        [
           "bbca_2025_0279",
           [
             493
           ]
         ],
         [
-          "bbca_2025_0280",
+          "bbca_2025_0520",
           [
-            494
+            596
           ]
         ],
         [
-          "bbca_2025_0494",
+          "bbca_2025_0190",
           [
-            579
+            462
           ]
         ],
         [
-          "bbca_2025_0159",
+          "bbca_2025_0133",
           [
-            207
-          ]
-        ],
-        [
-          "bbca_2025_0146",
-          [
-            201
-          ]
-        ],
-        [
-          "bbca_2025_0518",
-          [
-            594
+            171,
+            172
           ]
         ],
         [
@@ -1049,9 +1206,15 @@
           ]
         ],
         [
-          "bbca_2025_0002",
+          "bbca_2025_0008",
           [
-            8
+            16
+          ]
+        ],
+        [
+          "bbca_2025_0335",
+          [
+            513
           ]
         ]
       ]

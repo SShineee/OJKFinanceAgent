@@ -30,6 +30,7 @@ import re
 import sys
 import time
 from collections.abc import Sequence
+from functools import lru_cache
 from typing import Any
 
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
@@ -49,13 +50,26 @@ from src.agents.tools import (
     retrieve_and_record,
     search_annual_report,
 )
+from src.ingest.chunk import load_chunks
 from src.retrieval import index
 
-MAX_CHUNKS_PER_GROUP = 6
+MAX_CHUNKS_PER_GROUP = 4
+MAX_EXPANDED_CHUNKS = 6
 MAX_RATE_LIMIT_RETRIES = 4
 MAX_RATE_LIMIT_WAIT_S = 90.0     # jeda lebih lama = batas harian (TPD/RPD) -> hentikan, jangan menunggu
 RETRY_AFTER_RE = re.compile(
     r"try again in\s+(?:(\d+)h)?\s*(?:(\d+)m(?!s))?\s*(?:(\d+(?:\.\d+)?)(ms|s))?", re.I
+)
+
+# Penanda generik tabel Informasi Segmen vs Laporan Keuangan utama (bebas nama emiten)
+SEGMENT_TABLE_RE = re.compile(
+    r"\b(informasi\s+segmen|segment\s+information|segmen\s+operasi|operating\s+segment|profitabilitas\s+segmen)\b",
+    re.I,
+)
+STATEMENT_TABLE_RE = re.compile(
+    r"(laporan\s+posisi\s+keuangan|statements?\s+of\s+financial\s+position|"
+    r"laporan\s+laba\s+rugi|statements?\s+of\s+profit\s+or\s+loss)",
+    re.I,
 )
 
 
@@ -69,11 +83,13 @@ ATURAN WAJIB:
 1. KUTIP TEKS ANGKA PERSIS seperti tertulis di dalam chunk pada field `raw_value` (misalnya "239.468.855" atau "54.851").
    - DILARANG mengubah skala (misalnya mengubah miliar ke juta), DILARANG membulatkan, dan DILARANG menghitung di kepala.
    - Format angka laporan Indonesia: titik (.) adalah pemisah ribuan, koma (,) adalah pemisah desimal. Tanda kurung (...) berarti negatif.
-2. PERHATIKAN KOLOM TAHUN TARGET DAN BASIS PELAPORAN:
-   - Banyak tabel memuat kolom tahun pembanding (tahun sebelumnya) di sebelah kolom tahun target. Ambil HANYA angka pada kolom tahun target yang diminta.
-   - Bedakan secara ketat antara basis `bank_only` (Entitas Induk / Bank saja) dan basis `consolidated` (Konsolidasian). Jangan menukar kedua kolom tersebut!
+2. PERHATIKAN KOLOM TAHUN TARGET, BASIS PELAPORAN, DAN JENIS TABEL:
+   - Banyak tabel memuat kolom tahun pembanding (tahun sebelumnya) di sebelah kolom tahun target. Periksa judul kolom tahun secara eksplisit dan ambil HANYA angka pada kolom tahun target yang diminta.
+   - Bedakan secara ketat antara basis `bank_only` (Entitas Induk / Bank saja / Parent Entity) dan basis `consolidated` (Konsolidasian). Jangan pernah menukar kedua kolom tersebut!
+   - ABAIKAN tabel Informasi Segmen (segmen operasi seperti Corporate/Retail Banking atau segmen geografis) — selalu prioritaskan Laporan Keuangan utama (Laporan Posisi Keuangan / Laporan Laba Rugi) atau Ikhtisar Data Keuangan total perusahaan.
+   - Untuk metrik `basis='bank_only'`, JANGAN mengambil angka dari tabel Konsolidasian atau ringkasan MD&A tanpa keterangan eksplisit Bank saja / Entitas Induk / Parent Entity — jika chunk basis Bank yang sesuai tidak ada, isi `raw_value=null` agar sistem mencari ulang.
 3. KOMPONEN (hanya bila subtotal tidak tercetak langsung di tabel):
-   - Jika metrik mengizinkan komponen dan totalnya TIDAK tercetak sebagai satu baris (misalnya Kredit Bruto hanya ada sebagai Kredit Neto/Pihak berelasi + Pihak ketiga serta nilai CKPN di baris/narasi kredit, atau Simpanan Nasabah hanya terpecah menjadi Pihak berelasi dan Pihak ketiga), biarkan `raw_value=null`, kutip seluruh angka penyusun persis dari chunk ke `components`, dan isi `component_operation="sum"`. Kode Python yang akan menjumlahkannya.
+   - Jika metrik mengizinkan komponen dan totalnya TIDAK tercetak sebagai satu baris (misalnya baris tabel bertuliskan 'setelah dikurangi cadangan kerugian penurunan nilai sebesar Rp X pada tanggal ...' — angka X pada teks baris tersebut ADALAH nilai CKPN, sehingga Kredit Bruto = seluruh sub-baris Kredit Neto + nilai CKPN tahun target [dimasukkan satu kali saja]; atau Simpanan Nasabah terpecah menjadi Pihak berelasi dan Pihak ketiga), biarkan `raw_value=null`, kutip seluruh angka penyusun persis dari chunk ke `components`, dan isi `component_operation="sum"`. Kode Python yang akan menjumlahkannya.
    - Jika subtotal/total SUDAH tercetak langsung di tabel, cukup isi `raw_value` dan set `component_operation="none"` (`components=null`).
 4. DILARANG MENEBAK (ANTI-HALUSINASI):
    - Jika angka untuk tahun target dan basis yang diminta tidak tersedia di chunk mana pun, WAJIB isi `raw_value=null`, `components=null`, `unit=null`, `source_chunk_id=null`, dan jelaskan singkat di `notes`.
@@ -106,13 +122,108 @@ def _build_group_user_prompt(
     return "\n".join(lines)
 
 
+def _is_segment_chunk(chunk: dict[str, Any]) -> bool:
+    head = f"{chunk.get('headings', '')}\n{chunk.get('text', '')[:320]}"
+    return bool(SEGMENT_TABLE_RE.search(head))
+
+
+def _is_primary_statement_chunk(chunk: dict[str, Any]) -> bool:
+    if not chunk.get("is_table") or _is_segment_chunk(chunk):
+        return False
+    head = f"{chunk.get('headings', '')}\n{chunk.get('text', '')[:320]}"
+    return bool(STATEMENT_TABLE_RE.search(head))
+
+
+@lru_cache(maxsize=16)
+def _doc_chunks(ticker: str, year: int) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Muat daftar chunk terindeks untuk satu dokumen (untuk ekspansi tabel multi-halaman)."""
+    if not config.chunks(year, ticker).exists():
+        return [], {}
+    rows = load_chunks(year, ticker, include_excluded=False)
+    by_id = {c["chunk_id"]: i for i, c in enumerate(rows)}
+    return rows, by_id
+
+
+def _normalize_doc_chunk(c: dict[str, Any]) -> dict[str, Any]:
+    headings = c.get("headings") or []
+    return {
+        "chunk_id": c["chunk_id"],
+        "text": c["text"],
+        "ticker": c.get("ticker", ""),
+        "sector": c.get("sector", ""),
+        "year": c.get("year"),
+        "pages": list(c.get("pages") or []),
+        "unit": c.get("unit"),
+        "headings": " > ".join(headings) if isinstance(headings, list) else str(headings),
+        "is_table": bool(c.get("is_table", False)),
+        "merged_cells": bool(c.get("merged_cells", False)),
+        "score": 0.0,
+    }
+
+
+def _pages_adjacent(pages_a: Sequence[int], pages_b: Sequence[int]) -> bool:
+    if not pages_a or not pages_b:
+        return False
+    return min(abs(a - b) for a in pages_a for b in pages_b) <= 1
+
+
+def _expand_split_statement_chunks(
+    selected: list[dict[str, Any]],
+    ticker: str,
+    year: int,
+    max_total: int = MAX_EXPANDED_CHUNKS,
+) -> list[dict[str, Any]]:
+    """Sisipkan chunk tabel tetangga (±1 halaman) tepat di sebelah chunk laporan keuangan utama."""
+    rows, by_id = _doc_chunks(ticker, year)
+    if not rows:
+        return selected
+    seen = {c["chunk_id"] for c in selected}
+    result: list[dict[str, Any]] = []
+    expanded_parents = 0
+    for chunk in selected:
+        result.append(chunk)
+        if expanded_parents >= 2 or len(result) >= max_total:
+            continue
+        if not _is_primary_statement_chunk(chunk):
+            continue
+        idx = by_id.get(chunk["chunk_id"])
+        if idx is None:
+            continue
+        expanded_parents += 1
+        base_pages = chunk.get("pages") or []
+        for step in (-1, 1):
+            if len(result) >= max_total:
+                break
+            j = idx + step
+            scanned = 0
+            while 0 <= j < len(rows) and scanned < 3:
+                cand = rows[j]
+                scanned += 1
+                if not _pages_adjacent(base_pages, cand.get("pages") or []):
+                    break
+                if cand.get("is_table"):
+                    cid = cand["chunk_id"]
+                    if cid not in seen:
+                        norm = _normalize_doc_chunk(cand)
+                        if not _is_segment_chunk(norm):
+                            seen.add(cid)
+                            result.append(norm)
+                    break
+                j += step
+    return result[:max_total]
+
+
 def _interleave_chunks(lists: Sequence[list[dict[str, Any]]], max_chunks: int) -> list[dict[str, Any]]:
-    """Gabungkan hasil beberapa query secara round-robin tanpa duplikat agar setiap query terwakili."""
+    """Gabungkan hasil beberapa query secara round-robin tanpa duplikat; taruh tabel segmen di belakang."""
+    ordered_lists = [
+        [c for c in xs if not _is_segment_chunk(c)] + [c for c in xs if _is_segment_chunk(c)]
+        for xs in lists
+    ]
     seen: set[str] = set()
     merged: list[dict[str, Any]] = []
-    max_len = max((len(xs) for xs in lists), default=0)
+    max_len = max((len(xs) for xs in ordered_lists), default=0)
     for pos in range(max_len):
-        for xs in lists:
+        for xs in ordered_lists:
             if pos >= len(xs):
                 continue
             cid = xs[pos]["chunk_id"]
@@ -395,6 +506,7 @@ def _extract_group_once(
     specs: Sequence[rp.MetricSpec],
     top_k: int,
     stats: dict[str, Any],
+    recorder: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, NormalizedMetric]:
     chunk_lists = []
     for q in queries:
@@ -403,6 +515,10 @@ def _extract_group_once(
         chunk_lists.append(retrieve_and_record(q, ticker=ticker, year=year, k=top_k, expand=True))
 
     selected = _interleave_chunks(chunk_lists, max_chunks=MAX_CHUNKS_PER_GROUP)
+    selected = _expand_split_statement_chunks(selected, ticker=ticker, year=year, max_total=MAX_EXPANDED_CHUNKS)
+    if recorder is not None:
+        for c in selected:
+            recorder.setdefault(c["chunk_id"], c)
     chunks_by_id = {c["chunk_id"]: c for c in selected}
     chunks_text = format_chunks_for_llm(selected)
 
@@ -499,7 +615,7 @@ def extract_metrics(
                     time.sleep(delay_between_groups)
                 try:
                     group_res = _extract_group_once(
-                        active_llm, code, y, group.search_queries, specs, group.top_k, stats
+                        active_llm, code, y, group.search_queries, specs, group.top_k, stats, recorder
                     )
                 except RateLimitExhausted:
                     raise
@@ -525,7 +641,7 @@ def extract_metrics(
                             time.sleep(delay_between_groups)
                         try:
                             retry_res = _extract_group_once(
-                                active_llm, code, y, followup_queries, missing_specs, top_k=5, stats=stats
+                                active_llm, code, y, followup_queries, missing_specs, top_k=5, stats=stats, recorder=recorder
                             )
                             for s in missing_specs:
                                 if retry_res[s.key].status == "ok":

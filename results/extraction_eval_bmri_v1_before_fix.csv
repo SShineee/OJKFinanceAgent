@@ -1,0 +1,25 @@
+ticker,year,metric_key,ok,status,diagnosis,value_million_idr,ground_truth_million_idr,rel_err_pct,source_pages,source_chunk_id,raw_value,components,original_unit,chunk_unit,basis,gt_source,notes
+bmri,2023,net_income,True,ok,tepat,60051870.0,60051870.0,0.0,354,bmri_2023_0073,60.051.870,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2023,tier1_capital_bank,True,ok,tepat,209724274.0,209724274.0,0.0,402,bmri_2023_0116,209.724.274,,million_idr,million_idr,bank_only,2023 h1425 | 2024 h1701 | 2025 h1432,
+bmri,2023,total_assets,True,ok,tepat,2174219449.0,2174219449.0,0.0,1072,bmri_2023_0244,2.174.219.449,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2023,gross_loans_bank,False,ok,komponen_salah,1691043965.0,1085787427.0,55.7436,852,bmri_2023_0150,,11.133.719 + 1.679.910.246,million_idr,million_idr,bank_only,2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457,Total Kredit Bruto tidak tercetak sebagai satu sel; dijumlahkan dari kolom 'Nilai Tercatat Bruto - Tagihan yang Belum Jatuh Tempo' dan 'Nilai Tercatat Bruto - Tagihan yang Telah Jatuh Tempo' pada baris Total.
+bmri,2023,deposits_bank,True,ok,tepat,1242145598.0,1242145598.0,0.0,1503,bmri_2023_1243,1.242.145.598,,million_idr,million_idr,bank_only,2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457,
+bmri,2023,npl_amount_bank,True,ok,tepat,10999537.0,10999536.0,0.0,884,bmri_2023_0176,10.999.537,,million_idr,million_idr,bank_only,2023 h401 | 2024 h428 | 2025 h354 (tabel 5 thn),
+bmri,2023,net_interest_income,True,ok,tepat,95886574.0,95886574.0,0.0,354,bmri_2023_0073,95.886.574,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2023,rwa_bank,True,ok,tepat,1033407212.0,1033407212.0,0.0,402,bmri_2023_0116,1.033.407.212,,million_idr,million_idr,bank_only,2023 h1425 | 2024 h1701 | 2025 h1432,
+bmri,2024,net_income,True,ok,tepat,61165121.0,61165121.0,0.0,33,bmri_2024_0004,61.165.121,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2024,tier1_capital_bank,True,ok,tepat,229932670.0,229932670.0,0.0,1701,bmri_2024_1387,229.932.670,,million_idr,million_idr,bank_only,2023 h1425 | 2024 h1701 | 2025 h1432,
+bmri,2024,total_assets,False,ok,nilai_salah,1623216612.0,2427223262.0,33.1245,1630,bmri_2024_1210,1.623.216.612,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2024,gross_loans_bank,False,ok,komponen_salah,1923262945.0,1310779402.0,46.7267,1018,bmri_2024_0183,,12.626.728 + 1.910.636.217,million_idr,million_idr,bank_only,2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457,Subtotal Gross Loans not printed; sum of 'Nilai Tercatat Bruto - Tagihan yang Telah Jatuh Tempo' (a) and 'Nilai Tercatat Bruto - Tagihan yang Belum Jatuh Tempo' (b) for total Kredit Bruto.
+bmri,2024,deposits_bank,True,ok,tepat,1326887854.0,1326887854.0,0.0,1715 1716,bmri_2024_1418,1.326.887.854,,million_idr,million_idr,bank_only,2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457,
+bmri,2024,npl_amount_bank,True,ok,tepat,12609239.0,12609239.0,0.0,428,bmri_2024_0148,12.609.239,,million_idr,million_idr,bank_only,2023 h401 | 2024 h428 | 2025 h354 (tabel 5 thn),
+bmri,2024,net_interest_income,True,ok,tepat,101756920.0,101756920.0,0.0,385,bmri_2024_0063,101.756.920,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2024,rwa_bank,True,ok,tepat,1215157443.0,1215157443.0,0.0,1701,bmri_2024_1387,1.215.157.443,,million_idr,million_idr,bank_only,2023 h1425 | 2024 h1701 | 2025 h1432,
+bmri,2025,net_income,False,ok,nilai_salah,31541302.0,61346133.0,48.5847,284,bmri_2025_0019,31.541.302,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2025,tier1_capital_bank,True,ok,tepat,238082036.0,238082036.0,0.0,1432,bmri_2025_1362,238.082.036,,million_idr,million_idr,bank_only,2023 h1425 | 2024 h1701 | 2025 h1432,
+bmri,2025,total_assets,False,ok,nilai_salah,2427223262.0,2829948026.0,14.2308,1358,bmri_2025_1163,2.427.223.262,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2025,gross_loans_bank,False,ok,nilai_salah,1623216612.0,1497108664.0,8.4234,1390,bmri_2025_1253,1.623.216.612,,million_idr,million_idr,bank_only,2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457,
+bmri,2025,deposits_bank,False,ok,nilai_salah,1430230307.0,1674679144.0,14.5968,1358,bmri_2025_1163,(1.430.230.307),,million_idr,million_idr,bank_only,2023 h1502-1503 | 2024 h1714-1715 | 2025 h1456-1457,
+bmri,2025,npl_amount_bank,False,not_found,not_found,,14367697.0,,,,,,,,bank_only,2023 h401 | 2024 h428 | 2025 h354 (tabel 5 thn),Tidak ada nilai nominal NPL bruto untuk Bank Mandiri (bank_only) pada tahun 2025 dalam chunk yang disediakan.
+bmri,2025,net_interest_income,True,ok,tepat,106210035.0,106210035.0,0.0,347,bmri_2025_0116,106.210.035,,million_idr,million_idr,consolidated,bmri_2025: hal 36-38 (silang 2023/2024),
+bmri,2025,rwa_bank,True,ok,tepat,1308455053.0,1308455053.0,0.0,1432,bmri_2025_1362,1.308.455.053,,million_idr,million_idr,bank_only,2023 h1425 | 2024 h1701 | 2025 h1432,
