@@ -622,6 +622,8 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 ## Minggu 13 — Market Observer Agent
 
+**Langkah rinci, keputusan rancangan (13.A–13.D), dan daftar periksa: `docs/PANDUAN_MINGGU13.md`.**
+
 - [ ] **13.1** Tavily tool dengan `include_domains` = domain umum (`ojk.go.id`, `idx.co.id`,
       `kontan.co.id`, `bisnis.com`, `cnbcindonesia.com`) **ditambah domain emiten yang sedang
       dianalisis** — diambil dari metadata dokumen, bukan di-hardcode `bca.co.id`.
