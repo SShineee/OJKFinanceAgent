@@ -558,6 +558,8 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 ## Minggu 9–10 — Extraction Agent
 
+**Langkah rinci, keputusan rancangan (9.A–9.D), dan daftar periksa: `docs/PANDUAN_MINGGU9.md`.**
+
 - [ ] **9.1** `src/agents/state.py` — `AgentState(TypedDict)`:
       `query, year, extracted_data, ratios, market_context, report, messages`
 - [ ] **9.2** Bungkus `hybrid_retrieve` jadi LangChain `@tool`
