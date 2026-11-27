@@ -562,8 +562,8 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 - [x] **9.1** `src/agents/state.py` — `AgentState(TypedDict)`:
       `query, year, extracted_data, ratios, market_context, report, messages` *(+ `ticker`, `sector`, `retrieved_chunks`, skema Pydantic `RawMetricExtraction` / `NormalizedMetric`; 27-11-2026)*
-- [x] **9.2** Bungkus `hybrid_retrieve` jadi LangChain `@tool` *(27-11-2026: `src/tools/retrieval.py`, `search_annual_report` bahasa Inggris + metadata halaman/satuan/`merged_cells` + `ContextVar` recorder)*
-- [ ] **9.3** Prompt Extraction Agent *(parser angka & grounding `src/tools/parse_number.py` ✅ 27-11-2026; prompt & agen `src/agents/extraction.py` di Langkah 4)*. Aturan wajib:
+- [x] **9.2** Bungkus `hybrid_retrieve` jadi LangChain `@tool` *(27-11-2026: `src/agents/tools.py`, `search_annual_report` bahasa Inggris + metadata halaman/satuan/`merged_cells` + `ContextVar` recorder)*
+- [ ] **9.3** Prompt Extraction Agent *(parser angka & grounding `src/agents/parse_number.py` ✅ 27-11-2026; prompt & agen `src/agents/extraction.py` di Langkah 4)*. Aturan wajib:
       - output **JSON terstruktur**, bukan prose
       - setiap angka wajib disertai `sumber` (halaman/header)
       - kalau angka tidak ditemukan → `null`, **dilarang menebak**
