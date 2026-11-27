@@ -600,19 +600,19 @@ Pertama kalinya data selain BCA disentuh. Langkah rinci unduhan & pemeriksaan ad
 
 **Langkah rinci, keputusan rancangan (11.A–11.D), ambang OJK, dan daftar periksa: `docs/PANDUAN_MINGGU11-12.md`.**
 
-- [ ] **11.1** Setup `PythonAstREPLTool` (dari `langchain_experimental.tools`)
-- [ ] **11.2** **Profil rasio** di `src/ratio_profiles.py`: satu entri per sektor berisi daftar angka
+- [x] **11.1** Setup `PythonAstREPLTool` (dari `langchain_experimental.tools`) *(27-11-2026: `evaluate_formula_python` + `@tool python_calculator` dengan validasi AST aman di `src/agents/tools.py`)*
+- [x] **11.2** **Profil rasio** di `src/ratio_profiles.py`: satu entri per sektor berisi daftar angka
       yang harus diekstrak + formula eksplisit. Agent memilih profil dari metadata `sector`
-      dokumen (hasil 3.2), bukan menebak sendiri.
+      dokumen (hasil 3.2), bukan menebak sendiri. *(27-11-2026: `RatioFormula` + `interpret_ratio` untuk `bank` & `general`, 0 kebocoran emiten)*
       - `bank`: 6 rasio tervalidasi Minggu 1 (CAR, ROA, ROE, NIM, NPL, LDR)
       - `general` (semua emiten non-bank): hanya ROA & ROE, **dengan label jelas** *belum
         divalidasi* di setiap jawaban
       Formula tetap ditulis di kode, jangan biarkan LLM mengarang formula.
-- [ ] **11.3** Implementasi basis perhitungan sesuai keputusan GATE 1 (rata-rata vs saldo akhir — harus konsisten)
-- [ ] **11.4** Validasi: agent harus menolak menghitung kalau input `null` (cegah halusinasi)
-- [ ] **11.5** Tes 6 rasio × 3 tahun pada BBCA, bandingkan ke ground truth, hitung MAE & MAPE
-- [ ] **11.6** Tambah interpretasi terhadap ambang batas OJK (Tabel 2.2) → "CAR 29,4% → jauh di atas
-      minimum 8%, permodalan sangat kuat"
+- [x] **11.3** Implementasi basis perhitungan sesuai keputusan GATE 1 (rata-rata vs saldo akhir — harus konsisten) *(27-11-2026: `average_vars` via `PythonAstREPLTool` + `source_doc_year` di `extraction.py` untuk kolom pembanding `t-1` + fallback eksplisit)*
+- [x] **11.4** Validasi: agent harus menolak menghitung kalau input `null` (cegah halusinasi) *(27-11-2026: `src/agents/analyst.py` menolak `null`/`ungrounded`/penyebut `≤ 0` → `status="insufficient_data"`)*
+- [ ] **11.5** Tes 6 rasio × 3 tahun pada BBCA, bandingkan ke ground truth, hitung MAE & MAPE *(Langkah 5–6: `scripts/check_analyst.py` & `eval/ratio_analyst_eval.py`; smoke test `--from-gt` BBCA & BMRI sudah cocok presisi ✅)*
+- [x] **11.6** Tambah interpretasi terhadap ambang batas OJK (Tabel 2.2) → "CAR 29,4% → jauh di atas
+      minimum 8%, permodalan sangat kuat" *(27-11-2026: `interpret_ratio()` + tren antar tahun + `analyst_node()` di `src/agents/analyst.py` & `RatioResult` di `src/agents/state.py`)*
 
 ---
 

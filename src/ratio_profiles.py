@@ -1,20 +1,23 @@
 """
-Langkah 2 Minggu 9 (tugas 9.5 & 9.5b; dilanjutkan formula rasio di Minggu 11 tugas 11.2) --
-profil ekstraksi & rasio per sektor.  docs/PANDUAN_MINGGU9.md, Langkah 2b.
+Langkah 2 Minggu 9 (tugas 9.5 & 9.5b) & Langkah 1 Minggu 11 (tugas 11.2 & 11.6) --
+profil ekstraksi, formula rasio eksplisit, dan ambang batas prudensial OJK per sektor.
+docs/PANDUAN_MINGGU9-10.md & docs/PANDUAN_MINGGU11-12.md.
 
-ATURAN DISIPLIN DATA UJI (9.5):
+ATURAN DISIPLIN DATA UJI (9.5 & 11.2):
   File ini TIDAK BOLEH menyebut nama emiten, kode saham, nomor halaman, atau nomor Catatan tertentu.
-  Seluruh deskripsi metrik dan query retrieval bersifat 100% generik (semantik standar OJK/PSAK).
+  Seluruh deskripsi metrik, query retrieval, formula rasio, dan ambang batas bersifat 100% generik
+  (semantik standar OJK/PSAK).
 
 Dua profil disediakan sesuai keputusan ruang lingkup (config.VALIDATED_SECTORS):
-  - `bank`    (validated=True)  : 8 metrik inti GATE 4 + metrik pelengkap 6 rasio SEOJK (CAR, ROA,
-                                  ROE, NIM, NPL, LDR);
-  - `general` (validated=False) : 3 metrik dasar (laba bersih, total aset, total ekuitas) untuk
-                                  emiten non-bank, diberi label jelas "belum divalidasi".
+  - `bank`    (validated=True)  : 8 metrik inti GATE 4 + metrik pelengkap + 6 formula rasio SEOJK
+                                  (CAR, ROA, ROE, NIM, NPL, LDR) & ambang batas prudensial OJK;
+  - `general` (validated=False) : 3 metrik dasar + 2 formula umum (ROA, ROE) untuk emiten non-bank,
+                                  diberi label jelas "belum divalidasi".
 """
 
 from collections.abc import Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Any
 
 from src import config
 
@@ -46,8 +49,22 @@ class ExtractionGroup:
 
 
 @dataclass(frozen=True)
+class RatioFormula:
+    """Formula eksplisit satu rasio keuangan (dieksekusi PythonAstREPLTool, bukan dikarang LLM)."""
+
+    name: str                                # 'CAR', 'ROA', 'ROE', 'NIM', 'NPL', 'LDR'
+    label: str
+    expression: str                          # ekspresi matematika Python (hasil dalam %)
+    inputs: tuple[tuple[str, tuple[str, ...]], ...]  # ((nama_var, (metric_key_utama, fallback...)), ...)
+    average_vars: tuple[str, ...] = ()       # nama variabel penyebut yang memakai rata-rata (t-1 + t) / 2
+    positive_vars: tuple[str, ...] = ()      # nama variabel yang wajib > 0 (cegah bagi nol / rasio cacat)
+    basis_description: str = ""
+    notes: str | None = None
+
+
+@dataclass(frozen=True)
 class SectorProfile:
-    """Profil ekstraksi & daftar rasio untuk satu sektor emiten."""
+    """Profil ekstraksi, daftar rasio, & formula eksplisit untuk satu sektor emiten."""
 
     sector: str
     label: str
@@ -56,6 +73,7 @@ class SectorProfile:
     metrics: dict[str, MetricSpec]
     extraction_groups: tuple[ExtractionGroup, ...]
     ratio_names: tuple[str, ...]
+    formulas: dict[str, RatioFormula] = field(default_factory=dict)
 
 
 # ----------------------------------------------------------------- Profil BANK (tervalidasi)
@@ -274,6 +292,98 @@ _BANK_GROUPS = (
     ),
 )
 
+_BANK_FORMULAS: dict[str, RatioFormula] = {
+    f.name: f
+    for f in (
+        RatioFormula(
+            name="CAR",
+            label="Capital Adequacy Ratio (KPMM)",
+            expression="(total_capital / rwa) * 100",
+            inputs=(
+                ("total_capital", ("total_capital_bank",)),
+                ("rwa", ("rwa_bank",)),
+            ),
+            positive_vars=("rwa",),
+            basis_description="Bank saja (Catatan KPMM — saldo akhir)",
+        ),
+        RatioFormula(
+            name="ROA",
+            label="Return on Assets (SEOJK — Laba Sebelum Pajak)",
+            expression="(profit_before_tax / total_assets) * 100",
+            inputs=(
+                ("profit_before_tax", ("profit_before_tax_bank", "profit_before_tax")),
+                ("total_assets", ("total_assets_bank", "total_assets")),
+            ),
+            average_vars=("total_assets",),
+            positive_vars=("total_assets",),
+            basis_description="Bank saja / Konsolidasian (rata-rata total aset, standar SEOJK PBT)",
+            notes="Sesuai SEOJK No.9/SEOJK.03/2020 memakai Laba Sebelum Pajak; sebagian bank melaporkan catatan kaki ROA setelah pajak.",
+        ),
+        RatioFormula(
+            name="ROE",
+            label="Return on Equity (SEOJK — Modal Inti Tier 1)",
+            expression="(net_income / tier1_capital) * 100",
+            inputs=(
+                ("net_income", ("net_income_bank", "net_income")),
+                ("tier1_capital", ("tier1_capital_bank",)),
+            ),
+            average_vars=("tier1_capital",),
+            positive_vars=("tier1_capital",),
+            basis_description="Bank saja (rata-rata Modal Inti Tier 1)",
+        ),
+        RatioFormula(
+            name="NIM",
+            label="Net Interest Margin",
+            expression="(net_interest_income / earning_assets) * 100",
+            inputs=(
+                ("net_interest_income", ("net_interest_income_bank", "net_interest_income")),
+                ("earning_assets", ("earning_assets",)),
+            ),
+            average_vars=("earning_assets",),
+            positive_vars=("earning_assets",),
+            basis_description="Pendapatan bunga neto dibagi rata-rata aset produktif",
+            notes="Apabila aset produktif tidak tercetak langsung di laporan, rasio ditolak dengan status insufficient_data.",
+        ),
+        RatioFormula(
+            name="NPL",
+            label="Non-Performing Loan (Bruto)",
+            expression="(npl_amount / gross_loans) * 100",
+            inputs=(
+                ("npl_amount", ("npl_amount_bank",)),
+                ("gross_loans", ("gross_loans_bank",)),
+            ),
+            positive_vars=("gross_loans",),
+            basis_description="Bank saja (NPL bruto KL+D+Macet dibagi kredit bruto Bank)",
+        ),
+        RatioFormula(
+            name="LDR",
+            label="Loan to Deposit Ratio",
+            expression="(gross_loans / deposits) * 100",
+            inputs=(
+                ("gross_loans", ("gross_loans_bank",)),
+                ("deposits", ("deposits_bank",)),
+            ),
+            positive_vars=("deposits",),
+            basis_description="Bank saja (kredit bruto Bank dibagi DPK Bank)",
+        ),
+    )
+}
+
+# Varian ROA setelah pajak (opsional eksplisit untuk perbandingan bimbingan 1.6 / Bab 4 -- BUKAN per emiten)
+BANK_ROA_AFTER_TAX_FORMULA = RatioFormula(
+    name="ROA",
+    label="Return on Assets (Laba Setelah Pajak)",
+    expression="(net_income / total_assets) * 100",
+    inputs=(
+        ("net_income", ("net_income_bank", "net_income")),
+        ("total_assets", ("total_assets_bank", "total_assets")),
+    ),
+    average_vars=("total_assets",),
+    positive_vars=("total_assets",),
+    basis_description="Laba setelah pajak dibagi rata-rata total aset",
+    notes="Varian ROA setelah pajak (alternatif untuk uji sensitivitas definisi Bab 4).",
+)
+
 BANK_PROFILE = SectorProfile(
     sector="bank",
     label="Perbankan Konvensional (SEOJK No.9/SEOJK.03/2020)",
@@ -282,6 +392,7 @@ BANK_PROFILE = SectorProfile(
     metrics=_BANK_METRICS,
     extraction_groups=_BANK_GROUPS,
     ratio_names=("CAR", "ROA", "ROE", "NIM", "NPL", "LDR"),
+    formulas=_BANK_FORMULAS,
 )
 
 
@@ -311,11 +422,41 @@ _GENERAL_METRICS = {
     )
 }
 
+_GENERAL_FORMULAS: dict[str, RatioFormula] = {
+    f.name: f
+    for f in (
+        RatioFormula(
+            name="ROA",
+            label="Return on Assets (Profil Umum — belum divalidasi)",
+            expression="(net_income / total_assets) * 100",
+            inputs=(
+                ("net_income", ("net_income",)),
+                ("total_assets", ("total_assets",)),
+            ),
+            average_vars=("total_assets",),
+            positive_vars=("total_assets",),
+            basis_description="Konsolidasian (profil umum non-bank, belum divalidasi)",
+        ),
+        RatioFormula(
+            name="ROE",
+            label="Return on Equity (Profil Umum — belum divalidasi)",
+            expression="(net_income / total_equity) * 100",
+            inputs=(
+                ("net_income", ("net_income",)),
+                ("total_equity", ("total_equity",)),
+            ),
+            average_vars=("total_equity",),
+            positive_vars=("total_equity",),
+            basis_description="Konsolidasian (profil umum non-bank, belum divalidasi)",
+        ),
+    )
+}
+
 GENERAL_PROFILE = SectorProfile(
     sector="general",
     label="Profil Umum Non-Bank",
     validated=False,
-    warning_label="Profil umum (belum divalidasi — hanya rasio dasar ROA & ROE).",
+    warning_label="Profil umum (belum divalidasi — bukan rasio perbankan OJK, hanya ROA & ROE dasar).",
     metrics=_GENERAL_METRICS,
     extraction_groups=(
         ExtractionGroup(
@@ -330,7 +471,96 @@ GENERAL_PROFILE = SectorProfile(
         ),
     ),
     ratio_names=("ROA", "ROE"),
+    formulas=_GENERAL_FORMULAS,
 )
+
+
+# ----------------------------------------------------------------- Ambang batas prudensial OJK (tugas 11.6)
+
+def interpret_ratio(ratio_name: str, value: float, profile: SectorProfile = BANK_PROFILE) -> dict[str, Any]:
+    """Interpretasi deterministik rasio terhadap ambang batas prudensial OJK (Tabel 2.2 / SEOJK)."""
+    name = ratio_name.strip().upper()
+    val_str = f"{value:.2f}%".replace(".", ",")
+
+    if not profile.validated:
+        warn = profile.warning_label or "Profil umum (belum divalidasi)."
+        return {
+            "category": "belum_divalidasi",
+            "meets_ojk": None,
+            "benchmark": None,
+            "summary": f"{name} {val_str} — {warn}",
+        }
+
+    if name == "CAR":
+        bench = "batas minimum OJK 8% (POJK KPMM)"
+        if value >= 15.0:
+            cat, ok, desc = "sangat_kuat", True, "jauh di atas batas minimum OJK 8%, permodalan sangat kuat"
+        elif value >= 12.0:
+            cat, ok, desc = "kuat", True, "di atas batas minimum OJK 8%, permodalan kuat"
+        elif value >= 8.0:
+            cat, ok, desc = "memenuhi_minimum", True, "memenuhi batas minimum OJK 8%"
+        else:
+            cat, ok, desc = "di_bawah_minimum_ojk", False, "di bawah batas minimum OJK 8% (permodalan tidak memadai)"
+    elif name == "ROA":
+        bench = "ambang sangat sehat > 1,5% (SEOJK Tingkat Kesehatan Bank)"
+        if value > 1.5:
+            cat, ok, desc = "sangat_sehat", True, "di atas ambang sangat sehat > 1,5%, profitabilitas aset sangat kuat"
+        elif value > 1.25:
+            cat, ok, desc = "sehat", True, "berada pada kategori sehat (1,25–1,5%)"
+        elif value > 0.5:
+            cat, ok, desc = "cukup_sehat", True, "berada pada kategori cukup sehat (0,5–1,25%)"
+        else:
+            cat, ok, desc = "kurang_sehat", False, "≤ 0,5%, profitabilitas aset kurang sehat"
+    elif name == "ROE":
+        bench = "acuan sangat baik > 15%"
+        if value > 15.0:
+            cat, ok, desc = "sangat_baik", True, "di atas 15%, tingkat pengembalian modal inti sangat baik"
+        elif value >= 10.0:
+            cat, ok, desc = "baik", True, "berada pada rentang 10–15%, pengembalian modal baik"
+        elif value >= 5.0:
+            cat, ok, desc = "cukup", True, "berada pada rentang 5–10%, pengembalian modal cukup"
+        else:
+            cat, ok, desc = "rendah", False, "di bawah 5%, tingkat pengembalian modal rendah"
+    elif name == "NIM":
+        bench = "acuan sehat > 3% (> 5% sangat kuat)"
+        if value > 5.0:
+            cat, ok, desc = "sangat_kuat", True, "di atas 5%, margin intermediasi bunga sangat kuat"
+        elif value >= 3.0:
+            cat, ok, desc = "sehat", True, "berada pada rentang 3–5%, margin bunga sehat"
+        elif value >= 2.0:
+            cat, ok, desc = "cukup", True, "berada pada rentang 2–3%, margin bunga cukup"
+        else:
+            cat, ok, desc = "tertekan", False, "di bawah 2%, margin intermediasi bunga tertekan"
+    elif name == "NPL":
+        bench = "batas maksimum OJK < 5% (< 2% sangat sehat)"
+        if value < 2.0:
+            cat, ok, desc = "sangat_sehat", True, "jauh di bawah batas maksimum OJK 5% (< 2%), kualitas kredit sangat sehat"
+        elif value < 5.0:
+            cat, ok, desc = "aman_ojk", True, "berada di bawah batas maksimum OJK 5%, kualitas kredit terkendali"
+        else:
+            cat, ok, desc = "melampaui_batas_ojk", False, "mencapai/melampaui batas maksimum OJK 5% (risiko kredit tinggi)"
+    elif name == "LDR":
+        bench = "rentang ideal BI/OJK 78–92%"
+        if value < 78.0:
+            cat, ok, desc = "likuiditas_longgar", True, "di bawah rentang ideal BI/OJK 78–92%, likuiditas longgar namun intermediasi belum optimal"
+        elif value <= 92.0:
+            cat, ok, desc = "ideal_ojk", True, "berada dalam rentang ideal BI/OJK 78–92%, intermediasi dan likuiditas seimbang"
+        else:
+            cat, ok, desc = "likuiditas_ketat", False, "di atas batas atas ideal BI/OJK 92%, likuiditas cenderung ketat"
+    else:
+        return {
+            "category": "tidak_terdefinisi",
+            "meets_ojk": None,
+            "benchmark": None,
+            "summary": f"{name} {val_str}.",
+        }
+
+    return {
+        "category": cat,
+        "meets_ojk": ok,
+        "benchmark": bench,
+        "summary": f"{name} {val_str} → {desc}.",
+    }
 
 
 def get_profile(sector: str | None) -> SectorProfile:

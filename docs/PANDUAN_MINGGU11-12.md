@@ -339,13 +339,13 @@ Jalankan **dua lapis evaluasi** yang sangat berguna untuk analisis error Bab 4 (
 
 ## Gerbang (kriteria lolos Minggu 11–12)
 
-- [ ] **11.1** `PythonAstREPLTool` dibungkus aman di `src/agents/tools.py` (nama tool bahasa Inggris, menolak ekspresi berbahaya)
-- [ ] **11.2** `src/ratio_profiles.py` memuat formula eksplisit & ambang OJK untuk `bank` (6 rasio SEOJK, `validated=True`) dan `general` (ROA & ROE, `validated=False` + label *belum divalidasi*), 0 hardcode nama emiten
-- [ ] **11.3** Basis perhitungan rata-rata vs saldo akhir konsisten dengan GATE 1 (dukungan saldo pembanding `t-1` dari dokumen tahun `t` + penandaan eksplisit bila fallback)
-- [ ] **11.4** Validasi ketat: menolak menghitung jika input `null` / `ungrounded` / penyebut `≤ 0` (dibuktikan 3/3 uji negatif di `scripts/check_analyst.py`)
-- [ ] **11.5** Tes 6 rasio × 3 tahun pada **BBCA** (dan uji lintas bank **BMRI**): MAE & MAPE tersimpan di `results/analyst_eval_*.csv/.json`
-- [ ] **11.6** Interpretasi otomatis terhadap ambang batas OJK (Tabel 2.2) + tren antar tahun aktif di `src/agents/analyst.py` (`analyst_node`)
-- [ ] **Kriteria lolos Minggu 11–12:** `scripts/check_analyst.py --offline` **LULUS**; MAPE formula Lapis 1 & end-to-end BBCA **< 5%** (setiap rasio > 5% terdiagnosis akar masalahnya untuk Bab 4)
+- [x] **11.1** `PythonAstREPLTool` dibungkus aman di `src/agents/tools.py` (`evaluate_formula_python` + `@tool python_calculator` bahasa Inggris, validasi AST menolak ekspresi berbahaya; 27-11-2026)
+- [x] **11.2** `src/ratio_profiles.py` memuat formula eksplisit (`RatioFormula`) & ambang OJK (`interpret_ratio`) untuk `bank` (6 rasio SEOJK, `validated=True`) dan `general` (ROA & ROE, `validated=False` + label *belum divalidasi*), 0 hardcode nama emiten (27-11-2026)
+- [x] **11.3** Basis perhitungan rata-rata vs saldo akhir konsisten dengan GATE 1 (dukungan `source_doc_year` di `extraction.py` untuk kolom pembanding `t-1` + penandaan eksplisit `ending_balance_fallback` di `analyst.py`; 27-11-2026)
+- [x] **11.4** Validasi ketat: menolak menghitung jika input `null` / `ungrounded` / penyebut `≤ 0` di `src/agents/analyst.py` (`status="insufficient_data"`, `value=None`; diuji formal menyeluruh di `scripts/check_analyst.py` Langkah 5; 27-11-2026)
+- [ ] **11.5** Tes 6 rasio × 3 tahun pada **BBCA** (dan uji lintas bank **BMRI**): MAE & MAPE tersimpan di `results/analyst_eval_*.csv/.json` *(Langkah 6 — smoke test `--from-gt` BBCA & BMRI sudah cocok presisi ✅)*
+- [x] **11.6** Interpretasi otomatis terhadap ambang batas OJK (Tabel 2.2) + tren antar tahun aktif di `src/agents/analyst.py` (`analyst_node` + `RatioResult` di `state.py`; 27-11-2026)
+- [ ] **Kriteria lolos Minggu 11–12:** `scripts/check_analyst.py --offline` **LULUS**; MAPE formula Lapis 1 & end-to-end BBCA **< 5%** (setiap rasio > 5% terdiagnosis akar masalahnya untuk Bab 4) *(Langkah 5–6)*
 
 ---
 

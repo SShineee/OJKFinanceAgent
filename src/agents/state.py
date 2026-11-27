@@ -19,6 +19,7 @@ from pydantic import BaseModel, Field
 UnitType = Literal["million_idr", "billion_idr", "thousand_idr", "trillion_idr", "idr", "percent"]
 BasisType = Literal["bank_only", "consolidated", "unknown"]
 MetricStatus = Literal["ok", "not_found", "ungrounded", "parse_error", "unit_conflict"]
+RatioStatus = Literal["ok", "insufficient_data", "calc_error"]
 
 
 class RawMetricExtraction(BaseModel):
@@ -88,6 +89,27 @@ class NormalizedMetric(BaseModel):
     merged_cells_warning: bool = False
     grounded: bool = False
     status: MetricStatus = "not_found"
+    notes: str | None = None
+
+
+class RatioResult(BaseModel):
+    """Hasil perhitungan satu rasio keuangan untuk satu tahun (Financial Analyst Agent, Minggu 11)."""
+
+    ratio_name: str
+    year: int
+    value: float | None = None
+    unit: Literal["percent"] = "percent"
+    status: RatioStatus = "insufficient_data"
+    formula: str = ""
+    evaluated_expression: str | None = None
+    basis_used: str = ""
+    inputs_used: dict[str, float] = Field(default_factory=dict)
+    missing_inputs: list[str] = Field(default_factory=list)
+    source_pages: list[int] = Field(default_factory=list)
+    ojk_category: str | None = None
+    meets_ojk: bool | None = None
+    ojk_benchmark: str | None = None
+    interpretation: str = ""
     notes: str | None = None
 
 

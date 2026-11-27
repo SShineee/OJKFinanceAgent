@@ -528,18 +528,20 @@ def _extract_group_once(
     recorder: dict[str, dict[str, Any]] | None = None,
     *,
     prefer_tables: bool = True,
+    doc_year: int | None = None,
 ) -> dict[str, NormalizedMetric]:
+    retrieval_year = doc_year if doc_year is not None else year
     chunk_lists = []
     for q in queries:
         stats["tool_calls"] += 1
         # Panggil fungsi retrieval terpadu (juga dipakai @tool `search_annual_report`)
-        chunk_lists.append(retrieve_and_record(q, ticker=ticker, year=year, k=top_k, expand=True))
+        chunk_lists.append(retrieve_and_record(q, ticker=ticker, year=retrieval_year, k=top_k, expand=True))
 
     bases = {s.basis for s in specs}
     target_basis = next(iter(bases)) if len(bases) == 1 else None
     selected = _interleave_chunks(chunk_lists, max_chunks=MAX_CHUNKS_PER_GROUP, prefer_tables=prefer_tables)
     selected = _expand_split_statement_chunks(
-        selected, ticker=ticker, year=year, max_total=MAX_EXPANDED_CHUNKS, target_basis=target_basis
+        selected, ticker=ticker, year=retrieval_year, max_total=MAX_EXPANDED_CHUNKS, target_basis=target_basis
     )
     if recorder is not None:
         for c in selected:
@@ -601,13 +603,28 @@ def extract_metrics(
     gate4_only: bool = False,
     allow_followup: bool = True,
     delay_between_groups: float = 0.0,
+    source_doc_year: int | None = None,
     llm=None,
 ) -> dict[str, Any]:
-    """Ekstrak metrik keuangan untuk satu emiten (1 atau beberapa tahun) secara terstruktur & tergrounding."""
+    """Ekstrak metrik keuangan untuk satu emiten (1 atau beberapa tahun) secara terstruktur & tergrounding.
+
+    Jika `source_doc_year` diisi (mis. `years=2022, source_doc_year=2023`), retrieval mengambil
+    dokumen tahun `source_doc_year` namun LLM diminta mengutip kolom tahun pembanding `years` (11.3).
+    """
     t0 = time.perf_counter()
     code = ticker.strip().lower()
-    target_years = _resolve_years(code, years)
-    resolved_sector = sector or _detect_sector_for_ticker(code, target_years)
+    if source_doc_year is not None:
+        doc_years = _resolve_years(code, source_doc_year)
+        if years is None:
+            target_years = doc_years
+        elif isinstance(years, int) and not isinstance(years, bool):
+            target_years = [years]
+        else:
+            target_years = sorted({int(y) for y in years})
+        resolved_sector = sector or _detect_sector_for_ticker(code, doc_years)
+    else:
+        target_years = _resolve_years(code, years)
+        resolved_sector = sector or _detect_sector_for_ticker(code, target_years)
     profile = rp.get_profile(resolved_sector)
 
     if metric_keys is None and gate4_only and profile.sector == "bank":
@@ -641,7 +658,7 @@ def extract_metrics(
                 try:
                     group_res = _extract_group_once(
                         active_llm, code, y, group.search_queries, specs, group.top_k, stats, recorder,
-                        prefer_tables=group.prefer_tables,
+                        prefer_tables=group.prefer_tables, doc_year=source_doc_year,
                     )
                 except RateLimitExhausted:
                     raise
@@ -668,7 +685,7 @@ def extract_metrics(
                         try:
                             retry_res = _extract_group_once(
                                 active_llm, code, y, followup_queries, missing_specs, top_k=5, stats=stats,
-                                recorder=recorder, prefer_tables=group.prefer_tables,
+                                recorder=recorder, prefer_tables=group.prefer_tables, doc_year=source_doc_year,
                             )
                             for s in missing_specs:
                                 if retry_res[s.key].status == "ok":

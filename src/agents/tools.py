@@ -1,23 +1,28 @@
 """
-Langkah 3 Minggu 9 (tugas 9.2, Keputusan 9.C) -- pembungkus `hybrid_retrieve` sebagai LangChain
-`@tool` bernama bahasa Inggris (`search_annual_report`).  docs/PANDUAN_MINGGU9-10.md, Langkah 3.
+Langkah 3 Minggu 9 (tugas 9.2, Keputusan 9.C) & Langkah 2 Minggu 11 (tugas 11.1, Keputusan 11.A) --
+tool LangChain bersama bernama bahasa Inggris:
+  - `search_annual_report` : pembungkus `hybrid_retrieve` dengan pagar `ticker` & `year` wajib;
+  - `python_calculator`    : pembungkus aman `PythonAstREPLTool` untuk perhitungan rasio keuangan.
+docs/PANDUAN_MINGGU9-10.md (Langkah 3) & docs/PANDUAN_MINGGU11-12.md (Langkah 2).
 
 Aturan desain:
-  1. NAMA tool bahasa Inggris (`search_annual_report`) -- temuan Minggu 2 (`check_tool_calling.py`):
-     nama tool bahasa Indonesia memicu error 400 `tool_use_failed` pada 5/5 percobaan gpt-oss-120b.
-  2. Parameter `ticker` dan `year` WAJIB -- meneruskan pagar anti-kontaminasi antar bank & antar tahun
-     dari `src/retrieval/hybrid.py`.
-  3. Format keluaran menyertakan header metadata `[CHUNK i | id=... | hal=... | unit=... | merged_cells=...]`
-     secara eksplisit agar LLM selalu melihat satuan & halaman sumber, dan menandai sel gabungan.
-  4. `record_retrieved_chunks()` memakai `ContextVar` sehingga aman untuk merekam chunk mentah
-     per eksekusi (dipakai untuk verifikasi grounding Python & pasokan `contexts` RAGAS Minggu 17).
+  1. NAMA tool bahasa Inggris (`search_annual_report`, `python_calculator`) -- temuan Minggu 2
+     (`check_tool_calling.py`): nama tool bahasa Indonesia memicu error 400 `tool_use_failed`.
+  2. Parameter `ticker` dan `year` WAJIB pada retrieval -- meneruskan pagar anti-kontaminasi.
+  3. Format keluaran chunk menyertakan `[CHUNK i | id=... | hal=... | unit=... | merged_cells=...]`.
+  4. `record_retrieved_chunks()` memakai `ContextVar` untuk verifikasi grounding & RAGAS Minggu 17.
+  5. `evaluate_formula_python()` memvalidasi AST sebelum mengeksekusi `PythonAstREPLTool` sehingga
+     hanya ekspresi aritmetika aman (tanpa import/file/atribut) yang diizinkan.
 """
 
+import ast
+import math
 from contextlib import contextmanager
 from contextvars import ContextVar
 from typing import Any
 
 from langchain_core.tools import tool
+from langchain_experimental.tools import PythonAstREPLTool
 
 from src import config
 from src.retrieval.hybrid import hybrid_retrieve
@@ -101,3 +106,101 @@ def search_annual_report(query: str, ticker: str, year: int, k: int = 5) -> str:
     except ValueError as e:
         return f"ERROR: {e}"
     return format_chunks_for_llm(chunks)
+
+
+# ----------------------------------------------------------------- Kalkulator Python aman (11.1)
+
+_ALLOWED_AST_NODES = (
+    ast.Expression,
+    ast.BinOp,
+    ast.UnaryOp,
+    ast.Constant,
+    ast.Name,
+    ast.Load,
+    ast.Call,
+    ast.Add,
+    ast.Sub,
+    ast.Mult,
+    ast.Div,
+    ast.FloorDiv,
+    ast.Mod,
+    ast.Pow,
+    ast.UAdd,
+    ast.USub,
+)
+_ALLOWED_FUNCS = {"round": round, "abs": abs, "min": min, "max": max}
+
+
+def validate_math_expression(expression: str, allowed_names: set[str] | None = None) -> None:
+    """Validasi AST ekspresi matematika sebelum dijalankan di `PythonAstREPLTool` (cegah eksekusi berbahaya)."""
+    if not isinstance(expression, str) or not expression.strip():
+        raise ValueError("ekspresi matematika kosong")
+    try:
+        tree = ast.parse(expression.strip(), mode="eval")
+    except SyntaxError as e:
+        raise ValueError(f"sintaks ekspresi tidak valid: {e.msg}") from e
+
+    permitted = set(_ALLOWED_FUNCS) | (allowed_names or set())
+    for node in ast.walk(tree):
+        if not isinstance(node, _ALLOWED_AST_NODES):
+            raise ValueError(f"konstruksi tidak diizinkan dalam ekspresi kalkulator: {type(node).__name__}")
+        if isinstance(node, ast.Constant) and (isinstance(node.value, bool) or not isinstance(node.value, (int, float))):
+            raise ValueError(f"hanya konstanta numerik yang diizinkan, bukan {type(node.value).__name__}")
+        if isinstance(node, ast.Name) and node.id not in permitted:
+            raise ValueError(f"variabel/fungsi tidak dikenali: {node.id!r}")
+        if isinstance(node, ast.Call):
+            if not isinstance(node.func, ast.Name) or node.func.id not in _ALLOWED_FUNCS:
+                raise ValueError("hanya fungsi matematika dasar (round, abs, min, max) yang diizinkan")
+
+
+def evaluate_formula_python(
+    expression: str,
+    variables: dict[str, float] | None = None,
+    *,
+    ndigits: int = 4,
+) -> float:
+    """Eksekusi ekspresi matematika aman lewat `PythonAstREPLTool` dan kembalikan float terbulatkan."""
+    safe_vars: dict[str, Any] = {}
+    for k, v in (variables or {}).items():
+        if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(float(v)):
+            raise ValueError(f"nilai variabel '{k}' harus bilangan finite, bukan {v!r}")
+        safe_vars[k] = float(v)
+
+    validate_math_expression(expression, allowed_names=set(safe_vars))
+    repl = PythonAstREPLTool(locals={**_ALLOWED_FUNCS, **safe_vars})
+    raw_out = repl.invoke(expression.strip())
+
+    if isinstance(raw_out, (int, float)) and not isinstance(raw_out, bool):
+        val = float(raw_out)
+    elif isinstance(raw_out, str):
+        text = raw_out.strip()
+        if any(err in text for err in ("ZeroDivisionError", "Error", "Exception")):
+            raise ValueError(f"eksekusi kalkulator gagal: {text}")
+        try:
+            val = float(text)
+        except ValueError as e:
+            raise ValueError(f"keluaran kalkulator bukan angka: {text!r}") from e
+    else:
+        raise ValueError(f"tipe keluaran kalkulator tak terduga: {type(raw_out).__name__}")
+
+    if not math.isfinite(val):
+        raise ValueError(f"hasil perhitungan tidak finite: {val}")
+    return round(val, ndigits)
+
+
+@tool
+def python_calculator(expression: str) -> str:
+    """Hitung ekspresi aritmetika angka keuangan secara eksak menggunakan PythonAstREPLTool.
+
+    Gunakan tool ini untuk setiap pembagian, rata-rata, atau persentase agar tidak ada kesalahan
+    hitung. Hanya menerima angka (titik desimal standar Python), operator +-*/, dan fungsi
+    round/abs/min/max. Contoh: '(249056422 / 848181552) * 100'.
+
+    Args:
+        expression: Ekspresi aritmetika Python yang valid.
+    """
+    try:
+        val = evaluate_formula_python(expression)
+    except ValueError as e:
+        return f"ERROR: {e}"
+    return f"{val:.4f}"
